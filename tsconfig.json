@@ -1,0 +1,20 @@
+{
+    "compilerOptions": {
+
+        "allowJs": true,
+        "baseUrl": "./",
+        "checkJs": true,
+        "esModuleInterop": true,
+        "moduleResolution": "node",
+        "noEmit": true,
+        "outDir": "distribution",
+        "resolveJsonModule": true,
+        "strict": true,
+        "strictNullChecks": false,
+        "target": "esnext"
+    },
+    "include": [
+
+        "sources/**/*.js"
+    ]
+}

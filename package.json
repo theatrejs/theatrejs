@@ -24,6 +24,7 @@
         "webgl2"
     ],
     "license": "MIT",
+    "main": "./sources/index.js",
     "name": "@theatrejs/theatrejs",
     "private": "false",
     "repository": {
@@ -31,5 +32,6 @@
         "type": "git",
         "url": "git+https://github.com/theatrejs/theatrejs.git"
     },
-    "scripts": {}
+    "scripts": {},
+    "version": "0.0.0"
 }
