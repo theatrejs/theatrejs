@@ -68,6 +68,18 @@ class Actor {
     }
 
     /**
+     * Called just after removing the actor.
+     * @public
+     */
+    onAfterRemove() {}
+
+    /**
+     * Called just before removing the actor.
+     * @public
+     */
+    onBeforeRemove() {}
+
+    /**
      * Called when the actor is being created.
      * @public
      */

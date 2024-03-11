@@ -75,6 +75,27 @@ class Stage {
      * @public
      */
     onCreate() {}
+
+    /**
+     * Removes the given actor.
+     * @param {import('../index.js').Actor} $actor The actor to remove.
+     * @public
+     */
+    remove($actor) {
+
+        $actor.onBeforeRemove();
+
+        const index = this.$actors.indexOf($actor);
+
+        if (index === -1) {
+
+            return;
+        }
+
+        this.$actors.splice(index, 1);
+
+        $actor.onAfterRemove();
+    }
 }
 
 export {
