@@ -1,4 +1,4 @@
-import {Loop, Stage, SystemActor} from '../index.js';
+import {Loop, Stage, SystemActor, UTILS} from '../index.js';
 
 /**
  * Creates Theatre.js game engines.
@@ -33,6 +33,13 @@ class Engine {
     $stage;
 
     /**
+     * Stores the uuid.
+     * @type {string}
+     * @private
+     */
+    $uuid;
+
+    /**
      * Gets the current stage.
      * @type {import('../index.js').Stage}
      * @public
@@ -41,6 +48,25 @@ class Engine {
     get stage() {
 
         return this.$stage;
+    }
+
+    /**
+     * Gets the uuid.
+     * @type {string}
+     * @public
+     * @readonly
+     */
+    get uuid() {
+
+        return this.$uuid;
+    }
+
+    /**
+     * Creates a new Theatre.js game engine.
+     */
+    constructor() {
+
+        this.$uuid = UTILS.uuid();
     }
 
     /**

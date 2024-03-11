@@ -1,4 +1,4 @@
-import {Vector2} from '../index.js';
+import {UTILS, Vector2} from '../index.js';
 
 /**
  * Abstract Theatre.js actors.
@@ -22,6 +22,13 @@ class Actor {
      * @private
      */
     $translation;
+
+    /**
+     * Stores the uuid.
+     * @type {string}
+     * @private
+     */
+    $uuid;
 
     /**
      * Gets the current engine.
@@ -57,6 +64,17 @@ class Actor {
     }
 
     /**
+     * Gets the uuid.
+     * @type {string}
+     * @public
+     * @readonly
+     */
+    get uuid() {
+
+        return this.$uuid;
+    }
+
+    /**
      * Create a new Theatre.js actor.
      * @param {import('../index.js').Stage} $stage The stage on which to create the actor.
      */
@@ -65,6 +83,7 @@ class Actor {
         this.$stage = $stage;
 
         this.$translation = new Vector2();
+        this.$uuid = UTILS.uuid();
     }
 
     /**

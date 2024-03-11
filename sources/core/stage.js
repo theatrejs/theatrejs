@@ -1,3 +1,5 @@
+import {UTILS} from '../index.js';
+
 /**
  * Abstract Theatre.js stages.
  *
@@ -22,6 +24,13 @@ class Stage {
     $engine;
 
     /**
+     * Stores the uuid.
+     * @type {string}
+     * @private
+     */
+    $uuid;
+
+    /**
      * Gets the current actors.
      * @type {import('../index.js').Actor[]}
      * @public
@@ -44,6 +53,17 @@ class Stage {
     }
 
     /**
+     * Gets the uuid.
+     * @type {string}
+     * @public
+     * @readonly
+     */
+    get uuid() {
+
+        return this.$uuid;
+    }
+
+    /**
      * Creates a new Theatre.js stage.
      * @param {import('../index.js').Engine} $engine The engine on which to create the stage.
      */
@@ -52,6 +72,7 @@ class Stage {
         this.$engine = $engine;
 
         this.$actors = [];
+        this.$uuid = UTILS.uuid();
     }
 
     /**
