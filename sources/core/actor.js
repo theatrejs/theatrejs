@@ -112,6 +112,15 @@ class Actor {
     onTick($timetick) {}
 
     /**
+     * Removes the actor from the current stage.
+     * @public
+     */
+    remove() {
+
+        this.stage.remove(this);
+    }
+
+    /**
      * Translates the actor in the world space from a third person point of view.
      * @param {import('../index.js').Vector2} $vector The translation to apply.
      * @returns {this}
