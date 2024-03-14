@@ -67,6 +67,8 @@ class Engine {
     constructor() {
 
         this.$uuid = UTILS.uuid();
+
+        this.$loop = new Loop(this.tick.bind(this));
     }
 
     /**
@@ -97,7 +99,6 @@ class Engine {
      */
     start($tickrateMinimum = 60) {
 
-        this.$loop = new Loop(this.tick.bind(this));
         this.$loop.update($tickrateMinimum);
     }
 
