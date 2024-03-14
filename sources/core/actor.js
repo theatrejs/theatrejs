@@ -134,7 +134,7 @@ class Actor {
     }
 
     /**
-     * Translates the actor in the world space to given position.
+     * Translates the actor in the world space to the given position.
      * @param {import('../index.js').Vector2} $vector The position to translate to.
      * @returns {this}
      * @public

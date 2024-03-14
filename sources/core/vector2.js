@@ -62,7 +62,7 @@ class Vector2 {
     }
 
     /**
-     * Adds a new vector.
+     * Adds the given vector.
      * @param {import('../index.js').Vector2} $vector The vector to add.
      * @returns {this}
      * @public
