@@ -56,6 +56,8 @@ class Loop {
         if (typeof this.$identifier !== 'undefined') {
 
             this.$scope.cancelAnimationFrame(this.$identifier);
+
+            this.$lastTime = undefined;
         }
     }
 
@@ -66,20 +68,22 @@ class Loop {
      */
     update($tickrateMinimum = 60) {
 
-        const currentTime = performance.now();
-
-        if (typeof this.$lastTime !== 'undefined') {
-
-            const timetickCurrent = currentTime - this.$lastTime;
-            const timetickMinimum = 1000 / $tickrateMinimum;
-            const timetickSafe = Math.min(timetickCurrent, timetickMinimum);
-
-            this.$handler(timetickSafe);
-        }
-
         this.$identifier = this.$scope.requestAnimationFrame(this.update.bind(this, $tickrateMinimum));
 
-        this.$lastTime = currentTime;
+        const currentTime = performance.now();
+
+        if (typeof this.$lastTime === 'undefined') {
+
+            this.$lastTime = currentTime;
+
+            return;
+        }
+
+        const timetickCurrent = currentTime - this.$lastTime;
+        const timetickMinimum = 1000 / $tickrateMinimum;
+        const timetickSafe = Math.min(timetickCurrent, timetickMinimum);
+
+        this.$handler(timetickSafe);
     }
 }
 
