@@ -1,13 +1,10 @@
 /**
- * Static actor system.
+ * Creates actor systems.
  *
  * @example
  *
- * SystemActor.tick({
- *
- *     $stage: StageExample,
- *     $timetick: timetick
- * });
+ * const system = new SystemActor();
+ * system.tick({$stage, $timetick});
  */
 class SystemActor {
 
@@ -17,9 +14,13 @@ class SystemActor {
      * @param {import('../index.js').Stage} $parameters.$stage The stage on which to exectute the system.
      * @param {number} $parameters.$timetick The tick duration (in ms).
      * @public
-     * @static
      */
-    static tick({$stage, $timetick}) {
+    tick({$stage, $timetick}) {
+
+        if (typeof $stage === 'undefined') {
+
+            return;
+        }
 
         $stage.actors.forEach(($actor) => {
 

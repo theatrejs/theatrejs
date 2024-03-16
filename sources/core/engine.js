@@ -33,6 +33,13 @@ class Engine {
     $stage;
 
     /**
+     * Stores the current actor system.
+     * @type {import('../index.js').SystemActor}
+     * @private
+     */
+    $systemActor;
+
+    /**
      * Stores the uuid.
      * @type {string}
      * @private
@@ -69,6 +76,8 @@ class Engine {
         this.$uuid = UTILS.uuid();
 
         this.$loop = new Loop(this.tick.bind(this));
+
+        this.$systemActor = new SystemActor();
     }
 
     /**
@@ -130,7 +139,7 @@ class Engine {
             this.$create(stage);
         }
 
-        SystemActor.tick({
+        this.$systemActor.tick({
 
             $stage: this.stage,
             $timetick: $timetick
