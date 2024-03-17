@@ -106,7 +106,7 @@ class Engine {
         this.$loop = new Loop(this.tick.bind(this));
 
         this.$systemActor = new SystemActor();
-        this.$systemInput = new SystemInput({$container: this.container});
+        this.$systemInput = new SystemInput({$container: this.$container});
     }
 
     /**
@@ -181,7 +181,7 @@ class Engine {
         this.$systemInput.tick();
         this.$systemActor.tick({
 
-            $stage: this.stage,
+            $stage: this.$stage,
             $timetick: $timetick
         });
     }
