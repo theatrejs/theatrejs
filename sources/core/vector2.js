@@ -55,12 +55,24 @@ class Vector2 {
     /**
      * Creates a new two-dimensional vector.
      * @param {number} [$x] The x value of the vector to create.
-     * @param {number} [$y] The y value of the vector to create.
+     * @param {number} [$y] The y value of the vector to create (if not specified then the x value is copied).
      */
-    constructor($x = 0, $y = 0) {
+    constructor($x = 0, $y = $x) {
 
         this.$x = $x;
         this.$y = $y;
+    }
+
+    /**
+     * Creates a new vector from the given vector.
+     * @param {import('../index.js').Vector2} $vector The given vector.
+     * @returns {import('../index.js').Vector2}
+     * @public
+     * @static
+     */
+    static from($vector) {
+
+        return $vector.clone();
     }
 
     /**
