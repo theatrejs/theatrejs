@@ -10,7 +10,10 @@ export {Stage} from './core/stage.js';
 export * as UTILS from './core/utils.js';
 export {Vector2} from './core/vector2.js';
 
+export * as EVENTCODES from './eventcodes/eventcodes.js';
+
 export {EventGamepadAnalog} from './events/gamepadanalog.js';
 export {EventGamepadDigital} from './events/gamepaddigital.js';
 
 export {SystemActor} from './systems/actor.system.js';
+export {SystemInput} from './systems/input.system.js';

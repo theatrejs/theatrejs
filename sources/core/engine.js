@@ -1,4 +1,4 @@
-import {Loop, Stage, SystemActor, UTILS} from '../index.js';
+import {Loop, Stage, SystemActor, SystemInput, UTILS} from '../index.js';
 
 /**
  * Creates Theatre.js game engines.
@@ -10,6 +10,13 @@ import {Loop, Stage, SystemActor, UTILS} from '../index.js';
  * engine.start(60);
  */
 class Engine {
+
+    /**
+     * Stores the container.
+     * @type {HTMLElement}
+     * @private
+     */
+    $container;
 
     /**
      * Stores the loop.
@@ -40,11 +47,29 @@ class Engine {
     $systemActor;
 
     /**
+     * Stores the current input system.
+     * @type {import('../index.js').SystemInput}
+     * @private
+     */
+    $systemInput;
+
+    /**
      * Stores the uuid.
      * @type {string}
      * @private
      */
     $uuid;
+
+    /**
+     * Gets the container.
+     * @type {HTMLElement}
+     * @public
+     * @readonly
+     */
+    get container() {
+
+        return this.$container;
+    }
 
     /**
      * Gets the current stage.
@@ -70,14 +95,18 @@ class Engine {
 
     /**
      * Creates a new Theatre.js game engine.
+     * @param {HTMLElement} $container The container for the game engine to create.
      */
-    constructor() {
+    constructor($container) {
+
+        this.$container = $container;
 
         this.$uuid = UTILS.uuid();
 
         this.$loop = new Loop(this.tick.bind(this));
 
         this.$systemActor = new SystemActor();
+        this.$systemInput = new SystemInput({$container: this.container});
     }
 
     /**
@@ -102,6 +131,14 @@ class Engine {
     }
 
     /**
+     * @type {import('../index.js').SystemInput['getInput']}
+     */
+    getInput(...$parameters) {
+
+        return this.$systemInput.getInput(...$parameters);
+    }
+
+    /**
      * Starts the engine.
      * @param {number} [$tickrateMinimum] The minimum acceptable number of ticks per virtual second (in ticks/s).
      * @public
@@ -109,6 +146,8 @@ class Engine {
     start($tickrateMinimum = 60) {
 
         this.$loop.update($tickrateMinimum);
+
+        this.$systemInput.start();
     }
 
     /**
@@ -139,6 +178,7 @@ class Engine {
             this.$create(stage);
         }
 
+        this.$systemInput.tick();
         this.$systemActor.tick({
 
             $stage: this.stage,
