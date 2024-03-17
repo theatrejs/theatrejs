@@ -81,6 +81,19 @@ class Vector2 {
     }
 
     /**
+     * Clones the vector.
+     * @returns {import('../index.js').Vector2}
+     * @public
+     */
+    clone() {
+
+        const x = this.$x;
+        const y = this.$y;
+
+        return new Vector2(x, y);
+    }
+
+    /**
      * Gets the length of the vector.
      * @returns {number}
      * @public
