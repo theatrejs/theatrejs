@@ -1,4 +1,4 @@
-import {UTILS, Vector2} from '../index.js';
+import {UTILS, Sprite, Vector2} from '../index.js';
 
 /**
  * Abstract Theatre.js actors.
@@ -8,6 +8,13 @@ import {UTILS, Vector2} from '../index.js';
  * class ActorExample extends Actor {}
  */
 class Actor {
+
+    /**
+     * Stores the sprite.
+     * @type {import('../index.js').Sprite}
+     * @private
+     */
+    $sprite;
 
     /**
      * Stores the current stage.
@@ -39,6 +46,17 @@ class Actor {
     get engine() {
 
         return this.stage.engine;
+    }
+
+    /**
+     * Gets the sprite.
+     * @type {import('../index.js').Sprite}
+     * @public
+     * @readonly
+     */
+    get sprite() {
+
+        return this.$sprite;
     }
 
     /**
@@ -87,6 +105,16 @@ class Actor {
     }
 
     /**
+     * Checks if the actor has a sprite.
+     * @returns {boolean}
+     * @public
+     */
+    hasSprite() {
+
+        return this.$sprite instanceof Sprite;
+    }
+
+    /**
      * Called just after removing the actor.
      * @public
      */
@@ -110,6 +138,19 @@ class Actor {
      * @public
      */
     onTick($timetick) {}
+
+    /**
+     * Sets the sprite.
+     * @param {import('../index.js').Sprite} $sprite The sprite to set.
+     * @returns {this}
+     * @public
+     */
+    setSprite($sprite) {
+
+        this.$sprite = $sprite;
+
+        return this;
+    }
 
     /**
      * Translates the actor in the world space from a third person point of view.
