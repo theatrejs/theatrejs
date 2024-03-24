@@ -92,7 +92,7 @@ class Stage {
     }
 
     /**
-     * Called when the stage is being created..
+     * Called when the stage is being created.
      * @public
      */
     onCreate() {}

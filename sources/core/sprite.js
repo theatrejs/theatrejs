@@ -12,7 +12,7 @@
 class Sprite {
 
     /**
-     * Stores the frame to use from the texture source.
+     * Stores the frame to use from the texture sources (with values in [0, 1] ranges).
      * @type {import('../index.js').AABB}
      * @private
      */
