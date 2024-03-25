@@ -151,6 +151,38 @@ class Engine {
     }
 
     /**
+     * Preloads the assets of the given stage.
+     * @param {typeof import('../index.js').Stage} $stage The stage to preload the assets from.
+     * @returns {Promise<void[]>}
+     * @public
+     */
+    preload($stage) {
+
+        /**
+         * @type {Promise<void>[]}
+         */
+        const promises = [];
+
+        UTILS.deduplicate($stage.preloadables).forEach(($asset) => {
+
+            /**
+             * @type {Promise<void>}
+             */
+            const promise = new Promise((resolve) => {
+
+                fetch($asset).then(() => {
+
+                    resolve();
+                });
+            });
+
+            promises.push(promise);
+        });
+
+        return Promise.all(promises);
+    }
+
+    /**
      * Terminates the engine.
      * @public
      */

@@ -10,6 +10,14 @@ import {UTILS, Sprite, Vector2} from '../index.js';
 class Actor {
 
     /**
+     * Stores the preloadable assets.
+     * @type {string[]}
+     * @public
+     * @static
+     */
+    static preloadables = [];
+
+    /**
      * Stores the sprite.
      * @type {import('../index.js').Sprite}
      * @private

@@ -10,6 +10,14 @@ import {UTILS} from '../index.js';
 class Stage {
 
     /**
+     * Stores the preloadable assets.
+     * @type {string[]}
+     * @public
+     * @static
+     */
+    static preloadables = [];
+
+    /**
      * Stores the current actors.
      * @type {import('../index.js').Actor[]}
      * @private
