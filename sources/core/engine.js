@@ -7,7 +7,7 @@ import {Loop, Stage, SystemActor, SystemInput, UTILS} from '../index.js';
  *
  * const engine = new Engine();
  * engine.create(SceneExample);
- * engine.start(60);
+ * engine.initiate(60);
  */
 class Engine {
 
@@ -139,27 +139,26 @@ class Engine {
     }
 
     /**
-     * Starts the engine.
+     * Initiates the engine.
      * @param {number} [$tickrateMinimum] The minimum acceptable number of ticks per virtual second (in ticks/s).
      * @public
      */
-    start($tickrateMinimum = 60) {
+    initiate($tickrateMinimum = 60) {
 
-        this.$loop.update($tickrateMinimum);
+        this.$loop.initiate($tickrateMinimum);
 
-        this.$systemInput.start();
+        this.$systemInput.initiate();
     }
 
     /**
-     * Stops the engine.
+     * Terminates the engine.
      * @public
      */
-    stop() {
+    terminate() {
 
-        if (typeof this.$loop !== 'undefined') {
+        this.$loop.terminate();
 
-            this.$loop.stop();
-        }
+        this.$systemInput.terminate();
     }
 
     /**

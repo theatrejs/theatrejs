@@ -4,7 +4,7 @@
  * @example
  *
  * const loop = new Loop(handler);
- * loop.update();
+ * loop.initiate();
  */
 class Loop {
 
@@ -48,27 +48,13 @@ class Loop {
     }
 
     /**
-     * Stops the update loop.
+     * Loops the update loop.
+     * @param {number} $timetick The tick duration (in ms).
      * @public
      */
-    stop() {
+    $loop($timetick) {
 
-        if (typeof this.$identifier !== 'undefined') {
-
-            this.$scope.cancelAnimationFrame(this.$identifier);
-
-            this.$lastTime = undefined;
-        }
-    }
-
-    /**
-     * Updates the update loop.
-     * @param {number} [$tickrateMinimum] The minimum acceptable number of ticks per virtual second (in ticks/s).
-     * @public
-     */
-    update($tickrateMinimum = 60) {
-
-        this.$identifier = this.$scope.requestAnimationFrame(this.update.bind(this, $tickrateMinimum));
+        this.$identifier = this.$scope.requestAnimationFrame(this.$loop.bind(this, $timetick));
 
         const currentTime = performance.now();
 
@@ -80,10 +66,34 @@ class Loop {
         }
 
         const timetickCurrent = currentTime - this.$lastTime;
-        const timetickMinimum = 1000 / $tickrateMinimum;
+        const timetickMinimum = $timetick;
         const timetickSafe = Math.min(timetickCurrent, timetickMinimum);
 
         this.$handler(timetickSafe);
+    }
+
+    /**
+     * Initiates the update loop.
+     * @param {number} [$tickrateMinimum] The minimum acceptable number of ticks per virtual second (in ticks/s).
+     * @public
+     */
+    initiate($tickrateMinimum = 60) {
+
+        this.$loop(1000 / $tickrateMinimum);
+    }
+
+    /**
+     * Terminates the update loop.
+     * @public
+     */
+    terminate() {
+
+        if (typeof this.$identifier !== 'undefined') {
+
+            this.$scope.cancelAnimationFrame(this.$identifier);
+
+            this.$lastTime = undefined;
+        }
     }
 }
 

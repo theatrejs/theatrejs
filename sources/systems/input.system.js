@@ -25,6 +25,13 @@ class SystemInput {
     $events;
 
     /**
+     * Stores the initiated status.
+     * @type {boolean}
+     * @private
+     */
+    $initiated;
+
+    /**
      * Stores the state of the accepted inputs.
      * @type {Object<string, boolean>}
      * @private
@@ -39,13 +46,6 @@ class SystemInput {
     $inputsAnalog;
 
     /**
-     * Stores the started status.
-     * @type {boolean}
-     * @private
-     */
-    $started;
-
-    /**
      * Creates a new input system.
      * @param {Object} $parameters The given parameters.
      * @param {HTMLElement} $parameters.$container The container on which to attach input events.
@@ -55,9 +55,9 @@ class SystemInput {
         this.$container = $container;
 
         this.$events = [];
+        this.$initiated = false;
         this.$inputs = {};
         this.$inputsAnalog = {};
-        this.$started = false;
     }
 
     /**
@@ -126,12 +126,12 @@ class SystemInput {
     }
 
     /**
-     * Starts the system.
+     * Initiates the system.
      * @public
      */
-    start() {
+    initiate() {
 
-        if (this.$started === true) {
+        if (this.$initiated === true) {
 
             return;
         }
@@ -146,16 +146,16 @@ class SystemInput {
         this.$container.addEventListener('keydown', this.$stack.bind(this));
         this.$container.addEventListener('keyup', this.$stack.bind(this));
 
-        this.$started = true;
+        this.initiated = true;
     }
 
     /**
-     * Stops the system.
+     * Terminates the system.
      * @public
      */
-    stop() {
+    terminate() {
 
-        if (this.$started === false) {
+        if (this.$initiated === false) {
 
             return;
         }
@@ -170,7 +170,7 @@ class SystemInput {
         this.$container.removeEventListener('keydown', this.$stack.bind(this));
         this.$container.removeEventListener('keyup', this.$stack.bind(this));
 
-        this.$started = false;
+        this.initiated = false;
     }
 
     /**
@@ -179,9 +179,9 @@ class SystemInput {
      */
     tick() {
 
-        if (this.$started === false) {
+        if (this.$initiated === false) {
 
-            this.start();
+            this.initiate();
         }
 
         while (this.$events.length > 0) {
