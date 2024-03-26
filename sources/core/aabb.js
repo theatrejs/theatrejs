@@ -31,7 +31,7 @@ class AABB {
      */
     get center() {
 
-        return Vector2.from(this.minimum).add(this.halfSize);
+        return this.minimum.clone().add(this.halfSize);
     }
 
     /**
@@ -42,7 +42,7 @@ class AABB {
      */
     get halfSize() {
 
-        return Vector2.from(this.size).scale(0.5);
+        return this.size.clone().scale(0.5);
     }
 
     /**
@@ -75,7 +75,7 @@ class AABB {
      */
     get size() {
 
-        return Vector2.from(this.$maximum).subtract(this.$minimum);
+        return this.$maximum.clone().subtract(this.$minimum);
     }
 
     /**
