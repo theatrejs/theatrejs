@@ -1,7 +1,7 @@
 /**
  * Deduplicates the items of the given array (a new array is created).
  * @template T
- * @param {Array<T>} $array The array
+ * @param {Array<T>} $array The array.
  * @returns {Array<T>}
  */
 function deduplicate($array) {

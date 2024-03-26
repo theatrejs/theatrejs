@@ -5,7 +5,8 @@ import {EventGamepadAnalog, EventGamepadDigital} from '../index.js';
  *
  * @example
  *
- * const system = new SystemInput({$container: this.container});
+ * const system = new SystemInput({$container});
+ * system.initiate();
  * system.tick();
  */
 class SystemInput {
