@@ -10,6 +10,25 @@ function deduplicate($array) {
 }
 
 /**
+ * Extracts the given item from the given array.
+ * @template T
+ * @param {T} $item The item to remove.
+ * @param {Array<T>} $array The array.
+ * @returns {Array<T>}
+ */
+function extract($item, $array) {
+
+    const index = $array.indexOf($item);
+
+    if (index === -1) {
+
+        return $array;
+    }
+
+    return $array.splice(index, 1);
+}
+
+/**
  * Gets a new UUID.
  * @returns {string}
  */
@@ -21,5 +40,6 @@ function uuid() {
 export {
 
     deduplicate,
+    extract,
     uuid
 };
