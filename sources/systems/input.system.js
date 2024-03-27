@@ -147,7 +147,7 @@ class SystemInput {
         this.$container.addEventListener('keydown', this.$stack.bind(this));
         this.$container.addEventListener('keyup', this.$stack.bind(this));
 
-        this.initiated = true;
+        this.$initiated = true;
     }
 
     /**
@@ -171,7 +171,7 @@ class SystemInput {
         this.$container.removeEventListener('keydown', this.$stack.bind(this));
         this.$container.removeEventListener('keyup', this.$stack.bind(this));
 
-        this.initiated = false;
+        this.$initiated = false;
     }
 
     /**
