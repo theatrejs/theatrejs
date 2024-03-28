@@ -62,7 +62,7 @@ class ExtensionGamepad {
 
     /**
      * Stores the gamepad state.
-     * @type {Object<string, boolean>}
+     * @type {Object.<string, boolean>}
      * @private
      */
     $stateGamepad;

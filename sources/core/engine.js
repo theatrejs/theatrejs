@@ -183,7 +183,7 @@ class Engine {
     }
 
     /**
-     * Terminates the engine.
+     * Terminates the engine (immediately) (must be used outside the lifecycle of this engine).
      * @public
      */
     terminate() {

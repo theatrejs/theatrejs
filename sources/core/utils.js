@@ -1,8 +1,8 @@
 /**
  * Deduplicates the items of the given array (a new array is created).
  * @template T
- * @param {Array<T>} $array The array.
- * @returns {Array<T>}
+ * @param {T[]} $array The array.
+ * @returns {T[]}
  */
 function deduplicate($array) {
 
@@ -13,8 +13,8 @@ function deduplicate($array) {
  * Extracts the given item from the given array.
  * @template T
  * @param {T} $item The item to remove.
- * @param {Array<T>} $array The array.
- * @returns {Array<T>}
+ * @param {T[]} $array The array.
+ * @returns {T[]}
  */
 function extract($item, $array) {
 
