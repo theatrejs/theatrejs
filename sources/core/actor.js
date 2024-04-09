@@ -132,7 +132,7 @@ class Actor {
     }
 
     /**
-     * Attaches a child actor.
+     * Attaches the given child actor.
      * @param {import('../index.js').Actor} $actor The child actor to attach.
      * @returns {this}
      * @public
@@ -145,7 +145,7 @@ class Actor {
     }
 
     /**
-     * Detaches a child actor.
+     * Detaches the given child actor.
      * @param {import('../index.js').Actor} $actor The child actor to detach.
      * @returns {this}
      * @public

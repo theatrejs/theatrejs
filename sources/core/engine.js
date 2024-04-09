@@ -110,7 +110,7 @@ class Engine {
     }
 
     /**
-     * Creates a stage.
+     * Creates the given stage.
      * @param {typeof import('../index.js').Stage} $stage The stage to create.
      * @private
      */
