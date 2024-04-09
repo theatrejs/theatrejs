@@ -32,6 +32,13 @@ class Stage {
     $engine;
 
     /**
+     * Stores the lights.
+     * @type {import('../index.js').Light[]}
+     * @private
+     */
+    $lights;
+
+    /**
      * Stores the uuid.
      * @type {string}
      * @private
@@ -61,6 +68,17 @@ class Stage {
     }
 
     /**
+     * Gets the lights.
+     * @type {import('../index.js').Light[]}
+     * @public
+     * @readonly
+     */
+    get lights() {
+
+        return this.$lights;
+    }
+
+    /**
      * Gets the uuid.
      * @type {string}
      * @public
@@ -80,7 +98,21 @@ class Stage {
         this.$engine = $engine;
 
         this.$actors = [];
+        this.$lights = [];
         this.$uuid = UTILS.uuid();
+    }
+
+    /**
+     * Adds the given light.
+     * @param {import('../index.js').Light} $light The light to add.
+     * @returns {import('../index.js').Light}
+     * @public
+     */
+    addLight($light) {
+
+        this.$lights.push($light);
+
+        return $light;
     }
 
     /**
@@ -124,6 +156,19 @@ class Stage {
         this.$actors.splice(index, 1);
 
         $actor.onAfterRemove();
+    }
+
+    /**
+     * Removes the given light.
+     * @param {import('../index.js').Light} $light The light to remove.
+     * @returns {this}
+     * @public
+     */
+    removeLight($light) {
+
+        UTILS.extract($light, this.$lights);
+
+        return this;
     }
 }
 
