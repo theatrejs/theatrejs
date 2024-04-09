@@ -1,4 +1,4 @@
-import {UTILS} from '../index.js';
+import {Actor, UTILS} from '../index.js';
 
 /**
  * Abstract Theatre.js stages.
@@ -37,6 +37,13 @@ class Stage {
      * @private
      */
     $lights;
+
+    /**
+     * Stores the point of view.
+     * @type {import('../index.js').Actor}
+     * @private
+     */
+    $pointOfView;
 
     /**
      * Stores the uuid.
@@ -79,6 +86,17 @@ class Stage {
     }
 
     /**
+     * Gets the point of view.
+     * @type {import('../index.js').Actor}
+     * @public
+     * @readonly
+     */
+    get pointOfView() {
+
+        return this.$pointOfView;
+    }
+
+    /**
      * Gets the uuid.
      * @type {string}
      * @public
@@ -99,6 +117,7 @@ class Stage {
 
         this.$actors = [];
         this.$lights = [];
+        this.$pointOfView = this.createActor(Actor);
         this.$uuid = UTILS.uuid();
     }
 
@@ -169,6 +188,16 @@ class Stage {
         UTILS.extract($light, this.$lights);
 
         return this;
+    }
+
+    /**
+     * Sets the given actor as the point of view.
+     * @param {import('../index.js').Actor} $actor The actor to set as the point of view.
+     * @public
+     */
+    setPointOfView($actor) {
+
+        this.$pointOfView = $actor;
     }
 }
 
