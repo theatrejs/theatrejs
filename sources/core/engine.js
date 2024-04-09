@@ -6,7 +6,7 @@ import {CONTENTTYPES, Loop, Stage, SystemActor, SystemInput, SystemRender, UTILS
  * @example
  *
  * const engine = new Engine({$container, $resolution});
- * engine.create(SceneExample);
+ * engine.createStage(SceneExample);
  * engine.initiate(60);
  */
 class Engine {
