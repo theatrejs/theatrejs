@@ -1,12 +1,28 @@
+import {AABB, Vector2} from '../index.js';
+
 /**
  * Creates Theatre.js sprites.
  *
  * @example
  *
+ * // minimal
  * const sprite = new Sprite({
  *
  *     $sizeTarget: new Vector2(32, 32),
  *     $textureColor: textureColor
+ * });
+ *
+ * @example
+ *
+ * // full
+ * const sprite = new Sprite({
+ *
+ *     $frameSource: new AABB(new Vector2(0, 0), new Vector2(1, 1)),
+ *     $sizeTarget: new Vector2(32, 32),
+ *     $textureColor: textureColor,
+ *     $textureEmission: textureEmission,
+ *     $textureMetallic: textureMetallic,
+ *     $textureNormal: textureNormal
  * });
  */
 class Sprite {
@@ -38,6 +54,13 @@ class Sprite {
      * @private
      */
     $textureEmission;
+
+    /**
+     * Stores the metallic texture source.
+     * @type {string}
+     * @private
+     */
+    $textureMetallic;
 
     /**
      * Stores the normal texture source.
@@ -91,6 +114,17 @@ class Sprite {
     }
 
     /**
+     * Gets the metallic texture source.
+     * @type {string}
+     * @public
+     * @readonly
+     */
+    get textureMetallic() {
+
+        return this.$textureMetallic;
+    }
+
+    /**
      * Gets the normal texture source.
      * @type {string}
      * @public
@@ -108,14 +142,16 @@ class Sprite {
      * @param {import('../index.js').Vector2} $parameters.$sizeTarget The target size.
      * @param {string} $parameters.$textureColor The color texture source.
      * @param {string} [$parameters.$textureEmission] The emission texture source.
+     * @param {string} [$parameters.$textureMetallic] The metallic texture source.
      * @param {string} [$parameters.$textureNormal] The normal texture source.
      */
-    constructor({$frameSource, $sizeTarget, $textureColor, $textureEmission, $textureNormal}) {
+    constructor({$frameSource = new AABB(new Vector2(0, 0), new Vector2(1, 1)), $sizeTarget, $textureColor, $textureEmission, $textureMetallic, $textureNormal}) {
 
         this.$frameSource = $frameSource;
         this.$sizeTarget = $sizeTarget;
         this.$textureColor = $textureColor;
         this.$textureEmission = $textureEmission;
+        this.$textureMetallic = $textureMetallic;
         this.$textureNormal = $textureNormal;
     }
 }
