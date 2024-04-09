@@ -60,7 +60,7 @@ class Actor {
      */
     get actors() {
 
-        return this.stage.actors;
+        return this.$actors;
     }
 
     /**
