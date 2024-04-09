@@ -88,7 +88,7 @@ class Stage {
      * @param {typeof import('../index.js').Actor} $actor The actor to create.
      * @public
      */
-    create($actor) {
+    createActor($actor) {
 
         const actor = new $actor(this);
 
@@ -110,7 +110,7 @@ class Stage {
      * @param {import('../index.js').Actor} $actor The actor to remove.
      * @public
      */
-    remove($actor) {
+    removeActor($actor) {
 
         $actor.onBeforeRemove();
 

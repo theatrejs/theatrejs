@@ -1,5 +1,3 @@
-import {Vector2} from '../index.js';
-
 /**
  * Creates AABBs.
  *
@@ -85,8 +83,8 @@ class AABB {
      */
     constructor($minimum, $maximum) {
 
-        this.$minimum = $minimum.clone();
-        this.$maximum = $maximum.clone();
+        this.$minimum = $minimum;
+        this.$maximum = $maximum;
     }
 
     /**

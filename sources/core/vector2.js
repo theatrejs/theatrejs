@@ -54,10 +54,10 @@ class Vector2 {
 
     /**
      * Creates a new two-dimensional vector.
-     * @param {number} [$x] The x value of the vector to create.
-     * @param {number} [$y] The y value of the vector to create (if not specified then the x value is copied).
+     * @param {number} $x The x value of the vector to create.
+     * @param {number} $y The y value of the vector to create.
      */
-    constructor($x = 0, $y = $x) {
+    constructor($x, $y) {
 
         this.$x = $x;
         this.$y = $y;

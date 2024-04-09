@@ -127,7 +127,7 @@ class Actor {
         this.$stage = $stage;
 
         this.$actors = [];
-        this.$translation = new Vector2();
+        this.$translation = new Vector2(0, 0);
         this.$uuid = UTILS.uuid();
     }
 
@@ -225,13 +225,11 @@ class Actor {
      */
     translate($vector) {
 
-        const translation = $vector;
-
-        this.$translation = this.$translation.add(translation);
+        this.$translation = this.$translation.add($vector);
 
         this.$actors.forEach(($actor) => {
 
-            $actor.translate(translation);
+            $actor.translate($vector);
         });
 
         return this;
@@ -245,13 +243,13 @@ class Actor {
      */
     translateTo($vector) {
 
-        const translation = $vector.clone().subtract(this.$translation);
+        const transformation = $vector.clone().subtract(this.$translation);
 
         this.$translation = $vector;
 
         this.$actors.forEach(($actor) => {
 
-            $actor.translate(translation);
+            $actor.translate(transformation);
         });
 
         return this;

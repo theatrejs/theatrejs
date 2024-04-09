@@ -114,7 +114,7 @@ class Engine {
      * @param {typeof import('../index.js').Stage} $stage The stage to create.
      * @private
      */
-    $create($stage) {
+    $createStage($stage) {
 
         this.$stage = new $stage(this);
         this.$stage.onCreate();
@@ -125,7 +125,7 @@ class Engine {
      * @param {typeof import('../index.js').Stage} $stage The stage to create on the next tick update.
      * @public
      */
-    create($stage) {
+    createStage($stage) {
 
         this.$next = $stage;
     }
@@ -156,7 +156,7 @@ class Engine {
      * @returns {Promise<void[]>}
      * @public
      */
-    preload($stage) {
+    preloadStage($stage) {
 
         /**
          * @type {Promise<void>[]}
@@ -206,7 +206,12 @@ class Engine {
 
             this.$next = undefined;
 
-            this.$create(stage);
+            this.$createStage(stage);
+        }
+
+        if (typeof this.$stage === 'undefined') {
+
+            return;
         }
 
         this.$systemInput.tick();

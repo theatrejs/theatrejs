@@ -17,11 +17,6 @@ class SystemActor {
      */
     tick({$stage, $timetick}) {
 
-        if (typeof $stage === 'undefined') {
-
-            return;
-        }
-
         $stage.actors.forEach(($actor) => {
 
             $actor.onTick($timetick);
