@@ -1,11 +1,11 @@
-import {Loop, Stage, SystemActor, SystemInput, UTILS} from '../index.js';
+import {CONTENTTYPES, Loop, Stage, SystemActor, SystemInput, SystemRender, UTILS, Vector2} from '../index.js';
 
 /**
  * Creates Theatre.js game engines.
  *
  * @example
  *
- * const engine = new Engine();
+ * const engine = new Engine({$container, $resolution});
  * engine.create(SceneExample);
  * engine.initiate(60);
  */
@@ -54,6 +54,13 @@ class Engine {
     $systemInput;
 
     /**
+     * Stores the current render system.
+     * @type {import('../index.js').SystemRender}
+     * @private
+     */
+    $systemRender;
+
+    /**
      * Stores the uuid.
      * @type {string}
      * @private
@@ -95,11 +102,14 @@ class Engine {
 
     /**
      * Creates a new Theatre.js game engine.
-     * @param {HTMLElement} $container The container for the game engine to create.
+     * @param {Object} $parameters The given parameters.
+     * @param {HTMLElement} $parameters.$container The container for the game engine to create.
+     * @param {import('../index.js').Vector2} [$parameters.$resolution] The rendering resolution to use.
      */
-    constructor($container) {
+    constructor({$container, $resolution = new Vector2(320, 240)}) {
 
         this.$container = $container;
+        this.$resolution = $resolution;
 
         this.$uuid = UTILS.uuid();
 
@@ -107,6 +117,7 @@ class Engine {
 
         this.$systemActor = new SystemActor();
         this.$systemInput = new SystemInput({$container: this.$container});
+        this.$systemRender = new SystemRender({$container: this.$container, $resolution: this.$resolution});
     }
 
     /**
@@ -148,6 +159,7 @@ class Engine {
         this.$loop.initiate($tickrateMinimum);
 
         this.$systemInput.initiate();
+        this.$systemRender.initiate();
     }
 
     /**
@@ -170,7 +182,20 @@ class Engine {
              */
             const promise = new Promise((resolve) => {
 
-                fetch($asset).then(() => {
+                fetch($asset).then(($response) => {
+
+                    const contentType = $response.headers.get('Content-Type');
+
+                    switch(contentType) {
+
+                        case CONTENTTYPES.JPEG:
+                        case CONTENTTYPES.PNG: {
+
+                            this.$systemRender.preload($asset);
+
+                            break;
+                        }
+                    }
 
                     resolve();
                 });
@@ -191,6 +216,7 @@ class Engine {
         this.$loop.terminate();
 
         this.$systemInput.terminate();
+        this.$systemRender.terminate();
     }
 
     /**
@@ -220,6 +246,7 @@ class Engine {
             $stage: this.$stage,
             $timetick: $timetick
         });
+        this.$systemRender.tick(this.$stage);
     }
 }
 
