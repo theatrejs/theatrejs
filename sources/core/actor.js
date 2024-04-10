@@ -53,6 +53,13 @@ class Actor {
     $uuid;
 
     /**
+     * Stores the z-index.
+     * @type {number}
+     * @private
+     */
+    $zIndex;
+
+    /**
      * Gets the child actors.
      * @type {import('../index.js').Actor[]}
      * @public
@@ -119,6 +126,17 @@ class Actor {
     }
 
     /**
+     * Gets the z-index.
+     * @type {number}
+     * @public
+     * @readonly
+     */
+    get zIndex() {
+
+        return this.$zIndex;
+    }
+
+    /**
      * Create a new Theatre.js actor.
      * @param {import('../index.js').Stage} $stage The stage on which to create the actor.
      */
@@ -129,6 +147,7 @@ class Actor {
         this.$actors = [];
         this.$translation = new Vector2(0, 0);
         this.$uuid = UTILS.uuid();
+        this.$zIndex = 0;
     }
 
     /**
@@ -213,6 +232,19 @@ class Actor {
     setSprite($sprite) {
 
         this.$sprite = $sprite;
+
+        return this;
+    }
+
+    /**
+     * Sets the z-index.
+     * @param {number} $zIndex The z-index to set.
+     * @returns {this}
+     * @public
+     */
+    setZIndex($zIndex) {
+
+        this.$zIndex = $zIndex;
 
         return this;
     }

@@ -673,7 +673,14 @@ class SystemRender {
 
         this.$sendAttribute(ShaderStage, 'attributePosition', this.$bufferPosition);
 
-        $stage.actors.forEach(($actor) => {
+        const actors = [...$stage.actors];
+
+        actors.sort(($a, $b) => {
+
+            return $a.zIndex - $b.zIndex;
+        });
+
+        actors.forEach(($actor) => {
 
             if ($actor.hasSprite() === false) {
 
