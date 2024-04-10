@@ -136,10 +136,10 @@ class Stage {
 
     /**
      * Creates the given actor.
-     * @param {typeof import('../index.js').Actor} $actor The actor to create.
+     * @param {typeof import('../index.js').Actor} [$actor] The actor to create.
      * @public
      */
-    createActor($actor) {
+    createActor($actor = Actor) {
 
         const actor = new $actor(this);
 
@@ -148,6 +148,17 @@ class Stage {
         actor.onCreate();
 
         return actor;
+    }
+
+    /**
+     * Checks if the stage has the given actor.
+     * @param {import('../index.js').Actor} $actor The actor to check.
+     * return {boolean}
+     * @public
+     */
+    hasActor($actor) {
+
+        return this.$actors.indexOf($actor) !== -1;
     }
 
     /**
