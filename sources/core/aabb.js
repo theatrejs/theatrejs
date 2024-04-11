@@ -83,8 +83,61 @@ class AABB {
      */
     constructor($minimum, $maximum) {
 
-        this.$minimum = $minimum;
         this.$maximum = $maximum;
+        this.$minimum = $minimum;
+    }
+
+    /**
+     * Gets the manhattan distance between two AABBs.
+     * @param {import('../index.js').AABB} $a The first AABB to compare.
+     * @param {import('../index.js').AABB} $b The second AABB to compare.
+     * @returns {number}
+     * @public
+     * @static
+     */
+    static distanceManhattan($a, $b) {
+
+        const distanceX = AABB.distanceX($a, $b);
+        const distanceY = AABB.distanceY($a, $b);
+
+        if (distanceX > 0 || distanceY > 0) {
+
+            return Math.max(distanceX, 0) + Math.max(distanceY, 0);
+        }
+
+        return distanceX + distanceY;
+    }
+
+    /**
+     * Gets the distance between two AABBs on the x-axis.
+     * @param {import('../index.js').AABB} $a The first AABB to compare.
+     * @param {import('../index.js').AABB} $b The second AABB to compare.
+     * @returns {number}
+     * @public
+     * @static
+     */
+    static distanceX($a, $b) {
+
+        const distanceCenter = Math.abs($b.center.x - $a.center.x);
+        const distanceMinimum = $a.halfSize.x + $b.halfSize.x;
+
+        return distanceCenter - distanceMinimum;
+    }
+
+    /**
+     * Gets the distance between two AABBs on the y-axis.
+     * @param {import('../index.js').AABB} $a The first AABB to compare.
+     * @param {import('../index.js').AABB} $b The second AABB to compare.
+     * @returns {number}
+     * @public
+     * @static
+     */
+    static distanceY($a, $b) {
+
+        const distanceCenter = Math.abs($b.center.y - $a.center.y);
+        const distanceMinimum = $a.halfSize.y + $b.halfSize.y;
+
+        return distanceCenter - distanceMinimum;
     }
 
     /**
@@ -100,6 +153,38 @@ class AABB {
     }
 
     /**
+     * Gets the delta penetration between two AABBs strictly overlaping with each other on the x-axis (the common area).
+     * @param {import('../index.js').AABB} $a The first AABB to compare.
+     * @param {import('../index.js').AABB} $b The second AABB to compare.
+     * @returns {number}
+     * @public
+     * @static
+     */
+    static overlapX($a, $b) {
+
+        const distanceCenter = Math.abs($b.center.x - $a.center.x);
+        const distanceMinimum = $a.halfSize.x + $b.halfSize.x;
+
+        return distanceMinimum - distanceCenter;
+    }
+
+    /**
+     * Gets the delta penetration between two AABBs strictly overlaping with each other on the y-axis (the common area).
+     * @param {import('../index.js').AABB} $a The first AABB to compare.
+     * @param {import('../index.js').AABB} $b The second AABB to compare.
+     * @returns {number}
+     * @public
+     * @static
+     */
+    static overlapY($a, $b) {
+
+        const distanceCenter = Math.abs($b.center.y - $a.center.y);
+        const distanceMinimum = $a.halfSize.y + $b.halfSize.y;
+
+        return distanceMinimum - distanceCenter;
+    }
+
+    /**
      * Clones the AABB.
      * @returns {import('../index.js').AABB}
      * @public
@@ -107,6 +192,20 @@ class AABB {
     clone() {
 
         return new AABB(this.$minimum, this.$maximum);
+    }
+
+    /**
+     * Translates the AABB in the world space from a third person point of view.
+     * @param {import('../index.js').Vector2} $vector The translation to apply.
+     * @returns {this}
+     * @public
+     */
+    translate($vector) {
+
+        this.$maximum = this.$maximum.clone().add($vector);
+        this.$minimum = this.$minimum.clone().add($vector);
+
+        return this;
     }
 }
 

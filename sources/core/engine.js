@@ -1,4 +1,4 @@
-import {CONTENTTYPES, Loop, Stage, SystemActor, SystemInput, SystemRender, UTILS, Vector2} from '../index.js';
+import {CONTENTTYPES, Loop, Stage, SystemActor, SystemCollision, SystemInput, SystemRender, UTILS, Vector2} from '../index.js';
 
 /**
  * Creates Theatre.js game engines.
@@ -45,6 +45,13 @@ class Engine {
      * @private
      */
     $systemActor;
+
+    /**
+     * Stores the current collision system.
+     * @type {import('../index.js').SystemCollision}
+     * @private
+     */
+    $systemCollision;
 
     /**
      * Stores the current input system.
@@ -116,6 +123,7 @@ class Engine {
         this.$loop = new Loop(this.tick.bind(this));
 
         this.$systemActor = new SystemActor();
+        this.$systemCollision = new SystemCollision();
         this.$systemInput = new SystemInput({$container: this.$container});
         this.$systemRender = new SystemRender({$container: this.$container, $resolution: this.$resolution});
     }
@@ -246,6 +254,7 @@ class Engine {
             $stage: this.$stage,
             $timetick: $timetick
         });
+        this.$systemCollision.tick(this.$stage);
         this.$systemRender.tick(this.$stage);
     }
 }

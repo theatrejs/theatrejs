@@ -1,4 +1,4 @@
-import {UTILS, Sprite, Vector2} from '../index.js';
+import {UTILS, Sprite, Vector2, Collider} from '../index.js';
 
 /**
  * Abstract Theatre.js actors.
@@ -23,6 +23,13 @@ class Actor {
      * @private
      */
     $actors;
+
+    /**
+     * Stores the collider.
+     * @type {import('../index.js').Collider}
+     * @private
+     */
+    $collider;
 
     /**
      * Stores the sprite.
@@ -68,6 +75,17 @@ class Actor {
     get actors() {
 
         return this.$actors;
+    }
+
+    /**
+     * Gets the collider.
+     * @type {import('../index.js').Collider}
+     * @public
+     * @readonly
+     */
+    get collider() {
+
+        return this.$collider;
     }
 
     /**
@@ -189,6 +207,16 @@ class Actor {
     }
 
     /**
+     * Checks if the actor has a collider.
+     * return {boolean}
+     * @public
+     */
+    hasCollider() {
+
+        return this.$collider instanceof Collider;
+    }
+
+    /**
      * Checks if the actor has a sprite.
      * @returns {boolean}
      * @public
@@ -211,6 +239,37 @@ class Actor {
     onBeforeRemove() {}
 
     /**
+     * Called when a collision is being resolved.
+     * @param {Object} $parameters The given parameters.
+     * @param {import('../index.js').Actor} $parameters.$actor The colliding actor.
+     * @param {boolean} $parameters.$east If the origin of collision is facing the east face.
+     * @param {boolean} $parameters.$north If the origin of collision is facing the north face.
+     * @param {boolean} $parameters.$south If the origin of collision is facing the south face.
+     * @param {boolean} $parameters.$west If the origin of collision is facing the west face.
+     * @public
+     */
+    onCollide({$actor, $east, $north, $south, $west}) {}
+
+    /**
+     * Called when a collision is being entered.
+     * @param {Object} $parameters The given parameters.
+     * @param {import('../index.js').Actor} $parameters.$actor The colliding actor.
+     * @param {boolean} $parameters.$east If the origin of collision is facing the east face.
+     * @param {boolean} $parameters.$north If the origin of collision is facing the north face.
+     * @param {boolean} $parameters.$south If the origin of collision is facing the south face.
+     * @param {boolean} $parameters.$west If the origin of collision is facing the west face.
+     * @public
+     */
+    onCollideEnter({$actor, $east, $north, $south, $west}) {}
+
+    /**
+     * Called when a collision is being left.
+     * @param {import('../index.js').Actor} $actor The colliding actor.
+     * @public
+     */
+    onCollideLeave($actor) {}
+
+    /**
      * Called when the actor is being created.
      * @public
      */
@@ -222,6 +281,15 @@ class Actor {
      * @public
      */
     onTick($timetick) {}
+
+    /**
+     * Sets the collider.
+     * @param {import('../index.js').Collider} $collider The collider to set.
+     */
+    setCollider($collider) {
+
+        this.$collider = $collider;
+    }
 
     /**
      * Sets the sprite.
@@ -257,7 +325,7 @@ class Actor {
      */
     translate($vector) {
 
-        this.$translation = this.$translation.add($vector);
+        this.$translation = this.$translation.clone().add($vector);
 
         this.$actors.forEach(($actor) => {
 
