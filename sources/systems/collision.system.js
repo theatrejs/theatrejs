@@ -193,8 +193,8 @@ class SystemCollision {
 
             const resolverDynamic = new Vector2(
 
-                checkMinimumX ? - directionX * overlapX : 0,
-                checkMinimumY ? - directionY * overlapY : 0
+                checkMinimumX ? - directionX * (overlapX + 0.0001) : 0, // @TODO
+                checkMinimumY ? - directionY * (overlapY + 0.0001) : 0, // @TODO
             );
 
             $dynamic.translate(resolverDynamic);

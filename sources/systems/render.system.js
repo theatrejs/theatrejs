@@ -160,6 +160,13 @@ class SystemRender {
     $unitTextureNormalDefault;
 
     /**
+     * Stores the texture unit of the default opacity texture source.
+     * @type {number}
+     * @private
+     */
+    $unitTextureOpacityDefault;
+
+    /**
      * Creates a new render system.
      * @param {Object} $parameters The given parameters.
      * @param {HTMLElement} $parameters.$container The container on which to attach the canvas.
@@ -216,7 +223,7 @@ class SystemRender {
      */
     $createBufferUvsOnce($sprite) {
 
-        if (typeof this.$mappingBuffersUv[$sprite.textureColor] !== 'undefined') {
+        if (typeof this.$mappingBuffersUv[$sprite.textureColor + $sprite.frameSource.minimum.x] !== 'undefined') {
 
             return;
         }
@@ -235,7 +242,7 @@ class SystemRender {
         this.$context.bindBuffer(this.$context.ARRAY_BUFFER, bufferUv);
         this.$context.bufferData(this.$context.ARRAY_BUFFER, new Float32Array(uvs), this.$context.STATIC_DRAW);
 
-        this.$mappingBuffersUv[$sprite.textureColor] = bufferUv;
+        this.$mappingBuffersUv[$sprite.textureColor + $sprite.frameSource.minimum.x] = bufferUv;
     }
 
     /**
@@ -340,7 +347,16 @@ class SystemRender {
 
             this.$mappingUnitsTexture[$texture] = this.$currentUnitTexture;
 
-            this.$currentUnitTexture += 1;
+            if (this.$currentUnitTexture + 1 < this.$context.getParameter(this.$context.MAX_COMBINED_TEXTURE_IMAGE_UNITS)) {
+
+                this.$currentUnitTexture += 1;
+            }
+
+            else {
+
+                this.$currentUnitTexture = 0;
+            }
+
         });
 
         image.src = $texture;
@@ -410,6 +426,23 @@ class SystemRender {
         this.$context.texImage2D(this.$context.TEXTURE_2D, 0, this.$context.RGBA, 1, 1, 0, this.$context.RGBA, this.$context.UNSIGNED_BYTE, new Uint8Array([127, 127, 255, 255]));
 
         this.$unitTextureNormalDefault = this.$currentUnitTexture;
+
+        this.$currentUnitTexture += 1;
+    }
+
+    /**
+     * Creates the texture unit of the default opacity texture.
+     * @private
+     */
+    $createUnitTextureOpacityDefault() {
+
+        const texture = this.$context.createTexture();
+
+        this.$context.activeTexture(this.$context.TEXTURE0 + this.$currentUnitTexture);
+        this.$context.bindTexture(this.$context.TEXTURE_2D, texture);
+        this.$context.texImage2D(this.$context.TEXTURE_2D, 0, this.$context.RGBA, 1, 1, 0, this.$context.RGBA, this.$context.UNSIGNED_BYTE, new Uint8Array([255, 255, 255, 255]));
+
+        this.$unitTextureOpacityDefault = this.$currentUnitTexture;
 
         this.$currentUnitTexture += 1;
     }
@@ -600,6 +633,7 @@ class SystemRender {
         this.$createUnitTextureEmissionDefault();
         this.$createUnitTextureMetallicDefault();
         this.$createUnitTextureNormalDefault();
+        this.$createUnitTextureOpacityDefault();
 
         this.$resizeOberver = new ResizeObserver(this.$resize.bind(this));
         this.$resizeOberver.observe(this.$container);
@@ -691,6 +725,7 @@ class SystemRender {
             let textureEmission = this.$unitTextureEmissionDefault;
             let textureMetallic = this.$unitTextureMetallicDefault;
             let textureNormal = this.$unitTextureNormalDefault;
+            let textureOpacity = this.$unitTextureOpacityDefault;
 
             this.$createTextureOnce($actor.sprite.textureColor);
 
@@ -729,6 +764,16 @@ class SystemRender {
                 }
             }
 
+            if (typeof $actor.sprite.textureOpacity !== 'undefined') {
+
+                this.$createTextureOnce($actor.sprite.textureOpacity);
+
+                if (typeof this.$mappingUnitsTexture[$actor.sprite.textureOpacity] !== 'undefined') {
+
+                    textureOpacity = this.$mappingUnitsTexture[$actor.sprite.textureOpacity];
+                }
+            }
+
             this.$createBufferUvsOnce($actor.sprite);
 
             this.$sendUniform(ShaderStage, 'uniformSize', [$actor.sprite.sizeTarget.x, $actor.sprite.sizeTarget.y]);
@@ -736,9 +781,10 @@ class SystemRender {
             this.$sendUniform(ShaderStage, 'uniformTextureEmission', textureEmission);
             this.$sendUniform(ShaderStage, 'uniformTextureMetallic', textureMetallic);
             this.$sendUniform(ShaderStage, 'uniformTextureNormal', textureNormal);
+            this.$sendUniform(ShaderStage, 'uniformTextureOpacity', textureOpacity);
             this.$sendUniform(ShaderStage, 'uniformTranslation', [Math.floor($actor.translation.x), Math.floor($actor.translation.y)]);
 
-            this.$sendAttribute(ShaderStage, 'attributeUvmapping', this.$mappingBuffersUv[$actor.sprite.textureColor]);
+            this.$sendAttribute(ShaderStage, 'attributeUvmapping', this.$mappingBuffersUv[$actor.sprite.textureColor + $actor.sprite.frameSource.minimum.x]);
 
             this.$context.drawElements(this.$context.TRIANGLE_FAN, this.$indices, this.$context.UNSIGNED_INT, 0);
         });

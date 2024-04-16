@@ -137,6 +137,8 @@ class Engine {
 
         this.$stage = new $stage(this);
         this.$stage.onCreate();
+
+        // @TODO : resolve Promise<Stage> ???
     }
 
     /**
@@ -147,6 +149,8 @@ class Engine {
     createStage($stage) {
 
         this.$next = $stage;
+
+        // @TODO : return Promise<Stage> ???
     }
 
     /**

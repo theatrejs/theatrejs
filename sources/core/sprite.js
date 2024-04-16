@@ -22,7 +22,8 @@ import {AABB, Vector2} from '../index.js';
  *     $textureColor: textureColor,
  *     $textureEmission: textureEmission,
  *     $textureMetallic: textureMetallic,
- *     $textureNormal: textureNormal
+ *     $textureNormal: textureNormal,
+ *     $textureOpacity: textureOpacity
  * });
  */
 class Sprite {
@@ -68,6 +69,13 @@ class Sprite {
      * @private
      */
     $textureNormal;
+
+    /**
+     * Stores the opacity texture source.
+     * @type {string}
+     * @private
+     */
+    $textureOpacity;
 
     /**
      * Gets the frame to use from the texture sources.
@@ -136,6 +144,17 @@ class Sprite {
     }
 
     /**
+     * Gets the opacity texture source.
+     * @type {string}
+     * @public
+     * @readonly
+     */
+    get textureOpacity() {
+
+        return this.$textureOpacity;
+    }
+
+    /**
      * Creates a new Theatre.js sprite.
      * @param {Object} $parameters The given parameters.
      * @param {import('../index.js').AABB} [$parameters.$frameSource] The frame to use from the texture sources (with values in [0, 1] ranges) (if not specified then the full texture is used).
@@ -144,8 +163,9 @@ class Sprite {
      * @param {string} [$parameters.$textureEmission] The emission texture source.
      * @param {string} [$parameters.$textureMetallic] The metallic texture source.
      * @param {string} [$parameters.$textureNormal] The normal texture source.
+     * @param {string} [$parameters.$textureOpacity] The opaacity texture source.
      */
-    constructor({$frameSource = new AABB(new Vector2(0, 0), new Vector2(1, 1)), $sizeTarget, $textureColor, $textureEmission, $textureMetallic, $textureNormal}) {
+    constructor({$frameSource = new AABB(new Vector2(0, 0), new Vector2(1, 1)), $sizeTarget, $textureColor, $textureEmission, $textureMetallic, $textureNormal, $textureOpacity}) {
 
         this.$frameSource = $frameSource;
         this.$sizeTarget = $sizeTarget;
@@ -153,6 +173,7 @@ class Sprite {
         this.$textureEmission = $textureEmission;
         this.$textureMetallic = $textureMetallic;
         this.$textureNormal = $textureNormal;
+        this.$textureOpacity = $textureOpacity;
     }
 }
 
