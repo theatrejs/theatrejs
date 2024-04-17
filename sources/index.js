@@ -15,6 +15,7 @@ export {Loop} from './core/loop.js';
 export {Shader} from './core/shader.js';
 export {Sprite} from './core/sprite.js';
 export {Stage} from './core/stage.js';
+export {State} from './core/state.js';
 export * as UTILS from './core/utils.js';
 export {Vector2} from './core/vector2.js';
 export {Vector3} from './core/vector3.js';
