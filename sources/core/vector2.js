@@ -106,6 +106,18 @@ class Vector2 {
     }
 
     /**
+     * Checks the equality with the given vector.
+     * @param {import('../index.js').Vector2} $vector The vector to check with.
+     * @returns {boolean}
+     * @public
+     */
+    equal($vector) {
+
+        return this.$x === $vector.x
+        && this.$y === $vector.y;
+    }
+
+    /**
      * Gets the length of the vector.
      * @returns {number}
      * @public
