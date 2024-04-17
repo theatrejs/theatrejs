@@ -1,6 +1,8 @@
 /**
  * Creates gamepad events.
+ *
  * @example
+ *
  * const event = new EventGamepadAnalog(type, code, value);
  */
 class EventGamepadAnalog extends Event {

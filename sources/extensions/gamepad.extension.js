@@ -48,8 +48,10 @@ const THRESHOLDGAMEPADAXES = 0.25;
 
 /**
  * Creates gamepad extension.
+ *
  * @example
- * const extensiongamepad = new ExtensionGamepad();
+ *
+ * const extensionGamepad = new ExtensionGamepad();
  */
 class ExtensionGamepad {
 
