@@ -32,6 +32,13 @@ class Actor {
     $collider;
 
     /**
+     * Stores the components.
+     * @type {Object<string, any>}
+     * @private
+     */
+    $components;
+
+    /**
      * Stores the sprite.
      * @type {import('../index.js').Sprite}
      * @private
@@ -163,6 +170,7 @@ class Actor {
         this.$stage = $stage;
 
         this.$actors = [];
+        this.$components = {};
         this.$translation = new Vector2(0, 0);
         this.$uuid = UTILS.uuid();
         this.$zIndex = 0;
@@ -207,6 +215,17 @@ class Actor {
     }
 
     /**
+     * Gets a component.
+     * @param {string} $name The name of the component to get.
+     * return {any}
+     * @public
+     */
+    getComponent($name) {
+
+        return this.$components[$name];
+    }
+
+    /**
      * Checks if the actor has a collider.
      * return {boolean}
      * @public
@@ -214,6 +233,17 @@ class Actor {
     hasCollider() {
 
         return this.$collider instanceof Collider;
+    }
+
+    /**
+     * Checks if the actor has the given component.
+     * @param {string} $name The name of the component to check.
+     * return {boolean}
+     * @public
+     */
+    hasComponent($name) {
+
+        return this.$components.hasOwnProperty($name) === true;
     }
 
     /**
@@ -289,6 +319,20 @@ class Actor {
     setCollider($collider) {
 
         this.$collider = $collider;
+    }
+
+    /**
+     * Sets a component.
+     * @param {string} $name The name of the component to set.
+     * @param {any} $component The value of the component to set.
+     * @returns {this}
+     * @public
+     */
+    setComponent($name, $component) {
+
+        this.$components[$name] = $component;
+
+        return this;
     }
 
     /**
