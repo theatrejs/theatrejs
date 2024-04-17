@@ -62,42 +62,6 @@ class SystemInput {
     }
 
     /**
-     * Gets the current input state value of the given analog input.
-     * @param {string} $input The event code of the given analog input.
-     * @returns {number}
-     * @private
-     */
-    $getInputAnalog($input) {
-
-        const input = this.$inputsAnalog[$input];
-
-        if (typeof input === 'undefined') {
-
-            return 0;
-        }
-
-        return input;
-    }
-
-    /**
-     * Gets the current input state value of the given digital input.
-     * @param {string} $input The event code of the given digital input.
-     * @returns {boolean}
-     * @private
-     */
-    $getInputDigital($input) {
-
-        const input = this.$inputs[$input];
-
-        if (typeof input === 'undefined') {
-
-            return false;
-        }
-
-        return input;
-    }
-
-    /**
      * Stacks the input events for the next tick.
      * @param {Event} $event The input event to stack.
      * @private
@@ -110,20 +74,39 @@ class SystemInput {
     }
 
     /**
-     * Gets the current input state value of the given input.
-     * @param {string} $input The event code of the given input.
-     * @param {boolean} [$analog] The value type to get.
-     * @returns {boolean | number}
+     * Gets the current input state value of the given digital input.
+     * @param {string} $input The event code of the given digital input.
+     * @returns {boolean}
      * @public
      */
-    getInput($input, $analog = false) {
+    getInput($input) {
 
-        if ($analog === true) {
+        const input = this.$inputs[$input];
 
-            return this.$getInputAnalog($input);
+        if (typeof input === 'undefined') {
+
+            return false;
         }
 
-        return this.$getInputDigital($input);
+        return input;
+    }
+
+    /**
+     * Gets the current input state value of the given analog input.
+     * @param {string} $input The event code of the given analog input.
+     * @returns {number}
+     * @public
+     */
+    getInputAnalog($input) {
+
+        const input = this.$inputsAnalog[$input];
+
+        if (typeof input === 'undefined') {
+
+            return 0;
+        }
+
+        return input;
     }
 
     /**

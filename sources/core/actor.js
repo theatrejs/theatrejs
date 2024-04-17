@@ -315,10 +315,14 @@ class Actor {
     /**
      * Sets the collider.
      * @param {import('../index.js').Collider} $collider The collider to set.
+     * @returns {this}
+     * @public
      */
     setCollider($collider) {
 
         this.$collider = $collider;
+
+        return this;
     }
 
     /**

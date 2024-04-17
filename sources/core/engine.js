@@ -158,6 +158,14 @@ class Engine {
     }
 
     /**
+     * @type {import('../index.js').SystemInput['getInputAnalog']}
+     */
+    getInputAnalog(...$parameters) {
+
+        return this.$systemInput.getInputAnalog(...$parameters);
+    }
+
+    /**
      * Initiates the engine.
      * @param {number} [$tickrateMinimum] The minimum acceptable number of ticks per virtual second (in ticks/s).
      * @public
