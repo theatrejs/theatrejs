@@ -44,6 +44,7 @@ class ShaderStage extends Shader {
         'uniform sampler2D uniformTextureEmission;' +
         'uniform sampler2D uniformTextureMetallic;' +
         'uniform sampler2D uniformTextureNormal;' +
+        'uniform sampler2D uniformTextureOpacity;' +
         'uniform vec2 uniformTranslationPointOfView;' +
 
         'varying vec2 varyingPosition;' +
@@ -55,6 +56,7 @@ class ShaderStage extends Shader {
             'vec4 colorTextureEmission = texture2D(uniformTextureEmission, varyingUvmapping);' +
             'vec4 colorTextureMetallic = texture2D(uniformTextureMetallic, varyingUvmapping);' +
             'vec4 colorTextureNormal = texture2D(uniformTextureNormal, varyingUvmapping);' +
+            'vec4 colorTextureOpacity = texture2D(uniformTextureOpacity, varyingUvmapping);' +
 
             'vec4 colorDiffuse = vec4(0.0);' +
 
@@ -86,7 +88,7 @@ class ShaderStage extends Shader {
             'vec4 light = max(colorTextureEmission, colorDiffuse);' +
 
             'float alpha = mix(colorTextureColor.a, min(colorDiffuse.a, 1.0), colorTextureMetallic.r);' +
-            'float alphaLimited = clamp(alpha, colorTextureColor.a, 1.0);' +
+            'float alphaLimited = clamp(alpha, colorTextureColor.a, 1.0) * colorTextureOpacity.r;' +
 
             'gl_FragColor = vec4((material * light).rgb, alphaLimited);' +
         '}'
@@ -117,7 +119,7 @@ class ShaderStage extends Shader {
             'varyingUvmapping = attributeUvmapping;' +
             'varyingPosition = (attributePosition * uniformSize + uniformTranslation);' +
 
-            'gl_Position = vec4((varyingPosition - uniformTranslationPointOfView) / uniformAspect, 0.0, 1.0);' +
+            'gl_Position = vec4(2.0 * (varyingPosition - uniformTranslationPointOfView) / uniformAspect, 0.0, 1.0);' +
         '}'
     );
 
@@ -138,8 +140,9 @@ class ShaderStage extends Shader {
         'uniformSize': 'vec2',
         'uniformTextureColor': 'sampler2D',
         'uniformTextureEmission': 'sampler2D',
-        'uniformTextureNormal': 'sampler2D',
         'uniformTextureMetallic': 'sampler2D',
+        'uniformTextureNormal': 'sampler2D',
+        'uniformTextureOpacity': 'sampler2D',
         'uniformTranslation': 'vec2',
         'uniformTranslationPointOfView': 'vec2'
     };

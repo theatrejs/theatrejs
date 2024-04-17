@@ -22,7 +22,8 @@ import {AABB, Vector2} from '../index.js';
  *     $textureColor: textureColor,
  *     $textureEmission: textureEmission,
  *     $textureMetallic: textureMetallic,
- *     $textureNormal: textureNormal
+ *     $textureNormal: textureNormal,
+ *     $textureOpacity: textureOpacity
  * });
  */
 class Sprite {
@@ -33,6 +34,13 @@ class Sprite {
      * @private
      */
     $frameSource;
+
+    /**
+     * Stores the serialized value of frame to use from the texture sources (with values in [0, 1] ranges).
+     * @type {string}
+     * @private
+     */
+    $frameSourceSerialized;
 
     /**
      * Stores the target size.
@@ -70,6 +78,13 @@ class Sprite {
     $textureNormal;
 
     /**
+     * Stores the opacity texture source.
+     * @type {string}
+     * @private
+     */
+    $textureOpacity;
+
+    /**
      * Gets the frame to use from the texture sources.
      * @type {import('../index.js').AABB}
      * @public
@@ -78,6 +93,17 @@ class Sprite {
     get frameSource() {
 
         return this.$frameSource;
+    }
+
+    /**
+     * Gets the serialized value of the frame to use from the texture sources.
+     * @type {string}
+     * @public
+     * @readonly
+     */
+    get frameSourceSerialized() {
+
+        return this.$frameSourceSerialized;
     }
 
     /**
@@ -136,6 +162,17 @@ class Sprite {
     }
 
     /**
+     * Gets the opacity texture source.
+     * @type {string}
+     * @public
+     * @readonly
+     */
+    get textureOpacity() {
+
+        return this.$textureOpacity;
+    }
+
+    /**
      * Creates a new Theatre.js sprite.
      * @param {Object} $parameters The given parameters.
      * @param {import('../index.js').AABB} [$parameters.$frameSource] The frame to use from the texture sources (with values in [0, 1] ranges) (if not specified then the full texture is used).
@@ -144,8 +181,9 @@ class Sprite {
      * @param {string} [$parameters.$textureEmission] The emission texture source.
      * @param {string} [$parameters.$textureMetallic] The metallic texture source.
      * @param {string} [$parameters.$textureNormal] The normal texture source.
+     * @param {string} [$parameters.$textureOpacity] The opaacity texture source.
      */
-    constructor({$frameSource = new AABB(new Vector2(0, 0), new Vector2(1, 1)), $sizeTarget, $textureColor, $textureEmission, $textureMetallic, $textureNormal}) {
+    constructor({$frameSource = new AABB(new Vector2(0, 0), new Vector2(1, 1)), $sizeTarget, $textureColor, $textureEmission, $textureMetallic, $textureNormal, $textureOpacity}) {
 
         this.$frameSource = $frameSource;
         this.$sizeTarget = $sizeTarget;
@@ -153,6 +191,13 @@ class Sprite {
         this.$textureEmission = $textureEmission;
         this.$textureMetallic = $textureMetallic;
         this.$textureNormal = $textureNormal;
+        this.$textureOpacity = $textureOpacity;
+
+        this.$frameSourceSerialized = JSON.stringify([
+
+            [$frameSource.minimum.x, $frameSource.minimum.y],
+            [$frameSource.maximum.x, $frameSource.maximum.y]
+        ]);
     }
 }
 
