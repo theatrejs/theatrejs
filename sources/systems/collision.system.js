@@ -225,26 +225,23 @@ class SystemCollision {
                 });
             }
 
-            else {
+            $dynamic.onCollide({
 
-                $dynamic.onCollide({
+                $actor: $inert,
+                $east: originDynamicEast,
+                $north: originDynamicNorth,
+                $south: originDynamicSouth,
+                $west: originDynamicWest
+            });
 
-                    $actor: $inert,
-                    $east: originDynamicEast,
-                    $north: originDynamicNorth,
-                    $south: originDynamicSouth,
-                    $west: originDynamicWest
-                });
+            $inert.onCollide({
 
-                $inert.onCollide({
-
-                    $actor: $dynamic,
-                    $east: originDynamicWest,
-                    $north: originDynamicSouth,
-                    $south: originDynamicNorth,
-                    $west: originDynamicEast
-                });
-            }
+                $actor: $dynamic,
+                $east: originDynamicWest,
+                $north: originDynamicSouth,
+                $south: originDynamicNorth,
+                $west: originDynamicEast
+            });
         });
 
         this.$previous.filter(([$dynamicPrevious, $inertPrevious]) => {
