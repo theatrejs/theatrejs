@@ -33,6 +33,13 @@ class Engine {
     $next;
 
     /**
+     * Stores the resolution.
+     * @type {import('../index.js').Vector2}
+     * @private
+     */
+    $resolution;
+
+    /**
      * Stores the current stage.
      * @type {import('../index.js').Stage}
      * @private

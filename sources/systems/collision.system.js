@@ -47,7 +47,8 @@ class SystemCollision {
 
         const result = this.$previous.find(([$dynamicPrevious, $inertPrevious]) => {
 
-            return $dynamic === $dynamicPrevious && $inert === $inertPrevious;
+            return $dynamic === $dynamicPrevious
+            && $inert === $inertPrevious;
 
         });
 
@@ -248,7 +249,8 @@ class SystemCollision {
 
             const result = this.$current.find(([$dynamic, $inert]) => {
 
-                return $dynamic === $dynamicPrevious && $inert === $inertPrevious;
+                return $dynamic === $dynamicPrevious
+                && $inert === $inertPrevious;
             });
 
             return typeof result === 'undefined';
