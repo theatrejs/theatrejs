@@ -54,22 +54,20 @@ class Loop {
      */
     $loop($timetick) {
 
-        this.$identifier = this.$scope.requestAnimationFrame(this.$loop.bind(this, $timetick));
-
         const currentTime = performance.now();
 
-        if (typeof this.$lastTime === 'undefined') {
+        if (typeof this.$lastTime !== 'undefined') {
 
-            this.$lastTime = currentTime;
+            const timetickCurrent = currentTime - this.$lastTime;
+            const timetickMinimum = $timetick;
+            const timetickSafe = Math.min(timetickMinimum, timetickCurrent);
 
-            return;
+            this.$handler(timetickSafe);
         }
 
-        const timetickCurrent = currentTime - this.$lastTime;
-        const timetickMinimum = $timetick;
-        const timetickSafe = Math.min(timetickCurrent, timetickMinimum);
+        this.$identifier = this.$scope.requestAnimationFrame(this.$loop.bind(this, $timetick));
 
-        this.$handler(timetickSafe);
+        this.$lastTime = currentTime;
     }
 
     /**
