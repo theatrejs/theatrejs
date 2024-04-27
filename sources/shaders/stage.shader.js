@@ -40,6 +40,7 @@ class ShaderStage extends Shader {
         'uniform float uniformIntensitiesLight[MAXIMUMLIGHTS];' +
         'uniform int uniformLights;' +
         'uniform vec3 uniformPositionsLight[MAXIMUMLIGHTS];' +
+        'uniform bool uniformReflectiveLight[MAXIMUMLIGHTS];' +
         'uniform sampler2D uniformTextureColor;' +
         'uniform sampler2D uniformTextureEmission;' +
         'uniform sampler2D uniformTextureMetallic;' +
@@ -59,6 +60,7 @@ class ShaderStage extends Shader {
             'vec4 colorTextureOpacity = texture2D(uniformTextureOpacity, varyingUvmapping);' +
 
             'vec4 colorDiffuse = vec4(0.0);' +
+            'vec4 colorDiffuseReflective = vec4(0.0);' +
 
             'for (int index = 0; index < MAXIMUMLIGHTS; index += 1) {' +
 
@@ -82,9 +84,14 @@ class ShaderStage extends Shader {
                 'vec4 colorDiffuseCurrent = colorLightCurrent * intensityLightCurrent * intensityLightDiffuse * illumination;' +
 
                 'colorDiffuse = max(colorDiffuseCurrent, colorDiffuse);' +
+
+                'if (uniformReflectiveLight[index] == true) {' +
+
+                    'colorDiffuseReflective = max(colorDiffuseCurrent, colorDiffuseReflective);' +
+                '}' +
             '}' +
 
-            'vec4 material = max(colorTextureColor, mix(colorTextureColor, colorDiffuse, colorTextureMetallic.r));' +
+            'vec4 material = max(colorTextureColor, mix(colorTextureColor, colorDiffuseReflective, colorTextureMetallic));' +
             'vec4 light = max(colorTextureEmission, colorDiffuse);' +
 
             'float alpha = mix(colorTextureColor.a, min(colorDiffuse.a, 1.0), colorTextureMetallic.r);' +
@@ -137,6 +144,7 @@ class ShaderStage extends Shader {
         'uniformIntensitiesLight': 'float[]',
         'uniformLights': 'int',
         'uniformPositionsLight': 'vec3[]',
+        'uniformReflectiveLight': 'bool[]',
         'uniformSize': 'vec2',
         'uniformTextureColor': 'sampler2D',
         'uniformTextureEmission': 'sampler2D',

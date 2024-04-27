@@ -515,6 +515,14 @@ class SystemRender {
                 break;
             }
 
+            case 'bool[]':
+            case 'int[]': {
+
+                this.$context.uniform1iv(this.$locationsUniform[$name], $value);
+
+                break;
+            }
+
             case 'float': {
 
                 this.$context.uniform1f(this.$locationsUniform[$name], $value);
@@ -662,6 +670,7 @@ class SystemRender {
         this.$sendUniform(ShaderStage, 'uniformIntensitiesLight', lights.map(($light) => ($light.intensity)));
         this.$sendUniform(ShaderStage, 'uniformLights', lights.length);
         this.$sendUniform(ShaderStage, 'uniformPositionsLight', lights.map(($light) => ([$light.translation.x, $light.translation.y, $light.translation.z])).flat());
+        this.$sendUniform(ShaderStage, 'uniformReflectiveLight', lights.map(($light) => ($light.reflective)));
         this.$sendUniform(ShaderStage, 'uniformTranslationPointOfView', [Math.floor($stage.pointOfView.translation.x), Math.floor($stage.pointOfView.translation.y)]);
 
         this.$sendAttribute(ShaderStage, 'attributePosition', this.$bufferPosition);

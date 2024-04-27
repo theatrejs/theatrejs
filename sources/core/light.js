@@ -11,7 +11,7 @@ import {Vector3} from '../index.js';
  * @example
  *
  * // full
- * const light = new Light({$color, $intensity});
+ * const light = new Light({$color, $intensity, $reflective});
  */
 class Light {
 
@@ -28,6 +28,13 @@ class Light {
      * @private
      */
     $intensity;
+
+    /**
+     * Stores the reflective status.
+     * @type {boolean}
+     * @private
+     */
+    $reflective;
 
     /**
      * Stores the position.
@@ -59,6 +66,17 @@ class Light {
     }
 
     /**
+     * Gets the reflective status.
+     * @type {boolean}
+     * @public
+     * @readonly
+     */
+    get reflective() {
+
+        return this.$reflective;
+    }
+
+    /**
      * Gets the position.
      * @type {import('../index.js').Vector3}
      * @public
@@ -74,11 +92,13 @@ class Light {
      * @param {Object} [$parameters] The given parameters.
      * @param {import('../index.js').Vector3} [$parameters.$color] The color of the light.
      * @param {number} [$parameters.$intensity] The intensity of the light.
+     * @param {boolean} [$parameters.$reflective] The reflective status.
      */
-    constructor({$color = new Vector3(1, 1, 1), $intensity = 1} = {}) {
+    constructor({$color = new Vector3(1, 1, 1), $intensity = 1, $reflective = true} = {}) {
 
         this.$color = $color;
         this.$intensity = $intensity;
+        this.$reflective = $reflective;
 
         this.$translation = new Vector3(0, 0, 0);
     }
