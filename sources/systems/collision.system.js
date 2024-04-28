@@ -5,7 +5,7 @@ import {AABB, COLLIDERTYPES, Vector2} from '../index.js';
  *
  * @example
  *
- * const system = new SystemRender();
+ * const system = new SystemCollision();
  */
 class SystemCollision {
 

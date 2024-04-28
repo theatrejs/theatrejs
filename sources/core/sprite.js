@@ -181,7 +181,7 @@ class Sprite {
      * @param {string} [$parameters.$textureEmission] The emission texture source.
      * @param {string} [$parameters.$textureMetallic] The metallic texture source.
      * @param {string} [$parameters.$textureNormal] The normal texture source.
-     * @param {string} [$parameters.$textureOpacity] The opaacity texture source.
+     * @param {string} [$parameters.$textureOpacity] The opacity texture source.
      */
     constructor({$frameSource = new AABB(new Vector2(0, 0), new Vector2(1, 1)), $sizeTarget, $textureColor, $textureEmission, $textureMetallic, $textureNormal, $textureOpacity}) {
 
