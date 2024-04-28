@@ -18,13 +18,6 @@ class Actor {
     static preloadables = [];
 
     /**
-     * Stores the child actors.
-     * @type {import('../index.js').Actor[]}
-     * @private
-     */
-    $actors;
-
-    /**
      * Stores the collider.
      * @type {import('../index.js').Collider}
      * @private
@@ -72,17 +65,6 @@ class Actor {
      * @private
      */
     $zIndex;
-
-    /**
-     * Gets the child actors.
-     * @type {import('../index.js').Actor[]}
-     * @public
-     * @readonly
-     */
-    get actors() {
-
-        return this.$actors;
-    }
 
     /**
      * Gets the collider.
@@ -169,49 +151,10 @@ class Actor {
 
         this.$stage = $stage;
 
-        this.$actors = [];
         this.$components = {};
         this.$translation = new Vector2(0, 0);
         this.$uuid = UTILS.uuid();
         this.$zIndex = 0;
-    }
-
-    /**
-     * Attaches the given child actor.
-     * @param {import('../index.js').Actor} $actor The child actor to attach.
-     * @returns {this}
-     * @public
-     */
-    attachActor($actor) {
-
-        this.$actors.push($actor);
-
-        return this;
-    }
-
-    /**
-     * Detaches the given child actor.
-     * @param {import('../index.js').Actor} $actor The child actor to detach.
-     * @returns {this}
-     * @public
-     */
-    detachActor($actor) {
-
-        UTILS.extract($actor, this.$actors);
-
-        return this;
-    }
-
-    /**
-     * Detaches the child actors.
-     * @returns {this}
-     * @public
-     */
-    detachActors() {
-
-        this.$actors = [];
-
-        return this;
     }
 
     /**
@@ -373,12 +316,7 @@ class Actor {
      */
     translate($vector) {
 
-        this.$translation = this.$translation.clone().add($vector);
-
-        this.$actors.forEach(($actor) => {
-
-            $actor.translate($vector);
-        });
+        this.$translation.add($vector);
 
         return this;
     }
@@ -391,14 +329,7 @@ class Actor {
      */
     translateTo($vector) {
 
-        const transformation = $vector.clone().subtract(this.$translation);
-
-        this.$translation = $vector;
-
-        this.$actors.forEach(($actor) => {
-
-            $actor.translate(transformation);
-        });
+        this.$translation = $vector.clone();
 
         return this;
     }
