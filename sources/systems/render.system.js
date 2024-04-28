@@ -79,6 +79,15 @@ class SystemRender {
     static UNITTEXTURE5 = 5;
 
     /**
+     * Stores the texture unit for the reception textures.
+     * @type {6}
+     * @public
+     * @readonly
+     * @static
+     */
+    static UNITTEXTURE6 = 6;
+
+    /**
      * Stores the common vertices positions of the sprites.
      * @type {WebGLBuffer}
      * @private
@@ -203,6 +212,13 @@ class SystemRender {
      * @private
      */
     $textureOpacityDefault;
+
+    /**
+     * Stores the texture of the default reception texture source.
+     * @type {WebGLTexture}
+     * @private
+     */
+    $textureReceptionDefault;
 
     /**
      * Creates a new render system.
@@ -602,6 +618,7 @@ class SystemRender {
         this.$textureMetallicDefault = this.$createTextureDefault(new Vector3(0, 0, 0), SystemRender.UNITTEXTURE3);
         this.$textureNormalDefault = this.$createTextureDefault(new Vector3(127, 127, 255), SystemRender.UNITTEXTURE4);
         this.$textureOpacityDefault = this.$createTextureDefault(new Vector3(255, 255, 255), SystemRender.UNITTEXTURE5);
+        this.$textureReceptionDefault = this.$createTextureDefault(new Vector3(255, 255, 255), SystemRender.UNITTEXTURE6);
 
         this.$resizeOberver = new ResizeObserver(this.$resize.bind(this));
         this.$resizeOberver.observe(this.$container);
@@ -765,6 +782,22 @@ class SystemRender {
             this.$context.activeTexture(this.$context.TEXTURE0 + SystemRender.UNITTEXTURE5);
             this.$context.bindTexture(this.$context.TEXTURE_2D, textureOpacity);
             this.$sendUniform(ShaderStage, 'uniformTextureOpacity', SystemRender.UNITTEXTURE5);
+
+            let textureReception = this.$textureReceptionDefault;
+
+            if (typeof $actor.sprite.textureReception !== 'undefined') {
+
+                this.$createTextureOnce($actor.sprite.textureReception, this.$context.TEXTURE0 + SystemRender.UNITTEXTURE6);
+
+                if (typeof this.$mappingTextures[$actor.sprite.textureReception] !== 'undefined') {
+
+                    textureReception = this.$mappingTextures[$actor.sprite.textureReception];
+                }
+            }
+
+            this.$context.activeTexture(this.$context.TEXTURE0 + SystemRender.UNITTEXTURE6);
+            this.$context.bindTexture(this.$context.TEXTURE_2D, textureReception);
+            this.$sendUniform(ShaderStage, 'uniformTextureReception', SystemRender.UNITTEXTURE6);
 
             this.$sendUniform(ShaderStage, 'uniformSize', [$actor.sprite.sizeTarget.x, $actor.sprite.sizeTarget.y]);
             this.$sendUniform(ShaderStage, 'uniformTranslation', [Math.floor($actor.translation.x), Math.floor($actor.translation.y)]);

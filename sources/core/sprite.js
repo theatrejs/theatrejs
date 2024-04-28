@@ -23,7 +23,8 @@ import {AABB, Vector2} from '../index.js';
  *     $textureEmission: textureEmission,
  *     $textureMetallic: textureMetallic,
  *     $textureNormal: textureNormal,
- *     $textureOpacity: textureOpacity
+ *     $textureOpacity: textureOpacity,
+ *     $textureReception: textureReception
  * });
  */
 class Sprite {
@@ -83,6 +84,13 @@ class Sprite {
      * @private
      */
     $textureOpacity;
+
+    /**
+     * Stores the reception texture source.
+     * @type {string}
+     * @private
+     */
+    $textureReception;
 
     /**
      * Gets the frame to use from the texture sources.
@@ -173,6 +181,17 @@ class Sprite {
     }
 
     /**
+     * Gets the reception texture source.
+     * @type {string}
+     * @public
+     * @readonly
+     */
+    get textureReception() {
+
+        return this.$textureReception;
+    }
+
+    /**
      * Creates a new Theatre.js sprite.
      * @param {Object} $parameters The given parameters.
      * @param {import('../index.js').AABB} [$parameters.$frameSource] The frame to use from the texture sources (with values in [0, 1] ranges) (if not specified then the full texture is used).
@@ -182,8 +201,9 @@ class Sprite {
      * @param {string} [$parameters.$textureMetallic] The metallic texture source.
      * @param {string} [$parameters.$textureNormal] The normal texture source.
      * @param {string} [$parameters.$textureOpacity] The opacity texture source.
+     * @param {string} [$parameters.$textureReception] The reception texture source.
      */
-    constructor({$frameSource = new AABB(new Vector2(0, 0), new Vector2(1, 1)), $sizeTarget, $textureColor, $textureEmission, $textureMetallic, $textureNormal, $textureOpacity}) {
+    constructor({$frameSource = new AABB(new Vector2(0, 0), new Vector2(1, 1)), $sizeTarget, $textureColor, $textureEmission, $textureMetallic, $textureNormal, $textureOpacity, $textureReception}) {
 
         this.$frameSource = $frameSource;
         this.$sizeTarget = $sizeTarget;
@@ -192,6 +212,7 @@ class Sprite {
         this.$textureMetallic = $textureMetallic;
         this.$textureNormal = $textureNormal;
         this.$textureOpacity = $textureOpacity;
+        this.$textureReception = $textureReception;
 
         this.$frameSourceSerialized = JSON.stringify([
 

@@ -46,6 +46,7 @@ class ShaderStage extends Shader {
         'uniform sampler2D uniformTextureMetallic;' +
         'uniform sampler2D uniformTextureNormal;' +
         'uniform sampler2D uniformTextureOpacity;' +
+        'uniform sampler2D uniformTextureReception;' +
         'uniform vec2 uniformTranslationPointOfView;' +
 
         'varying vec2 varyingPosition;' +
@@ -58,6 +59,7 @@ class ShaderStage extends Shader {
             'vec4 colorTextureMetallic = texture2D(uniformTextureMetallic, varyingUvmapping);' +
             'vec4 colorTextureNormal = texture2D(uniformTextureNormal, varyingUvmapping);' +
             'vec4 colorTextureOpacity = texture2D(uniformTextureOpacity, varyingUvmapping);' +
+            'vec4 colorTextureReception = texture2D(uniformTextureReception, varyingUvmapping);' +
 
             'vec4 colorDiffuse = vec4(0.0);' +
             'vec4 colorDiffuseReflective = vec4(0.0);' +
@@ -91,8 +93,8 @@ class ShaderStage extends Shader {
                 '}' +
             '}' +
 
-            'vec4 material = max(colorTextureColor, mix(colorTextureColor, colorDiffuseReflective, colorTextureMetallic));' +
-            'vec4 light = max(colorTextureEmission, colorDiffuse);' +
+            'vec4 material = max(colorTextureColor, mix(colorTextureColor, colorDiffuseReflective, colorTextureReception * colorTextureMetallic));' +
+            'vec4 light = max(colorTextureEmission, colorTextureReception * colorDiffuse);' +
 
             'float alpha = mix(colorTextureColor.a, min(colorDiffuse.a, 1.0), colorTextureMetallic.r);' +
             'float alphaLimited = clamp(alpha, colorTextureColor.a, 1.0) * colorTextureOpacity.r;' +
@@ -151,6 +153,7 @@ class ShaderStage extends Shader {
         'uniformTextureMetallic': 'sampler2D',
         'uniformTextureNormal': 'sampler2D',
         'uniformTextureOpacity': 'sampler2D',
+        'uniformTextureReception': 'sampler2D',
         'uniformTranslation': 'vec2',
         'uniformTranslationPointOfView': 'vec2'
     };
