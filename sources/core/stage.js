@@ -189,6 +189,18 @@ class Stage {
     }
 
     /**
+     * Removes all actors.
+     * @public
+     */
+    removeActors() {
+
+        while (this.$actors.length > 0) {
+
+            this.removeActor(this.$actors[0]);
+        }
+    }
+
+    /**
      * Removes the given light.
      * @param {import('../index.js').Light} $light The light to remove.
      * @returns {this}
