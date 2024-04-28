@@ -137,7 +137,7 @@ class Light {
      */
     translate($vector) {
 
-        this.$translation = this.$translation.clone().add($vector);
+        this.$translation.add($vector);
 
         return this;
     }
@@ -150,7 +150,7 @@ class Light {
      */
     translateTo($vector) {
 
-        this.$translation = $vector;
+        this.$translation = $vector.clone();
 
         return this;
     }

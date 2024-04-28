@@ -238,6 +238,9 @@ class Engine {
 
         this.$loop.terminate();
 
+        this.$createStage(Stage);
+        this.tick(0);
+
         this.$systemInput.terminate();
         this.$systemRender.terminate();
     }

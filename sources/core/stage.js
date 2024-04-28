@@ -174,14 +174,14 @@ class Stage {
      */
     removeActor($actor) {
 
-        $actor.onBeforeRemove();
-
         const index = this.$actors.indexOf($actor);
 
         if (index === -1) {
 
             return;
         }
+
+        $actor.onBeforeRemove();
 
         this.$actors.splice(index, 1);
 
