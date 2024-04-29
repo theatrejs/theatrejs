@@ -1,4 +1,4 @@
-import {CONTENTTYPES, Loop, Stage, SystemActor, SystemCollision, SystemInput, SystemRender, UTILS, Vector2} from '../index.js';
+import {CONTENTTYPES, Loop, Stage, SystemActor, SystemAudio, SystemCollision, SystemInput, SystemRender, UTILS, Vector2} from '../index.js';
 
 /**
  * Creates Theatre.js game engines.
@@ -59,6 +59,13 @@ class Engine {
      * @private
      */
     $systemActor;
+
+    /**
+     * Stores the current audio system.
+     * @type {import('../index.js').SystemAudio}
+     * @private
+     */
+    $systemAudio;
 
     /**
      * Stores the current collision system.
@@ -138,6 +145,7 @@ class Engine {
         this.$preloaded = new Set();
 
         this.$systemActor = new SystemActor();
+        this.$systemAudio = new SystemAudio();
         this.$systemCollision = new SystemCollision();
         this.$systemInput = new SystemInput({$container: this.$container});
         this.$systemRender = new SystemRender({$container: this.$container, $resolution: this.$resolution});
@@ -226,6 +234,11 @@ class Engine {
 
             this.$preloaded.add($asset);
 
+            if (this.$systemAudio.hasAssetLoaded($asset) === true) {
+
+                return;
+            }
+
             if (this.$systemRender.hasAssetLoaded($asset) === true) {
 
                 return;
@@ -249,6 +262,18 @@ class Engine {
                             this.$systemRender.preload($asset);
 
                             $resolve();
+
+                            break;
+                        }
+
+                        case CONTENTTYPES.MPEG:
+                        case CONTENTTYPES.WAVE: {
+
+                            this.$systemAudio.preload($asset, $response)
+                            .then(() => {
+
+                                $resolve();
+                            });
 
                             break;
                         }
@@ -280,6 +305,7 @@ class Engine {
 
         this.$systemInput.terminate();
         this.$systemRender.terminate();
+        this.$systemAudio.terminate();
     }
 
     /**
@@ -311,6 +337,7 @@ class Engine {
         });
         this.$systemCollision.tick(this.$stage);
         this.$systemRender.tick(this.$stage);
+        this.$systemAudio.tick(this.$stage);
     }
 }
 

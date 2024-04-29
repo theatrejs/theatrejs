@@ -13,6 +13,7 @@ export {Engine} from './core/engine.js';
 export {Light} from './core/light.js';
 export {Loop} from './core/loop.js';
 export {Shader} from './core/shader.js';
+export {Sound} from './core/sound.js';
 export {Sprite} from './core/sprite.js';
 export {Stage} from './core/stage.js';
 export {State} from './core/state.js';
@@ -28,6 +29,7 @@ export {EventGamepadDigital} from './events/gamepaddigital.js';
 export {ShaderStage} from './shaders/stage.shader.js';
 
 export {SystemActor} from './systems/actor.system.js';
+export {SystemAudio} from './systems/audio.system.js';
 export {SystemCollision} from './systems/collision.system.js';
 export {SystemInput} from './systems/input.system.js';
 export {SystemRender} from './systems/render.system.js';

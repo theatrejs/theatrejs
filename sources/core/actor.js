@@ -32,6 +32,13 @@ class Actor {
     $components;
 
     /**
+     * Stores the sounds.
+     * @type {import('../index.js').Sound[]}
+     * @private
+     */
+    $sounds;
+
+    /**
      * Stores the sprite.
      * @type {import('../index.js').Sprite}
      * @private
@@ -86,6 +93,17 @@ class Actor {
     get engine() {
 
         return this.stage.engine;
+    }
+
+    /**
+     * Gets the sounds.
+     * @type {import('../index.js').Sound[]}
+     * @public
+     * @readonly
+     */
+    get sounds() {
+
+        return this.$sounds;
     }
 
     /**
@@ -152,9 +170,23 @@ class Actor {
         this.$stage = $stage;
 
         this.$components = {};
+        this.$sounds = [];
         this.$translation = new Vector2(0, 0);
         this.$uuid = UTILS.uuid();
         this.$zIndex = 0;
+    }
+
+    /**
+     * Adds the given sound.
+     * @param {import('../index.js').Sound} $sound The sound to add.
+     * @returns {this}
+     * @public
+     */
+    addSound($sound) {
+
+        this.$sounds.push($sound);
+
+        return this;
     }
 
     /**
@@ -249,11 +281,43 @@ class Actor {
     onCreate() {}
 
     /**
+     * Called when a sound is finishing playing.
+     * @param {import('../index.js').Sound} $sound The sound.
+     * @public
+     */
+    onSoundFinish($sound) {}
+
+    /**
      * Called when the actor is being updated by one tick update.
      * @param {number} $timetick The tick duration (in ms).
      * @public
      */
     onTick($timetick) {}
+
+    /**
+     * Removes the given sound.
+     * @param {import('../index.js').Sound} $sound The sound to remove.
+     * @returns {this}
+     * @public
+     */
+    removeSound($sound) {
+
+        UTILS.extract($sound, this.$sounds);
+
+        return this;
+    }
+
+    /**
+     * Removes all sound.
+     * @returns {this}
+     * @public
+     */
+    removeSounds() {
+
+        this.$sounds = [];
+
+        return this;
+    }
 
     /**
      * Sets the collider.
