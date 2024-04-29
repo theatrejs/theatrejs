@@ -95,6 +95,13 @@ class SystemRender {
     $bufferPosition;
 
     /**
+     * Stores the cache of the image assets.
+     * @type {Map<string, WebGLTexture>}
+     * @private
+     */
+    $cache;
+
+    /**
      * Stores the canvas element.
      * @type {HTMLCanvasElement}
      * @private
@@ -149,13 +156,6 @@ class SystemRender {
      * @private
      */
     $mappingBuffersUv;
-
-    /**
-     * Stores the mapping between the texture sources and their textures.
-     * @type {Object.<string, WebGLTexture>}
-     * @private
-     */
-    $mappingTextures;
 
     /**
      * Stores the shader program.
@@ -231,6 +231,7 @@ class SystemRender {
         this.$container = $container;
         this.$resolution = $resolution;
 
+        this.$cache = new Map();
         this.$canvas = document.createElement('canvas');
         this.$canvas.style.width = '100%';
         this.$canvas.style.height = '100%';
@@ -395,12 +396,12 @@ class SystemRender {
      */
     $createTextureOnce($texture, $unitTexture) {
 
-        if (this.$mappingTextures.hasOwnProperty($texture) === true) {
+        if (this.$cache.has($texture) === true) {
 
             return;
         }
 
-        this.$mappingTextures[$texture] = undefined;
+        this.$cache.set($texture, undefined);
 
         const image = new Image();
 
@@ -418,7 +419,7 @@ class SystemRender {
 
             this.$context.texImage2D(this.$context.TEXTURE_2D, 0, this.$context.RGBA, this.$context.RGBA, this.$context.UNSIGNED_BYTE, image);
 
-            this.$mappingTextures[$texture] = texture;
+            this.$cache.set($texture, texture);
         });
 
         image.src = $texture;
@@ -580,6 +581,17 @@ class SystemRender {
     }
 
     /**
+     * Checks if the system has loaded the given asset.
+     * @param {string} $asset The asset source.
+     * return {boolean}
+     * @public
+     */
+    hasAssetLoaded($asset) {
+
+        return this.$cache.has($asset) === true;
+    }
+
+    /**
      * Initiates the system.
      * @public
      */
@@ -594,7 +606,6 @@ class SystemRender {
         this.$locationsAttribute = {};
         this.$locationsUniform = {};
         this.$mappingBuffersUv = {};
-        this.$mappingTextures = {};
 
         this.$context.frontFace(this.$context.CW);
         this.$context.enable(this.$context.CULL_FACE);
@@ -710,9 +721,9 @@ class SystemRender {
 
             this.$createTextureOnce($actor.sprite.textureColor, this.$context.TEXTURE0 + SystemRender.UNITTEXTURE1);
 
-            if (typeof this.$mappingTextures[$actor.sprite.textureColor] !== 'undefined') {
+            if (typeof this.$cache.get($actor.sprite.textureColor) !== 'undefined') {
 
-                textureColor = this.$mappingTextures[$actor.sprite.textureColor];
+                textureColor = this.$cache.get($actor.sprite.textureColor);
             }
 
             this.$context.activeTexture(this.$context.TEXTURE0 + SystemRender.UNITTEXTURE1);
@@ -725,9 +736,9 @@ class SystemRender {
 
                 this.$createTextureOnce($actor.sprite.textureEmission, this.$context.TEXTURE0 + SystemRender.UNITTEXTURE2);
 
-                if (typeof this.$mappingTextures[$actor.sprite.textureEmission] !== 'undefined') {
+                if (typeof this.$cache.get($actor.sprite.textureEmission) !== 'undefined') {
 
-                    textureEmission = this.$mappingTextures[$actor.sprite.textureEmission];
+                    textureEmission = this.$cache.get($actor.sprite.textureEmission);
                 }
             }
 
@@ -741,9 +752,9 @@ class SystemRender {
 
                 this.$createTextureOnce($actor.sprite.textureMetallic, this.$context.TEXTURE0 + SystemRender.UNITTEXTURE3);
 
-                if (typeof this.$mappingTextures[$actor.sprite.textureMetallic] !== 'undefined') {
+                if (typeof this.$cache.get($actor.sprite.textureMetallic) !== 'undefined') {
 
-                    textureMetallic = this.$mappingTextures[$actor.sprite.textureMetallic];
+                    textureMetallic = this.$cache.get($actor.sprite.textureMetallic);
                 }
             }
 
@@ -757,9 +768,9 @@ class SystemRender {
 
                 this.$createTextureOnce($actor.sprite.textureNormal, this.$context.TEXTURE0 + SystemRender.UNITTEXTURE4);
 
-                if (typeof this.$mappingTextures[$actor.sprite.textureNormal] !== 'undefined') {
+                if (typeof this.$cache.get($actor.sprite.textureNormal) !== 'undefined') {
 
-                    textureNormal = this.$mappingTextures[$actor.sprite.textureNormal];
+                    textureNormal = this.$cache.get($actor.sprite.textureNormal);
                 }
             }
 
@@ -773,9 +784,9 @@ class SystemRender {
 
                 this.$createTextureOnce($actor.sprite.textureOpacity, this.$context.TEXTURE0 + SystemRender.UNITTEXTURE5);
 
-                if (typeof this.$mappingTextures[$actor.sprite.textureOpacity] !== 'undefined') {
+                if (typeof this.$cache.get($actor.sprite.textureOpacity) !== 'undefined') {
 
-                    textureOpacity = this.$mappingTextures[$actor.sprite.textureOpacity];
+                    textureOpacity = this.$cache.get($actor.sprite.textureOpacity);
                 }
             }
 
@@ -789,9 +800,9 @@ class SystemRender {
 
                 this.$createTextureOnce($actor.sprite.textureReception, this.$context.TEXTURE0 + SystemRender.UNITTEXTURE6);
 
-                if (typeof this.$mappingTextures[$actor.sprite.textureReception] !== 'undefined') {
+                if (typeof this.$cache.get($actor.sprite.textureReception) !== 'undefined') {
 
-                    textureReception = this.$mappingTextures[$actor.sprite.textureReception];
+                    textureReception = this.$cache.get($actor.sprite.textureReception);
                 }
             }
 

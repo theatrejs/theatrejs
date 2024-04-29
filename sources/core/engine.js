@@ -33,6 +33,13 @@ class Engine {
     $next;
 
     /**
+     * Stores the preloaded status of the assets.
+     * @type {Set<string>}
+     * @private
+     */
+    $preloaded;
+
+    /**
      * Stores the resolution.
      * @type {import('../index.js').Vector2}
      * @private
@@ -128,6 +135,7 @@ class Engine {
         this.$uuid = UTILS.uuid();
 
         this.$loop = new Loop(this.tick.bind(this));
+        this.$preloaded = new Set();
 
         this.$systemActor = new SystemActor();
         this.$systemCollision = new SystemCollision();
@@ -173,6 +181,17 @@ class Engine {
     }
 
     /**
+     * Checks if the engine has loaded the given asset.
+     * @param {string} $asset The asset source.
+     * return {boolean}
+     * @public
+     */
+    hasAssetLoaded($asset) {
+
+        return this.$preloaded.has($asset) === true;
+    }
+
+    /**
      * Initiates the engine.
      * @param {number} [$tickrateMinimum] The minimum acceptable number of ticks per virtual second (in ticks/s).
      * @public
@@ -200,12 +219,25 @@ class Engine {
 
         UTILS.deduplicate($stage.preloadables).forEach(($asset) => {
 
+            if (this.hasAssetLoaded($asset) === true) {
+
+                return;
+            }
+
+            this.$preloaded.add($asset);
+
+            if (this.$systemRender.hasAssetLoaded($asset) === true) {
+
+                return;
+            }
+
             /**
              * @type {Promise<void>}
              */
-            const promise = new Promise((resolve) => {
+            const promise = new Promise(($resolve) => {
 
-                fetch($asset).then(($response) => {
+                fetch($asset)
+                .then(($response) => {
 
                     const contentType = $response.headers.get('Content-Type');
 
@@ -216,11 +248,16 @@ class Engine {
 
                             this.$systemRender.preload($asset);
 
+                            $resolve();
+
                             break;
                         }
-                    }
 
-                    resolve();
+                        default: {
+
+                            $resolve();
+                        }
+                    }
                 });
             });
 
