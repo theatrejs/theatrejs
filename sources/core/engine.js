@@ -215,13 +215,13 @@ class Engine {
     /**
      * Preloads the assets of the given stage.
      * @param {typeof import('../index.js').Stage} $stage The stage to preload the assets from.
-     * @returns {Promise<void[]>}
+     * @returns {Promise<(undefined | AudioBuffer | WebGLTexture)[]>}
      * @public
      */
     preloadStage($stage) {
 
         /**
-         * @type {Promise<void>[]}
+         * @type {Promise<undefined | AudioBuffer | WebGLTexture>[]}
          */
         const promises = [];
 
@@ -245,34 +245,36 @@ class Engine {
             }
 
             /**
-             * @type {Promise<void>}
+             * @type {Promise<undefined | AudioBuffer | WebGLTexture>}
              */
             const promise = new Promise(($resolve) => {
 
                 fetch($asset)
-                .then(($response) => {
+                .then(($content) => {
 
-                    const contentType = $response.headers.get('Content-Type');
+                    const contentType = $content.headers.get('Content-Type');
 
                     switch(contentType) {
 
-                        case CONTENTTYPES.JPEG:
-                        case CONTENTTYPES.PNG: {
+                        case CONTENTTYPES.IMAGEJPEG:
+                        case CONTENTTYPES.IMAGEPNG: {
 
-                            this.$systemRender.preload($asset);
+                            this.$systemRender.loadTexture($content)
+                            .then(($texture) => {
 
-                            $resolve();
+                                $resolve($texture);
+                            });
 
                             break;
                         }
 
-                        case CONTENTTYPES.MPEG:
-                        case CONTENTTYPES.WAVE: {
+                        case CONTENTTYPES.AUDIOMPEG:
+                        case CONTENTTYPES.AUDIOWAVE: {
 
-                            this.$systemAudio.preload($asset, $response)
-                            .then(() => {
+                            this.$systemAudio.loadAudio($content)
+                            .then(($bufferAudio) => {
 
-                                $resolve();
+                                $resolve($bufferAudio);
                             });
 
                             break;
@@ -280,7 +282,7 @@ class Engine {
 
                         default: {
 
-                            $resolve();
+                            $resolve(undefined);
                         }
                     }
                 });

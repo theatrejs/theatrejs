@@ -27,7 +27,7 @@ class SystemAudio {
 
     /**
      * Stores the cache of the audio assets.
-     * @type {Map<string, Promise<AudioBuffer>>}
+     * @type {Map<string, AudioBuffer>}
      * @private
      */
     $cache;
@@ -72,25 +72,44 @@ class SystemAudio {
     }
 
     /**
-     * Loads the audio file content from the given audio source.
-     * @param {string} $audio The audio source.
+     * Loads the audio from the given audio file content.
+     * @param {Response} $content The audio file content.
      * @returns {Promise<AudioBuffer>}
      * @private
      */
-    $load($audio) {
+    $loadAudio($content) {
+
+        const promise = new Promise(($resolve) => {
+
+            $content.arrayBuffer()
+            .then(($bufferArray) => (this.$context.decodeAudioData($bufferArray))
+            .then(($bufferAudio) => {
+
+                this.$cache.set($content.url, $bufferAudio);
+
+                $resolve($bufferAudio);
+            }));
+        });
+
+        return promise;
+    }
+
+    /**
+     * Prepares the audio from the given audio source.
+     * @param {string} $audio The audio source.
+     * @private
+     */
+    $prepareAudio($audio) {
 
         if (this.$cache.has($audio) === true) {
 
-            return this.$cache.get($audio);
+            return;
         }
 
-        const promise = fetch($audio)
-        .then(($response) => ($response.arrayBuffer()))
-        .then(($bufferArray) => (this.$context.decodeAudioData($bufferArray)));
+        this.$cache.set($audio, undefined);
 
-        this.$cache.set($audio, promise);
-
-        return promise;
+        fetch($audio)
+        .then(($content) => (this.$loadAudio($content)));
     }
 
     /**
@@ -137,20 +156,28 @@ class SystemAudio {
     }
 
     /**
-     * Preloads the audio file content from the given audio source.
-     * @param {string} $audio The audio source.
-     * @param {Response} $response The audio file content.
+     * Loads the audio from the given audio file content.
+     * @param {Response} $content The audio file content.
      * @returns {Promise<AudioBuffer>}
      * @public
      */
-    preload($audio, $response) {
+    loadAudio($content) {
 
-        const promise = $response.arrayBuffer()
-        .then(($bufferArray) => (this.$context.decodeAudioData($bufferArray)));
+        if (this.$cache.has($content.url) === true) {
 
-        this.$cache.set($audio, promise);
+            const promise = new Promise(($resolve) => {
 
-        return promise;
+                const audio = this.$cache.get($content.url);
+
+                $resolve(audio);
+            });
+
+            return promise;
+        }
+
+        this.$cache.set($content.url, undefined);
+
+        return this.$loadAudio($content);
     }
 
     /**
@@ -202,59 +229,57 @@ class SystemAudio {
                     return;
                 }
 
-                this.$mappingSoundsPlaying.set($sound, undefined);
+                this.$prepareAudio($sound.audio);
 
-                this.$load($sound.audio)
-                .then(($bufferAudio) => {
+                if (typeof this.$cache.get($sound.audio) === 'undefined') {
 
-                    if (this.$mappingSoundsPlaying.has($sound) === false) {
+                    return;
+                }
 
-                        return;
-                    }
+                const bufferAudio = this.$cache.get($sound.audio);
 
-                    const audio = this.$context.createBufferSource();
-                    audio.buffer = $bufferAudio;
-                    audio.connect(this.$context.destination);
-                    audio.start(0);
+                const audio = this.$context.createBufferSource();
+                audio.buffer = bufferAudio;
+                audio.connect(this.$context.destination);
+                audio.start(0);
 
-                    const gain = this.$context.createGain();
-                    gain.gain.value = $sound.volume - 1;
-                    gain.connect(this.$context.destination);
+                const gain = this.$context.createGain();
+                gain.gain.value = $sound.volume - 1;
+                gain.connect(this.$context.destination);
 
-                    audio.connect(gain);
+                audio.connect(gain);
 
-                    this.$mappingSoundsPlaying.set($sound, {
+                this.$mappingSoundsPlaying.set($sound, {
 
-                        $audio: audio,
-                        $gain: gain,
-                        $startTime: this.$context.currentTime
-                    });
-
-                    if ($sound.loop === true) {
-
-                        audio.loop = true;
-
-                        return;
-                    }
-
-                    gain.gain.setValueCurveAtTime(
-
-                        this.$createValuesCurveFadeOut($sound.volume),
-                        this.$context.currentTime + Math.max(0, audio.buffer.duration - ($sound.durationFadeOut / 1000)),
-                        Math.min(audio.buffer.duration, $sound.durationFadeOut / 1000)
-                    );
-
-                    audio.onended = () => {
-
-                        audio.disconnect();
-                        gain.disconnect();
-
-                        this.$mappingSoundsPlaying.delete($sound);
-
-                        $actor.removeSound($sound);
-                        $actor.onSoundFinish($sound);
-                    };
+                    $audio: audio,
+                    $gain: gain,
+                    $startTime: this.$context.currentTime
                 });
+
+                if ($sound.loop === true) {
+
+                    audio.loop = true;
+
+                    return;
+                }
+
+                gain.gain.setValueCurveAtTime(
+
+                    this.$createValuesCurveFadeOut($sound.volume),
+                    this.$context.currentTime + Math.max(0, audio.buffer.duration - ($sound.durationFadeOut / 1000)),
+                    Math.min(audio.buffer.duration, $sound.durationFadeOut / 1000)
+                );
+
+                audio.onended = () => {
+
+                    audio.disconnect();
+                    gain.disconnect();
+
+                    this.$mappingSoundsPlaying.delete($sound);
+
+                    $actor.removeSound($sound);
+                    $actor.onSoundFinish($sound);
+                };
             });
         });
 

@@ -95,7 +95,7 @@ class SystemRender {
     $bufferPosition;
 
     /**
-     * Stores the cache of the image assets.
+     * Stores the cache of the texture assets.
      * @type {Map<string, WebGLTexture>}
      * @private
      */
@@ -371,6 +371,30 @@ class SystemRender {
     }
 
     /**
+     * Creates a texture from the given bitmap texture data.
+     * @param {ImageBitmap} $textureBitmap The bitmap texture data.
+     * @param {number} $unitTexture The target texture unit.
+     * @returns {WebGLTexture}
+     * @private
+     */
+    $createTexture($textureBitmap, $unitTexture) {
+
+        const texture = this.$context.createTexture();
+
+        this.$context.activeTexture($unitTexture);
+        this.$context.bindTexture(this.$context.TEXTURE_2D, texture);
+
+        this.$context.texParameteri(this.$context.TEXTURE_2D, this.$context.TEXTURE_MIN_FILTER, this.$context.NEAREST);
+        this.$context.texParameteri(this.$context.TEXTURE_2D, this.$context.TEXTURE_MAG_FILTER, this.$context.NEAREST);
+        this.$context.texParameteri(this.$context.TEXTURE_2D, this.$context.TEXTURE_WRAP_S, this.$context.CLAMP_TO_EDGE);
+        this.$context.texParameteri(this.$context.TEXTURE_2D, this.$context.TEXTURE_WRAP_T, this.$context.CLAMP_TO_EDGE);
+
+        this.$context.texImage2D(this.$context.TEXTURE_2D, 0, this.$context.RGBA, this.$context.RGBA, this.$context.UNSIGNED_BYTE, $textureBitmap);
+
+        return texture;
+    }
+
+    /**
      * Creates a default texture (1 pixel texture).
      * @param {import('../index.js').Vector3} $color The target texture unit.
      * @param {number} $unitTexture The target texture unit.
@@ -389,12 +413,38 @@ class SystemRender {
     }
 
     /**
-     * Creates a texture from the given texture source.
+     * Loads the texture from the given texture file content.
+     * @param {Response} $content The texture file content.
+     * @param {number} $unitTexture The target texture unit.
+     * @returns {Promise<WebGLTexture>}
+     * @private
+     */
+    $loadTexture($content, $unitTexture) {
+
+        const promise = new Promise(($resolve) => {
+
+            $content.blob()
+            .then(($blob) => (createImageBitmap($blob)))
+            .then(($textureBitmap) => {
+
+                const texture = this.$createTexture($textureBitmap, $unitTexture);
+
+                this.$cache.set($content.url, texture);
+
+                $resolve(texture);
+            });
+        });
+
+        return promise;
+    }
+
+    /**
+     * Prepares the texture from the given texture source.
      * @param {string} $texture The texture source.
      * @param {number} $unitTexture The target texture unit.
      * @private
      */
-    $createTextureOnce($texture, $unitTexture) {
+    $prepareTexture($texture, $unitTexture) {
 
         if (this.$cache.has($texture) === true) {
 
@@ -403,26 +453,8 @@ class SystemRender {
 
         this.$cache.set($texture, undefined);
 
-        const image = new Image();
-
-        image.addEventListener('load', () => {
-
-            const texture = this.$context.createTexture();
-
-            this.$context.activeTexture($unitTexture);
-            this.$context.bindTexture(this.$context.TEXTURE_2D, texture);
-
-            this.$context.texParameteri(this.$context.TEXTURE_2D, this.$context.TEXTURE_MIN_FILTER, this.$context.NEAREST);
-            this.$context.texParameteri(this.$context.TEXTURE_2D, this.$context.TEXTURE_MAG_FILTER, this.$context.NEAREST);
-            this.$context.texParameteri(this.$context.TEXTURE_2D, this.$context.TEXTURE_WRAP_S, this.$context.CLAMP_TO_EDGE);
-            this.$context.texParameteri(this.$context.TEXTURE_2D, this.$context.TEXTURE_WRAP_T, this.$context.CLAMP_TO_EDGE);
-
-            this.$context.texImage2D(this.$context.TEXTURE_2D, 0, this.$context.RGBA, this.$context.RGBA, this.$context.UNSIGNED_BYTE, image);
-
-            this.$cache.set($texture, texture);
-        });
-
-        image.src = $texture;
+        fetch($texture)
+        .then(($content) => (this.$loadTexture($content, $unitTexture)));
     }
 
     /**
@@ -640,18 +672,33 @@ class SystemRender {
     }
 
     /**
-     * Preloads the texture from the given texture source.
-     * @param {string} $texture The texture source.
+     * Loads the texture from the given texture file content.
+     * @param {Response} $content The texture file content.
+     * @returns {Promise<WebGLTexture>}
      * @public
      */
-    preload($texture) {
+    loadTexture($content) {
 
         if (this.$initiated === false) {
 
             this.initiate();
         }
 
-        this.$createTextureOnce($texture, this.$context.TEXTURE0 + SystemRender.UNITTEXTURE0);
+        if (this.$cache.has($content.url) === true) {
+
+            const promise = new Promise(($resolve) => {
+
+                const texture = this.$cache.get($content.url);
+
+                $resolve(texture);
+            });
+
+            return promise;
+        }
+
+        this.$cache.set($content.url, undefined);
+
+        return this.$loadTexture($content, this.$context.TEXTURE0 + SystemRender.UNITTEXTURE0);
     }
 
     /**
@@ -719,7 +766,7 @@ class SystemRender {
 
             let textureColor = this.$textureColorDefault;
 
-            this.$createTextureOnce($actor.sprite.textureColor, this.$context.TEXTURE0 + SystemRender.UNITTEXTURE1);
+            this.$prepareTexture($actor.sprite.textureColor, this.$context.TEXTURE0 + SystemRender.UNITTEXTURE1);
 
             if (typeof this.$cache.get($actor.sprite.textureColor) !== 'undefined') {
 
@@ -734,7 +781,7 @@ class SystemRender {
 
             if (typeof $actor.sprite.textureEmission !== 'undefined') {
 
-                this.$createTextureOnce($actor.sprite.textureEmission, this.$context.TEXTURE0 + SystemRender.UNITTEXTURE2);
+                this.$prepareTexture($actor.sprite.textureEmission, this.$context.TEXTURE0 + SystemRender.UNITTEXTURE2);
 
                 if (typeof this.$cache.get($actor.sprite.textureEmission) !== 'undefined') {
 
@@ -750,7 +797,7 @@ class SystemRender {
 
             if (typeof $actor.sprite.textureMetallic !== 'undefined') {
 
-                this.$createTextureOnce($actor.sprite.textureMetallic, this.$context.TEXTURE0 + SystemRender.UNITTEXTURE3);
+                this.$prepareTexture($actor.sprite.textureMetallic, this.$context.TEXTURE0 + SystemRender.UNITTEXTURE3);
 
                 if (typeof this.$cache.get($actor.sprite.textureMetallic) !== 'undefined') {
 
@@ -766,7 +813,7 @@ class SystemRender {
 
             if (typeof $actor.sprite.textureNormal !== 'undefined') {
 
-                this.$createTextureOnce($actor.sprite.textureNormal, this.$context.TEXTURE0 + SystemRender.UNITTEXTURE4);
+                this.$prepareTexture($actor.sprite.textureNormal, this.$context.TEXTURE0 + SystemRender.UNITTEXTURE4);
 
                 if (typeof this.$cache.get($actor.sprite.textureNormal) !== 'undefined') {
 
@@ -782,7 +829,7 @@ class SystemRender {
 
             if (typeof $actor.sprite.textureOpacity !== 'undefined') {
 
-                this.$createTextureOnce($actor.sprite.textureOpacity, this.$context.TEXTURE0 + SystemRender.UNITTEXTURE5);
+                this.$prepareTexture($actor.sprite.textureOpacity, this.$context.TEXTURE0 + SystemRender.UNITTEXTURE5);
 
                 if (typeof this.$cache.get($actor.sprite.textureOpacity) !== 'undefined') {
 
@@ -798,7 +845,7 @@ class SystemRender {
 
             if (typeof $actor.sprite.textureReception !== 'undefined') {
 
-                this.$createTextureOnce($actor.sprite.textureReception, this.$context.TEXTURE0 + SystemRender.UNITTEXTURE6);
+                this.$prepareTexture($actor.sprite.textureReception, this.$context.TEXTURE0 + SystemRender.UNITTEXTURE6);
 
                 if (typeof this.$cache.get($actor.sprite.textureReception) !== 'undefined') {
 
