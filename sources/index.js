@@ -7,6 +7,7 @@ export * as CONTENTTYPES from './contenttypes/contenttypes.js';
 
 export {AABB} from './core/aabb.js';
 export {Actor} from './core/actor.js';
+export {ActorPreloadable} from './core/actorpreloadable.js';
 export {Collider} from './core/collider.js';
 export * as CONSTANTS from './core/constants.js';
 export {Engine} from './core/engine.js';
@@ -16,6 +17,7 @@ export {Shader} from './core/shader.js';
 export {Sound} from './core/sound.js';
 export {Sprite} from './core/sprite.js';
 export {Stage} from './core/stage.js';
+export {StagePreloadable} from './core/stagepreloadable.js';
 export {State} from './core/state.js';
 export * as UTILS from './core/utils.js';
 export {Vector2} from './core/vector2.js';
