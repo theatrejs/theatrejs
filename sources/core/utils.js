@@ -29,6 +29,42 @@ function extract($item, $array) {
 }
 
 /**
+ * Resolves when the user has interacted at least once since page load.
+ * @returns {Promise<void>}
+ */
+function onUserReady() {
+
+    /**
+     * @type {Promise<void>}
+     */
+    const promise = new Promise(($resolve) => {
+
+        /**
+         * @type {number}
+         */
+        let id;
+
+        const check = () => {
+
+            if (navigator.userActivation.hasBeenActive === false) {
+
+                id = window.requestAnimationFrame(check);
+
+                return;
+            }
+
+            window.cancelAnimationFrame(id);
+
+            $resolve();
+        };
+
+        id = window.requestAnimationFrame(check);
+    });
+
+    return promise;
+}
+
+/**
  * Gets a new UUID.
  * @returns {string}
  */
@@ -41,5 +77,6 @@ export {
 
     deduplicate,
     extract,
+    onUserReady,
     uuid
 };
