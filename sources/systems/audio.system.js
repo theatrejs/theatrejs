@@ -198,7 +198,7 @@ class SystemAudio {
             this.$terminateSound($sound);
         });
 
-        setTimeout(() => {
+        window.setTimeout(() => {
 
             this.$context.close();
             this.$context = undefined;
