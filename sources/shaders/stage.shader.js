@@ -11,11 +11,7 @@ import {Shader} from '../index.js';
 class ShaderStage extends Shader {
 
     /**
-     * Stores the attributes needed by the shader program.
-     * @type {Object.<string, string>}
-     * @public
-     * @readonly
-     * @static
+     * @type {typeof import('../index.js').Shader['attributes']}
      */
     static attributes = {
 
@@ -24,11 +20,7 @@ class ShaderStage extends Shader {
     };
 
     /**
-     * Stores the fragment shader source.
-     * @type {string}
-     * @public
-     * @readonly
-     * @static
+     * @type {typeof import('../index.js').Shader['sourceFragment']}
      */
     static sourceFragment = (
 
@@ -104,11 +96,7 @@ class ShaderStage extends Shader {
     );
 
     /**
-     * Stores the vertex shader source.
-     * @type {string}
-     * @public
-     * @readonly
-     * @static
+     * @type {typeof import('../index.js').Shader['sourceVertex']}
      */
     static sourceVertex = (
 
@@ -133,11 +121,7 @@ class ShaderStage extends Shader {
     );
 
     /**
-     * Stores the uniforms needed by the shader program.
-     * @type {Object.<string, string>}
-     * @public
-     * @readonly
-     * @static
+     * @type {typeof import('../index.js').Shader['uniforms']}
      */
     static uniforms = {
 
