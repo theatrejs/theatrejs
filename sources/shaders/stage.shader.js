@@ -11,6 +11,15 @@ import {Shader} from '../index.js';
 class ShaderStage extends Shader {
 
     /**
+     * Stores the maximum number of lights this shader can accept.
+     * @type {number}
+     * @public
+     * @readonly
+     * @static
+     */
+    static MAXIMUMLIGHTS = 32;
+
+    /**
      * @type {typeof import('../index.js').Shader['attributes']}
      */
     static attributes = {
@@ -26,11 +35,10 @@ class ShaderStage extends Shader {
 
         'precision highp float;' +
 
-        'const int MAXIMUMLIGHTS = 32;' +
+        'const int MAXIMUMLIGHTS = ' + ShaderStage.MAXIMUMLIGHTS + ';' +
 
         'uniform vec3 uniformColorsLight[MAXIMUMLIGHTS];' +
         'uniform float uniformIntensitiesLight[MAXIMUMLIGHTS];' +
-        'uniform int uniformLights;' +
         'uniform vec3 uniformPositionsLight[MAXIMUMLIGHTS];' +
         'uniform bool uniformReflectiveLight[MAXIMUMLIGHTS];' +
         'uniform sampler2D uniformTextureColor;' +
@@ -53,15 +61,10 @@ class ShaderStage extends Shader {
             'vec4 colorTextureOpacity = texture2D(uniformTextureOpacity, varyingUvmapping);' +
             'vec4 colorTextureReception = texture2D(uniformTextureReception, varyingUvmapping);' +
 
-            'vec4 colorDiffuse = vec4(0.0);' +
-            'vec4 colorDiffuseReflective = vec4(0.0);' +
+            'vec3 colorDiffuse = vec3(0.0, 0.0, 0.0);' +
+            'vec3 colorDiffuseReflective = vec3(0.0, 0.0, 0.0);' +
 
             'for (int index = 0; index < MAXIMUMLIGHTS; index += 1) {' +
-
-                'if (index >= uniformLights) {' +
-
-                    'break;' +
-                '}' +
 
                 'vec3 positionLight = uniformPositionsLight[index] - vec3(varyingPosition, 0.0);' +
                 'vec3 normalLight = vec3(colorTextureNormal) * 2.0 - 1.0;' +
@@ -74,8 +77,8 @@ class ShaderStage extends Shader {
                 'float attenuation = heightLight / distanceLight;' +
                 'float illumination = min(attenuation * intensityLightCurrent, 1.0);' +
 
-                'vec4 colorLightCurrent = vec4(uniformColorsLight[index], 1.0);' +
-                'vec4 colorDiffuseCurrent = colorLightCurrent * intensityLightCurrent * intensityLightDiffuse * illumination;' +
+                'vec3 colorLightCurrent = uniformColorsLight[index];' +
+                'vec3 colorDiffuseCurrent = colorLightCurrent * intensityLightCurrent * intensityLightDiffuse * illumination;' +
 
                 'colorDiffuse = max(colorDiffuseCurrent, colorDiffuse);' +
 
@@ -85,13 +88,15 @@ class ShaderStage extends Shader {
                 '}' +
             '}' +
 
-            'vec4 material = max(colorTextureColor, mix(colorTextureColor, colorDiffuseReflective, colorTextureReception * colorTextureMetallic));' +
-            'vec4 light = max(colorTextureEmission, colorTextureReception * colorDiffuse);' +
+            'float metalness = colorTextureMetallic.r * colorTextureReception.r * (length(colorDiffuseReflective) / 3.0);' +
 
-            'float alpha = mix(colorTextureColor.a, min(colorDiffuse.a, 1.0), colorTextureMetallic.r);' +
-            'float alphaLimited = clamp(alpha, colorTextureColor.a, 1.0) * colorTextureOpacity.r;' +
+            'vec3 material = max(colorTextureColor.rgb, mix(colorTextureColor.rgb, colorDiffuseReflective, metalness));' +
+            'vec3 light = max(colorTextureEmission.rgb, colorTextureReception.rgb * colorDiffuse);' +
 
-            'gl_FragColor = vec4((material * light).rgb, alphaLimited);' +
+            'float alpha = colorTextureColor.a * colorTextureOpacity.r;' +
+            'float visible = float(alpha != 0.0);' +
+
+            'gl_FragColor = vec4(material * light, visible);' +
         '}'
     );
 
@@ -128,7 +133,6 @@ class ShaderStage extends Shader {
         'uniformAspect': 'vec2',
         'uniformColorsLight': 'vec3[]',
         'uniformIntensitiesLight': 'float[]',
-        'uniformLights': 'int',
         'uniformPositionsLight': 'vec3[]',
         'uniformReflectiveLight': 'bool[]',
         'uniformSize': 'vec2',

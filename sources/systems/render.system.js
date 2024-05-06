@@ -21,7 +21,8 @@ class SystemRender {
     static LIGHTVOID = new Light({
 
         $color: new Vector3(0, 0, 0),
-        $intensity: 0
+        $intensity: 0,
+        $reflective: false
     });
 
     /**
@@ -733,17 +734,26 @@ class SystemRender {
 
         this.$resetCanvas(this.$canvas.width, this.$canvas.height);
 
-        const lights = [...$stage.lights];
+        /**
+         * @type {import('../index.js').Light[]}
+         */
+        const lights = new Array(ShaderStage.MAXIMUMLIGHTS);
 
-        if (lights.length === 0) {
+        for (let index = 0, length = lights.length; index < length; index += 1) {
 
-            lights.push(SystemRender.LIGHTVOID);
+            if (typeof $stage.lights[index] === 'undefined') {
+
+                lights[index] = SystemRender.LIGHTVOID;
+
+                continue;
+            }
+
+            lights[index] = $stage.lights[index];
         }
 
         this.$sendUniform(ShaderStage, 'uniformAspect', [this.$canvas.width, this.$canvas.height]);
         this.$sendUniform(ShaderStage, 'uniformColorsLight', lights.map(($light) => ([$light.color.x, $light.color.y, $light.color.z])).flat());
         this.$sendUniform(ShaderStage, 'uniformIntensitiesLight', lights.map(($light) => ($light.intensity)));
-        this.$sendUniform(ShaderStage, 'uniformLights', lights.length);
         this.$sendUniform(ShaderStage, 'uniformPositionsLight', lights.map(($light) => ([$light.translation.x, $light.translation.y, $light.translation.z])).flat());
         this.$sendUniform(ShaderStage, 'uniformReflectiveLight', lights.map(($light) => ($light.reflective)));
         this.$sendUniform(ShaderStage, 'uniformTranslationPointOfView', [Math.floor($stage.pointOfView.translation.x), Math.floor($stage.pointOfView.translation.y)]);
