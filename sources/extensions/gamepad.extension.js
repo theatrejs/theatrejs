@@ -44,7 +44,7 @@ const GAMEPADBUTTONS = [
  * @type {number}
  * @constant
  */
-const THRESHOLDGAMEPADAXES = 0.25;
+const THRESHOLDGAMEPADAXES = 0.5;
 
 /**
  * Creates gamepad extension.

@@ -11,6 +11,7 @@ class State {
     /**
      * @callback typewatcherstate A state changing handler.
      * @param {Type} $state The new data state.
+     * @returns {void}
      */
 
     /**

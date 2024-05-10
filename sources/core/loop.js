@@ -23,11 +23,11 @@ class Loop {
     $identifier;
 
     /**
-     * Stores the time value of the last tick call.
+     * Stores the time value of the previous tick call.
      * @type {number}
      * @private
      */
-    $lastTime;
+    $timePrevious;
 
     /**
      * Stores the global scope used.
@@ -54,11 +54,11 @@ class Loop {
      */
     $loop($timetick) {
 
-        const currentTime = performance.now();
+        const timeCurrent = performance.now();
 
-        if (typeof this.$lastTime !== 'undefined') {
+        if (typeof this.$timePrevious !== 'undefined') {
 
-            const timetickCurrent = currentTime - this.$lastTime;
+            const timetickCurrent = timeCurrent - this.$timePrevious;
             const timetickMinimum = $timetick;
             const timetickSafe = Math.min(timetickMinimum, timetickCurrent);
 
@@ -67,7 +67,7 @@ class Loop {
 
         this.$identifier = this.$scope.requestAnimationFrame(this.$loop.bind(this, $timetick));
 
-        this.$lastTime = currentTime;
+        this.$timePrevious = timeCurrent;
     }
 
     /**
@@ -90,7 +90,7 @@ class Loop {
 
             this.$scope.cancelAnimationFrame(this.$identifier);
 
-            this.$lastTime = undefined;
+            this.$timePrevious = undefined;
         }
     }
 }
