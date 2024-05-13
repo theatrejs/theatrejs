@@ -19,6 +19,7 @@ export {Sprite} from './core/sprite.js';
 export {Stage} from './core/stage.js';
 export {StagePreloadable} from './core/stagepreloadable.js';
 export {State} from './core/state.js';
+export {Timeline} from './core/timeline.js';
 export * as UTILS from './core/utils.js';
 export {Vector2} from './core/vector2.js';
 export {Vector3} from './core/vector3.js';
