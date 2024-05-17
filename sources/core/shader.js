@@ -23,7 +23,11 @@ class Shader {
      * @readonly
      * @static
      */
-    static attributes = {};
+    static attributes = {
+
+        'attributePosition': 'vec2',
+        'attributeUvmapping': 'vec2'
+    };
 
     /**
      * Stores the fragment shader source.
@@ -34,7 +38,23 @@ class Shader {
      */
     static sourceFragment = (
 
-        'void main(void) {}'
+        'precision highp float;' +
+
+        'uniform sampler2D uniformTextureColor;' +
+        'uniform sampler2D uniformTextureOpacity;' +
+        'uniform vec2 uniformTranslationPointOfView;' +
+
+        'varying vec2 varyingUvmapping;' +
+
+        'void main(void) {' +
+
+            'vec4 colorTextureColor = texture2D(uniformTextureColor, varyingUvmapping);' +
+            'vec4 colorTextureOpacity = texture2D(uniformTextureOpacity, varyingUvmapping);' +
+
+            'float alpha = colorTextureColor.a * colorTextureOpacity.r;' +
+
+            'gl_FragColor = vec4(colorTextureColor.rgb, alpha);' +
+        '}'
     );
 
     /**
@@ -46,7 +66,25 @@ class Shader {
      */
     static sourceVertex = (
 
-        'void main(void) {}'
+        'attribute vec2 attributePosition;' +
+        'attribute vec2 attributeUvmapping;' +
+
+        'uniform vec2 uniformAspect;' +
+        'uniform vec2 uniformSize;' +
+        'uniform vec2 uniformTranslation;' +
+        'uniform vec2 uniformTranslationPointOfView;' +
+
+        'varying vec2 varyingUvmapping;' +
+
+        'void main(void) {' +
+
+            'varyingUvmapping = attributeUvmapping;' +
+
+            'vec2 position = (attributePosition * uniformSize + uniformTranslation);' +
+            'vec2 projection = 2.0 * (position - uniformTranslationPointOfView) / uniformAspect;' +
+
+            'gl_Position = vec4(projection, 0.0, 1.0);' +
+        '}'
     );
 
     /**
@@ -56,7 +94,15 @@ class Shader {
      * @readonly
      * @static
      */
-    static uniforms = {};
+    static uniforms = {
+
+        'uniformAspect': 'vec2',
+        'uniformSize': 'vec2',
+        'uniformTextureColor': 'sampler2D',
+        'uniformTextureOpacity': 'sampler2D',
+        'uniformTranslation': 'vec2',
+        'uniformTranslationPointOfView': 'vec2'
+    };
 }
 
 export {

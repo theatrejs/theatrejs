@@ -1,4 +1,4 @@
-import {Light, ShaderStage, Vector3} from '../index.js';
+import {Shader, Vector3} from '../index.js';
 
 /**
  * Creates render systems.
@@ -10,20 +10,6 @@ import {Light, ShaderStage, Vector3} from '../index.js';
  * system.tick($stage);
  */
 class SystemRender {
-
-    /**
-     * Stores the void light of the renderer.
-     * @type {import('../index.js').Light}
-     * @public
-     * @readonly
-     * @static
-     */
-    static LIGHTVOID = new Light({
-
-        $color: new Vector3(0, 0, 0),
-        $intensity: 0,
-        $reflective: false
-    });
 
     /**
      * Stores the texture unit for the textures to preload.
@@ -44,49 +30,13 @@ class SystemRender {
     static UNITTEXTURE1 = 1;
 
     /**
-     * Stores the texture unit for the emission textures.
+     * Stores the texture unit for the opacity textures.
      * @type {2}
      * @public
      * @readonly
      * @static
      */
     static UNITTEXTURE2 = 2;
-
-    /**
-     * Stores the texture unit for the metallic textures.
-     * @type {3}
-     * @public
-     * @readonly
-     * @static
-     */
-    static UNITTEXTURE3 = 3;
-
-    /**
-     * Stores the texture unit for the normal textures.
-     * @type {4}
-     * @public
-     * @readonly
-     * @static
-     */
-    static UNITTEXTURE4 = 4;
-
-    /**
-     * Stores the texture unit for the opacity textures.
-     * @type {5}
-     * @public
-     * @readonly
-     * @static
-     */
-    static UNITTEXTURE5 = 5;
-
-    /**
-     * Stores the texture unit for the reception textures.
-     * @type {6}
-     * @public
-     * @readonly
-     * @static
-     */
-    static UNITTEXTURE6 = 6;
 
     /**
      * Stores the common vertices positions of the sprites.
@@ -187,39 +137,11 @@ class SystemRender {
     $textureColorDefault;
 
     /**
-     * Stores the texture of the default emission texture source.
-     * @type {WebGLTexture}
-     * @private
-     */
-    $textureEmissionDefault;
-
-    /**
-     * Stores the texture of the default metallic texture source.
-     * @type {WebGLTexture}
-     * @private
-     */
-    $textureMetallicDefault;
-
-    /**
-     * Stores the texture of the default normal texture source.
-     * @type {WebGLTexture}
-     * @private
-     */
-    $textureNormalDefault;
-
-    /**
      * Stores the texture of the default opacity texture source.
      * @type {WebGLTexture}
      * @private
      */
     $textureOpacityDefault;
-
-    /**
-     * Stores the texture of the default reception texture source.
-     * @type {WebGLTexture}
-     * @private
-     */
-    $textureReceptionDefault;
 
     /**
      * Creates a new render system.
@@ -647,22 +569,18 @@ class SystemRender {
         this.$context.enable(this.$context.BLEND);
         this.$context.blendFunc(this.$context.SRC_ALPHA, this.$context.ONE_MINUS_SRC_ALPHA);
 
-        this.$createProgram(ShaderStage);
+        this.$createProgram(Shader);
 
         this.$context.useProgram(this.$program);
 
-        this.$createLocationsUniform(this.$program, ShaderStage);
-        this.$createLocationsAttribute(this.$program, ShaderStage);
+        this.$createLocationsUniform(this.$program, Shader);
+        this.$createLocationsAttribute(this.$program, Shader);
 
         this.$createBufferPositions();
         this.$createIndices();
 
         this.$textureColorDefault = this.$createTextureDefault(new Vector3(127, 127, 127), SystemRender.UNITTEXTURE1);
-        this.$textureEmissionDefault = this.$createTextureDefault(new Vector3(255, 255, 255), SystemRender.UNITTEXTURE2);
-        this.$textureMetallicDefault = this.$createTextureDefault(new Vector3(0, 0, 0), SystemRender.UNITTEXTURE3);
-        this.$textureNormalDefault = this.$createTextureDefault(new Vector3(127, 127, 255), SystemRender.UNITTEXTURE4);
-        this.$textureOpacityDefault = this.$createTextureDefault(new Vector3(255, 255, 255), SystemRender.UNITTEXTURE5);
-        this.$textureReceptionDefault = this.$createTextureDefault(new Vector3(255, 255, 255), SystemRender.UNITTEXTURE6);
+        this.$textureOpacityDefault = this.$createTextureDefault(new Vector3(255, 255, 255), SystemRender.UNITTEXTURE2);
 
         this.$resizeOberver = new ResizeObserver(this.$resize.bind(this));
         this.$resizeOberver.observe(this.$container);
@@ -734,31 +652,10 @@ class SystemRender {
 
         this.$resetCanvas(this.$canvas.width, this.$canvas.height);
 
-        /**
-         * @type {import('../index.js').Light[]}
-         */
-        const lights = new Array(ShaderStage.MAXIMUMLIGHTS);
+        this.$sendUniform(Shader, 'uniformAspect', [this.$canvas.width, this.$canvas.height]);
+        this.$sendUniform(Shader, 'uniformTranslationPointOfView', [Math.floor($stage.pointOfView.translation.x), Math.floor($stage.pointOfView.translation.y)]);
 
-        for (let index = 0, length = lights.length; index < length; index += 1) {
-
-            if (typeof $stage.lights[index] === 'undefined') {
-
-                lights[index] = SystemRender.LIGHTVOID;
-
-                continue;
-            }
-
-            lights[index] = $stage.lights[index];
-        }
-
-        this.$sendUniform(ShaderStage, 'uniformAspect', [this.$canvas.width, this.$canvas.height]);
-        this.$sendUniform(ShaderStage, 'uniformColorsLight', lights.map(($light) => ([$light.color.x, $light.color.y, $light.color.z])).flat());
-        this.$sendUniform(ShaderStage, 'uniformIntensitiesLight', lights.map(($light) => ($light.intensity)));
-        this.$sendUniform(ShaderStage, 'uniformPositionsLight', lights.map(($light) => ([$light.translation.x, $light.translation.y, $light.translation.z])).flat());
-        this.$sendUniform(ShaderStage, 'uniformReflectiveLight', lights.map(($light) => ($light.reflective)));
-        this.$sendUniform(ShaderStage, 'uniformTranslationPointOfView', [Math.floor($stage.pointOfView.translation.x), Math.floor($stage.pointOfView.translation.y)]);
-
-        this.$sendAttribute(ShaderStage, 'attributePosition', this.$bufferPosition);
+        this.$sendAttribute(Shader, 'attributePosition', this.$bufferPosition);
 
         const actors = [...$stage.actors];
 
@@ -785,61 +682,13 @@ class SystemRender {
 
             this.$context.activeTexture(this.$context.TEXTURE0 + SystemRender.UNITTEXTURE1);
             this.$context.bindTexture(this.$context.TEXTURE_2D, textureColor);
-            this.$sendUniform(ShaderStage, 'uniformTextureColor', SystemRender.UNITTEXTURE1);
-
-            let textureEmission = this.$textureEmissionDefault;
-
-            if (typeof $actor.sprite.textureEmission !== 'undefined') {
-
-                this.$prepareTexture($actor.sprite.textureEmission, this.$context.TEXTURE0 + SystemRender.UNITTEXTURE2);
-
-                if (typeof this.$cache.get($actor.sprite.textureEmission) !== 'undefined') {
-
-                    textureEmission = this.$cache.get($actor.sprite.textureEmission);
-                }
-            }
-
-            this.$context.activeTexture(this.$context.TEXTURE0 + SystemRender.UNITTEXTURE2);
-            this.$context.bindTexture(this.$context.TEXTURE_2D, textureEmission);
-            this.$sendUniform(ShaderStage, 'uniformTextureEmission', SystemRender.UNITTEXTURE2);
-
-            let textureMetallic = this.$textureMetallicDefault;
-
-            if (typeof $actor.sprite.textureMetallic !== 'undefined') {
-
-                this.$prepareTexture($actor.sprite.textureMetallic, this.$context.TEXTURE0 + SystemRender.UNITTEXTURE3);
-
-                if (typeof this.$cache.get($actor.sprite.textureMetallic) !== 'undefined') {
-
-                    textureMetallic = this.$cache.get($actor.sprite.textureMetallic);
-                }
-            }
-
-            this.$context.activeTexture(this.$context.TEXTURE0 + SystemRender.UNITTEXTURE3);
-            this.$context.bindTexture(this.$context.TEXTURE_2D, textureMetallic);
-            this.$sendUniform(ShaderStage, 'uniformTextureMetallic', SystemRender.UNITTEXTURE3);
-
-            let textureNormal = this.$textureNormalDefault;
-
-            if (typeof $actor.sprite.textureNormal !== 'undefined') {
-
-                this.$prepareTexture($actor.sprite.textureNormal, this.$context.TEXTURE0 + SystemRender.UNITTEXTURE4);
-
-                if (typeof this.$cache.get($actor.sprite.textureNormal) !== 'undefined') {
-
-                    textureNormal = this.$cache.get($actor.sprite.textureNormal);
-                }
-            }
-
-            this.$context.activeTexture(this.$context.TEXTURE0 + SystemRender.UNITTEXTURE4);
-            this.$context.bindTexture(this.$context.TEXTURE_2D, textureNormal);
-            this.$sendUniform(ShaderStage, 'uniformTextureNormal', SystemRender.UNITTEXTURE4);
+            this.$sendUniform(Shader, 'uniformTextureColor', SystemRender.UNITTEXTURE1);
 
             let textureOpacity = this.$textureOpacityDefault;
 
             if (typeof $actor.sprite.textureOpacity !== 'undefined') {
 
-                this.$prepareTexture($actor.sprite.textureOpacity, this.$context.TEXTURE0 + SystemRender.UNITTEXTURE5);
+                this.$prepareTexture($actor.sprite.textureOpacity, this.$context.TEXTURE0 + SystemRender.UNITTEXTURE2);
 
                 if (typeof this.$cache.get($actor.sprite.textureOpacity) !== 'undefined') {
 
@@ -847,31 +696,15 @@ class SystemRender {
                 }
             }
 
-            this.$context.activeTexture(this.$context.TEXTURE0 + SystemRender.UNITTEXTURE5);
+            this.$context.activeTexture(this.$context.TEXTURE0 + SystemRender.UNITTEXTURE2);
             this.$context.bindTexture(this.$context.TEXTURE_2D, textureOpacity);
-            this.$sendUniform(ShaderStage, 'uniformTextureOpacity', SystemRender.UNITTEXTURE5);
+            this.$sendUniform(Shader, 'uniformTextureOpacity', SystemRender.UNITTEXTURE2);
 
-            let textureReception = this.$textureReceptionDefault;
-
-            if (typeof $actor.sprite.textureReception !== 'undefined') {
-
-                this.$prepareTexture($actor.sprite.textureReception, this.$context.TEXTURE0 + SystemRender.UNITTEXTURE6);
-
-                if (typeof this.$cache.get($actor.sprite.textureReception) !== 'undefined') {
-
-                    textureReception = this.$cache.get($actor.sprite.textureReception);
-                }
-            }
-
-            this.$context.activeTexture(this.$context.TEXTURE0 + SystemRender.UNITTEXTURE6);
-            this.$context.bindTexture(this.$context.TEXTURE_2D, textureReception);
-            this.$sendUniform(ShaderStage, 'uniformTextureReception', SystemRender.UNITTEXTURE6);
-
-            this.$sendUniform(ShaderStage, 'uniformSize', [$actor.sprite.sizeTarget.x, $actor.sprite.sizeTarget.y]);
-            this.$sendUniform(ShaderStage, 'uniformTranslation', [Math.floor($actor.translation.x), Math.floor($actor.translation.y)]);
+            this.$sendUniform(Shader, 'uniformSize', [$actor.sprite.sizeTarget.x, $actor.sprite.sizeTarget.y]);
+            this.$sendUniform(Shader, 'uniformTranslation', [Math.floor($actor.translation.x), Math.floor($actor.translation.y)]);
 
             this.$createBufferUvsOnce($actor.sprite);
-            this.$sendAttribute(ShaderStage, 'attributeUvmapping', this.$mappingBuffersUv[$actor.sprite.frameSourceSerialized]);
+            this.$sendAttribute(Shader, 'attributeUvmapping', this.$mappingBuffersUv[$actor.sprite.frameSourceSerialized]);
 
             this.$context.drawElements(this.$context.TRIANGLE_FAN, this.$indices, this.$context.UNSIGNED_INT, 0);
         });

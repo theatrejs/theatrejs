@@ -11,7 +11,6 @@ export {ActorPreloadable} from './core/actorpreloadable.js';
 export {Collider} from './core/collider.js';
 export * as CONSTANTS from './core/constants.js';
 export {Engine} from './core/engine.js';
-export {Light} from './core/light.js';
 export {Loop} from './core/loop.js';
 export {Shader} from './core/shader.js';
 export {Sound} from './core/sound.js';
@@ -28,8 +27,6 @@ export * as EVENTCODES from './eventcodes/eventcodes.js';
 
 export {EventGamepadAnalog} from './events/gamepadanalog.js';
 export {EventGamepadDigital} from './events/gamepaddigital.js';
-
-export {ShaderStage} from './shaders/stage.shader.js';
 
 export {SystemActor} from './systems/actor.system.js';
 export {SystemAudio} from './systems/audio.system.js';
