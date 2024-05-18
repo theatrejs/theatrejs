@@ -2,14 +2,15 @@ import {ExtensionGamepad} from './extensions/gamepad.extension.js';
 
 new ExtensionGamepad();
 
-export * as COLLIDERTYPES from './collidertypes/collidertypes.js';
-export * as CONTENTTYPES from './contenttypes/contenttypes.js';
+export * as COLLIDERTYPES from './constants/collidertypes.js';
+export * as CONTENTTYPES from './constants/contenttypes.js';
+export * as EVENTCODES from './constants/eventcodes.js';
+export * as MATHEMATICS from './constants/mathematics.js';
 
 export {AABB} from './core/aabb.js';
 export {Actor} from './core/actor.js';
 export {ActorPreloadable} from './core/actorpreloadable.js';
 export {Collider} from './core/collider.js';
-export * as CONSTANTS from './core/constants.js';
 export {Engine} from './core/engine.js';
 export {Loop} from './core/loop.js';
 export {Shader} from './core/shader.js';
@@ -22,8 +23,6 @@ export {Timeline} from './core/timeline.js';
 export * as UTILS from './core/utils.js';
 export {Vector2} from './core/vector2.js';
 export {Vector3} from './core/vector3.js';
-
-export * as EVENTCODES from './eventcodes/eventcodes.js';
 
 export {EventGamepadAnalog} from './events/gamepadanalog.js';
 export {EventGamepadDigital} from './events/gamepaddigital.js';

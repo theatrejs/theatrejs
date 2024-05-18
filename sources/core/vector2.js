@@ -1,4 +1,4 @@
-import {CONSTANTS} from '../index.js';
+import {MATHEMATICS} from '../index.js';
 
 /**
  * Creates two-dimensional vectors.
@@ -197,7 +197,7 @@ class Vector2 {
         const x = this.$x;
         const y = this.$y;
 
-        const radians = $angle * CONSTANTS.RADIANS;
+        const radians = $angle * MATHEMATICS.RADIANS;
 
         const cosine = Math.cos(radians);
         const sine = Math.sin(radians);
