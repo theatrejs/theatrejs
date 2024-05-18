@@ -5,12 +5,12 @@
  *
  * // without chaining
  * const vector = new Vector3(3, 2, 1);
- * vector.add(new Vector2(1, 0, -1));
+ * vector.add(new Vector3(1, 0, -1));
  *
  * @example
  *
  * // with chaining
- * const vector = new Vector2(3, 2, 1).add(new Vector2(1, 0, -1));
+ * const vector = new Vector3(3, 2, 1).add(new Vector3(1, 0, -1));
  */
 class Vector3 {
 

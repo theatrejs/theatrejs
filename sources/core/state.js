@@ -67,7 +67,7 @@ class State {
      * Removes all watchers of the data state changes.
      * @public
      */
-    unWatchAll() {
+    unwatchAll() {
 
         this.$watchers = [];
     }
@@ -77,7 +77,7 @@ class State {
      * @param {typewatcherstate} $handler The state changing handler to detach.
      * @public
      */
-    unWatchState($handler) {
+    unwatchState($handler) {
 
         while (this.$watchers.indexOf($handler) !== -1) {
 
