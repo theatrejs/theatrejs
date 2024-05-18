@@ -10,7 +10,7 @@ const GAMEPADAXES = [
     ['StickLeftLeft', 'StickLeftRight'],
     ['StickLeftUp', 'StickLeftDown'],
     ['StickRightLeft', 'StickRightRight'],
-    ['StickRightUp', 'StickRightDown'],
+    ['StickRightUp', 'StickRightDown']
 ];
 
 /**
