@@ -22,7 +22,7 @@ function extract($item, $array) {
 
     if (index === -1) {
 
-        return $array;
+        return [];
     }
 
     return $array.splice(index, 1);
