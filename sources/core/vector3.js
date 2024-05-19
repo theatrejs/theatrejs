@@ -15,28 +15,28 @@
 class Vector3 {
 
     /**
-     * Stores the x value.
+     * Stores the x component.
      * @type {number}
      * @private
      */
     $x;
 
     /**
-     * Stores the y value.
+     * Stores the y component.
      * @type {number}
      * @private
      */
     $y;
 
     /**
-     * Stores the z value.
+     * Stores the z component.
      * @type {number}
      * @private
      */
     $z;
 
     /**
-     * Gets the x value.
+     * Gets the x component.
      * @type {number}
      * @public
      * @readonly
@@ -47,7 +47,7 @@ class Vector3 {
     }
 
     /**
-     * Gets the y value.
+     * Gets the y component.
      * @type {number}
      * @public
      * @readonly
@@ -58,7 +58,7 @@ class Vector3 {
     }
 
     /**
-     * Gets the z value.
+     * Gets the z component.
      * @type {number}
      * @public
      * @readonly
@@ -70,9 +70,9 @@ class Vector3 {
 
     /**
      * Creates a new three-dimensional vector.
-     * @param {number} $x The x value of the vector to create.
-     * @param {number} $y The y value of the vector to create.
-     * @param {number} $z The z value of the vector to create.
+     * @param {number} $x The x component of the vector to create.
+     * @param {number} $y The y component of the vector to create.
+     * @param {number} $z The z component of the vector to create.
      */
     constructor($x, $y, $z) {
 

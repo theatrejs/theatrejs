@@ -17,21 +17,21 @@ import {MATHEMATICS} from '../index.js';
 class Vector2 {
 
     /**
-     * Stores the x value.
+     * Stores the x component.
      * @type {number}
      * @private
      */
     $x;
 
     /**
-     * Stores the y value.
+     * Stores the y component.
      * @type {number}
      * @private
      */
     $y;
 
     /**
-     * Gets the x value.
+     * Gets the x component.
      * @type {number}
      * @public
      * @readonly
@@ -42,7 +42,7 @@ class Vector2 {
     }
 
     /**
-     * Gets the y value.
+     * Gets the y component.
      * @type {number}
      * @public
      * @readonly
@@ -54,8 +54,8 @@ class Vector2 {
 
     /**
      * Creates a new two-dimensional vector.
-     * @param {number} $x The x value of the vector to create.
-     * @param {number} $y The y value of the vector to create.
+     * @param {number} $x The x component of the vector to create.
+     * @param {number} $y The y component of the vector to create.
      */
     constructor($x, $y) {
 
