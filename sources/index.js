@@ -13,6 +13,7 @@ export {ActorPreloadable} from './core/actorpreloadable.js';
 export {Collider} from './core/collider.js';
 export {Engine} from './core/engine.js';
 export {Loop} from './core/loop.js';
+export {Quaternion} from './core/quaternion.js';
 export {Shader} from './core/shader.js';
 export {Sound} from './core/sound.js';
 export {Sprite} from './core/sprite.js';
