@@ -37,7 +37,7 @@ class Collider {
     }
 
     /**
-     * Gets the the collider type.
+     * Gets the collider type.
      * @type {typecollider}
      * @public
      * @readonly
@@ -48,7 +48,7 @@ class Collider {
     }
 
     /**
-     * Creates a new Collider.
+     * Creates a new collider.
      * @param {Object} $parameters The given parameters.
      * @param {import('../index.js').AABB} $parameters.$boundaries The boundaries of the collider to create.
      * @param {typecollider} $parameters.$type The type of the collider to create.

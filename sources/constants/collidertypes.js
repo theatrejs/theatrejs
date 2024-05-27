@@ -23,5 +23,5 @@ export {
 
     DYNAMIC,
     KINETIC,
-    STATIC,
+    STATIC
 };
