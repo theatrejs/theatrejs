@@ -192,13 +192,17 @@ class SystemCollision {
             const checkMinimumX = (overlapX <= overlapY);
             const checkMinimumY = (overlapY <= overlapX);
 
-            const resolverDynamic = new Vector2(
+            if ($dynamic.collider.area === false
+            && $inert.collider.area === false) {
 
-                checkMinimumX ? - directionX * overlapX : 0,
-                checkMinimumY ? - directionY * overlapY : 0
-            );
+                const resolverDynamic = new Vector2(
 
-            $dynamic.translate(resolverDynamic);
+                    checkMinimumX ? - directionX * overlapX : 0,
+                    checkMinimumY ? - directionY * overlapY : 0
+                );
+
+                $dynamic.translate(resolverDynamic);
+            }
 
             const originDynamicEast = checkMinimumX === true && directionX === 1;
             const originDynamicNorth = checkMinimumY === true && directionY === 1;
