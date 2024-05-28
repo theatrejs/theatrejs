@@ -192,8 +192,8 @@ class SystemCollision {
             const checkMinimumX = (overlapX <= overlapY);
             const checkMinimumY = (overlapY <= overlapX);
 
-            if ($dynamic.collider.area === false
-            && $inert.collider.area === false) {
+            if ($dynamic.collider.traversable === false
+            && $inert.collider.traversable === false) {
 
                 const resolverDynamic = new Vector2(
 

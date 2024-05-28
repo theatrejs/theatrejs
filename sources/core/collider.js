@@ -3,20 +3,13 @@
  *
  * @example
  *
- * const collider = new Collider({$area, $boundaries, $type});
+ * const collider = new Collider({$boundaries, $traversable, $type});
  */
 class Collider {
 
     /**
      * @typedef {(import('../index.js').COLLIDERTYPES.DYNAMIC | import('../index.js').COLLIDERTYPES.KINETIC | import('../index.js').COLLIDERTYPES.STATIC)} typecollider A collider type.
      */
-
-    /**
-     * Stores the area status.
-     * @type {boolean}
-     * @private
-     */
-    $area;
 
     /**
      * Stores the boundaries.
@@ -26,22 +19,18 @@ class Collider {
     $boundaries;
 
     /**
+     * Stores the traversable status.
+     * @type {boolean}
+     * @private
+     */
+    $traversable;
+
+    /**
      * Stores the collider type.
      * @type {typecollider}
      * @private
      */
     $type;
-
-    /**
-     * Gets the area status.
-     * @type {boolean}
-     * @public
-     * @readonly
-     */
-    get area() {
-
-        return this.$area;
-    }
 
     /**
      * Gets the boundaries.
@@ -52,6 +41,17 @@ class Collider {
     get boundaries() {
 
         return this.$boundaries;
+    }
+
+    /**
+     * Gets the traversable status.
+     * @type {boolean}
+     * @public
+     * @readonly
+     */
+    get traversable() {
+
+        return this.$traversable;
     }
 
     /**
@@ -68,14 +68,14 @@ class Collider {
     /**
      * Creates a new collider.
      * @param {Object} $parameters The given parameters.
-     * @param {boolean} [$parameters.$area] The area status of the collider to create.
      * @param {import('../index.js').AABB} $parameters.$boundaries The boundaries of the collider to create.
+     * @param {boolean} [$parameters.$traversable] The traversable status of the collider to create.
      * @param {typecollider} $parameters.$type The type of the collider to create.
      */
-    constructor({$area = false, $boundaries, $type}) {
+    constructor({$boundaries, $traversable = false, $type}) {
 
-        this.$area = $area;
         this.$boundaries = $boundaries;
+        this.$traversable = $traversable;
         this.$type = $type;
     }
 }
