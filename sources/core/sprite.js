@@ -1,7 +1,7 @@
 import {AABB, Vector2} from '../index.js';
 
 /**
- * Creates Theatre.js sprites.
+ * Creates sprites.
  *
  * @example
  *
@@ -116,7 +116,7 @@ class Sprite {
     }
 
     /**
-     * Creates a new Theatre.js sprite.
+     * Creates a new sprite.
      * @param {Object} $parameters The given parameters.
      * @param {import('../index.js').AABB} [$parameters.$frameSource] The frame to use from the texture sources (with values in [0, 1] ranges) (if not specified then the full texture is used).
      * @param {import('../index.js').Vector2} $parameters.$sizeTarget The target size.

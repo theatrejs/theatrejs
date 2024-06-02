@@ -1,7 +1,7 @@
 import {Actor, UTILS} from '../index.js';
 
 /**
- * Abstract Theatre.js stages.
+ * Abstract stages.
  *
  * @example
  *
@@ -90,7 +90,7 @@ class Stage {
     }
 
     /**
-     * Creates a new Theatre.js stage.
+     * Creates a new stage.
      * @param {import('../index.js').Engine} $engine The engine on which to create the stage.
      */
     constructor($engine) {

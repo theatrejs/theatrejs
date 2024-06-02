@@ -1,7 +1,7 @@
 import {Actor} from '../index.js';
 
 /**
- * Factores a Theatre.js actor with preloadable assets.
+ * Factores an actor with preloadable assets.
  * @param {string[]} $preloadables The preloadable assets.
  * @returns {typeof import('../index.js').Actor}
  */

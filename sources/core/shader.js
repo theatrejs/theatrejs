@@ -1,5 +1,5 @@
 /**
- * Static Theatre.js default shader sources.
+ * Static default shader sources.
  *
  * @example
  *

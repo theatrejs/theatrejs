@@ -1,7 +1,7 @@
 import {UTILS, Sprite, Vector2, Collider} from '../index.js';
 
 /**
- * Abstract Theatre.js actors.
+ * Abstract actors.
  *
  * @example
  *
@@ -162,7 +162,7 @@ class Actor {
     }
 
     /**
-     * Create a new Theatre.js actor.
+     * Create a new actor.
      * @param {import('../index.js').Stage} $stage The stage on which to create the actor.
      */
     constructor($stage) {

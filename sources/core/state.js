@@ -1,5 +1,5 @@
 /**
- * Creates Theatre.js state managers.
+ * Creates state managers.
  * @template {any} Type The generic type of the data state.
  *
  * @example
@@ -29,7 +29,7 @@ class State {
     $watchers;
 
     /**
-     * Creates a new Theatre.js state manager.
+     * Creates a new state manager.
      * @param {Type} $data The data state to store.
      */
     constructor($data) {

@@ -1,5 +1,5 @@
 /**
- * Creates Theatre.js timelines.
+ * Creates timelines.
  *
  * @example
  *
@@ -47,7 +47,7 @@ class Timeline {
     }
 
     /**
-     * Creates a new Theatre.js timeline.
+     * Creates a new timeline.
      * @param {typekeyframe[]} [$keyframes] The keyframes.
      */
     constructor($keyframes = []) {

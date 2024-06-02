@@ -1,7 +1,7 @@
 import {CONTENTTYPES, Loop, Stage, SystemActor, SystemAudio, SystemCollision, SystemInput, SystemRender, UTILS, Vector2} from '../index.js';
 
 /**
- * Creates Theatre.js game engines.
+ * Creates game engines.
  *
  * @example
  *
@@ -129,7 +129,7 @@ class Engine {
     }
 
     /**
-     * Creates a new Theatre.js game engine.
+     * Creates a new game engine.
      * @param {Object} $parameters The given parameters.
      * @param {HTMLElement} $parameters.$container The container for the game engine to create.
      * @param {import('../index.js').Vector2} [$parameters.$resolution] The rendering resolution to use.
