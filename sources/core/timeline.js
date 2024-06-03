@@ -4,26 +4,14 @@
  * @example
  *
  * const timeline = new Timeline(keyframes);
- * timeline.seek(0);
+ * timeline.seekTime(0);
  * timeline.tick(timetick);
  */
 class Timeline {
 
     /**
-     * @callback typetrigger A trigger handler of a keyframe.
-     * @param {import('../index.js').Timeline} $timeline The reference timeline.
-     * @returns {void}
-     */
-
-    /**
-     * @typedef {Object} typekeyframe A keyframe.
-     * @property {number} typekeyframe.$time The time position.
-     * @property {typetrigger} typekeyframe.$trigger The trigger handler.
-     */
-
-    /**
      * Stores the keyframes.
-     * @type {typekeyframe[]}
+     * @type {import('../index.js').TimelineKeyframe[]}
      * @private
      */
     $keyframes;
@@ -48,13 +36,31 @@ class Timeline {
 
     /**
      * Creates a new timeline.
-     * @param {typekeyframe[]} [$keyframes] The keyframes.
+     * @param {import('../index.js').TimelineKeyframe[]} [$keyframes] The keyframes.
      */
     constructor($keyframes = []) {
 
-        this.$keyframes = [...$keyframes].sort(($a, $b) => ($a.$time - $b.$time));
+        this.$keyframes = [...$keyframes].sort(($a, $b) => ($a.time - $b.time));
 
         this.$timeCurrent = 0;
+    }
+
+    /**
+     * Seeks to the given name.
+     * @param {string} $name The name of the keyframe to seek to.
+     * @returns {this}
+     * @public
+     */
+    seekName($name) {
+
+        const result = this.$keyframes.find(($keyframe) => ($keyframe.name === $name));
+
+        if (typeof result !== 'undefined') {
+
+            this.seekTime(result.time);
+        }
+
+        return this;
     }
 
     /**
@@ -63,18 +69,18 @@ class Timeline {
      * @returns {this}
      * @public
      */
-    seek($time) {
+    seekTime($time) {
 
         this.$timeCurrent = $time;
 
         this.$keyframes.forEach(($keyframe) => {
 
-            if ($keyframe.$time !== this.$timeCurrent) {
+            if ($keyframe.time !== this.$timeCurrent) {
 
                 return;
             }
 
-            $keyframe.$trigger(this);
+            $keyframe.trigger(this);
         });
 
         return this;
@@ -101,17 +107,17 @@ class Timeline {
 
         this.$keyframes.forEach(($keyframe) => {
 
-            if ($keyframe.$time <= timePrevious) {
+            if ($keyframe.time <= timePrevious) {
 
                 return;
             }
 
-            if ($keyframe.$time > timeCurrent) {
+            if ($keyframe.time > timeCurrent) {
 
                 return;
             }
 
-            $keyframe.$trigger(this);
+            $keyframe.trigger(this);
         });
 
         return this;
