@@ -1,5 +1,5 @@
 /**
- * Creates gamepad events.
+ * Creates gamepad analog events.
  *
  * @example
  *
@@ -8,21 +8,21 @@
 class EventGamepadAnalog extends Event {
 
     /**
-     * Stores the gamepad event code.
+     * Stores the event code.
      * @type {string}
      * @private
      */
     $code;
 
     /**
-     * Stores the gamepad event analog value.
+     * Stores the analog value.
      * @type {number}
      * @private
      */
     $value;
 
     /**
-     * Gets the gamepad event code.
+     * Gets the event code.
      * @type {string}
      * @public
      * @readonly
@@ -33,7 +33,7 @@ class EventGamepadAnalog extends Event {
     }
 
     /**
-     * Gets the gamepad event analog value.
+     * Gets the analog value.
      * @type {number}
      * @public
      * @readonly
@@ -44,10 +44,10 @@ class EventGamepadAnalog extends Event {
     }
 
     /**
-     * Creates a new gamepad event.
-     * @param {('gamepadanalog')} $type The gamepad event type.
-     * @param {string} $code The gamepad event code.
-     * @param {number} $value The gamepad event analog value.
+     * Creates a new gamepad analog event.
+     * @param {('gamepadanalog')} $type The event type.
+     * @param {string} $code The event code.
+     * @param {number} $value The analog value.
      */
     constructor($type, $code, $value) {
 

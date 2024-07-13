@@ -1,5 +1,5 @@
 /**
- * Creates gamepad events.
+ * Creates gamepad digital events.
  *
  * @example
  *
@@ -8,14 +8,14 @@
 class EventGamepadDigital extends Event {
 
     /**
-     * Stores the gamepad event code.
+     * Stores the event code.
      * @type {string}
      * @private
      */
     $code;
 
     /**
-     * Gets the gamepad event code.
+     * Gets the event code.
      * @type {string}
      * @public
      * @readonly
@@ -26,9 +26,9 @@ class EventGamepadDigital extends Event {
     }
 
     /**
-     * Creates a new gamepad event.
-     * @param {('gamepadconnect' | 'gamepaddown' | 'gamepadup')} $type The gamepad event type.
-     * @param {string} $code The gamepad event code.
+     * Creates a new gamepad digital event.
+     * @param {('gamepadconnect' | 'gamepaddown' | 'gamepadup')} $type The event type.
+     * @param {string} $code The event code.
      */
     constructor($type, $code) {
 
