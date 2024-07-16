@@ -25,7 +25,9 @@ export {TimelineKeyframe} from './core/timelinekeyframe.js';
 export * as UTILS from './core/utils.js';
 export {Vector2} from './core/vector2.js';
 export {Vector3} from './core/vector3.js';
+export {Vibration} from './core/vibration.js';
 
+export {EventGamepad} from './events/gamepad.js';
 export {EventGamepadAnalog} from './events/gamepadanalog.js';
 export {EventGamepadDigital} from './events/gamepaddigital.js';
 
@@ -34,3 +36,4 @@ export {SystemAudio} from './systems/audio.system.js';
 export {SystemCollision} from './systems/collision.system.js';
 export {SystemInput} from './systems/input.system.js';
 export {SystemRender} from './systems/render.system.js';
+export {SystemVibration} from './systems/vibration.system.js';

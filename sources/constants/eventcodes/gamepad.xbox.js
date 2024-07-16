@@ -187,6 +187,20 @@ const CONNECTED = 'Connected';
  */
 const DISCONNECTED = 'Disconnected';
 
+/**
+ * The XBOX gamepad 'VIBRATEEND' event code.
+ * @type {'VibrateEnd'}
+ * @constant
+ */
+const VIBRATEEND = 'VibrateEnd';
+
+/**
+ * The XBOX gamepad 'VIBRATESTART' event code.
+ * @type {'VibrateStart'}
+ * @constant
+ */
+const VIBRATESTART = 'VibrateStart';
+
 export {
 
     A,
@@ -222,5 +236,7 @@ export {
     RSDOWN,
 
     CONNECTED,
-    DISCONNECTED
+    DISCONNECTED,
+    VIBRATEEND,
+    VIBRATESTART
 };

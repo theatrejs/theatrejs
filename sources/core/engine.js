@@ -1,4 +1,4 @@
-import {CONTENTTYPES, Loop, Stage, SystemActor, SystemAudio, SystemCollision, SystemInput, SystemRender, UTILS, Vector2} from '../index.js';
+import {CONTENTTYPES, Loop, Stage, SystemActor, SystemAudio, SystemCollision, SystemInput, SystemRender, SystemVibration, UTILS, Vector2} from '../index.js';
 
 /**
  * Creates game engines.
@@ -89,6 +89,13 @@ class Engine {
     $systemRender;
 
     /**
+     * Stores the current vibration system.
+     * @type {import('../index.js').SystemVibration}
+     * @private
+     */
+    $systemVibration;
+
+    /**
      * Stores the uuid.
      * @type {string}
      * @private
@@ -149,6 +156,7 @@ class Engine {
         this.$systemCollision = new SystemCollision();
         this.$systemInput = new SystemInput({$container: this.$container});
         this.$systemRender = new SystemRender({$container: this.$container, $resolution: this.$resolution});
+        this.$systemVibration = new SystemVibration();
     }
 
     /**
@@ -308,6 +316,7 @@ class Engine {
         this.$systemInput.terminate();
         this.$systemRender.terminate();
         this.$systemAudio.terminate();
+        this.$systemVibration.terminate();
     }
 
     /**
@@ -340,6 +349,11 @@ class Engine {
         this.$systemCollision.tick(this.$stage);
         this.$systemRender.tick(this.$stage);
         this.$systemAudio.tick(this.$stage);
+        this.$systemVibration.tick({
+
+            $stage: this.$stage,
+            $timetick: $timetick
+        });
     }
 }
 

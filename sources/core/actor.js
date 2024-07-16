@@ -67,6 +67,13 @@ class Actor {
     $uuid;
 
     /**
+     * Stores the vibrations.
+     * @type {import('../index.js').Vibration[]}
+     * @private
+     */
+    $vibrations;
+
+    /**
      * Stores the z-index.
      * @type {number}
      * @private
@@ -151,6 +158,17 @@ class Actor {
     }
 
     /**
+     * Gets the vibrations.
+     * @type {import('../index.js').Vibration[]}
+     * @public
+     * @readonly
+     */
+    get vibrations() {
+
+        return this.$vibrations;
+    }
+
+    /**
      * Gets the z-index.
      * @type {number}
      * @public
@@ -173,6 +191,7 @@ class Actor {
         this.$sounds = [];
         this.$translation = new Vector2(0, 0);
         this.$uuid = UTILS.uuid();
+        this.$vibrations = [];
         this.$zIndex = 0;
     }
 
@@ -185,6 +204,19 @@ class Actor {
     addSound($sound) {
 
         this.$sounds.push($sound);
+
+        return this;
+    }
+
+    /**
+     * Adds the given vibration.
+     * @param {import('../index.js').Vibration} $vibration The vibration to add.
+     * @returns {this}
+     * @public
+     */
+    addVibration($vibration) {
+
+        this.$vibrations.push($vibration);
 
         return this;
     }
@@ -315,6 +347,31 @@ class Actor {
     removeSounds() {
 
         this.$sounds = [];
+
+        return this;
+    }
+
+    /**
+     * Removes the given vibration.
+     * @param {import('../index.js').Vibration} $vibration The vibration to remove.
+     * @returns {this}
+     * @public
+     */
+    removeVibration($vibration) {
+
+        UTILS.extract($vibration, this.$vibrations);
+
+        return this;
+    }
+
+    /**
+     * Removes all vibration.
+     * @returns {this}
+     * @public
+     */
+    removeVibrations() {
+
+        this.$vibrations = [];
 
         return this;
     }

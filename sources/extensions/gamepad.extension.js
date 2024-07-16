@@ -1,4 +1,4 @@
-import {EventGamepadAnalog, EventGamepadDigital} from '../index.js';
+import {EventGamepad, EventGamepadAnalog, EventGamepadDigital} from '../index.js';
 
 /**
  * The ordered list of the axes event codes of the gamepad.
@@ -70,26 +70,59 @@ class ExtensionGamepad {
     $stateGamepad;
 
     /**
+     * Stores the unloaded status.
+     * @type {boolean}
+     * @private
+     */
+    $unloaded;
+
+    /**
      * Creates a new gamepad extension.
      */
     constructor() {
 
         this.$stateGamepad = {};
+        this.$unloaded = false;
 
         [...GAMEPADBUTTONS, ...GAMEPADAXES.flat()].forEach(($code) => {
 
             this.$stateGamepad[$code] = false;
         });
 
+        window.addEventListener('beforeunload', this.$onBeforeUnload.bind(this));
+
         window.addEventListener('gamepadconnected', this.$onConnect.bind(this));
         window.addEventListener('gamepaddisconnected', this.$onDisconnect.bind(this));
+
+        window.addEventListener('gamepadvibrate', this.$onVibrate.bind(this));
 
         window.requestAnimationFrame(this.$update.bind(this));
     }
 
     /**
+     * Called when the scope is about to be unloaded.
+     * @private
+     */
+    $onBeforeUnload() {
+
+        this.$unloaded = true;
+
+        const gamepads = navigator.getGamepads();
+
+        const gamepad = gamepads[this.$indexLastConnected];
+
+        if (typeof gamepad === 'undefined') {
+
+            return;
+        }
+
+        gamepad.vibrationActuator.reset();
+    }
+
+    /**
      * Called when the gamepad is connected.
      * @param {GamepadEvent} $event The native gamepad connected event.
+     * @private
      */
     $onConnect($event) {
 
@@ -100,6 +133,7 @@ class ExtensionGamepad {
 
     /**
      * Called when the gamepad is disconnected.
+     * @private
      */
     $onDisconnect() {
 
@@ -119,7 +153,52 @@ class ExtensionGamepad {
     }
 
     /**
+     * Called when a gamepad vibration is needed.
+     * @param {Event} $event The gamepad vibrate event.
+     * @private
+     */
+    $onVibrate($event) {
+
+        if (this.$unloaded === true) {
+
+            return;
+        }
+
+        const gamepads = navigator.getGamepads();
+
+        const gamepad = gamepads[this.$indexLastConnected];
+
+        if (typeof gamepad === 'undefined') {
+
+            return;
+        }
+
+        if ($event instanceof EventGamepadDigital
+        && $event.code === 'VibrateEnd') {
+
+            gamepad.vibrationActuator.reset();
+
+            return;
+        }
+
+        if ($event instanceof EventGamepad
+        && $event.code === 'VibrateStart') {
+
+            gamepad.vibrationActuator.playEffect('dual-rumble', {
+
+                startDelay: 0,
+                duration: $event.data.$duration,
+                strongMagnitude: $event.data.$intensityFrequencyLow,
+                weakMagnitude: $event.data.$intensityFrequencyHigh
+            });
+
+            return;
+        }
+    }
+
+    /**
      * Updates the state of the gamepad.
+     * @private
      */
     $update() {
 
