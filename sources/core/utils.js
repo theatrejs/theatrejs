@@ -32,7 +32,7 @@ function extract($item, $array) {
  * Resolves when the user has interacted at least once since page load.
  * @returns {Promise<void>}
  */
-function onUserReady() {
+function ready() {
 
     /**
      * @type {Promise<void>}
@@ -77,6 +77,6 @@ export {
 
     deduplicate,
     extract,
-    onUserReady,
+    ready,
     uuid
 };
