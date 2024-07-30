@@ -29,6 +29,23 @@ function extract($item, $array) {
 }
 
 /**
+ * Resolves when the browser is ready to perform an animation frame request.
+ * @returns Promise<void>
+ */
+function frame() {
+
+    /**
+     * @type {Promise<number>}
+     */
+    const promise = new Promise(($resolve) => {
+
+        window.requestAnimationFrame($resolve);
+    });
+
+    return promise;
+}
+
+/**
  * Resolves when the user has interacted at least once since page load.
  * @returns {Promise<void>}
  */
@@ -65,6 +82,24 @@ function ready() {
 }
 
 /**
+ * Resolves when the given delay has passed.
+ * @param {number} $delay The delay (in ms).
+ * @returns Promise<void>
+ */
+function sleep($delay) {
+
+    /**
+     * @type {Promise<void>}
+     */
+    const promise = new Promise(($resolve) => {
+
+        window.setTimeout($resolve, $delay);
+    });
+
+    return promise;
+}
+
+/**
  * Gets a new UUID.
  * @returns {string}
  */
@@ -77,6 +112,8 @@ export {
 
     deduplicate,
     extract,
+    frame,
     ready,
+    sleep,
     uuid
 };
