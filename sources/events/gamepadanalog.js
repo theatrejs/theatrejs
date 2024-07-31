@@ -25,7 +25,6 @@ class EventGamepadAnalog extends Event {
      * Gets the event code.
      * @type {string}
      * @public
-     * @readonly
      */
     get code() {
 
@@ -36,7 +35,6 @@ class EventGamepadAnalog extends Event {
      * Gets the analog value.
      * @type {number}
      * @public
-     * @readonly
      */
     get value() {
 

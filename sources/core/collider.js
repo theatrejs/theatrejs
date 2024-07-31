@@ -36,7 +36,6 @@ class Collider {
      * Gets the boundaries.
      * @type {import('../index.js').AABB}
      * @public
-     * @readonly
      */
     get boundaries() {
 
@@ -47,7 +46,6 @@ class Collider {
      * Gets the traversable status.
      * @type {boolean}
      * @public
-     * @readonly
      */
     get traversable() {
 
@@ -58,7 +56,6 @@ class Collider {
      * Gets the collider type.
      * @type {typecollider}
      * @public
-     * @readonly
      */
     get type() {
 

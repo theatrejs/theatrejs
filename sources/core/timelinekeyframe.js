@@ -44,7 +44,6 @@ class TimelineKeyframe {
      * Gets the name.
      * @type {string}
      * @public
-     * @readonly
      */
     get name() {
 
@@ -55,7 +54,6 @@ class TimelineKeyframe {
      * Gets the time position.
      * @type {number}
      * @public
-     * @readonly
      */
     get time() {
 
@@ -66,7 +64,6 @@ class TimelineKeyframe {
      * Gets the trigger handler.
      * @type {typetrigger}
      * @public
-     * @readonly
      */
     get trigger() {
 

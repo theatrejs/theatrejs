@@ -39,7 +39,6 @@ class Quaternion {
      * Gets the w component.
      * @type {number}
      * @public
-     * @readonly
      */
     get w() {
 
@@ -50,7 +49,6 @@ class Quaternion {
      * Gets the x component.
      * @type {number}
      * @public
-     * @readonly
      */
     get x() {
 
@@ -61,7 +59,6 @@ class Quaternion {
      * Gets the y component.
      * @type {number}
      * @public
-     * @readonly
      */
     get y() {
 
@@ -72,7 +69,6 @@ class Quaternion {
      * Gets the z component.
      * @type {number}
      * @public
-     * @readonly
      */
     get z() {
 

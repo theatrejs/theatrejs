@@ -18,7 +18,6 @@ class EventGamepadDigital extends Event {
      * Gets the event code.
      * @type {string}
      * @public
-     * @readonly
      */
     get code() {
 

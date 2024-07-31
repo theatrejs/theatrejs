@@ -37,7 +37,6 @@ class Vibration {
      * Gets the duration (in ms).
      * @type {number}
      * @public
-     * @readonly
      */
     get duration() {
 
@@ -48,7 +47,6 @@ class Vibration {
      * Gets the intensity of the high-frequency (weak) rumble motors (with value in [0, 1] range).
      * @type {number}
      * @public
-     * @readonly
      */
     get intensityFrequencyHigh() {
 
@@ -59,7 +57,6 @@ class Vibration {
      * Gets the intensity of the low-frequency (strong) rumble motors (with value in [0, 1] range).
      * @type {number}
      * @public
-     * @readonly
      */
     get intensityFrequencyLow() {
 

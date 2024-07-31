@@ -54,7 +54,6 @@ class Sound {
      * Gets the audio source.
      * @type {string}
      * @public
-     * @readonly
      */
     get audio() {
 
@@ -65,7 +64,6 @@ class Sound {
      * Gets fade out duration (in ms) (must be positive).
      * @type {number}
      * @public
-     * @readonly
      */
     get durationFadeOut() {
 
@@ -76,7 +74,6 @@ class Sound {
      * Gets the loop status.
      * @type {boolean}
      * @public
-     * @readonly
      */
     get loop() {
 
@@ -87,7 +84,6 @@ class Sound {
      * Gets the volume.
      * @type {number}
      * @public
-     * @readonly
      */
     get volume() {
 

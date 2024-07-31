@@ -25,7 +25,6 @@ class AABB {
      * Gets the center of the AABB.
      * @type {import('../index.js').Vector2}
      * @public
-     * @readonly
      */
     get center() {
 
@@ -36,7 +35,6 @@ class AABB {
      * Gets the half-size of the AABB.
      * @type {import('../index.js').Vector2}
      * @public
-     * @readonly
      */
     get halfSize() {
 
@@ -47,7 +45,6 @@ class AABB {
      * Gets the maximum values of the AABB.
      * @type {import('../index.js').Vector2}
      * @public
-     * @readonly
      */
     get maximum() {
 
@@ -58,7 +55,6 @@ class AABB {
      * Gets the minimum values of the AABB.
      * @type {import('../index.js').Vector2}
      * @public
-     * @readonly
      */
     get minimum() {
 
@@ -69,7 +65,6 @@ class AABB {
      * Gets the size of the AABB.
      * @type {import('../index.js').Vector2}
      * @public
-     * @readonly
      */
     get size() {
 

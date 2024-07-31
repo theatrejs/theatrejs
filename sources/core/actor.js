@@ -84,7 +84,6 @@ class Actor {
      * Gets the collider.
      * @type {import('../index.js').Collider}
      * @public
-     * @readonly
      */
     get collider() {
 
@@ -95,7 +94,6 @@ class Actor {
      * Gets the current engine.
      * @type {import('../index.js').Engine}
      * @public
-     * @readonly
      */
     get engine() {
 
@@ -106,7 +104,6 @@ class Actor {
      * Gets the sounds.
      * @type {import('../index.js').Sound[]}
      * @public
-     * @readonly
      */
     get sounds() {
 
@@ -117,7 +114,6 @@ class Actor {
      * Gets the sprite.
      * @type {import('../index.js').Sprite}
      * @public
-     * @readonly
      */
     get sprite() {
 
@@ -128,7 +124,6 @@ class Actor {
      * Gets the current stage.
      * @type {import('../index.js').Stage}
      * @public
-     * @readonly
      */
     get stage() {
 
@@ -139,7 +134,6 @@ class Actor {
      * Gets the position.
      * @type {import('../index.js').Vector2}
      * @public
-     * @readonly
      */
     get translation() {
 
@@ -150,7 +144,6 @@ class Actor {
      * Gets the uuid.
      * @type {string}
      * @public
-     * @readonly
      */
     get uuid() {
 
@@ -161,7 +154,6 @@ class Actor {
      * Gets the vibrations.
      * @type {import('../index.js').Vibration[]}
      * @public
-     * @readonly
      */
     get vibrations() {
 
@@ -172,7 +164,6 @@ class Actor {
      * Gets the z-index.
      * @type {number}
      * @public
-     * @readonly
      */
     get zIndex() {
 

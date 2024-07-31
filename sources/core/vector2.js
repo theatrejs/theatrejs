@@ -34,7 +34,6 @@ class Vector2 {
      * Gets the x component.
      * @type {number}
      * @public
-     * @readonly
      */
     get x() {
 
@@ -45,7 +44,6 @@ class Vector2 {
      * Gets the y component.
      * @type {number}
      * @public
-     * @readonly
      */
     get y() {
 

@@ -27,7 +27,6 @@ class Timeline {
      * Gets the current time.
      * @type {number}
      * @public
-     * @readonly
      */
     get timeCurrent() {
 

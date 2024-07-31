@@ -64,7 +64,6 @@ class Sprite {
      * Gets the frame to use from the texture sources.
      * @type {import('../index.js').AABB}
      * @public
-     * @readonly
      */
     get frameSource() {
 
@@ -75,7 +74,6 @@ class Sprite {
      * Gets the serialized value of the frame to use from the texture sources.
      * @type {string}
      * @public
-     * @readonly
      */
     get frameSourceSerialized() {
 
@@ -86,7 +84,6 @@ class Sprite {
      * Gets the target size.
      * @type {import('../index.js').Vector2}
      * @public
-     * @readonly
      */
     get sizeTarget() {
 
@@ -97,7 +94,6 @@ class Sprite {
      * Gets the color texture source.
      * @type {string}
      * @public
-     * @readonly
      */
     get textureColor() {
 
@@ -108,7 +104,6 @@ class Sprite {
      * Gets the opacity texture source.
      * @type {string}
      * @public
-     * @readonly
      */
     get textureOpacity() {
 

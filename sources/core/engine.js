@@ -106,7 +106,6 @@ class Engine {
      * Gets the container.
      * @type {HTMLElement}
      * @public
-     * @readonly
      */
     get container() {
 
@@ -117,7 +116,6 @@ class Engine {
      * Gets the current stage.
      * @type {import('../index.js').Stage}
      * @public
-     * @readonly
      */
     get stage() {
 
@@ -128,7 +126,6 @@ class Engine {
      * Gets the uuid.
      * @type {string}
      * @public
-     * @readonly
      */
     get uuid() {
 

@@ -49,7 +49,6 @@ class Stage {
      * Gets the current actors.
      * @type {import('../index.js').Actor[]}
      * @public
-     * @readonly
      */
     get actors() {
 
@@ -60,7 +59,6 @@ class Stage {
      * Gets the current engine.
      * @type {import('../index.js').Engine}
      * @public
-     * @readonly
      */
     get engine() {
 
@@ -71,7 +69,6 @@ class Stage {
      * Gets the point of view.
      * @type {import('../index.js').Actor}
      * @public
-     * @readonly
      */
     get pointOfView() {
 
@@ -82,7 +79,6 @@ class Stage {
      * Gets the uuid.
      * @type {string}
      * @public
-     * @readonly
      */
     get uuid() {
 

@@ -32,7 +32,6 @@ class EventGamepad extends Event {
      * Gets the event code.
      * @type {string}
      * @public
-     * @readonly
      */
     get code() {
 
@@ -43,7 +42,6 @@ class EventGamepad extends Event {
      * Gets the data.
      * @type {typedatavibration}
      * @public
-     * @readonly
      */
     get data() {
 

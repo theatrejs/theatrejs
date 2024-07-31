@@ -39,7 +39,6 @@ class Vector3 {
      * Gets the x component.
      * @type {number}
      * @public
-     * @readonly
      */
     get x() {
 
@@ -50,7 +49,6 @@ class Vector3 {
      * Gets the y component.
      * @type {number}
      * @public
-     * @readonly
      */
     get y() {
 
@@ -61,7 +59,6 @@ class Vector3 {
      * Gets the z component.
      * @type {number}
      * @public
-     * @readonly
      */
     get z() {
 
