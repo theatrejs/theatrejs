@@ -117,7 +117,7 @@ class Stage {
     /**
      * Checks if the stage has the given actor.
      * @param {import('../index.js').Actor} $actor The actor to check.
-     * return {boolean}
+     * @returns {boolean}
      * @public
      */
     hasActor($actor) {

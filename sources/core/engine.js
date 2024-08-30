@@ -196,7 +196,7 @@ class Engine {
     /**
      * Checks if the engine has loaded the given asset.
      * @param {string} $asset The asset source.
-     * return {boolean}
+     * @returns {boolean}
      * @public
      */
     hasAssetLoaded($asset) {

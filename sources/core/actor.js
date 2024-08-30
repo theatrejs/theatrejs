@@ -215,7 +215,7 @@ class Actor {
     /**
      * Gets a component.
      * @param {string} $name The name of the component to get.
-     * return {any}
+     * @returns {any}
      * @public
      */
     getComponent($name) {
@@ -225,7 +225,7 @@ class Actor {
 
     /**
      * Checks if the actor has a collider.
-     * return {boolean}
+     * @returns {boolean}
      * @public
      */
     hasCollider() {
@@ -236,7 +236,7 @@ class Actor {
     /**
      * Checks if the actor has the given component.
      * @param {string} $name The name of the component to check.
-     * return {boolean}
+     * @returns {boolean}
      * @public
      */
     hasComponent($name) {
