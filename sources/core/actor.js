@@ -32,6 +32,13 @@ class Actor {
     $components;
 
     /**
+     * Stores the follower actors.
+     * @type {Set<import('../index.js').Actor>}
+     * @private
+     */
+    $followers;
+
+    /**
      * Stores the sounds.
      * @type {import('../index.js').Sound[]}
      * @private
@@ -98,6 +105,16 @@ class Actor {
     get engine() {
 
         return this.stage.engine;
+    }
+
+    /**
+     * Gets the follower actors.
+     * @type {Actor[]}
+     * @public
+     */
+    get followers() {
+
+        return Array.from(this.$followers);
     }
 
     /**
@@ -179,11 +196,25 @@ class Actor {
         this.$stage = $stage;
 
         this.$components = {};
+        this.$followers = new Set();
         this.$sounds = [];
         this.$translation = new Vector2(0, 0);
         this.$uuid = UTILS.uuid();
         this.$vibrations = [];
         this.$zIndex = 0;
+    }
+
+    /**
+     * Adds a follower actor.
+     * @param {import('../index.js').Actor} $actor The follower actor to add.
+     * @returns {this}
+     * @public
+     */
+    addFollower($actor) {
+
+        this.$followers.add($actor);
+
+        return this;
     }
 
     /**
@@ -242,6 +273,17 @@ class Actor {
     hasComponent($name) {
 
         return this.$components.hasOwnProperty($name) === true;
+    }
+
+    /**
+     * Checks if the actor has the given follower actor.
+     * @param {import('../index.js').Actor} $actor The actor to check.
+     * @returns {boolean}
+     * @public
+     */
+    hasFollower($actor) {
+
+        return this.$followers.has($actor) === true;
     }
 
     /**
@@ -316,6 +358,19 @@ class Actor {
      * @public
      */
     onTick($timetick) {}
+
+    /**
+     * Removes a follower actor.
+     * @param {import('../index.js').Actor} $actor The follower actor to remove.
+     * @returns {this}
+     * @public
+     */
+    removeFollower($actor) {
+
+        this.$followers.delete($actor);
+
+        return this;
+    }
 
     /**
      * Removes the given sound.
@@ -428,7 +483,21 @@ class Actor {
      */
     translate($vector) {
 
-        this.$translation.add($vector);
+        const translation = $vector.clone();
+
+        Array.from(this.$followers).forEach(($follower) => {
+
+            if (this.stage.hasActor($follower) === false) {
+
+                this.$followers.delete($follower);
+
+                return;
+            }
+
+            $follower.translate(translation);
+        });
+
+        this.$translation.add(translation);
 
         return this;
     }
@@ -441,7 +510,21 @@ class Actor {
      */
     translateTo($vector) {
 
-        this.$translation = $vector.clone();
+        const translation = $vector.clone().subtract(this.$translation);
+
+        Array.from(this.$followers).forEach(($follower) => {
+
+            if (this.stage.hasActor($follower) === false) {
+
+                this.$followers.delete($follower);
+
+                return;
+            }
+
+            $follower.translate(translation);
+        });
+
+        this.$translation.add(translation);
 
         return this;
     }
