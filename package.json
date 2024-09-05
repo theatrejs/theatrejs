@@ -1,10 +1,7 @@
 {
     "author": "Alexandre Blondeau",
     "description": "🎮 A JavaScript 2D Game Engine focused on creating pixel art games.",
-    "devDependencies": {
-
-        "typescript": "5.5.4"
-    },
+    "devDependencies": {},
     "engines": {
 
         "node": "16.13.0",
@@ -35,12 +32,7 @@
         "type": "git",
         "url": "git+https://github.com/theatrejs/theatrejs.git"
     },
-    "scripts": {
-
-        "build": "npm run build:types",
-        "build:types": "rm -rf ./types && tsc"
-    },
+    "scripts": {},
     "type": "module",
-    "types": "./types/index.d.ts",
     "version": "0.0.0"
 }
