@@ -26,7 +26,7 @@ class Actor {
 
     /**
      * Stores the components.
-     * @type {Object<string, any>}
+     * @type {Object.<string, any>}
      * @private
      */
     $components;
