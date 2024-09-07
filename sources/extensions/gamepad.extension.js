@@ -108,10 +108,14 @@ class ExtensionGamepad {
         this.$unloaded = true;
 
         const gamepads = navigator.getGamepads();
-
         const gamepad = gamepads[this.$indexLastConnected];
 
         if (typeof gamepad === 'undefined') {
+
+            return;
+        }
+
+        if (typeof gamepad.vibrationActuator === 'undefined') {
 
             return;
         }
@@ -126,6 +130,21 @@ class ExtensionGamepad {
      */
     $onConnect($event) {
 
+        if ($event.gamepad.mapping !== 'standard') {
+
+            return;
+        }
+
+        Object.entries(this.$stateGamepad).forEach(([$code, $activated]) => {
+
+            if ($activated === true) {
+
+                this.$stateGamepad[$code] = false;
+
+                window.dispatchEvent(new EventGamepadDigital('gamepadup', $code));
+            }
+        });
+
         this.$indexLastConnected = $event.gamepad.index;
 
         window.dispatchEvent(new EventGamepadDigital('gamepadconnect', 'Connected'));
@@ -133,9 +152,15 @@ class ExtensionGamepad {
 
     /**
      * Called when the gamepad is disconnected.
+     * @param {GamepadEvent} $event The native gamepad disconnected event.
      * @private
      */
-    $onDisconnect() {
+    $onDisconnect($event) {
+
+        if ($event.gamepad.index !== this.$indexLastConnected) {
+
+            return;
+        }
 
         Object.entries(this.$stateGamepad).forEach(([$code, $activated]) => {
 
@@ -165,10 +190,14 @@ class ExtensionGamepad {
         }
 
         const gamepads = navigator.getGamepads();
-
         const gamepad = gamepads[this.$indexLastConnected];
 
         if (typeof gamepad === 'undefined') {
+
+            return;
+        }
+
+        if (typeof gamepad.vibrationActuator === 'undefined') {
 
             return;
         }
