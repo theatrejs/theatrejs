@@ -1,4 +1,4 @@
-import {Stage} from '../index.js';
+import {Actor, Stage, UTILS} from '../index.js';
 
 /**
  * Factores a stage with preloadable assets.
@@ -21,7 +21,12 @@ function StagePreloadable($preloadables = []) {
             return;
         }
 
-        preloadables.push(...$preloadable.preloadables);
+        if (typeof $preloadable === typeof Actor) {
+
+            preloadables.push(...$preloadable.preloadables);
+
+            return;
+        }
     });
 
     return class extends Stage {
@@ -29,7 +34,7 @@ function StagePreloadable($preloadables = []) {
         /**
          * @type {typeof import('../index.js').Stage.preloadables}
          */
-        static preloadables = preloadables;
+        static preloadables = UTILS.deduplicate(preloadables);
     };
 }
 
