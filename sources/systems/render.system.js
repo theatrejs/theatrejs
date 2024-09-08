@@ -123,7 +123,7 @@ class SystemRender {
     $resizeOberver;
 
     /**
-     * Stores the rendering resolution.
+     * Stores the resolution.
      * @type {import('../index.js').Vector2}
      * @private
      */

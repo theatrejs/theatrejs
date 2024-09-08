@@ -40,7 +40,7 @@ class Engine {
     $preloaded;
 
     /**
-     * Stores the resolution.
+     * Stores the rendering resolution.
      * @type {import('../index.js').Vector2}
      * @private
      */
