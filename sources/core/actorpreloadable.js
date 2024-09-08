@@ -1,4 +1,4 @@
-import {Actor, UTILS} from '../index.js';
+import {Actor} from '../index.js';
 
 /**
  * Factores an actor with preloadable assets.
@@ -8,22 +8,35 @@ import {Actor, UTILS} from '../index.js';
 function ActorPreloadable($preloadables = []) {
 
     /**
-     * @type {string[]}
+     * @type {Set<string>}
      */
-    const preloadables = [];
+    const preloadables = new Set();
 
     $preloadables.forEach(($preloadable) => {
 
         if (typeof $preloadable === 'string') {
 
-            preloadables.push($preloadable);
+            if (preloadables.has($preloadable) === true) {
+
+                return;
+            }
+
+            preloadables.add($preloadable);
 
             return;
         }
 
         if (typeof $preloadable === typeof Actor) {
 
-            preloadables.push(...$preloadable.preloadables);
+            $preloadable.preloadables.forEach(($preloadable) => {
+
+                if (preloadables.has($preloadable) === true) {
+
+                    return;
+                }
+
+                preloadables.add($preloadable);
+            });
 
             return;
         }
@@ -34,7 +47,7 @@ function ActorPreloadable($preloadables = []) {
         /**
          * @type {typeof import('../index.js').Actor.preloadables}
          */
-        static preloadables = UTILS.deduplicate(preloadables);
+        static preloadables = Array.from(preloadables);
     };
 }
 
