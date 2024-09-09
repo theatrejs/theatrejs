@@ -26,7 +26,6 @@
     "license": "MIT",
     "main": "./sources/index.js",
     "name": "@theatrejs/theatrejs",
-    "private": "false",
     "repository": {
 
         "type": "git",
