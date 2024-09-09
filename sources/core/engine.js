@@ -1,15 +1,25 @@
-import {CONTENTTYPES, Loop, Stage, SystemActor, SystemAudio, SystemCollision, SystemInput, SystemRender, SystemVibration, UTILS, Vector2} from '../index.js';
+import {CONTENTTYPES, Loop, Stage, SystemActor, SystemAudio, SystemCollision, SystemInput, SystemRender, SystemVibration, UTILS, Vector2, Vector3} from '../index.js';
 
 /**
  * Creates game engines.
  *
  * @example
  *
- * const engine = new Engine({$container, $resolution});
- * engine.createStage(SceneExample);
+ * const engine = new Engine({$color, $container, $resolution});
  * engine.initiate(60);
+ *
+ * await engine.preloadStage(SceneExample);
+ *
+ * engine.createStage(SceneExample);
  */
 class Engine {
+
+    /**
+     * Stores the rendering background color.
+     * @type {import('../index.js').Vector3}
+     * @private
+     */
+    $color;
 
     /**
      * Stores the container.
@@ -135,11 +145,13 @@ class Engine {
     /**
      * Creates a new game engine.
      * @param {Object} $parameters The given parameters.
+     * @param {import('../index.js').Vector3} [$parameters.$color] The rendering background color to use.
      * @param {HTMLElement} $parameters.$container The container for the game engine to create.
      * @param {import('../index.js').Vector2} [$parameters.$resolution] The rendering resolution to use.
      */
-    constructor({$container, $resolution = new Vector2(320, 240)}) {
+    constructor({$color = new Vector3(0, 0, 0), $container, $resolution = new Vector2(320, 240)}) {
 
+        this.$color = $color;
         this.$container = $container;
         this.$resolution = $resolution;
 
@@ -152,7 +164,7 @@ class Engine {
         this.$systemAudio = new SystemAudio();
         this.$systemCollision = new SystemCollision();
         this.$systemInput = new SystemInput({$container: this.$container});
-        this.$systemRender = new SystemRender({$container: this.$container, $resolution: this.$resolution});
+        this.$systemRender = new SystemRender({$color: this.$color, $container: this.$container, $resolution: this.$resolution});
         this.$systemVibration = new SystemVibration();
     }
 
@@ -297,6 +309,22 @@ class Engine {
         });
 
         return Promise.all(promises);
+    }
+
+    /**
+     * @type {import('../index.js').SystemRender['setColor']}
+     */
+    setColor(...$parameters) {
+
+        return this.$systemRender.setColor(...$parameters);
+    }
+
+    /**
+     * @type {import('../index.js').SystemRender['setResolution']}
+     */
+    setResolution(...$parameters) {
+
+        return this.$systemRender.setResolution(...$parameters);
     }
 
     /**

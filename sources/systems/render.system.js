@@ -5,7 +5,7 @@ import {Shader, Vector3} from '../index.js';
  *
  * @example
  *
- * const system = new SystemRender({$container, $resolution});
+ * const system = new SystemRender({$color, $container, $resolution});
  * system.initiate();
  * system.tick($stage);
  */
@@ -58,6 +58,13 @@ class SystemRender {
      * @private
      */
     $canvas;
+
+    /**
+     * Stores the background color.
+     * @type {import('../index.js').Vector3}
+     * @private
+     */
+    $color;
 
     /**
      * Stores the container.
@@ -146,11 +153,13 @@ class SystemRender {
     /**
      * Creates a new render system.
      * @param {Object} $parameters The given parameters.
+     * @param {import('../index.js').Vector3} [$parameters.$color] The rendering background color to use.
      * @param {HTMLElement} $parameters.$container The container on which to attach the canvas.
      * @param {import('../index.js').Vector2} $parameters.$resolution The rendering resolution to use.
      */
-    constructor({$container, $resolution}) {
+    constructor({$color = new Vector3(0, 0, 0), $container, $resolution}) {
 
+        this.$color = $color;
         this.$container = $container;
         this.$resolution = $resolution;
 
@@ -397,7 +406,7 @@ class SystemRender {
      */
     $resetCanvas($width, $height) {
 
-        this.$context.clearColor(0, 0, 0, 1);
+        this.$context.clearColor(this.$color.x, this.$color.y, this.$color.z, 1);
         this.$context.clearDepth(1);
 
         this.$context.viewport(0, 0, $width, $height);
@@ -618,6 +627,28 @@ class SystemRender {
         this.$cache.set($content.url, undefined);
 
         return this.$loadTexture($content, this.$context.TEXTURE0 + SystemRender.UNITTEXTURE0);
+    }
+
+    /**
+     * Sets the rendering background color.
+     * @param {import('../index.js').Vector3} $color The rendering background color to set.
+     * @public
+     */
+    setColor($color) {
+
+        this.$color = $color;
+    }
+
+    /**
+     * Sets the rendering resolution.
+     * @param {import('../index.js').Vector2} $resolution The rendering resolution to set.
+     * @public
+     */
+    setResolution($resolution) {
+
+        this.$resolution = $resolution.clone();
+
+        this.$resize();
     }
 
     /**
