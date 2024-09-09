@@ -122,6 +122,8 @@ class SystemInput {
 
         window.addEventListener('blur', this.$stack.bind(this));
 
+        window.addEventListener('contextmenu', this.$stack.bind(this));
+
         window.addEventListener('gamepadanalog', this.$stack.bind(this));
         window.addEventListener('gamepadconnect', this.$stack.bind(this));
         window.addEventListener('gamepaddown', this.$stack.bind(this));
@@ -145,6 +147,8 @@ class SystemInput {
         }
 
         window.removeEventListener('blur', this.$stack.bind(this));
+
+        window.removeEventListener('contextmenu', this.$stack.bind(this));
 
         window.removeEventListener('gamepadanalog', this.$stack.bind(this));
         window.removeEventListener('gamepadconnect', this.$stack.bind(this));
