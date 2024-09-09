@@ -425,8 +425,8 @@ class SystemRender {
         const widthContext = Math.max(width, Math.floor(height * this.$canvas.clientWidth / this.$canvas.clientHeight));
         const heightContext = Math.max(height, Math.floor(width * this.$canvas.clientHeight / this.$canvas.clientWidth));
 
-        this.$canvas.setAttribute('width', '' + widthContext);
-        this.$canvas.setAttribute('height', '' + heightContext);
+        this.$canvas.setAttribute('width', '' + Math.floor(widthContext / 2) * 2);
+        this.$canvas.setAttribute('height', '' + Math.floor(heightContext / 2) * 2);
     }
 
     /**
