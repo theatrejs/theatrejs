@@ -4,7 +4,7 @@
  * @example
  *
  * const timeline = new Timeline(keyframes);
- * timeline.seekTime(0);
+ * timeline.seekTimecode(0);
  * timeline.tick(timetick);
  */
 class Timeline {
@@ -17,20 +17,20 @@ class Timeline {
     $keyframes;
 
     /**
-     * Stores the current time.
+     * Stores the timecode.
      * @type {number}
      * @private
      */
-    $timeCurrent;
+    $timecode;
 
     /**
-     * Gets the current time.
+     * Gets the timecode.
      * @type {number}
      * @public
      */
-    get timeCurrent() {
+    get timecode() {
 
-        return this.$timeCurrent;
+        return this.$timecode;
     }
 
     /**
@@ -39,9 +39,9 @@ class Timeline {
      */
     constructor($keyframes = []) {
 
-        this.$keyframes = [...$keyframes].sort(($a, $b) => ($a.time - $b.time));
+        this.$keyframes = [...$keyframes].sort(($a, $b) => ($a.timecode - $b.timecode));
 
-        this.$timeCurrent = 0;
+        this.$timecode = 0;
     }
 
     /**
@@ -56,30 +56,30 @@ class Timeline {
 
         if (typeof result !== 'undefined') {
 
-            this.seekTime(result.time);
+            this.seekTimecode(result.timecode);
         }
 
         return this;
     }
 
     /**
-     * Seeks to the given time.
-     * @param {number} $time The time to seek to (in ms).
+     * Seeks to the given timecode.
+     * @param {number} $timecode The timecode to seek to (in ms).
      * @returns {this}
      * @public
      */
-    seekTime($time) {
+    seekTimecode($timecode) {
 
-        this.$timeCurrent = $time;
+        this.$timecode = $timecode;
 
         this.$keyframes.forEach(($keyframe) => {
 
-            if ($keyframe.time !== this.$timeCurrent) {
+            if ($keyframe.timecode !== this.$timecode) {
 
                 return;
             }
 
-            $keyframe.trigger(this);
+            $keyframe.onEnter(this);
         });
 
         return this;
@@ -98,25 +98,25 @@ class Timeline {
             return this;
         }
 
-        const timePrevious = this.$timeCurrent;
+        const previous = this.$timecode;
 
-        this.$timeCurrent += $timetick;
+        this.$timecode += $timetick;
 
-        const timeCurrent = this.$timeCurrent;
+        const current = this.$timecode;
 
         this.$keyframes.forEach(($keyframe) => {
 
-            if ($keyframe.time <= timePrevious) {
+            if ($keyframe.timecode <= previous) {
 
                 return;
             }
 
-            if ($keyframe.time > timeCurrent) {
+            if ($keyframe.timecode > current) {
 
                 return;
             }
 
-            $keyframe.trigger(this);
+            $keyframe.onEnter(this);
         });
 
         return this;

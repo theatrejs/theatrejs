@@ -4,17 +4,17 @@
  * @example
  *
  * // minimal
- * const keyframe = new TimelineKeyframe({$time, $trigger});
+ * const keyframe = new TimelineKeyframe({$onEnter, $timecode});
  *
  * @example
  *
  * // full
- * const keyframe = new TimelineKeyframe({$name, $time, $trigger});
+ * const keyframe = new TimelineKeyframe({$name, $onEnter, $timecode});
  */
 class TimelineKeyframe {
 
     /**
-     * @callback typetrigger A trigger handler of a keyframe.
+     * @callback typehandlerenter A handler to execute when entering a keyframe.
      * @param {import('../index.js').Timeline} $timeline The reference timeline.
      * @returns {void}
      */
@@ -27,18 +27,18 @@ class TimelineKeyframe {
     $name;
 
     /**
-     * Stores the time position.
+     * Stores the keyframe entering handler.
+     * @type {typehandlerenter}
+     * @private
+     */
+    $onEnter;
+
+    /**
+     * Stores the timecode.
      * @type {number}
      * @private
      */
-    $time;
-
-    /**
-     * Stores the trigger handler.
-     * @type {typetrigger}
-     * @private
-     */
-    $trigger;
+    $timecode;
 
     /**
      * Gets the name.
@@ -51,37 +51,37 @@ class TimelineKeyframe {
     }
 
     /**
-     * Gets the time position.
-     * @type {number}
+     * Gets the keyframe entering handler.
+     * @type {typehandlerenter}
      * @public
      */
-    get time() {
+    get onEnter() {
 
-        return this.$time;
+        return this.$onEnter;
     }
 
     /**
-     * Gets the trigger handler.
-     * @type {typetrigger}
+     * Gets the timecode.
+     * @type {number}
      * @public
      */
-    get trigger() {
+    get timecode() {
 
-        return this.$trigger;
+        return this.$timecode;
     }
 
     /**
      * Creates a new timeline keyframe.
      * @param {Object} $parameters The given parameters.
      * @param {string} [$parameters.$name] The name.
-     * @param {number} $parameters.$time The time position.
-     * @param {typetrigger} $parameters.$trigger The trigger handler.
+     * @param {typehandlerenter} $parameters.$onEnter The keyframe entering handler.
+     * @param {number} $parameters.$timecode The timecode.
      */
-    constructor({$name, $time, $trigger}) {
+    constructor({$name, $onEnter, $timecode}) {
 
         this.$name = $name;
-        this.$time = $time;
-        this.$trigger = $trigger;
+        this.$onEnter = $onEnter;
+        this.$timecode = $timecode;
     }
 }
 
