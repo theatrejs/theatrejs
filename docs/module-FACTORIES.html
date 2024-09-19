@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>MATHEMATICS - Documentation</title>
+    <title>FACTORIES - Documentation</title>
     
     
     <script src="scripts/prettify/prettify.js"></script>
@@ -37,7 +37,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">MATHEMATICS</h1>
+    <h1 class="page-title">FACTORIES</h1>
     
 
     
@@ -77,12 +77,18 @@
     
 
     
-        <h3 class="subsection-title">Members</h3>
+
+    
+        <h3 class="subsection-title">Methods</h3>
 
         
             
-<h4 class="name" id=".RADIANS"><span class="type-signature type-signature-static, constant">(static, constant) </span>RADIANS<span class="type-signature"> :number</span></h4>
 
+    
+
+    <h4 class="name" id=".ActorPreloadable"><span class="type-signature type-signature-static">(static) </span>ActorPreloadable<span class="signature">($preloadables)</span><span class="type-signature"> &rarr; {Class.&lt;<a href="Actor.html">Actor</a>>}</span></h4>
+
+    
 
 
 
@@ -90,13 +96,13 @@
 <dl class="details">
     
     <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li>The value to convert an angle from degrees to radians.</li></ul></dd>
+    <dd class="tag-description"><ul class="dummy"><li>Factores an actor with preloadable assets.</li></ul></dd>
     
 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="constants_mathematics.js.html">constants/mathematics.js</a>, <a href="constants_mathematics.js.html#line12">line 12</a>
+        <a href="core_factories.js.html">core/factories.js</a>, <a href="core_factories.js.html#line14">line 14</a>
     </li></ul></dd>
     
 
@@ -135,31 +141,255 @@
 
 
 
-<div class="description usertext">
-    The value to convert an angle from degrees to radians.
-</div>
 
 
 
-    <h5 class="h5-types">Type:</h5>
-    <ul>
-        <li>
+
+
+
+
+
+    <h5 class="h5-parameters">Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
             
-<span class="param-type">number</span>
+                <td class="name"><code>$preloadables</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;(string|Class.&lt;<a href="Actor.html">Actor</a>>)></span>
 
 
 
-        </li>
-    </ul>
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The preloadable assets (mix of preloadable assets and/or actors with preloadable assets).</td>
+        </tr>
+
+    
+    </tbody>
+</table>
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5 class="h5-returns">Returns:</h5>
+
+        
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Class.&lt;<a href="Actor.html">Actor</a>></span>
+
+
+
+    </dd>
+</dl>
+
+    
 
 
 
         
+            
+
     
 
+    <h4 class="name" id=".StagePreloadable"><span class="type-signature type-signature-static">(static) </span>StagePreloadable<span class="signature">($preloadables)</span><span class="type-signature"> &rarr; {Class.&lt;<a href="Stage.html">Stage</a>>}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>Factores a stage with preloadable assets.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="core_factories.js.html">core/factories.js</a>, <a href="core_factories.js.html#line70">line 70</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5 class="h5-parameters">Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>$preloadables</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;(string|Class.&lt;<a href="Actor.html">Actor</a>>)></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The preloadable assets (mix of preloadable assets and/or actors with preloadable assets).</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5 class="h5-returns">Returns:</h5>
+
+        
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Class.&lt;<a href="Stage.html">Stage</a>></span>
+
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
     
 
     
