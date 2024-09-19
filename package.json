@@ -41,5 +41,5 @@
         "github-pages": "jsdoc ./tools/jsdoc/HOME.md ./sources/ --recurse --destination ./docs/ --template ./node_modules/docdash --configure ./tools/jsdoc/jsdoc.config.json"
     },
     "type": "module",
-    "version": "1.1.0"
+    "version": "1.2.0"
 }
