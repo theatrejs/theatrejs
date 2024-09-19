@@ -4,8 +4,7 @@
     "devDependencies": {
 
         "docdash": "2.0.2",
-        "jsdoc": "4.0.3",
-        "jsdoc-typeof-plugin": "1.0.0"
+        "jsdoc": "4.0.3"
     },
     "engines": {
 
