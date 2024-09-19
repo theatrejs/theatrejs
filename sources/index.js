@@ -9,9 +9,9 @@ export * as MATHEMATICS from './constants/mathematics.js';
 
 export {AABB} from './core/aabb.js';
 export {Actor} from './core/actor.js';
-export {ActorPreloadable} from './core/actorpreloadable.js';
 export {Collider} from './core/collider.js';
 export {Engine} from './core/engine.js';
+export * as FACTORIES from './core/factories.js';
 export {FiniteStateMachine} from './core/finitestatemachine.js';
 export {Loop} from './core/loop.js';
 export {Quaternion} from './core/quaternion.js';
@@ -19,7 +19,6 @@ export {Shader} from './core/shader.js';
 export {Sound} from './core/sound.js';
 export {Sprite} from './core/sprite.js';
 export {Stage} from './core/stage.js';
-export {StagePreloadable} from './core/stagepreloadable.js';
 export {State} from './core/state.js';
 export * as STORAGE from './core/storage.js';
 export {Timeline} from './core/timeline.js';
