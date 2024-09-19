@@ -1,6 +1,6 @@
 /**
  * Creates state managers.
- * @template {any} Type The generic type of the data state.
+ * @template {any} T The generic type of the data state.
  *
  * @example
  *
@@ -10,27 +10,30 @@ class State {
 
     /**
      * @callback typewatcherstate A state changing handler.
-     * @param {Type} $state The new data state.
+     * @param {T} $state The new data state.
      * @returns {void}
+     * @protected
+     *
+     * @memberof State
      */
 
     /**
      * Stores the data state.
-     * @type {Type}
+     * @type {T}
      * @private
      */
     $data;
 
     /**
      * Stores the state changing handlers.
-     * @type {typewatcherstate[]}
+     * @type {Array<typewatcherstate>}
      * @private
      */
     $watchers;
 
     /**
      * Creates a new state manager.
-     * @param {Type} $data The data state to store.
+     * @param {T} $data The data state to store.
      */
     constructor($data) {
 
@@ -40,7 +43,7 @@ class State {
 
     /**
      * Gets the data state.
-     * @returns {Type}
+     * @returns {T}
      * @public
      */
     getState() {
@@ -50,7 +53,7 @@ class State {
 
     /**
      * Sets the data state.
-     * @param {Type} $data The data state to set.
+     * @param {T} $data The data state to set.
      * @public
      */
     setState($data) {

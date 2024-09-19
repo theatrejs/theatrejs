@@ -6,6 +6,10 @@ import {ALTLEFT, ALTRIGHT, CONTROLLEFT, CONTROLRIGHT, SHIFTLEFT, SHIFTRIGHT} fro
 import {TAB, UP, LEFT, RIGHT, DOWN} from './keyboard.qwertynavigators.js';
 import {CONTEXTMENU, ESCAPE} from './keyboard.qwertysystems.js';
 
+/**
+ * @module EVENTCODES/KEYBOARDQWERTY
+ */
+
 export {
 
     DIGIT0,

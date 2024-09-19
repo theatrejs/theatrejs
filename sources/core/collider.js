@@ -1,3 +1,5 @@
+import {AABB, COLLIDERTYPES} from '../index.js';
+
 /**
  * Creates colliders.
  *
@@ -8,12 +10,15 @@
 class Collider {
 
     /**
-     * @typedef {(import('../index.js').COLLIDERTYPES.DYNAMIC | import('../index.js').COLLIDERTYPES.KINETIC | import('../index.js').COLLIDERTYPES.STATIC)} typecollider A collider type.
+     * @typedef {(COLLIDERTYPES.DYNAMIC | COLLIDERTYPES.KINETIC | COLLIDERTYPES.STATIC)} typecollider A collider type.
+     * @protected
+     *
+     * @memberof Collider
      */
 
     /**
      * Stores the boundaries.
-     * @type {import('../index.js').AABB}
+     * @type {AABB}
      * @private
      */
     $boundaries;
@@ -34,7 +39,7 @@ class Collider {
 
     /**
      * Gets the boundaries.
-     * @type {import('../index.js').AABB}
+     * @type {AABB}
      * @public
      */
     get boundaries() {
@@ -65,7 +70,7 @@ class Collider {
     /**
      * Creates a new collider.
      * @param {Object} $parameters The given parameters.
-     * @param {import('../index.js').AABB} $parameters.$boundaries The boundaries of the collider to create.
+     * @param {AABB} $parameters.$boundaries The boundaries of the collider to create.
      * @param {boolean} [$parameters.$traversable] The traversable status of the collider to create.
      * @param {typecollider} $parameters.$type The type of the collider to create.
      */

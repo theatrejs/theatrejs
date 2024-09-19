@@ -10,15 +10,21 @@ class Shader {
 
     /**
      * @typedef {('vec2' | 'vec3')} typetypeattribute A type of attribute.
+     * @protected
+     *
+     * @memberof Shader
      */
 
     /**
      * @typedef {('bool' | 'bool[]' | 'float' | 'float[]' | 'int' | 'int[]' | 'mat4' | 'mat4[]' | 'sampler2D' | 'vec2' | 'vec2[]' | 'vec3' | 'vec3[]')} typetypeuniform A type of uniform.
+     * @protected
+     *
+     * @memberof Shader
      */
 
     /**
      * Stores the attributes needed by the shader program.
-     * @type {Object.<string, typetypeattribute>}
+     * @type {Object<string, typetypeattribute>}
      * @public
      * @readonly
      * @static
@@ -89,7 +95,7 @@ class Shader {
 
     /**
      * Stores the uniforms needed by the shader program.
-     * @type {Object.<string, typetypeuniform>}
+     * @type {Object<string, typetypeuniform>}
      * @public
      * @readonly
      * @static

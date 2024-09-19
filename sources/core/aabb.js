@@ -1,3 +1,5 @@
+import {Vector2} from '../index.js';
+
 /**
  * Creates AABBs.
  *
@@ -9,21 +11,21 @@ class AABB {
 
     /**
      * Stores the maximum values of the AABB.
-     * @type {import('../index.js').Vector2}
+     * @type {Vector2}
      * @private
      */
     $maximum;
 
     /**
      * Stores the minimum values of the AABB.
-     * @type {import('../index.js').Vector2}
+     * @type {Vector2}
      * @private
      */
     $minimum;
 
     /**
      * Gets the center of the AABB.
-     * @type {import('../index.js').Vector2}
+     * @type {Vector2}
      * @public
      */
     get center() {
@@ -33,7 +35,7 @@ class AABB {
 
     /**
      * Gets the half-size of the AABB.
-     * @type {import('../index.js').Vector2}
+     * @type {Vector2}
      * @public
      */
     get halfSize() {
@@ -43,7 +45,7 @@ class AABB {
 
     /**
      * Gets the maximum values of the AABB.
-     * @type {import('../index.js').Vector2}
+     * @type {Vector2}
      * @public
      */
     get maximum() {
@@ -53,7 +55,7 @@ class AABB {
 
     /**
      * Gets the minimum values of the AABB.
-     * @type {import('../index.js').Vector2}
+     * @type {Vector2}
      * @public
      */
     get minimum() {
@@ -63,7 +65,7 @@ class AABB {
 
     /**
      * Gets the size of the AABB.
-     * @type {import('../index.js').Vector2}
+     * @type {Vector2}
      * @public
      */
     get size() {
@@ -73,8 +75,8 @@ class AABB {
 
     /**
      * Creates a new AABB.
-     * @param {import('../index.js').Vector2} $minimum The minimum values of the AABB to create.
-     * @param {import('../index.js').Vector2} $maximum The maximum values of the AABB to create.
+     * @param {Vector2} $minimum The minimum values of the AABB to create.
+     * @param {Vector2} $maximum The maximum values of the AABB to create.
      */
     constructor($minimum, $maximum) {
 
@@ -84,8 +86,8 @@ class AABB {
 
     /**
      * Gets the manhattan distance between two AABBs.
-     * @param {import('../index.js').AABB} $a The first AABB to compare.
-     * @param {import('../index.js').AABB} $b The second AABB to compare.
+     * @param {AABB} $a The first AABB to compare.
+     * @param {AABB} $b The second AABB to compare.
      * @returns {number}
      * @public
      * @static
@@ -105,8 +107,8 @@ class AABB {
 
     /**
      * Gets the distance between two AABBs on the x-axis.
-     * @param {import('../index.js').AABB} $a The first AABB to compare.
-     * @param {import('../index.js').AABB} $b The second AABB to compare.
+     * @param {AABB} $a The first AABB to compare.
+     * @param {AABB} $b The second AABB to compare.
      * @returns {number}
      * @public
      * @static
@@ -121,8 +123,8 @@ class AABB {
 
     /**
      * Gets the distance between two AABBs on the y-axis.
-     * @param {import('../index.js').AABB} $a The first AABB to compare.
-     * @param {import('../index.js').AABB} $b The second AABB to compare.
+     * @param {AABB} $a The first AABB to compare.
+     * @param {AABB} $b The second AABB to compare.
      * @returns {number}
      * @public
      * @static
@@ -137,8 +139,8 @@ class AABB {
 
     /**
      * Creates a new AABB from the given AABB.
-     * @param {import('../index.js').AABB} $aabb The given AABB.
-     * @returns {import('../index.js').AABB}
+     * @param {AABB} $aabb The given AABB.
+     * @returns {AABB}
      * @public
      * @static
      */
@@ -149,8 +151,8 @@ class AABB {
 
     /**
      * Gets the delta penetration between two AABBs strictly overlaping with each other on the x-axis (the common area).
-     * @param {import('../index.js').AABB} $a The first AABB to compare.
-     * @param {import('../index.js').AABB} $b The second AABB to compare.
+     * @param {AABB} $a The first AABB to compare.
+     * @param {AABB} $b The second AABB to compare.
      * @returns {number}
      * @public
      * @static
@@ -165,8 +167,8 @@ class AABB {
 
     /**
      * Gets the delta penetration between two AABBs strictly overlaping with each other on the y-axis (the common area).
-     * @param {import('../index.js').AABB} $a The first AABB to compare.
-     * @param {import('../index.js').AABB} $b The second AABB to compare.
+     * @param {AABB} $a The first AABB to compare.
+     * @param {AABB} $b The second AABB to compare.
      * @returns {number}
      * @public
      * @static
@@ -181,7 +183,7 @@ class AABB {
 
     /**
      * Clones the AABB.
-     * @returns {import('../index.js').AABB}
+     * @returns {AABB}
      * @public
      */
     clone() {
@@ -191,7 +193,7 @@ class AABB {
 
     /**
      * Translates the AABB in the world space from a third person point of view.
-     * @param {import('../index.js').Vector2} $vector The translation to apply.
+     * @param {Vector2} $vector The translation to apply.
      * @returns {this}
      * @public
      */

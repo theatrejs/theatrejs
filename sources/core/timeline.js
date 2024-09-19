@@ -1,3 +1,5 @@
+import {TimelineKeyframe} from '../index.js';
+
 /**
  * Creates timelines.
  *
@@ -11,7 +13,7 @@ class Timeline {
 
     /**
      * Stores the keyframes.
-     * @type {import('../index.js').TimelineKeyframe[]}
+     * @type {Array<TimelineKeyframe>}
      * @private
      */
     $keyframes;
@@ -35,7 +37,7 @@ class Timeline {
 
     /**
      * Creates a new timeline.
-     * @param {import('../index.js').TimelineKeyframe[]} [$keyframes] The keyframes.
+     * @param {Array<TimelineKeyframe>} [$keyframes] The keyframes.
      */
     constructor($keyframes = []) {
 

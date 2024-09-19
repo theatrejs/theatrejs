@@ -31,7 +31,7 @@ class Loop {
 
     /**
      * Stores the global scope used.
-     * @type {typeof globalThis}
+     * @type {Window}
      * @private
      */
     $scope;
@@ -39,7 +39,7 @@ class Loop {
     /**
      * Creates a new update loop.
      * @param {Function} $handler The handler to execute with the update loop.
-     * @param {typeof globalThis} $scope The global scope to use.
+     * @param {Window} $scope The global scope to use.
      */
     constructor($handler, $scope = window) {
 
@@ -50,7 +50,7 @@ class Loop {
     /**
      * Loops the update loop.
      * @param {number} $timetick The tick duration (in ms).
-     * @public
+     * @private
      */
     $loop($timetick) {
 

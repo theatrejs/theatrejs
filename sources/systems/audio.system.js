@@ -1,4 +1,4 @@
-import {UTILS} from '../index.js';
+import {Sound, Stage, UTILS} from '../index.js';
 
 /**
  * Creates audio systems.
@@ -14,6 +14,7 @@ class SystemAudio {
      * @property {AudioBufferSourceNode} typeaudio.$audio The audio buffer source node.
      * @property {GainNode} typeaudio.$gain The gain.
      * @property {number} typeaudio.$startTime The start time of the audio in the audio context timeline.
+     * @private
      */
 
     /**
@@ -41,7 +42,7 @@ class SystemAudio {
 
     /**
      * Stores the mapping between the playing sounds and their audio data.
-     * @type {Map<import('../index.js').Sound, typedataaudio>}
+     * @type {Map<Sound, typedataaudio>}
      * @private
      */
     $mappingSoundsPlaying;
@@ -59,7 +60,7 @@ class SystemAudio {
     /**
      * Creates the values for the fade out curve.
      * @param {number} $volume The volume of the sound.
-     * @returns {number[]}
+     * @returns {Array<number>}
      * @private
      */
     $createValuesCurveFadeOut($volume) {
@@ -114,7 +115,7 @@ class SystemAudio {
 
     /**
      * Terminates the given sound.
-     * @param {import('../index.js').Sound} $sound The sound to terminate.
+     * @param {Sound} $sound The sound to terminate.
      * @private
      */
     $terminateSound($sound) {
@@ -208,13 +209,13 @@ class SystemAudio {
 
     /**
      * Updates the system by one tick update.
-     * @param {import('../index.js').Stage} $stage The stage on which to execute the system.
+     * @param {Stage} $stage The stage on which to execute the system.
      * @public
      */
     tick($stage) {
 
         /**
-         * @type {import('../index.js').Sound[]}
+         * @type {Array<Sound>}
          */
         const previous = Array.from(this.$mappingSoundsPlaying.keys());
 

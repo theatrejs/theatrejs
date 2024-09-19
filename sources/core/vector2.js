@@ -63,8 +63,8 @@ class Vector2 {
 
     /**
      * Creates a new vector from the given vector.
-     * @param {import('../index.js').Vector2} $vector The given vector.
-     * @returns {import('../index.js').Vector2}
+     * @param {Vector2} $vector The given vector.
+     * @returns {Vector2}
      * @public
      * @static
      */
@@ -75,7 +75,7 @@ class Vector2 {
 
     /**
      * Adds the given vector.
-     * @param {import('../index.js').Vector2} $vector The vector to add.
+     * @param {Vector2} $vector The vector to add.
      * @returns {this}
      * @public
      */
@@ -92,7 +92,7 @@ class Vector2 {
 
     /**
      * Clones the vector.
-     * @returns {import('../index.js').Vector2}
+     * @returns {Vector2}
      * @public
      */
     clone() {
@@ -105,7 +105,7 @@ class Vector2 {
 
     /**
      * Checks the equality with the given vector.
-     * @param {import('../index.js').Vector2} $vector The vector to check with.
+     * @param {Vector2} $vector The vector to check with.
      * @returns {boolean}
      * @public
      */
@@ -130,7 +130,7 @@ class Vector2 {
 
     /**
      * Multiplies with the given vector.
-     * @param {import('../index.js').Vector2} $vector The vector to multiply with.
+     * @param {Vector2} $vector The vector to multiply with.
      * @returns {this}
      * @public
      */
@@ -225,7 +225,7 @@ class Vector2 {
 
     /**
      * Subtracts the given vector.
-     * @param {import('../index.js').Vector2} $vector The vector to subtract.
+     * @param {Vector2} $vector The vector to subtract.
      * @returns {this}
      * @public
      */

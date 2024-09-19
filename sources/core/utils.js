@@ -1,8 +1,14 @@
 /**
+ * @module UTILS
+ */
+
+/**
  * Deduplicates the items of the given array (a new array is created).
- * @template T
- * @param {T[]} $array The array.
- * @returns {T[]}
+ * @template {any} T The generic type of the values of the array.
+ * @param {Array<T>} $array The array.
+ * @returns {Array<T>}
+ *
+ * @memberof module:UTILS
  */
 function deduplicate($array) {
 
@@ -11,10 +17,12 @@ function deduplicate($array) {
 
 /**
  * Extracts the given item from the given array.
- * @template T
+ * @template {any} T The generic type of the values of the array.
  * @param {T} $item The item to remove.
- * @param {T[]} $array The array.
- * @returns {T[]}
+ * @param {Array<T>} $array The array.
+ * @returns {Array<T>}
+ *
+ * @memberof module:UTILS
  */
 function extract($item, $array) {
 
@@ -31,6 +39,8 @@ function extract($item, $array) {
 /**
  * Resolves when the browser is ready to perform an animation frame request.
  * @returns Promise<void>
+ *
+ * @memberof module:UTILS
  */
 function frame() {
 
@@ -48,6 +58,8 @@ function frame() {
 /**
  * Resolves when the user has interacted at least once since page load.
  * @returns {Promise<void>}
+ *
+ * @memberof module:UTILS
  */
 function ready() {
 
@@ -85,6 +97,8 @@ function ready() {
  * Resolves when the given delay has passed.
  * @param {number} $delay The delay (in ms).
  * @returns Promise<void>
+ *
+ * @memberof module:UTILS
  */
 function sleep($delay) {
 
@@ -102,6 +116,8 @@ function sleep($delay) {
 /**
  * Gets a new UUID.
  * @returns {string}
+ *
+ * @memberof module:UTILS
  */
 function uuid() {
 

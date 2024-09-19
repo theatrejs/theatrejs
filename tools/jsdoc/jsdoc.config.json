@@ -1,0 +1,10 @@
+{
+    "docdash": {
+
+        "search": true
+    },
+    "plugins": [
+
+        "./jsdoc.plugin.cjs"
+    ]
+}

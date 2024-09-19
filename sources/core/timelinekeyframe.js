@@ -1,3 +1,5 @@
+import {Timeline} from '../index.js';
+
 /**
  * Creates timeline keyframes.
  *
@@ -15,8 +17,11 @@ class TimelineKeyframe {
 
     /**
      * @callback typehandlerenter A handler to execute when entering a keyframe.
-     * @param {import('../index.js').Timeline} $timeline The reference timeline.
+     * @param {Timeline} $timeline The reference timeline.
      * @returns {void}
+     * @protected
+     *
+     * @memberof TimelineKeyframe
      */
 
     /**

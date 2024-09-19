@@ -16,7 +16,7 @@ class Engine {
 
     /**
      * Stores the rendering background color.
-     * @type {import('../index.js').Vector3}
+     * @type {Vector3}
      * @private
      */
     $color;
@@ -30,14 +30,14 @@ class Engine {
 
     /**
      * Stores the loop.
-     * @type {import('../index.js').Loop}
+     * @type {Loop}
      * @private
      */
     $loop;
 
     /**
      * Stores the next stage.
-     * @type {typeof import('../index.js').Stage}
+     * @type {typeof Stage}
      * @private
      */
     $next;
@@ -51,56 +51,56 @@ class Engine {
 
     /**
      * Stores the rendering resolution.
-     * @type {import('../index.js').Vector2}
+     * @type {Vector2}
      * @private
      */
     $resolution;
 
     /**
      * Stores the current stage.
-     * @type {import('../index.js').Stage}
+     * @type {Stage}
      * @private
      */
     $stage;
 
     /**
      * Stores the current actor system.
-     * @type {import('../index.js').SystemActor}
+     * @type {SystemActor}
      * @private
      */
     $systemActor;
 
     /**
      * Stores the current audio system.
-     * @type {import('../index.js').SystemAudio}
+     * @type {SystemAudio}
      * @private
      */
     $systemAudio;
 
     /**
      * Stores the current collision system.
-     * @type {import('../index.js').SystemCollision}
+     * @type {SystemCollision}
      * @private
      */
     $systemCollision;
 
     /**
      * Stores the current input system.
-     * @type {import('../index.js').SystemInput}
+     * @type {SystemInput}
      * @private
      */
     $systemInput;
 
     /**
      * Stores the current render system.
-     * @type {import('../index.js').SystemRender}
+     * @type {SystemRender}
      * @private
      */
     $systemRender;
 
     /**
      * Stores the current vibration system.
-     * @type {import('../index.js').SystemVibration}
+     * @type {SystemVibration}
      * @private
      */
     $systemVibration;
@@ -124,7 +124,7 @@ class Engine {
 
     /**
      * Gets the current stage.
-     * @type {import('../index.js').Stage}
+     * @type {Stage}
      * @public
      */
     get stage() {
@@ -145,9 +145,9 @@ class Engine {
     /**
      * Creates a new game engine.
      * @param {Object} $parameters The given parameters.
-     * @param {import('../index.js').Vector3} [$parameters.$color] The rendering background color to use.
+     * @param {Vector3} [$parameters.$color] The rendering background color to use.
      * @param {HTMLElement} $parameters.$container The container for the game engine to create.
-     * @param {import('../index.js').Vector2} [$parameters.$resolution] The rendering resolution to use.
+     * @param {Vector2} [$parameters.$resolution] The rendering resolution to use.
      */
     constructor({$color = new Vector3(0, 0, 0), $container, $resolution = new Vector2(320, 240)}) {
 
@@ -170,7 +170,7 @@ class Engine {
 
     /**
      * Creates the given stage.
-     * @param {typeof import('../index.js').Stage} $stage The stage to create.
+     * @param {typeof Stage} $stage The stage to create.
      * @private
      */
     $createStage($stage) {
@@ -181,7 +181,7 @@ class Engine {
 
     /**
      * Creates the given stage on the next tick update.
-     * @param {typeof import('../index.js').Stage} $stage The stage to create on the next tick update.
+     * @param {typeof Stage} $stage The stage to create on the next tick update.
      * @public
      */
     createStage($stage) {
@@ -190,19 +190,25 @@ class Engine {
     }
 
     /**
-     * @type {import('../index.js').SystemInput['getInput']}
+     * Gets the current input state value of the given digital input.
+     * @param {string} $input The event code of the given digital input.
+     * @returns {boolean}
+     * @public
      */
-    getInput(...$parameters) {
+    getInput($input) {
 
-        return this.$systemInput.getInput(...$parameters);
+        return this.$systemInput.getInput($input);
     }
 
     /**
-     * @type {import('../index.js').SystemInput['getInputAnalog']}
+     * Gets the current input state value of the given analog input.
+     * @param {string} $input The event code of the given analog input.
+     * @returns {number}
+     * @public
      */
-    getInputAnalog(...$parameters) {
+    getInputAnalog($input) {
 
-        return this.$systemInput.getInputAnalog(...$parameters);
+        return this.$systemInput.getInputAnalog($input);
     }
 
     /**
@@ -231,14 +237,14 @@ class Engine {
 
     /**
      * Preloads the assets of the given stage.
-     * @param {typeof import('../index.js').Stage} $stage The stage to preload the assets from.
-     * @returns {Promise<(undefined | AudioBuffer | WebGLTexture)[]>}
+     * @param {typeof Stage} $stage The stage to preload the assets from.
+     * @returns {Promise<Array<undefined | AudioBuffer | WebGLTexture>>}
      * @public
      */
     preloadStage($stage) {
 
         /**
-         * @type {Promise<undefined | AudioBuffer | WebGLTexture>[]}
+         * @type {Array<Promise<undefined | AudioBuffer | WebGLTexture>>}
          */
         const promises = [];
 
@@ -312,19 +318,23 @@ class Engine {
     }
 
     /**
-     * @type {import('../index.js').SystemRender['setColor']}
+     * Sets the rendering background color.
+     * @param {Vector3} $color The rendering background color to set.
+     * @public
      */
-    setColor(...$parameters) {
+    setColor($color) {
 
-        return this.$systemRender.setColor(...$parameters);
+        return this.$systemRender.setColor($color);
     }
 
     /**
-     * @type {import('../index.js').SystemRender['setResolution']}
+     * Sets the rendering resolution.
+     * @param {Vector2} $resolution The rendering resolution to set.
+     * @public
      */
-    setResolution(...$parameters) {
+    setResolution($resolution) {
 
-        return this.$systemRender.setResolution(...$parameters);
+        return this.$systemRender.setResolution($resolution);
     }
 
     /**

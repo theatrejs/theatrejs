@@ -27,7 +27,7 @@ class Sprite {
 
     /**
      * Stores the frame to use from the texture sources (with values in [0, 1] ranges).
-     * @type {import('../index.js').AABB}
+     * @type {AABB}
      * @private
      */
     $frameSource;
@@ -41,7 +41,7 @@ class Sprite {
 
     /**
      * Stores the target size.
-     * @type {import('../index.js').Vector2}
+     * @type {Vector2}
      * @private
      */
     $sizeTarget;
@@ -62,7 +62,7 @@ class Sprite {
 
     /**
      * Gets the frame to use from the texture sources.
-     * @type {import('../index.js').AABB}
+     * @type {AABB}
      * @public
      */
     get frameSource() {
@@ -82,7 +82,7 @@ class Sprite {
 
     /**
      * Gets the target size.
-     * @type {import('../index.js').Vector2}
+     * @type {Vector2}
      * @public
      */
     get sizeTarget() {
@@ -113,8 +113,8 @@ class Sprite {
     /**
      * Creates a new sprite.
      * @param {Object} $parameters The given parameters.
-     * @param {import('../index.js').AABB} [$parameters.$frameSource] The frame to use from the texture sources (with values in [0, 1] ranges) (if not specified then the full texture is used).
-     * @param {import('../index.js').Vector2} $parameters.$sizeTarget The target size.
+     * @param {AABB} [$parameters.$frameSource] The frame to use from the texture sources (with values in [0, 1] ranges) (if not specified then the full texture is used).
+     * @param {Vector2} $parameters.$sizeTarget The target size.
      * @param {string} $parameters.$textureColor The color texture source.
      * @param {string} [$parameters.$textureOpacity] The opacity texture source.
      */

@@ -1,9 +1,22 @@
 import {Actor} from '../index.js';
 
 /**
+ * @module ActorPreloadable
+ */
+
+/**
+ * @typedef {typeof Actor} typeclassactor A class actor.
+ * @protected
+ *
+ * @memberof module:ActorPreloadable
+ */
+
+/**
  * Factores an actor with preloadable assets.
- * @param {(string | typeof import('../index.js').Actor)[]} $preloadables The preloadable assets (mix of preloadable assets and/or actors with preloadable assets).
- * @returns {typeof import('../index.js').Actor}
+ * @param {Array<string | typeclassactor>} $preloadables The preloadable assets (mix of preloadable assets and/or actors with preloadable assets).
+ * @returns {typeof Actor}
+ *
+ * @memberof module:ActorPreloadable
  */
 function ActorPreloadable($preloadables = []) {
 
@@ -45,7 +58,7 @@ function ActorPreloadable($preloadables = []) {
     return class extends Actor {
 
         /**
-         * @type {typeof import('../index.js').Actor.preloadables}
+         * @type {typeof Actor.preloadables}
          */
         static preloadables = Array.from(preloadables);
     };

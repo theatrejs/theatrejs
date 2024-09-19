@@ -1,7 +1,13 @@
 /**
+ * @module STORAGE
+ */
+
+/**
  * Gets the stored data with the given name.
  * @param {string} $name The name of the stored data to get.
  * @returns {any}
+ *
+ * @memberof module:STORAGE
  */
 function get($name) {
 
@@ -19,6 +25,8 @@ function get($name) {
  * Checks if the storage has data stored with the given name.
  * @param {string} $name The name of the stored data to check.
  * @returns {boolean}
+ *
+ * @memberof module:STORAGE
  */
 function has($name) {
 
@@ -35,6 +43,8 @@ function has($name) {
 /**
  * Removes the stored data with the given name.
  * @param {string} $name The name of the stored data to remove.
+ *
+ * @memberof module:STORAGE
  */
 function remove($name) {
 
@@ -45,6 +55,8 @@ function remove($name) {
  * Sets the data to store with the given name.
  * @param {string} $name The name of the data to store.
  * @param {any} $value The value of the data to store.
+ *
+ * @memberof module:STORAGE
  */
 function set($name, $value) {
 

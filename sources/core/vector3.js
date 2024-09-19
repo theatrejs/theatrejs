@@ -1,3 +1,5 @@
+import {Quaternion} from '../index.js';
+
 /**
  * Creates three-dimensional vectors.
  *
@@ -80,8 +82,8 @@ class Vector3 {
 
     /**
      * Creates a new vector from the given vector.
-     * @param {import('../index.js').Vector3} $vector The given vector.
-     * @returns {import('../index.js').Vector3}
+     * @param {Vector3} $vector The given vector.
+     * @returns {Vector3}
      * @public
      * @static
      */
@@ -92,7 +94,7 @@ class Vector3 {
 
     /**
      * Adds the given vector.
-     * @param {import('../index.js').Vector3} $vector The vector to add.
+     * @param {Vector3} $vector The vector to add.
      * @returns {this}
      * @public
      */
@@ -111,7 +113,7 @@ class Vector3 {
 
     /**
      * Clones the vector.
-     * @returns {import('../index.js').Vector3}
+     * @returns {Vector3}
      * @public
      */
     clone() {
@@ -125,7 +127,7 @@ class Vector3 {
 
     /**
      * Checks the equality with the given vector.
-     * @param {import('../index.js').Vector3} $vector The vector to check with.
+     * @param {Vector3} $vector The vector to check with.
      * @returns {boolean}
      * @public
      */
@@ -152,7 +154,7 @@ class Vector3 {
 
     /**
      * Multiplies with the given vector.
-     * @param {import('../index.js').Vector3} $vector The vector to multiply with.
+     * @param {Vector3} $vector The vector to multiply with.
      * @returns {this}
      * @public
      */
@@ -214,7 +216,7 @@ class Vector3 {
 
     /**
      * Rotates the vector.
-     * @param {import('../index.js').Quaternion} $quaternion The rotation to apply.
+     * @param {Quaternion} $quaternion The rotation to apply.
      * @returns {this}
      * @public
      */
@@ -275,7 +277,7 @@ class Vector3 {
 
     /**
      * Subtracts the given vector.
-     * @param {import('../index.js').Vector3} $vector The vector to subtract.
+     * @param {Vector3} $vector The vector to subtract.
      * @returns {this}
      * @public
      */

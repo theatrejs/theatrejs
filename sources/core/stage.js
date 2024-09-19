@@ -1,4 +1,4 @@
-import {Actor, UTILS} from '../index.js';
+import {Actor, Engine, UTILS} from '../index.js';
 
 /**
  * Abstract stages.
@@ -11,7 +11,7 @@ class Stage {
 
     /**
      * Stores the preloadable assets.
-     * @type {string[]}
+     * @type {Array<string>}
      * @public
      * @static
      */
@@ -19,21 +19,21 @@ class Stage {
 
     /**
      * Stores the current actors.
-     * @type {import('../index.js').Actor[]}
+     * @type {Array<Actor>}
      * @private
      */
     $actors;
 
     /**
      * Stores the current engine.
-     * @type {import('../index.js').Engine}
+     * @type {Engine}
      * @private
      */
     $engine;
 
     /**
      * Stores the point of view.
-     * @type {import('../index.js').Actor}
+     * @type {Actor}
      * @private
      */
     $pointOfView;
@@ -47,7 +47,7 @@ class Stage {
 
     /**
      * Gets the current actors.
-     * @type {import('../index.js').Actor[]}
+     * @type {Array<Actor>}
      * @public
      */
     get actors() {
@@ -57,7 +57,7 @@ class Stage {
 
     /**
      * Gets the current engine.
-     * @type {import('../index.js').Engine}
+     * @type {Engine}
      * @public
      */
     get engine() {
@@ -67,7 +67,7 @@ class Stage {
 
     /**
      * Gets the point of view.
-     * @type {import('../index.js').Actor}
+     * @type {Actor}
      * @public
      */
     get pointOfView() {
@@ -87,7 +87,7 @@ class Stage {
 
     /**
      * Creates a new stage.
-     * @param {import('../index.js').Engine} $engine The engine on which to create the stage.
+     * @param {Engine} $engine The engine on which to create the stage.
      */
     constructor($engine) {
 
@@ -100,7 +100,7 @@ class Stage {
 
     /**
      * Creates the given actor.
-     * @param {typeof import('../index.js').Actor} [$actor] The actor to create.
+     * @param {typeof Actor} [$actor] The actor to create.
      * @public
      */
     createActor($actor = Actor) {
@@ -116,7 +116,7 @@ class Stage {
 
     /**
      * Checks if the stage has the given actor.
-     * @param {import('../index.js').Actor} $actor The actor to check.
+     * @param {Actor} $actor The actor to check.
      * @returns {boolean}
      * @public
      */
@@ -133,7 +133,7 @@ class Stage {
 
     /**
      * Removes the given actor.
-     * @param {import('../index.js').Actor} $actor The actor to remove.
+     * @param {Actor} $actor The actor to remove.
      * @public
      */
     removeActor($actor) {
@@ -166,7 +166,7 @@ class Stage {
 
     /**
      * Sets the given actor as the point of view.
-     * @param {import('../index.js').Actor} $actor The actor to set as the point of view.
+     * @param {Actor} $actor The actor to set as the point of view.
      * @public
      */
     setPointOfView($actor) {

@@ -1,4 +1,4 @@
-import {UTILS, Sprite, Vector2, Collider} from '../index.js';
+import {Collider, Engine, Sound, Sprite, Stage, UTILS, Vector2, Vibration} from '../index.js';
 
 /**
  * Abstract actors.
@@ -11,7 +11,7 @@ class Actor {
 
     /**
      * Stores the preloadable assets.
-     * @type {string[]}
+     * @type {Array<string>}
      * @public
      * @static
      */
@@ -19,49 +19,49 @@ class Actor {
 
     /**
      * Stores the collider.
-     * @type {import('../index.js').Collider}
+     * @type {Collider}
      * @private
      */
     $collider;
 
     /**
      * Stores the components.
-     * @type {Object.<string, any>}
+     * @type {Object<string, any>}
      * @private
      */
     $components;
 
     /**
      * Stores the follower actors.
-     * @type {Set<import('../index.js').Actor>}
+     * @type {Set<Actor>}
      * @private
      */
     $followers;
 
     /**
      * Stores the sounds.
-     * @type {import('../index.js').Sound[]}
+     * @type {Array<Sound>}
      * @private
      */
     $sounds;
 
     /**
      * Stores the sprite.
-     * @type {import('../index.js').Sprite}
+     * @type {Sprite}
      * @private
      */
     $sprite;
 
     /**
      * Stores the current stage.
-     * @type {import('../index.js').Stage}
+     * @type {Stage}
      * @private
      */
     $stage;
 
     /**
      * Stores the position.
-     * @type {import('../index.js').Vector2}
+     * @type {Vector2}
      * @private
      */
     $translation;
@@ -75,7 +75,7 @@ class Actor {
 
     /**
      * Stores the vibrations.
-     * @type {import('../index.js').Vibration[]}
+     * @type {Array<Vibration>}
      * @private
      */
     $vibrations;
@@ -89,7 +89,7 @@ class Actor {
 
     /**
      * Gets the collider.
-     * @type {import('../index.js').Collider}
+     * @type {Collider}
      * @public
      */
     get collider() {
@@ -99,7 +99,7 @@ class Actor {
 
     /**
      * Gets the current engine.
-     * @type {import('../index.js').Engine}
+     * @type {Engine}
      * @public
      */
     get engine() {
@@ -109,7 +109,7 @@ class Actor {
 
     /**
      * Gets the follower actors.
-     * @type {Actor[]}
+     * @type {Array<Actor>}
      * @public
      */
     get followers() {
@@ -119,7 +119,7 @@ class Actor {
 
     /**
      * Gets the sounds.
-     * @type {import('../index.js').Sound[]}
+     * @type {Array<Sound>}
      * @public
      */
     get sounds() {
@@ -129,7 +129,7 @@ class Actor {
 
     /**
      * Gets the sprite.
-     * @type {import('../index.js').Sprite}
+     * @type {Sprite}
      * @public
      */
     get sprite() {
@@ -139,7 +139,7 @@ class Actor {
 
     /**
      * Gets the current stage.
-     * @type {import('../index.js').Stage}
+     * @type {Stage}
      * @public
      */
     get stage() {
@@ -149,7 +149,7 @@ class Actor {
 
     /**
      * Gets the position.
-     * @type {import('../index.js').Vector2}
+     * @type {Vector2}
      * @public
      */
     get translation() {
@@ -169,7 +169,7 @@ class Actor {
 
     /**
      * Gets the vibrations.
-     * @type {import('../index.js').Vibration[]}
+     * @type {Array<Vibration>}
      * @public
      */
     get vibrations() {
@@ -189,7 +189,7 @@ class Actor {
 
     /**
      * Create a new actor.
-     * @param {import('../index.js').Stage} $stage The stage on which to create the actor.
+     * @param {Stage} $stage The stage on which to create the actor.
      */
     constructor($stage) {
 
@@ -206,7 +206,7 @@ class Actor {
 
     /**
      * Adds a follower actor.
-     * @param {import('../index.js').Actor} $actor The follower actor to add.
+     * @param {Actor} $actor The follower actor to add.
      * @returns {this}
      * @public
      */
@@ -219,7 +219,7 @@ class Actor {
 
     /**
      * Adds the given sound.
-     * @param {import('../index.js').Sound} $sound The sound to add.
+     * @param {Sound} $sound The sound to add.
      * @returns {this}
      * @public
      */
@@ -232,7 +232,7 @@ class Actor {
 
     /**
      * Adds the given vibration.
-     * @param {import('../index.js').Vibration} $vibration The vibration to add.
+     * @param {Vibration} $vibration The vibration to add.
      * @returns {this}
      * @public
      */
@@ -277,7 +277,7 @@ class Actor {
 
     /**
      * Checks if the actor has the given follower actor.
-     * @param {import('../index.js').Actor} $actor The actor to check.
+     * @param {Actor} $actor The actor to check.
      * @returns {boolean}
      * @public
      */
@@ -311,7 +311,7 @@ class Actor {
     /**
      * Called when a collision is being resolved.
      * @param {Object} $parameters The given parameters.
-     * @param {import('../index.js').Actor} $parameters.$actor The colliding actor.
+     * @param {Actor} $parameters.$actor The colliding actor.
      * @param {boolean} $parameters.$east If the origin of collision is facing the east face.
      * @param {boolean} $parameters.$north If the origin of collision is facing the north face.
      * @param {boolean} $parameters.$south If the origin of collision is facing the south face.
@@ -323,7 +323,7 @@ class Actor {
     /**
      * Called when a collision is being entered.
      * @param {Object} $parameters The given parameters.
-     * @param {import('../index.js').Actor} $parameters.$actor The colliding actor.
+     * @param {Actor} $parameters.$actor The colliding actor.
      * @param {boolean} $parameters.$east If the origin of collision is facing the east face.
      * @param {boolean} $parameters.$north If the origin of collision is facing the north face.
      * @param {boolean} $parameters.$south If the origin of collision is facing the south face.
@@ -334,7 +334,7 @@ class Actor {
 
     /**
      * Called when a collision is being left.
-     * @param {import('../index.js').Actor} $actor The colliding actor.
+     * @param {Actor} $actor The colliding actor.
      * @public
      */
     onCollideLeave($actor) {}
@@ -347,7 +347,7 @@ class Actor {
 
     /**
      * Called when a sound is finishing playing.
-     * @param {import('../index.js').Sound} $sound The sound.
+     * @param {Sound} $sound The sound.
      * @public
      */
     onSoundFinish($sound) {}
@@ -361,7 +361,7 @@ class Actor {
 
     /**
      * Removes a follower actor.
-     * @param {import('../index.js').Actor} $actor The follower actor to remove.
+     * @param {Actor} $actor The follower actor to remove.
      * @returns {this}
      * @public
      */
@@ -374,7 +374,7 @@ class Actor {
 
     /**
      * Removes the given sound.
-     * @param {import('../index.js').Sound} $sound The sound to remove.
+     * @param {Sound} $sound The sound to remove.
      * @returns {this}
      * @public
      */
@@ -399,7 +399,7 @@ class Actor {
 
     /**
      * Removes the given vibration.
-     * @param {import('../index.js').Vibration} $vibration The vibration to remove.
+     * @param {Vibration} $vibration The vibration to remove.
      * @returns {this}
      * @public
      */
@@ -424,7 +424,7 @@ class Actor {
 
     /**
      * Sets the collider.
-     * @param {import('../index.js').Collider} $collider The collider to set.
+     * @param {Collider} $collider The collider to set.
      * @returns {this}
      * @public
      */
@@ -451,7 +451,7 @@ class Actor {
 
     /**
      * Sets the sprite.
-     * @param {import('../index.js').Sprite} $sprite The sprite to set.
+     * @param {Sprite} $sprite The sprite to set.
      * @returns {this}
      * @public
      */
@@ -477,7 +477,7 @@ class Actor {
 
     /**
      * Translates the actor in the world space from a third person point of view.
-     * @param {import('../index.js').Vector2} $vector The translation to apply.
+     * @param {Vector2} $vector The translation to apply.
      * @returns {this}
      * @public
      */
@@ -504,7 +504,7 @@ class Actor {
 
     /**
      * Translates the actor in the world space to the given position.
-     * @param {import('../index.js').Vector2} $vector The position to translate to.
+     * @param {Vector2} $vector The position to translate to.
      * @returns {this}
      * @public
      */

@@ -1,6 +1,6 @@
 /**
  * Creates finite state machines.
- * @template {string} Type The generic type of the names of a state.
+ * @template {string} T The generic type of the names of a state.
  *
  * @example
  *
@@ -29,38 +29,53 @@ class FiniteStateMachine {
     /**
      * @callback typestatehandlerenter A state entering handler.
      * @param {Object} $parameters The given parameters.
-     * @param {Type} $parameters.$previous The previous state.
+     * @param {T} $parameters.$previous The previous state.
      * @returns {void}
+     * @protected
+     *
+     * @memberof FiniteStateMachine
      */
 
     /**
      * @callback typestatehandlerleave A state leaving handler.
      * @param {Object} $parameters The given parameters.
      * @param {number} $parameters.$timer The timer of the current state.
-     * @param {Type} $parameters.$next The next state.
+     * @param {T} $parameters.$next The next state.
      * @returns {void}
+     * @protected
+     *
+     * @memberof FiniteStateMachine
      */
 
     /**
      * @callback typestatetransitioncondition A state transition condition.
      * @param {Object} $parameters The given parameters.
-     * @param {Type} $parameters.$previous The previous state.
+     * @param {T} $parameters.$previous The previous state.
      * @param {number} $parameters.$timer The timer of the current state.
      * @returns {boolean}
+     * @protected
+     *
+     * @memberof FiniteStateMachine
      */
 
     /**
      * @typedef {Object} typestatetransition A transition to a state.
      * @property {typestatetransitioncondition} typestatetransition.$condition The condition to transition to given state.
-     * @property {Type} typestatetransition.$state The given state to transition to.
+     * @property {T} typestatetransition.$state The given state to transition to.
+     * @protected
+     *
+     * @memberof FiniteStateMachine
      */
 
     /**
      * @typedef {Object} typestate A state.
-     * @property {Type} typestate.$state The name of the state.
+     * @property {T} typestate.$state The name of the state.
      * @property {typestatehandlerenter} [typestate.$onEnter] The handler to execute when entering the state.
      * @property {typestatehandlerleave} [typestate.$onLeave] The handler to execute when leaving the state.
-     * @property {typestatetransition[]} typestate.$transitions The transitions to given states.
+     * @property {Array<typestatetransition>} typestate.$transitions The transitions to given states.
+     * @protected
+     *
+     * @memberof FiniteStateMachine
      */
 
     /**
@@ -86,7 +101,7 @@ class FiniteStateMachine {
 
     /**
      * Stores the states.
-     * @type {Map.<Type, typestate>}
+     * @type {Map<T, typestate>}
      * @private
      */
     $states;
@@ -100,7 +115,7 @@ class FiniteStateMachine {
 
     /**
      * Creates a new finite state machine.
-     * @param {typestate[]} $data The representation of the finite state machine.
+     * @param {Array<typestate>} $data The representation of the finite state machine.
      */
     constructor($data) {
 
@@ -116,7 +131,7 @@ class FiniteStateMachine {
 
     /**
      * Initiates the finite state machine.
-     * @param {Type} $state The name of the state to initiate.
+     * @param {T} $state The name of the state to initiate.
      * @public
      */
     initiate($state) {

@@ -1,4 +1,4 @@
-import {Shader, Vector3} from '../index.js';
+import {Shader, Sprite, Stage, Vector2, Vector3} from '../index.js';
 
 /**
  * Creates render systems.
@@ -61,7 +61,7 @@ class SystemRender {
 
     /**
      * Stores the background color.
-     * @type {import('../index.js').Vector3}
+     * @type {Vector3}
      * @private
      */
     $color;
@@ -96,21 +96,21 @@ class SystemRender {
 
     /**
      * Stores the shader program attribute locations.
-     * @type {Object.<string, number>}
+     * @type {Object<string, number>}
      * @private
      */
     $locationsAttribute;
 
     /**
      * Stores the shader program uniform locations.
-     * @type {Object.<string, WebGLUniformLocation>}
+     * @type {Object<string, WebGLUniformLocation>}
      * @private
      */
     $locationsUniform;
 
     /**
      * Stores the mapping between the texture sources and their uvmappings.
-     * @type {Object.<string, WebGLBuffer>}
+     * @type {Object<string, WebGLBuffer>}
      * @private
      */
     $mappingBuffersUv;
@@ -131,7 +131,7 @@ class SystemRender {
 
     /**
      * Stores the resolution.
-     * @type {import('../index.js').Vector2}
+     * @type {Vector2}
      * @private
      */
     $resolution;
@@ -153,9 +153,9 @@ class SystemRender {
     /**
      * Creates a new render system.
      * @param {Object} $parameters The given parameters.
-     * @param {import('../index.js').Vector3} [$parameters.$color] The rendering background color to use.
+     * @param {Vector3} [$parameters.$color] The rendering background color to use.
      * @param {HTMLElement} $parameters.$container The container on which to attach the canvas.
-     * @param {import('../index.js').Vector2} $parameters.$resolution The rendering resolution to use.
+     * @param {Vector2} $parameters.$resolution The rendering resolution to use.
      */
     constructor({$color = new Vector3(0, 0, 0), $container, $resolution}) {
 
@@ -205,7 +205,7 @@ class SystemRender {
 
     /**
      * Creates the uvmapping from the given sprite.
-     * @param {import('../index.js').Sprite} $sprite The sprite.
+     * @param {Sprite} $sprite The sprite.
      * @private
      */
     $createBufferUvsOnce($sprite) {
@@ -256,7 +256,7 @@ class SystemRender {
     /**
      * Creates the attributes locations to use by the shader program.
      * @param {WebGLProgram} $program The shader program.
-     * @param {typeof import('../index.js').Shader} $shader The representation of the shader.
+     * @param {typeof Shader} $shader The representation of the shader.
      * @private
      */
     $createLocationsAttribute($program, $shader) {
@@ -270,7 +270,7 @@ class SystemRender {
     /**
      * Creates the uniform locations to use by the shader program.
      * @param {WebGLProgram} $program The shader program.
-     * @param {typeof import('../index.js').Shader} $shader The representation of the shader.
+     * @param {typeof Shader} $shader The representation of the shader.
      * @private
      */
     $createLocationsUniform($program, $shader) {
@@ -283,7 +283,7 @@ class SystemRender {
 
     /**
      * Creates the shader program.
-     * @param {typeof import('../index.js').Shader} $shader The representation of the shader.
+     * @param {typeof Shader} $shader The representation of the shader.
      * @private
      */
     $createProgram($shader) {
@@ -328,7 +328,7 @@ class SystemRender {
 
     /**
      * Creates a default texture (1 pixel texture).
-     * @param {import('../index.js').Vector3} $color The target texture unit.
+     * @param {Vector3} $color The target texture unit.
      * @param {number} $unitTexture The target texture unit.
      * @returns {WebGLTexture}
      * @private
@@ -415,7 +415,7 @@ class SystemRender {
 
     /**
      * Resizes the rendering context.
-     * @public
+     * @private
      */
     $resize() {
 
@@ -431,7 +431,7 @@ class SystemRender {
 
     /**
      * Sends an attribute to the shader program.
-     * @param {typeof import('../index.js').Shader} $shader The representation of the shader.
+     * @param {typeof Shader} $shader The representation of the shader.
      * @param {string} $name The name of the attribute.
      * @param {any} $value The value of the attribute.
      * @private
@@ -471,7 +471,7 @@ class SystemRender {
 
     /**
      * Sends a uniform to the shader program.
-     * @param {typeof import('../index.js').Shader} $shader The representation of the shader.
+     * @param {typeof Shader} $shader The representation of the shader.
      * @param {string} $name The name of the uniform.
      * @param {any} $value The value of the uniform.
      * @private
@@ -631,7 +631,7 @@ class SystemRender {
 
     /**
      * Sets the rendering background color.
-     * @param {import('../index.js').Vector3} $color The rendering background color to set.
+     * @param {Vector3} $color The rendering background color to set.
      * @public
      */
     setColor($color) {
@@ -641,7 +641,7 @@ class SystemRender {
 
     /**
      * Sets the rendering resolution.
-     * @param {import('../index.js').Vector2} $resolution The rendering resolution to set.
+     * @param {Vector2} $resolution The rendering resolution to set.
      * @public
      */
     setResolution($resolution) {
@@ -671,7 +671,7 @@ class SystemRender {
 
     /**
      * Updates the system by one tick update.
-     * @param {import('../index.js').Stage} $stage The stage on which to execute the system.
+     * @param {Stage} $stage The stage on which to execute the system.
      * @public
      */
     tick($stage) {

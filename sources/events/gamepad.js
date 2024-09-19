@@ -1,18 +1,13 @@
+import {Vibration} from '../index.js';
+
 /**
  * Creates gamepad events.
  *
  * @example
  *
- * const event = new EventGamepad(type, code, data);
+ * const event = new EventGamepad(type, code, vibration);
  */
 class EventGamepad extends Event {
-
-    /**
-     * @typedef {Object} typedatavibration The event data.
-     * @property {number} typedatavibration.$duration The duration of the vibration (in ms).
-     * @property {number} typedatavibration.$intensityFrequencyHigh The intensity of the high-frequency (weak) rumble motors (with value in [0, 1] range).
-     * @property {number} typedatavibration.$intensityFrequencyLow The intensity of the low-frequency (strong) rumble motors (with value in [0, 1] range).
-     */
 
     /**
      * Stores the event code.
@@ -22,11 +17,11 @@ class EventGamepad extends Event {
     $code;
 
     /**
-     * Stores the data.
-     * @type {typedatavibration}
+     * Stores the vibration.
+     * @type {Vibration}
      * @private
      */
-    $data;
+    $vibration;
 
     /**
      * Gets the event code.
@@ -39,27 +34,27 @@ class EventGamepad extends Event {
     }
 
     /**
-     * Gets the data.
-     * @type {typedatavibration}
+     * Gets the vibration.
+     * @type {Vibration}
      * @public
      */
-    get data() {
+    get vibration() {
 
-        return this.$data;
+        return this.$vibration;
     }
 
     /**
      * Creates a new gamepad event.
      * @param {('gamepadvibrate')} $type The event type.
      * @param {string} $code The event code.
-     * @param {typedatavibration} $data The data.
+     * @param {Vibration} $vibration The vibration.
      */
-    constructor($type, $code, $data) {
+    constructor($type, $code, $vibration) {
 
         super($type);
 
         this.$code = $code;
-        this.$data = $data;
+        this.$vibration = $vibration;
     }
 }
 

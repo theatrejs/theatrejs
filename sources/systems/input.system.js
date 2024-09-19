@@ -20,7 +20,7 @@ class SystemInput {
 
     /**
      * Stores the input events.
-     * @type {Event[]}
+     * @type {Array<Event>}
      * @private
      */
     $events;
@@ -34,14 +34,14 @@ class SystemInput {
 
     /**
      * Stores the state of the accepted inputs.
-     * @type {Object.<string, boolean>}
+     * @type {Object<string, boolean>}
      * @private
      */
     $inputs;
 
     /**
      * Stores the state of the accepted analog inputs.
-     * @type {Object.<string, number>}
+     * @type {Object<string, number>}
      * @private
      */
     $inputsAnalog;

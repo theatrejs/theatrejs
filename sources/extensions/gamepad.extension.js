@@ -2,10 +2,11 @@ import {EventGamepad, EventGamepadAnalog, EventGamepadDigital} from '../index.js
 
 /**
  * The ordered list of the axes event codes of the gamepad.
- * @type {string[][]}
+ * @type {Array<Array<string>>}
  * @constant
+ * @private
  */
-const GAMEPADAXES = [
+const $GAMEPADAXES = [
 
     ['StickLeftLeft', 'StickLeftRight'],
     ['StickLeftUp', 'StickLeftDown'],
@@ -15,10 +16,11 @@ const GAMEPADAXES = [
 
 /**
  * The ordered list of the buttons event codes of the gamepad.
- * @type {string[]}
+ * @type {Array<string>}
  * @constant
+ * @private
  */
-const GAMEPADBUTTONS = [
+const $GAMEPADBUTTONS = [
 
     'ClusterRightButtonBottom',
     'ClusterRightButtonRight',
@@ -43,11 +45,12 @@ const GAMEPADBUTTONS = [
  * The threshold of the gampead axes.
  * @type {number}
  * @constant
+ * @private
  */
-const THRESHOLDGAMEPADAXES = 0.5;
+const $THRESHOLDGAMEPADAXES = 0.5;
 
 /**
- * Creates gamepad extension.
+ * Creates gamepad extensions.
  *
  * @example
  *
@@ -64,7 +67,7 @@ class ExtensionGamepad {
 
     /**
      * Stores the gamepad state.
-     * @type {Object.<string, boolean>}
+     * @type {Object<string, boolean>}
      * @private
      */
     $stateGamepad;
@@ -84,7 +87,7 @@ class ExtensionGamepad {
         this.$stateGamepad = {};
         this.$unloaded = false;
 
-        [...GAMEPADBUTTONS, ...GAMEPADAXES.flat()].forEach(($code) => {
+        [...$GAMEPADBUTTONS, ...$GAMEPADAXES.flat()].forEach(($code) => {
 
             this.$stateGamepad[$code] = false;
         });
@@ -216,9 +219,9 @@ class ExtensionGamepad {
             gamepad.vibrationActuator.playEffect('dual-rumble', {
 
                 startDelay: 0,
-                duration: $event.data.$duration,
-                strongMagnitude: $event.data.$intensityFrequencyLow,
-                weakMagnitude: $event.data.$intensityFrequencyHigh
+                duration: $event.vibration.duration,
+                strongMagnitude: $event.vibration.intensityFrequencyLow,
+                weakMagnitude: $event.vibration.intensityFrequencyHigh
             });
 
             return;
@@ -236,7 +239,7 @@ class ExtensionGamepad {
 
         if (gamepad instanceof Gamepad) {
 
-            GAMEPADBUTTONS.forEach(($button, $index) => {
+            $GAMEPADBUTTONS.forEach(($button, $index) => {
 
                 const button = gamepad.buttons[$index];
 
@@ -263,9 +266,9 @@ class ExtensionGamepad {
 
             gamepad.axes.forEach(($direction, $index) => {
 
-                const [axeMinimum, axeMaximum] = GAMEPADAXES[$index];
+                const [axeMinimum, axeMaximum] = $GAMEPADAXES[$index];
 
-                if ($direction <= - THRESHOLDGAMEPADAXES) {
+                if ($direction <= - $THRESHOLDGAMEPADAXES) {
 
                     if (this.$stateGamepad[axeMaximum] === true) {
 
@@ -275,10 +278,10 @@ class ExtensionGamepad {
 
                     this.$stateGamepad[axeMinimum] = true;
                     window.dispatchEvent(new EventGamepadDigital('gamepaddown', axeMinimum));
-                    window.dispatchEvent(new EventGamepadAnalog('gamepadanalog', axeMinimum, ($direction - (Math.sign($direction) * THRESHOLDGAMEPADAXES)) / (1 - THRESHOLDGAMEPADAXES)));
+                    window.dispatchEvent(new EventGamepadAnalog('gamepadanalog', axeMinimum, ($direction - (Math.sign($direction) * $THRESHOLDGAMEPADAXES)) / (1 - $THRESHOLDGAMEPADAXES)));
                 }
 
-                else if ($direction >= THRESHOLDGAMEPADAXES) {
+                else if ($direction >= $THRESHOLDGAMEPADAXES) {
 
                     if (this.$stateGamepad[axeMinimum] === true) {
 
@@ -288,7 +291,7 @@ class ExtensionGamepad {
 
                     this.$stateGamepad[axeMaximum] = true;
                     window.dispatchEvent(new EventGamepadDigital('gamepaddown', axeMaximum));
-                    window.dispatchEvent(new EventGamepadAnalog('gamepadanalog', axeMaximum, ($direction - (Math.sign($direction) * THRESHOLDGAMEPADAXES)) / (1 - THRESHOLDGAMEPADAXES)));
+                    window.dispatchEvent(new EventGamepadAnalog('gamepadanalog', axeMaximum, ($direction - (Math.sign($direction) * $THRESHOLDGAMEPADAXES)) / (1 - $THRESHOLDGAMEPADAXES)));
                 }
 
                 else {

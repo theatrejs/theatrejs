@@ -6,6 +6,10 @@ import {ALTLEFT, ALTRIGHT, CONTROLLEFT, CONTROLRIGHT, SHIFTLEFT, SHIFTRIGHT} fro
 import {TAB, UP, LEFT, RIGHT, DOWN} from './keyboard.azertynavigators.js';
 import {CONTEXTMENU, ESCAPE} from './keyboard.azertysystems.js';
 
+/**
+ * @module EVENTCODES/KEYBOARDAZERTY
+ */
+
 export {
 
     DIGIT0,

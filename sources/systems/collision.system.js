@@ -1,4 +1,4 @@
-import {AABB, COLLIDERTYPES, Vector2} from '../index.js';
+import {AABB, Actor, COLLIDERTYPES, Stage, Vector2} from '../index.js';
 
 /**
  * Creates collision systems.
@@ -10,19 +10,20 @@ import {AABB, COLLIDERTYPES, Vector2} from '../index.js';
 class SystemCollision {
 
     /**
-     * @typedef {[import('../index.js').Actor, import('../index.js').Actor]} typepairactor A pair of actors.
+     * @typedef {Array<Actor>} typepairactor A pair of actors.
+     * @private
      */
 
     /**
      * Stores the current collision pairs.
-     * @type {typepairactor[]}
+     * @type {Array<typepairactor>}
      * @private
      */
     $current;
 
     /**
      * Stores the previous collision pairs.
-     * @type {typepairactor[]}
+     * @type {Array<typepairactor>}
      * @private
      */
     $previous;
@@ -38,8 +39,8 @@ class SystemCollision {
 
     /**
      * Checks if a collision previously existed between two given actors.
-     * @param {import('../index.js').Actor} $dynamic The first actor to check on.
-     * @param {import('../index.js').Actor} $inert The second actor to check with.
+     * @param {Actor} $dynamic The first actor to check on.
+     * @param {Actor} $inert The second actor to check with.
      * @returns {boolean}
      * @private
      */
@@ -57,7 +58,7 @@ class SystemCollision {
 
     /**
      * Updates the system by one tick update.
-     * @param {import('../index.js').Stage} $stage The stage on which to execute the system.
+     * @param {Stage} $stage The stage on which to execute the system.
      * @public
      */
     tick($stage) {
@@ -65,27 +66,28 @@ class SystemCollision {
         /**
          * @typedef {Object} typepaircollision A pair of candidates for collision.
          * @property {number} typepaircollision.$distance The manhattan distance between the two actors.
-         * @property {import('../index.js').Actor} typepaircollision.$dynamic The first actor.
-         * @property {import('../index.js').Actor} typepaircollision.$inert The second actor.
+         * @property {Actor} typepaircollision.$dynamic The first actor.
+         * @property {Actor} typepaircollision.$inert The second actor.
+         * @private
          */
 
         /**
-         * @type {typepaircollision[]}
+         * @type {Array<typepaircollision>}
          */
         const pairs = [];
 
         /**
-         * @type {import('../index.js').Actor[]}
+         * @type {Array<Actor>}
          */
         const dynamics = [];
 
         /**
-         * @type {import('../index.js').Actor[]}
+         * @type {Array<Actor>}
          */
         const kinetics = [];
 
         /**
-         * @type {import('../index.js').Actor[]}
+         * @type {Array<Actor>}
          */
         const statics = [];
 

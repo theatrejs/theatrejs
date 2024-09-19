@@ -3,3 +3,14 @@
 
 # unix end of lines forcing for text files
 * text eol=lf
+
+# prevent changes on binary files
+*.eot binary
+*.jpeg binary
+*.jpg binary
+*.mp3 binary
+*.png binary
+*.ttf binary
+*.wav binary
+*.woff binary
+*.woff2 binary

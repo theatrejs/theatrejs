@@ -1,4 +1,4 @@
-import {EVENTCODES, EventGamepad, EventGamepadDigital, UTILS} from '../index.js';
+import {EVENTCODES, EventGamepad, EventGamepadDigital, Stage, UTILS, Vibration} from '../index.js';
 
 /**
  * Creates vibration systems.
@@ -20,7 +20,7 @@ class SystemVibration {
 
     /**
      * Stores the mapping between the playing vibrations and their elapsed time.
-     * @type {Map<import('../index.js').Vibration, number>}
+     * @type {Map<Vibration, number>}
      * @private
      */
     $mappingVibrationsPlaying;
@@ -45,21 +45,21 @@ class SystemVibration {
     /**
      * Updates the system by one tick update.
      * @param {Object} $parameters The given parameters.
-     * @param {import('../index.js').Stage} $parameters.$stage The stage on which to execute the system.
+     * @param {Stage} $parameters.$stage The stage on which to execute the system.
      * @param {number} $parameters.$timetick The tick duration (in ms).
      * @public
      */
     tick({$stage, $timetick}) {
 
         /**
-         * @type {import('../index.js').Vibration[]}
+         * @type {Array<Vibration>}
          */
         const previous = Array.from(this.$mappingVibrationsPlaying.keys());
 
         $stage.actors.forEach(($actor) => {
 
             /**
-             * @type {import('../index.js').Vibration[]}
+             * @type {Array<Vibration>}
              */
             const finished = [];
 
@@ -98,7 +98,7 @@ class SystemVibration {
         });
 
         /**
-         * @type {import('../index.js').Vibration[]}
+         * @type {Array<Vibration>}
          */
         const current = Array.from(this.$mappingVibrationsPlaying.keys());
 
@@ -111,12 +111,12 @@ class SystemVibration {
             intensityFrequencyLow = Math.max(intensityFrequencyLow, $vibration.intensityFrequencyLow);
         });
 
-        window.dispatchEvent(new EventGamepad('gamepadvibrate', EVENTCODES.GAMEPADXBOX.VIBRATESTART, {
+        window.dispatchEvent(new EventGamepad('gamepadvibrate', EVENTCODES.GAMEPADXBOX.VIBRATESTART, new Vibration({
 
             $duration: SystemVibration.DELAYVIBRATIONEND,
             $intensityFrequencyHigh: intensityFrequencyHigh,
             $intensityFrequencyLow: intensityFrequencyLow
-        }));
+        })));
     }
 }
 
