@@ -1,0 +1,68 @@
+name: release
+
+on:
+  workflow_dispatch:
+    inputs:
+      type:
+        description: 'version'
+        required: true
+        type: choice
+        default: 'patch'
+        options:
+          - patch
+          - minor
+          - major
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16.13.0'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Generate documentation
+        run: npm run github-pages
+
+      - name: Update documentation
+        run: |
+          git config --local user.name "Alexandre Blondeau"
+          git config --local user.email "deformhead@gmail.com"
+          git add docs/
+          git commit -m "update documentation"
+
+      - name: Generate version
+        run: |
+          npm version ${{github.event.inputs.type}} --no-git-tag-version
+
+      - name: Get version
+        id: version
+        uses: martinbeentjes/npm-get-version-action@v1.3.1
+
+      - name: Update version
+        run: |
+          git add package.json
+          git add package-lock.json
+          git commit -m "${{steps.version.outputs.current-version}}"
+
+      - name: Tag version
+        run: git tag "${{steps.version.outputs.current-version}}"
+
+      - name: Push changes
+        run: |
+          git push https://github.com/${{github.repository}} master
+          git push https://github.com/${{github.repository}} "${{steps.version.outputs.current-version}}"
+
+      - name: Publish release
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.npm}}
