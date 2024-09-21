@@ -2,15 +2,18 @@
     "author": "Alexandre Blondeau",
     "description": "🎮 A JavaScript 2D Game Engine focused on creating pixel art games.",
     "devDependencies": {
+
         "docdash": "2.0.2",
         "jsdoc": "4.0.3"
     },
     "engines": {
+
         "node": "16.13.0",
         "npm": "8.1.0"
     },
     "homepage": "https://github.com/theatrejs/theatrejs",
     "keywords": [
+
         "2d",
         "canvas",
         "engine",
@@ -28,11 +31,14 @@
     "main": "./sources/index.js",
     "name": "@theatrejs/theatrejs",
     "repository": {
+
         "type": "git",
         "url": "git+https://github.com/theatrejs/theatrejs.git"
     },
     "scripts": {
-        "github-pages": "jsdoc ./tools/jsdoc/HOME.md ./sources/ --recurse --destination ./docs/ --template ./node_modules/docdash --configure ./tools/jsdoc/jsdoc.config.json"
+
+        "github-pages": "jsdoc ./tools/jsdoc/HOME.md ./sources/ --recurse --destination ./docs/ --template ./node_modules/docdash --configure ./tools/jsdoc/jsdoc.config.json",
+        "postversion": "node ./tools/custom/postversion.cjs"
     },
     "type": "module",
     "version": "1.3.1"
