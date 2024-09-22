@@ -11,6 +11,10 @@
         "node": "16.13.0",
         "npm": "8.1.0"
     },
+    "files": [
+
+        "sources/"
+    ],
     "homepage": "https://github.com/theatrejs/theatrejs",
     "keywords": [
 
