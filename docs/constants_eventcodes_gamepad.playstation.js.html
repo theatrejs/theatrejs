@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>core/state.js - Documentation</title>
+    <title>constants/eventcodes/gamepad.playstation.js - Documentation</title>
     
     
     <script src="scripts/prettify/prettify.js"></script>
@@ -37,7 +37,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">core/state.js</h1>
+    <h1 class="page-title">constants/eventcodes/gamepad.playstation.js</h1>
     
 
     
@@ -48,112 +48,309 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>/**
- * Creates state managers.
- * @template {any} T The generic type of the data state.
- *
- * @example
- *
- * const state = new State(data);
+ * @module EVENTCODES/GAMEPADPLAYSTATION
  */
-class State {
 
-    /**
-     * @callback typewatcherstate A state changing handler.
-     * @param {T} $state The new data state.
-     * @returns {void}
-     * @protected
-     *
-     * @memberof State
-     */
+/**
+ * The PLAYSTATION gamepad 'CROSS' event code.
+ * @type {'ClusterRightButtonBottom'}
+ * @constant
+ *
+ * @memberof module:EVENTCODES/GAMEPADPLAYSTATION
+ */
+const CROSS = 'ClusterRightButtonBottom';
 
-    /**
-     * Stores the data state.
-     * @type {T}
-     * @private
-     */
-    $data;
+/**
+ * The PLAYSTATION gamepad 'CIRCLE' event code.
+ * @type {'ClusterRightButtonRight'}
+ * @constant
+ *
+ * @memberof module:EVENTCODES/GAMEPADPLAYSTATION
+ */
+const CIRCLE = 'ClusterRightButtonRight';
 
-    /**
-     * Stores the state changing handlers.
-     * @type {Array&lt;typewatcherstate>}
-     * @private
-     */
-    $watchers;
+/**
+ * The PLAYSTATION gamepad 'SQUARE' event code.
+ * @type {'ClusterRightButtonLeft'}
+ * @constant
+ *
+ * @memberof module:EVENTCODES/GAMEPADPLAYSTATION
+ */
+const SQUARE = 'ClusterRightButtonLeft';
 
-    /**
-     * Creates a new state manager.
-     * @param {T} $data The data state to store.
-     */
-    constructor($data) {
+/**
+ * The PLAYSTATION gamepad 'TRIANGLE' event code.
+ * @type {'ClusterRightButtonTop'}
+ * @constant
+ *
+ * @memberof module:EVENTCODES/GAMEPADPLAYSTATION
+ */
+const TRIANGLE = 'ClusterRightButtonTop';
 
-        this.$data = $data;
-        this.$watchers = [];
-    }
+/**
+ * The PLAYSTATION gamepad 'L1' event code.
+ * @type {'ClusterFrontButtonTopLeft'}
+ * @constant
+ *
+ * @memberof module:EVENTCODES/GAMEPADPLAYSTATION
+ */
+const L1 = 'ClusterFrontButtonTopLeft';
 
-    /**
-     * Gets the data state.
-     * @returns {T}
-     * @public
-     */
-    getState() {
+/**
+ * The PLAYSTATION gamepad 'R1' event code.
+ * @type {'ClusterFrontButtonTopRight'}
+ * @constant
+ *
+ * @memberof module:EVENTCODES/GAMEPADPLAYSTATION
+ */
+const R1 = 'ClusterFrontButtonTopRight';
 
-        return this.$data;
-    }
+/**
+ * The PLAYSTATION gamepad 'L2' event code.
+ * @type {'ClusterFrontButtonBottomLeft'}
+ * @constant
+ *
+ * @memberof module:EVENTCODES/GAMEPADPLAYSTATION
+ */
+const L2 = 'ClusterFrontButtonBottomLeft';
 
-    /**
-     * Sets the data state.
-     * @param {T} $data The data state to set.
-     * @public
-     */
-    setState($data) {
+/**
+ * The PLAYSTATION gamepad 'R2' event code.
+ * @type {'ClusterFrontButtonBottomRight'}
+ * @constant
+ *
+ * @memberof module:EVENTCODES/GAMEPADPLAYSTATION
+ */
+const R2 = 'ClusterFrontButtonBottomRight';
 
-        this.$data = $data;
+/**
+ * The PLAYSTATION gamepad 'SELECT' event code.
+ * @type {'ClusterCenterButtonLeft'}
+ * @constant
+ *
+ * @memberof module:EVENTCODES/GAMEPADPLAYSTATION
+ */
+const SELECT = 'ClusterCenterButtonLeft';
 
-        this.$watchers.forEach(($handler) => {
+/**
+ * The PLAYSTATION gamepad 'START' event code.
+ * @type {'ClusterCenterButtonRight'}
+ * @constant
+ *
+ * @memberof module:EVENTCODES/GAMEPADPLAYSTATION
+ */
+const START = 'ClusterCenterButtonRight';
 
-            $handler(this.$data);
-        });
-    }
+/**
+ * The PLAYSTATION gamepad 'L3' event code.
+ * @type {'StickLeftButton'}
+ * @constant
+ *
+ * @memberof module:EVENTCODES/GAMEPADPLAYSTATION
+ */
+const L3 = 'StickLeftButton';
 
-    /**
-     * Removes all watchers of the data state changes.
-     * @public
-     */
-    unwatchAll() {
+/**
+ * The PLAYSTATION gamepad 'R3' event code.
+ * @type {'StickRightButton'}
+ * @constant
+ *
+ * @memberof module:EVENTCODES/GAMEPADPLAYSTATION
+ */
+const R3 = 'StickRightButton';
 
-        this.$watchers = [];
-    }
+/**
+ * The PLAYSTATION gamepad 'UP' event code.
+ * @type {'ClusterLeftButtonTop'}
+ * @constant
+ *
+ * @memberof module:EVENTCODES/GAMEPADPLAYSTATION
+ */
+const UP = 'ClusterLeftButtonTop';
 
-    /**
-     * Removes a watcher of the data state changes.
-     * @param {typewatcherstate} $handler The state changing handler to detach.
-     * @public
-     */
-    unwatchState($handler) {
+/**
+ * The PLAYSTATION gamepad 'DOWN' event code.
+ * @type {'ClusterLeftButtonBottom'}
+ * @constant
+ *
+ * @memberof module:EVENTCODES/GAMEPADPLAYSTATION
+ */
+const DOWN = 'ClusterLeftButtonBottom';
 
-        while (this.$watchers.indexOf($handler) !== -1) {
+/**
+ * The PLAYSTATION gamepad 'LEFT' event code.
+ * @type {'ClusterLeftButtonLeft'}
+ * @constant
+ *
+ * @memberof module:EVENTCODES/GAMEPADPLAYSTATION
+ */
+const LEFT = 'ClusterLeftButtonLeft';
 
-            this.$watchers.splice(this.$watchers.indexOf($handler), 1);
-        }
-    }
+/**
+ * The PLAYSTATION gamepad 'RIGHT' event code.
+ * @type {'ClusterLeftButtonRight'}
+ * @constant
+ *
+ * @memberof module:EVENTCODES/GAMEPADPLAYSTATION
+ */
+const RIGHT = 'ClusterLeftButtonRight';
 
-    /**
-     * Adds a watcher for the data state changes.
-     * @param {typewatcherstate} $handler The state changing handler to attach.
-     * @public
-     */
-    watchState($handler) {
+/**
+ * The PLAYSTATION gamepad 'PLAYSTATION' event code.
+ * @type {'ClusterCenterButtonCenter'}
+ * @constant
+ *
+ * @memberof module:EVENTCODES/GAMEPADPLAYSTATION
+ */
+const PLAYSTATION = 'ClusterCenterButtonCenter';
 
-        this.$watchers.push($handler);
-    }
-}
+/**
+ * The PLAYSTATION gamepad 'LSLEFT' event code.
+ * @type {'StickLeftLeft'}
+ * @constant
+ *
+ * @memberof module:EVENTCODES/GAMEPADPLAYSTATION
+ */
+const LSLEFT = 'StickLeftLeft';
+
+/**
+ * The PLAYSTATION gamepad 'LSRIGHT' event code.
+ * @type {'StickLeftRight'}
+ * @constant
+ *
+ * @memberof module:EVENTCODES/GAMEPADPLAYSTATION
+ */
+const LSRIGHT = 'StickLeftRight';
+
+/**
+ * The PLAYSTATION gamepad 'LSUP' event code.
+ * @type {'StickLeftUp'}
+ * @constant
+ *
+ * @memberof module:EVENTCODES/GAMEPADPLAYSTATION
+ */
+const LSUP = 'StickLeftUp';
+
+/**
+ * The PLAYSTATION gamepad 'LSDOWN' event code.
+ * @type {'StickLeftDown'}
+ * @constant
+ *
+ * @memberof module:EVENTCODES/GAMEPADPLAYSTATION
+ */
+const LSDOWN = 'StickLeftDown';
+
+/**
+ * The PLAYSTATION gamepad 'RSLEFT' event code.
+ * @type {'StickRightLeft'}
+ * @constant
+ *
+ * @memberof module:EVENTCODES/GAMEPADPLAYSTATION
+ */
+const RSLEFT = 'StickRightLeft';
+
+/**
+ * The PLAYSTATION gamepad 'RSRIGHT' event code.
+ * @type {'StickRightRight'}
+ * @constant
+ *
+ * @memberof module:EVENTCODES/GAMEPADPLAYSTATION
+ */
+const RSRIGHT = 'StickRightRight';
+
+/**
+ * The PLAYSTATION gamepad 'RSUP' event code.
+ * @type {'StickRightUp'}
+ * @constant
+ *
+ * @memberof module:EVENTCODES/GAMEPADPLAYSTATION
+ */
+const RSUP = 'StickRightUp';
+
+/**
+ * The PLAYSTATION gamepad 'RSDOWN' event code.
+ * @type {'StickRightDown'}
+ * @constant
+ *
+ * @memberof module:EVENTCODES/GAMEPADPLAYSTATION
+ */
+const RSDOWN = 'StickRightDown';
+
+/**
+ * The PLAYSTATION gamepad 'CONNECTED' event code.
+ * @type {'Connected'}
+ * @constant
+ *
+ * @memberof module:EVENTCODES/GAMEPADPLAYSTATION
+ */
+const CONNECTED = 'Connected';
+
+/**
+ * The PLAYSTATION gamepad 'DISCONNECTED' event code.
+ * @type {'Disconnected'}
+ * @constant
+ *
+ * @memberof module:EVENTCODES/GAMEPADPLAYSTATION
+ */
+const DISCONNECTED = 'Disconnected';
+
+/**
+ * The PLAYSTATION gamepad 'VIBRATEEND' event code.
+ * @type {'VibrateEnd'}
+ * @constant
+ *
+ * @memberof module:EVENTCODES/GAMEPADPLAYSTATION
+ */
+const VIBRATEEND = 'VibrateEnd';
+
+/**
+ * The PLAYSTATION gamepad 'VIBRATESTART' event code.
+ * @type {'VibrateStart'}
+ * @constant
+ *
+ * @memberof module:EVENTCODES/GAMEPADPLAYSTATION
+ */
+const VIBRATESTART = 'VibrateStart';
 
 export {
 
-    State
-};
+    CROSS,
+    CIRCLE,
+    SQUARE,
+    TRIANGLE,
 
-export default State;
+    L1,
+    R1,
+    L2,
+    R2,
+
+    SELECT,
+    START,
+
+    L3,
+    R3,
+
+    UP,
+    DOWN,
+    LEFT,
+    RIGHT,
+
+    PLAYSTATION,
+
+    LSLEFT,
+    LSRIGHT,
+    LSUP,
+    LSDOWN,
+    RSLEFT,
+    RSRIGHT,
+    RSUP,
+    RSDOWN,
+
+    CONNECTED,
+    DISCONNECTED,
+    VIBRATEEND,
+    VIBRATESTART
+};
 </code></pre>
         </article>
     </section>

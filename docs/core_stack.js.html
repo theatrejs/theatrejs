@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>core/state.js - Documentation</title>
+    <title>core/stack.js - Documentation</title>
     
     
     <script src="scripts/prettify/prettify.js"></script>
@@ -37,7 +37,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">core/state.js</h1>
+    <h1 class="page-title">core/stack.js</h1>
     
 
     
@@ -48,112 +48,81 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>/**
- * Creates state managers.
- * @template {any} T The generic type of the data state.
+ * Creates stacks.
+ * @template {any} T The generic type of the items.
  *
  * @example
  *
- * const state = new State(data);
+ * // without chaining
+ * const stack = new Stack();
+ * stack.push(bottom);
+ * stack.push(middle);
+ * stack.push(top);
+ *
+ * @example
+ *
+ * // with chaining
+ * const stack = new Stack().push(bottom).push(middle).push(top);
  */
-class State {
+class Stack {
 
     /**
-     * @callback typewatcherstate A state changing handler.
-     * @param {T} $state The new data state.
-     * @returns {void}
-     * @protected
-     *
-     * @memberof State
-     */
-
-    /**
-     * Stores the data state.
-     * @type {T}
+     * Stores the items.
+     * @type {Array&lt;T>}
      * @private
      */
     $data;
 
     /**
-     * Stores the state changing handlers.
-     * @type {Array&lt;typewatcherstate>}
-     * @private
+     * Creates a new stack.
      */
-    $watchers;
+    constructor() {
 
-    /**
-     * Creates a new state manager.
-     * @param {T} $data The data state to store.
-     */
-    constructor($data) {
-
-        this.$data = $data;
-        this.$watchers = [];
+        this.$data = [];
     }
 
     /**
-     * Gets the data state.
-     * @returns {T}
+     * Clears the stack.
+     * @returns {this}
      * @public
      */
-    getState() {
+    clear() {
 
-        return this.$data;
+        this.$data = [];
+
+        return this;
     }
 
     /**
-     * Sets the data state.
-     * @param {T} $data The data state to set.
+     * Pops an item.
+     * @returns {(T | undefined)}
      * @public
      */
-    setState($data) {
+    pop() {
 
-        this.$data = $data;
-
-        this.$watchers.forEach(($handler) => {
-
-            $handler(this.$data);
-        });
+        return this.$data.pop();
     }
 
     /**
-     * Removes all watchers of the data state changes.
+     * Pushes an item.
+     * @param {T} $item The item to push.
+     * @returns {this}
      * @public
      */
-    unwatchAll() {
+    push($item) {
 
-        this.$watchers = [];
-    }
+        this.$data.unshift($item);
 
-    /**
-     * Removes a watcher of the data state changes.
-     * @param {typewatcherstate} $handler The state changing handler to detach.
-     * @public
-     */
-    unwatchState($handler) {
-
-        while (this.$watchers.indexOf($handler) !== -1) {
-
-            this.$watchers.splice(this.$watchers.indexOf($handler), 1);
-        }
-    }
-
-    /**
-     * Adds a watcher for the data state changes.
-     * @param {typewatcherstate} $handler The state changing handler to attach.
-     * @public
-     */
-    watchState($handler) {
-
-        this.$watchers.push($handler);
+        return this;
     }
 }
 
 export {
 
-    State
+    Stack
 };
 
-export default State;
+export default Stack;
 </code></pre>
         </article>
     </section>
