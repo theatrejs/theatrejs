@@ -54,9 +54,17 @@ const $THRESHOLDGAMEPADAXES = 0.5;
  *
  * @example
  *
- * const extensionGamepad = new ExtensionGamepad();
+ * ExtensionGamepad.activate();
  */
 class ExtensionGamepad {
+
+    /**
+     * Stores the activated status.
+     * @type {boolean}
+     * @public
+     * @static
+     */
+    static activated = false;
 
     /**
      * Stores the index of the last connected gamepad.
@@ -81,6 +89,7 @@ class ExtensionGamepad {
 
     /**
      * Creates a new gamepad extension.
+     * @protected
      */
     constructor() {
 
@@ -100,6 +109,23 @@ class ExtensionGamepad {
         window.addEventListener('gamepadvibrate', this.$onVibrate.bind(this));
 
         window.requestAnimationFrame(this.$update.bind(this));
+    }
+
+    /**
+     * Activates the extension.
+     * @public
+     * @static
+     */
+    static activate() {
+
+        if (ExtensionGamepad.activated === true) {
+
+            return;
+        }
+
+        new ExtensionGamepad();
+
+        ExtensionGamepad.activated = true;
     }
 
     /**

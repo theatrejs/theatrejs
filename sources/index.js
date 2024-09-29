@@ -1,7 +1,3 @@
-import {ExtensionGamepad} from './extensions/gamepad.extension.js';
-
-new ExtensionGamepad();
-
 export * as COLLIDERTYPES from './constants/collidertypes.js';
 export * as CONTENTTYPES from './constants/contenttypes.js';
 export * as EVENTCODES from './constants/eventcodes.js';
@@ -33,6 +29,8 @@ export {Vibration} from './core/vibration.js';
 export {EventGamepad} from './events/gamepad.js';
 export {EventGamepadAnalog} from './events/gamepadanalog.js';
 export {EventGamepadDigital} from './events/gamepaddigital.js';
+
+export {ExtensionGamepad} from './extensions/gamepad.extension.js';
 
 export {SystemActor} from './systems/actor.system.js';
 export {SystemAudio} from './systems/audio.system.js';
