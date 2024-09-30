@@ -38,3 +38,5 @@ export {SystemCollision} from './systems/collision.system.js';
 export {SystemInput} from './systems/input.system.js';
 export {SystemRender} from './systems/render.system.js';
 export {SystemVibration} from './systems/vibration.system.js';
+
+export * as PLUGINS from './plugins/index.js';
