@@ -51,6 +51,8 @@ const $THRESHOLDGAMEPADAXES = 0.5;
 
 /**
  * Creates gamepad extensions.
+ * @hideconstructor
+ * @public
  *
  * @example
  *
@@ -61,10 +63,10 @@ class ExtensionGamepad {
     /**
      * Stores the activated status.
      * @type {boolean}
-     * @public
+     * @private
      * @static
      */
-    static activated = false;
+    static $activated = false;
 
     /**
      * Stores the index of the last connected gamepad.
@@ -89,7 +91,7 @@ class ExtensionGamepad {
 
     /**
      * Creates a new gamepad extension.
-     * @protected
+     * @private
      */
     constructor() {
 
@@ -118,14 +120,14 @@ class ExtensionGamepad {
      */
     static activate() {
 
-        if (ExtensionGamepad.activated === true) {
+        if (ExtensionGamepad.$activated === true) {
 
             return;
         }
 
         new ExtensionGamepad();
 
-        ExtensionGamepad.activated = true;
+        ExtensionGamepad.$activated = true;
     }
 
     /**
