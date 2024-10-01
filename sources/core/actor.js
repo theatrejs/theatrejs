@@ -1,4 +1,4 @@
-import {Collider, Engine, Sound, Sprite, Stage, UTILS, Vector2, Vibration} from '../index.js';
+import {Collider, Engine, Preloadable, Sound, Sprite, Stage, UTILS, Vector2, Vibration} from '../index.js';
 
 /**
  * Abstract actors.
@@ -7,15 +7,7 @@ import {Collider, Engine, Sound, Sprite, Stage, UTILS, Vector2, Vibration} from 
  *
  * class ActorExample extends Actor {}
  */
-class Actor {
-
-    /**
-     * Stores the preloadable assets.
-     * @type {Array<string>}
-     * @public
-     * @static
-     */
-    static preloadables = [];
+class Actor extends Preloadable {
 
     /**
      * Stores the collider.
@@ -192,6 +184,8 @@ class Actor {
      * @param {Stage} $stage The stage on which to create the actor.
      */
     constructor($stage) {
+
+        super();
 
         this.$stage = $stage;
 

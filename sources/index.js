@@ -3,8 +3,12 @@ export * as CONTENTTYPES from './constants/contenttypes.js';
 export * as EVENTCODES from './constants/eventcodes.js';
 export * as MATHEMATICS from './constants/mathematics.js';
 
-export {AABB} from './core/aabb.js';
+export {Preloadable} from './core/preloadable.js';
+
 export {Actor} from './core/actor.js';
+export {Stage} from './core/stage.js';
+
+export {AABB} from './core/aabb.js';
 export {Collider} from './core/collider.js';
 export {Engine} from './core/engine.js';
 export * as FACTORIES from './core/factories.js';
@@ -16,7 +20,6 @@ export {Shader} from './core/shader.js';
 export {Sound} from './core/sound.js';
 export {Sprite} from './core/sprite.js';
 export {Stack} from './core/stack.js';
-export {Stage} from './core/stage.js';
 export {State} from './core/state.js';
 export * as STORAGE from './core/storage.js';
 export {Timeline} from './core/timeline.js';

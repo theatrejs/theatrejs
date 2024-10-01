@@ -50,7 +50,7 @@ import {Engine, FACTORIES, Sprite, Vector2} from '@theatrejs/theatrejs';
 
 import textureHero from './hero-16x16.png';
 
-class Hero extends FACTORIES.ActorPreloadable([textureHero]) {
+class Hero extends FACTORIES.ActorWithPreloadables([FACTORIES.PreloadableTexture(textureHero)]) {
     onCreate() {
         this.setSprite(new Sprite({
             $sizeTarget: new Vector2(16, 16),
@@ -59,7 +59,7 @@ class Hero extends FACTORIES.ActorPreloadable([textureHero]) {
     }
 }
 
-class Level1 extends FACTORIES.StagePreloadable([Hero]) {
+class Level1 extends FACTORIES.StageWithPreloadables([Hero]) {
     onCreate() {
         this.createActor(Hero);
     }

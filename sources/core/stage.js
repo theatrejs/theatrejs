@@ -1,4 +1,4 @@
-import {Actor, Engine, UTILS} from '../index.js';
+import {Actor, Engine, Preloadable, UTILS} from '../index.js';
 
 /**
  * Abstract stages.
@@ -7,15 +7,7 @@ import {Actor, Engine, UTILS} from '../index.js';
  *
  * class StageExample extends Stage {}
  */
-class Stage {
-
-    /**
-     * Stores the preloadable assets.
-     * @type {Array<string>}
-     * @public
-     * @static
-     */
-    static preloadables = [];
+class Stage extends Preloadable {
 
     /**
      * Stores the current actors.
@@ -90,6 +82,8 @@ class Stage {
      * @param {Engine} $engine The engine on which to create the stage.
      */
     constructor($engine) {
+
+        super();
 
         this.$engine = $engine;
 
