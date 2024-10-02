@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>FiniteStateMachine - Documentation</title>
+    <title>Spritesheet - Documentation</title>
     
     
     <script src="scripts/prettify/prettify.js"></script>
@@ -37,7 +37,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">FiniteStateMachine</h1>
+    <h1 class="page-title">Spritesheet</h1>
     
 
     
@@ -51,11 +51,11 @@
     
         <h2>
         
-            FiniteStateMachine
+            Spritesheet
         
         </h2>
         
-            <div class="class-description usertext">Creates finite state machines.</div>
+            <div class="class-description usertext">Creates spritesheets from the given Asperite JSON files.</div>
         
     
 </header>
@@ -70,7 +70,7 @@
     <h2>Constructor</h2>
     
 
-    <h4 class="name" id="FiniteStateMachine"><span class="type-signature"></span>new FiniteStateMachine<span class="signature">($data)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="Spritesheet"><span class="type-signature"></span>new Spritesheet<span class="signature">($texture, $data)</span><span class="type-signature"></span></h4>
 
     
 
@@ -80,13 +80,13 @@
 <dl class="details">
     
     <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li>Creates a new finite state machine.</li></ul></dd>
+    <dd class="tag-description"><ul class="dummy"><li>Creates a new spritesheet from the given Asperite JSON file.</li></ul></dd>
     
 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="core_finitestatemachine.js.html">core/finitestatemachine.js</a>, <a href="core_finitestatemachine.js.html#line27">line 27</a>
+        <a href="plugins_aseprite_spritesheet.js.html">plugins/aseprite/spritesheet.js</a>, <a href="plugins_aseprite_spritesheet.js.html#line12">line 12</a>
     </li></ul></dd>
     
 
@@ -133,25 +133,8 @@
 
     <h5 class="h5-examples">Example</h5>
     
-    <pre class="prettyprint"><code>const toggle = new FiniteStateMachine([
-
-    {
-        $state: 'ON',
-        $transitions: [{
-
-            $state: 'OFF',
-            $condition: ({$timer}) => ($timer >= 1000)
-        }]
-    },
-    {
-        $state: 'OFF',
-        $transitions: [{
-
-            $state: 'ON',
-            $condition: ({$timer}) => ($timer >= 1000)
-        }]
-    }
-]);</code></pre>
+    <pre class="prettyprint"><code>const spritesheet = new Spritesheet(texture, data);
+spritesheet.createTimeline({actor, framerate, loop, tag});</code></pre>
 
 
 
@@ -181,13 +164,13 @@
 
         <tr>
             
-                <td class="name"><code>$data</code></td>
+                <td class="name"><code>$texture</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Array.&lt;typestate></span>
+<span class="param-type">string</span>
 
 
 
@@ -198,7 +181,31 @@
 
             
 
-            <td class="description last">The representation of the finite state machine.</td>
+            <td class="description last">The texture source.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>$data</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">typeaseprite.&lt;T></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The Asperite JSON file.</td>
         </tr>
 
     
@@ -249,7 +256,7 @@
 
     
 
-    <h4 class="name" id="initiate"><span class="type-signature"></span>initiate<span class="signature">($state)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="createTimeline"><span class="type-signature"></span>createTimeline<span class="signature">($parameters)</span><span class="type-signature"> &rarr; {<a href="Timeline.html">Timeline</a>}</span></h4>
 
     
 
@@ -259,13 +266,13 @@
 <dl class="details">
     
     <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li>Initiates the finite state machine.</li></ul></dd>
+    <dd class="tag-description"><ul class="dummy"><li>Creates a timeline for the given actor with the given tag.</li></ul></dd>
     
 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="core_finitestatemachine.js.html">core/finitestatemachine.js</a>, <a href="core_finitestatemachine.js.html#line137">line 137</a>
+        <a href="plugins_aseprite_spritesheet.js.html">plugins/aseprite/spritesheet.js</a>, <a href="plugins_aseprite_spritesheet.js.html#line131">line 131</a>
     </li></ul></dd>
     
 
@@ -316,269 +323,6 @@
     
 
 <table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>$state</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">T</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The name of the state to initiate.</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="update"><span class="type-signature"></span>update<span class="signature">($timetick)</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-
-<dl class="details">
-    
-    <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li>Updates the finite state machine.</li></ul></dd>
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="core_finitestatemachine.js.html">core/finitestatemachine.js</a>, <a href="core_finitestatemachine.js.html#line160">line 160</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <h5 class="h5-parameters">Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>$timetick</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The tick duration (in ms).</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-    
-
-    
-        <h3 class="subsection-title">Type Definitions</h3>
-
-        
-                
-<h4 class="name" id=".typestate">typestate</h4>
-
-
-
-
-
-<dl class="details">
-    
-    <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li>A state.</li></ul></dd>
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="core_finitestatemachine.js.html">core/finitestatemachine.js</a>, <a href="core_finitestatemachine.js.html#line70">line 70</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-    <h5 class="subsection-title">Properties:</h5>
-
-    
-
-<table class="props">
     <thead>
     <tr>
         
@@ -602,247 +346,6 @@
 
         <tr>
             
-                <td class="name"><code>typestate.$state</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">T</span>
-
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last">The name of the state.</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>typestate.$onEnter</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">typestatehandlerenter</span>
-
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last">The handler to execute when entering the state.</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>typestate.$onLeave</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">typestatehandlerleave</span>
-
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last">The handler to execute when leaving the state.</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>typestate.$transitions</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Array.&lt;typestatetransition></span>
-
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last">The transitions to given states.</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<div class="description usertext">
-    A state.
-</div>
-
-
-
-    <h5 class="h5-types">Type:</h5>
-    <ul>
-        <li>
-            
-<span class="param-type">Object</span>
-
-
-
-        </li>
-    </ul>
-
-
-
-
-
-
-            
-                
-
-    
-
-    <h4 class="name" id=".typestatehandlerenter"><span class="type-signature type-signature-protected">(protected) </span>typestatehandlerenter<span class="signature">($parameters)</span><span class="type-signature"> &rarr; {void}</span></h4>
-
-    
-
-
-
-
-<dl class="details">
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="core_finitestatemachine.js.html">core/finitestatemachine.js</a>, <a href="core_finitestatemachine.js.html#line29">line 29</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <h5 class="h5-parameters">Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
                 <td class="name"><code>$parameters</code></td>
             
 
@@ -857,180 +360,13 @@
             </td>
 
             
-
-            
-
-            <td class="description last">The given parameters.</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>$parameters.$previous</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">T</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The previous state.</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5 class="h5-returns">Returns:</h5>
-
-        
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">void</span>
-
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-            
+                <td class="attributes">
                 
 
-    
-
-    <h4 class="name" id=".typestatehandlerleave"><span class="type-signature type-signature-protected">(protected) </span>typestatehandlerleave<span class="signature">($parameters)</span><span class="type-signature"> &rarr; {void}</span></h4>
-
-    
-
-
-
-
-<dl class="details">
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="core_finitestatemachine.js.html">core/finitestatemachine.js</a>, <a href="core_finitestatemachine.js.html#line39">line 39</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <h5 class="h5-parameters">Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>$parameters</code></td>
-            
-
-            <td class="type">
-            
                 
-<span class="param-type">Object</span>
 
-
-
-            
-            </td>
-
+                
+                </td>
             
 
             
@@ -1042,7 +378,39 @@
 
         <tr>
             
-                <td class="name"><code>$parameters.$timer</code></td>
+                <td class="name"><code>$parameters.$actor</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Actor.html">Actor</a></span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">The given actor.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>$parameters.$framerate</code></td>
             
 
             <td class="type">
@@ -1056,17 +424,61 @@
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
 
             
 
-            <td class="description last">The timer of the current state.</td>
+            <td class="description last">The number of timeline keyframes to show per second.</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>$parameters.$next</code></td>
+                <td class="name"><code>$parameters.$loop</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">The loop status.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>$parameters.$tag</code></td>
             
 
             <td class="type">
@@ -1080,10 +492,18 @@
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
-            <td class="description last">The next state.</td>
+            <td class="description last">The given tag.</td>
         </tr>
 
     
@@ -1116,7 +536,7 @@
     </dt>
     <dd>
         
-<span class="param-type">void</span>
+<span class="param-type"><a href="Timeline.html">Timeline</a></span>
 
 
 
@@ -1127,9 +547,169 @@
 
 
 
+        
+            
+
+    
+
+    <h4 class="name" id="getTag"><span class="type-signature"></span>getTag<span class="signature">($tag)</span><span class="type-signature"> &rarr; {Array.&lt;<a href="Sprite.html">Sprite</a>>}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>Gets the sprites for the given tag.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="plugins_aseprite_spritesheet.js.html">plugins/aseprite/spritesheet.js</a>, <a href="plugins_aseprite_spritesheet.js.html#line166">line 166</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5 class="h5-parameters">Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>$tag</code></td>
+            
+
+            <td class="type">
             
                 
-<h4 class="name" id=".typestatetransition">typestatetransition</h4>
+<span class="param-type">T</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The given tag.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5 class="h5-returns">Returns:</h5>
+
+        
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Array.&lt;<a href="Sprite.html">Sprite</a>></span>
+
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+    
+
+    
+        <h3 class="subsection-title">Type Definitions</h3>
+
+        
+                
+<h4 class="name" id=".typeaseprite">typeaseprite</h4>
 
 
 
@@ -1138,13 +718,13 @@
 <dl class="details">
     
     <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li>A transition to a state.</li></ul></dd>
+    <dd class="tag-description"><ul class="dummy"><li>An Asperite JSON data.</li></ul></dd>
     
 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="core_finitestatemachine.js.html">core/finitestatemachine.js</a>, <a href="core_finitestatemachine.js.html#line61">line 61</a>
+        <a href="plugins_aseprite_spritesheet.js.html">plugins/aseprite/spritesheet.js</a>, <a href="plugins_aseprite_spritesheet.js.html#line14">line 14</a>
     </li></ul></dd>
     
 
@@ -1207,13 +787,13 @@
 
         <tr>
             
-                <td class="name"><code>typestatetransition.$condition</code></td>
+                <td class="name"><code>typeaseprite.frames</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">typestatetransitioncondition</span>
+<span class="param-type">Array.&lt;typeasepriteframe></span>
 
 
 
@@ -1224,20 +804,20 @@
 
             
 
-            <td class="description last">The condition to transition to given state.</td>
+            <td class="description last">The Asperite JSON frames data.</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>typestatetransition.$state</code></td>
+                <td class="name"><code>typeaseprite.meta</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">T</span>
+<span class="param-type">typeasepritemeta.&lt;T></span>
 
 
 
@@ -1248,7 +828,7 @@
 
             
 
-            <td class="description last">The given state to transition to.</td>
+            <td class="description last">The Asperite JSON meta data.</td>
         </tr>
 
     
@@ -1261,7 +841,7 @@
 
 
 <div class="description usertext">
-    A transition to a state.
+    An Asperite JSON data.
 </div>
 
 
@@ -1284,23 +864,22 @@
 
             
                 
+<h4 class="name" id=".typeasepriteframe">typeasepriteframe</h4>
 
-    
-
-    <h4 class="name" id=".typestatetransitioncondition"><span class="type-signature type-signature-protected">(protected) </span>typestatetransitioncondition<span class="signature">($parameters)</span><span class="type-signature"> &rarr; {boolean}</span></h4>
-
-    
 
 
 
 
 <dl class="details">
     
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>An Asperite JSON frame data.</li></ul></dd>
+    
 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="core_finitestatemachine.js.html">core/finitestatemachine.js</a>, <a href="core_finitestatemachine.js.html#line50">line 50</a>
+        <a href="plugins_aseprite_spritesheet.js.html">plugins/aseprite/spritesheet.js</a>, <a href="plugins_aseprite_spritesheet.js.html#line24">line 24</a>
     </li></ul></dd>
     
 
@@ -1337,20 +916,11 @@
 
 
 
+    <h5 class="subsection-title">Properties:</h5>
 
-
-
-
-
-
-
-
-
-
-    <h5 class="h5-parameters">Parameters:</h5>
     
 
-<table class="params">
+<table class="props">
     <thead>
     <tr>
         
@@ -1372,55 +942,7 @@
 
         <tr>
             
-                <td class="name"><code>$parameters</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The given parameters.</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>$parameters.$previous</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">T</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The previous state.</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>$parameters.$timer</code></td>
+                <td class="name"><code>typeasepriteframe.duration</code></td>
             
 
             <td class="type">
@@ -1437,7 +959,466 @@
 
             
 
-            <td class="description last">The timer of the current state.</td>
+            <td class="description last">The duration.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>typeasepriteframe.filename</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The file name.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>typeasepriteframe.frame</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The frame.
+                <h6>Properties</h6>
+
+<table class="props">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>x</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The x position of the frame.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>y</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The y position of the frame.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>w</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The width of the frame.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>h</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The height of the frame.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>typeasepriteframe.rotated</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The rotated status.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>typeasepriteframe.spriteSourceSize</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The sprite source size.
+                <h6>Properties</h6>
+
+<table class="props">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>x</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The x position of the sprite source.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>y</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The y position of the sprite source.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>w</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The width of the sprite source.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>h</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The height of the sprite source.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>typeasepriteframe.sourceSize</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The sprite size.
+                <h6>Properties</h6>
+
+<table class="props">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>w</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The width of the source.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>h</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The height of the source.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>typeasepriteframe.trimmed</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The trimmed status.</td>
         </tr>
 
     
@@ -1449,35 +1430,600 @@
 
 
 
+<div class="description usertext">
+    An Asperite JSON frame data.
+</div>
+
+
+
+    <h5 class="h5-types">Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">Object</span>
+
+
+
+        </li>
+    </ul>
 
 
 
 
 
 
+            
+                
+<h4 class="name" id=".typeasepriteframetag">typeasepriteframetag</h4>
 
 
 
 
-<h5 class="h5-returns">Returns:</h5>
 
-        
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">boolean</span>
-
-
-
-    </dd>
-</dl>
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>An Asperite JSON tag meta data.</li></ul></dd>
+    
 
     
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="plugins_aseprite_spritesheet.js.html">plugins/aseprite/spritesheet.js</a>, <a href="plugins_aseprite_spritesheet.js.html#line65">line 65</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    
+
+<table class="props">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>typeasepriteframetag.name</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">T</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The nameg.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>typeasepriteframetag.from</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The first frameg.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>typeasepriteframetag.to</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The last frameg.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>typeasepriteframetag.direction</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The animation direction.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>typeasepriteframetag.color</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The color.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<div class="description usertext">
+    An Asperite JSON tag meta data.
+</div>
+
+
+
+    <h5 class="h5-types">Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">Object</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+            
+                
+<h4 class="name" id=".typeasepritemeta">typeasepritemeta</h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>An Asperite JSON meta data.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="plugins_aseprite_spritesheet.js.html">plugins/aseprite/spritesheet.js</a>, <a href="plugins_aseprite_spritesheet.js.html#line48">line 48</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    
+
+<table class="props">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>typeasepritemeta.app</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The app meta data.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>typeasepritemeta.format</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The format meta data.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>typeasepritemeta.image</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The image meta data.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>typeasepritemeta.scale</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The scale meta data.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>typeasepritemeta.size</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The size meta data.
+                <h6>Properties</h6>
+
+<table class="props">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>w</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The size width meta data.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>h</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The size height meta data.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>typeasepritemeta.version</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The version meta data.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>typeasepritemeta.frameTags</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;typeasepriteframetag.&lt;T>></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The Asperite JSON tags meta data.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<div class="description usertext">
+    An Asperite JSON meta data.
+</div>
+
+
+
+    <h5 class="h5-types">Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">Object</span>
+
+
+
+        </li>
+    </ul>
+
+
+
 
 
 
