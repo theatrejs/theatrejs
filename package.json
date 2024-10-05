@@ -41,7 +41,9 @@
     },
     "scripts": {
 
-        "github-pages": "jsdoc ./tools/jsdoc/HOME.md ./sources/ --recurse --destination ./docs/ --template ./node_modules/docdash --configure ./tools/jsdoc/jsdoc.config.json",
+        "github-pages": "npm run github-pages:clean && npm run github-pages:generate ",
+        "github-pages:clean": "rm -rf ./docs/",
+        "github-pages:generate": "jsdoc ./tools/jsdoc/HOME.md ./sources/ --recurse --destination ./docs/ --template ./node_modules/docdash --configure ./tools/jsdoc/jsdoc.config.json",
         "postversion": "node ./tools/custom/postversion.cjs"
     },
     "type": "module",
