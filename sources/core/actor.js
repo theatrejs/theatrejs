@@ -459,12 +459,28 @@ class Actor extends Preloadable {
     /**
      * Sets the z-index.
      * @param {number} $zIndex The z-index to set.
+     * @param {boolean} $cascade The cascade status for updating the followers too.
      * @returns {this}
      * @public
      */
-    setZIndex($zIndex) {
+    setZIndex($zIndex, $cascade = false) {
 
         this.$zIndex = $zIndex;
+
+        if ($cascade === true) {
+
+            Array.from(this.$followers).forEach(($follower) => {
+
+                if (this.stage.hasActor($follower) === false) {
+
+                    this.$followers.delete($follower);
+
+                    return;
+                }
+
+                $follower.setZIndex($zIndex);
+            });
+        }
 
         return this;
     }
