@@ -22,6 +22,7 @@ export {Sprite} from './core/sprite.js';
 export {Stack} from './core/stack.js';
 export {State} from './core/state.js';
 export * as STORAGE from './core/storage.js';
+export {System} from './core/system.js';
 export {Timeline} from './core/timeline.js';
 export {TimelineKeyframe} from './core/timelinekeyframe.js';
 export * as UTILS from './core/utils.js';

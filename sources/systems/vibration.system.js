@@ -1,4 +1,4 @@
-import {EVENTCODES, EventGamepad, EventGamepadDigital, Stage, UTILS, Vibration} from '../index.js';
+import {EVENTCODES, EventGamepad, EventGamepadDigital, Stage, System, UTILS, Vibration} from '../index.js';
 
 /**
  * Creates vibration systems.
@@ -7,7 +7,7 @@ import {EVENTCODES, EventGamepad, EventGamepadDigital, Stage, UTILS, Vibration} 
  *
  * const system = new SystemVibration();
  */
-class SystemVibration {
+class SystemVibration extends System {
 
     /**
      * Stores the delay before a vibration ends.
@@ -30,26 +30,35 @@ class SystemVibration {
      */
     constructor() {
 
+        super();
+    }
+
+    /**
+     * Called when the system is being initiated.
+     * @public
+     */
+    onInitiate() {
+
         this.$mappingVibrationsPlaying = new Map();
     }
 
     /**
-     * Terminates the system.
+     * Called when the system is being terminated.
      * @public
      */
-    terminate() {
+    onTerminate() {
 
         window.dispatchEvent(new EventGamepadDigital('gamepadvibrate', EVENTCODES.GAMEPADXBOX.VIBRATEEND));
     }
 
     /**
-     * Updates the system by one tick update.
+     * Called when the system is being updated by one tick update.
      * @param {Object} $parameters The given parameters.
      * @param {Stage} $parameters.$stage The stage on which to execute the system.
      * @param {number} $parameters.$timetick The tick duration (in ms).
      * @public
      */
-    tick({$stage, $timetick}) {
+    onTick({$stage, $timetick}) {
 
         /**
          * @type {Array<Vibration>}

@@ -1,4 +1,4 @@
-import {Shader, Sprite, Stage, Vector2, Vector3} from '../index.js';
+import {Shader, Sprite, Stage, System, Vector2, Vector3} from '../index.js';
 
 /**
  * Creates render systems.
@@ -9,7 +9,7 @@ import {Shader, Sprite, Stage, Vector2, Vector3} from '../index.js';
  * system.initiate();
  * system.tick($stage);
  */
-class SystemRender {
+class SystemRender extends System {
 
     /**
      * Stores the texture unit for the textures to preload.
@@ -88,13 +88,6 @@ class SystemRender {
     $indices;
 
     /**
-     * Stores the initiated status.
-     * @type {boolean}
-     * @private
-     */
-    $initiated;
-
-    /**
      * Stores the shader program attribute locations.
      * @type {Object<string, number>}
      * @private
@@ -137,6 +130,20 @@ class SystemRender {
     $resolution;
 
     /**
+     * Stores the fragment shader.
+     * @type {WebGLShader}
+     * @private
+     */
+    $shaderFragment;
+
+    /**
+     * Stores the vertex shader.
+     * @type {WebGLShader}
+     * @private
+     */
+    $shaderVertex;
+
+    /**
      * Stores the texture of the default color texture source.
      * @type {WebGLTexture}
      * @private
@@ -159,27 +166,11 @@ class SystemRender {
      */
     constructor({$color = new Vector3(0, 0, 0), $container, $resolution}) {
 
+        super();
+
         this.$color = $color;
         this.$container = $container;
         this.$resolution = $resolution;
-
-        this.$cache = new Map();
-        this.$canvas = document.createElement('canvas');
-        this.$canvas.style.width = '100%';
-        this.$canvas.style.height = '100%';
-        this.$canvas.style.display = 'block';
-        this.$canvas.style.outline = '0';
-        this.$canvas.style.imageRendering = 'pixelated';
-        this.$context = this.$canvas.getContext('webgl2', {
-
-            'antialias': false
-        });
-
-        $container.appendChild(this.$canvas);
-
-        this.$resize();
-
-        this.$initiated = false;
     }
 
     /**
@@ -288,17 +279,17 @@ class SystemRender {
      */
     $createProgram($shader) {
 
-        const shaderVertex = this.$context.createShader(this.$context.VERTEX_SHADER);
-        this.$context.shaderSource(shaderVertex, $shader.sourceVertex);
-        this.$context.compileShader(shaderVertex);
+        this.$shaderVertex = this.$context.createShader(this.$context.VERTEX_SHADER);
+        this.$context.shaderSource(this.$shaderVertex, $shader.sourceVertex);
+        this.$context.compileShader(this.$shaderVertex);
 
-        const shaderFragment = this.$context.createShader(this.$context.FRAGMENT_SHADER);
-        this.$context.shaderSource(shaderFragment, $shader.sourceFragment);
-        this.$context.compileShader(shaderFragment);
+        this.$shaderFragment = this.$context.createShader(this.$context.FRAGMENT_SHADER);
+        this.$context.shaderSource(this.$shaderFragment, $shader.sourceFragment);
+        this.$context.compileShader(this.$shaderFragment);
 
         this.$program = this.$context.createProgram();
-        this.$context.attachShader(this.$program, shaderVertex);
-        this.$context.attachShader(this.$program, shaderFragment);
+        this.$context.attachShader(this.$program, this.$shaderVertex);
+        this.$context.attachShader(this.$program, this.$shaderFragment);
         this.$context.linkProgram(this.$program);
     }
 
@@ -345,6 +336,58 @@ class SystemRender {
     }
 
     /**
+     * Initiates the canvas element.
+     * @private
+     */
+    $initiateCanvas() {
+
+        this.$canvas = document.createElement('canvas');
+        this.$canvas.style.width = '100%';
+        this.$canvas.style.height = '100%';
+        this.$canvas.style.display = 'block';
+        this.$canvas.style.outline = '0';
+        this.$canvas.style.imageRendering = 'pixelated';
+
+        this.$container.appendChild(this.$canvas);
+
+        this.$resize();
+    }
+
+    /**
+     * Initiates the canvas context.
+     * @private
+     */
+    $initiateContext() {
+
+        this.$context = this.$canvas.getContext('webgl2', {
+
+            'antialias': false
+        });
+
+        this.$context.frontFace(this.$context.CW);
+        this.$context.enable(this.$context.CULL_FACE);
+        this.$context.cullFace(this.$context.BACK);
+
+        this.$context.enable(this.$context.BLEND);
+        this.$context.blendFunc(this.$context.SRC_ALPHA, this.$context.ONE_MINUS_SRC_ALPHA);
+
+        this.$createProgram(Shader);
+
+        this.$context.useProgram(this.$program);
+
+        this.$createLocationsUniform(this.$program, Shader);
+        this.$createLocationsAttribute(this.$program, Shader);
+
+        this.$createBufferPositions();
+        this.$createIndices();
+
+        this.$textureColorDefault = this.$createTextureDefault(new Vector3(127, 127, 127), SystemRender.UNITTEXTURE1);
+        this.$textureOpacityDefault = this.$createTextureDefault(new Vector3(255, 255, 255), SystemRender.UNITTEXTURE2);
+
+        window.addEventListener('beforeunload', this.$onBeforeUnload.bind(this));
+    }
+
+    /**
      * Loads the texture from the given texture file content.
      * @param {Response} $content The texture file content.
      * @param {number} $unitTexture The target texture unit.
@@ -371,6 +414,15 @@ class SystemRender {
     }
 
     /**
+     * Called when the scope is about to be unloaded.
+     * @private
+     */
+    $onBeforeUnload() {
+
+        this.$context.getExtension('WEBGL_lose_context').loseContext();
+    }
+
+    /**
      * Prepares the texture from the given texture source.
      * @param {string} $texture The texture source.
      * @param {number} $unitTexture The target texture unit.
@@ -387,15 +439,6 @@ class SystemRender {
 
         fetch($texture)
         .then(($content) => (this.$loadTexture($content, $unitTexture)));
-    }
-
-    /**
-     * Called when the scope is about to be unloaded.
-     * @private
-     */
-    $onBeforeUnload() {
-
-        this.$context.getExtension('WEBGL_lose_context').loseContext();
     }
 
     /**
@@ -545,6 +588,33 @@ class SystemRender {
     }
 
     /**
+     * Terminates the canvas context.
+     * @private
+     */
+    $terminateContext() {
+
+        this.$context.deleteBuffer(this.$bufferPosition);
+
+        Object.values(this.$mappingBuffersUv).forEach(($buffer) => {
+
+            this.$context.deleteBuffer($buffer);
+        });
+
+        this.$context.deleteTexture(this.$textureColorDefault);
+        this.$context.deleteTexture(this.$textureOpacityDefault);
+
+        this.$cache.forEach(($texture) => {
+
+            this.$context.deleteTexture($texture);
+        });
+
+        this.$context.deleteShader(this.$shaderFragment);
+        this.$context.deleteShader(this.$shaderVertex);
+
+        this.$context.deleteProgram(this.$program);
+    }
+
+    /**
      * Checks if the system has loaded the given asset.
      * @param {string} $asset The asset source.
      * @returns {boolean}
@@ -552,51 +622,12 @@ class SystemRender {
      */
     hasAssetLoaded($asset) {
 
-        return this.$cache.has($asset) === true;
-    }
+        if (this.$initiated === false) {
 
-    /**
-     * Initiates the system.
-     * @public
-     */
-    initiate() {
-
-        if (this.$initiated === true) {
-
-            return;
+            this.initiate();
         }
 
-        this.$indices = 0;
-        this.$locationsAttribute = {};
-        this.$locationsUniform = {};
-        this.$mappingBuffersUv = {};
-
-        this.$context.frontFace(this.$context.CW);
-        this.$context.enable(this.$context.CULL_FACE);
-        this.$context.cullFace(this.$context.BACK);
-
-        this.$context.enable(this.$context.BLEND);
-        this.$context.blendFunc(this.$context.SRC_ALPHA, this.$context.ONE_MINUS_SRC_ALPHA);
-
-        this.$createProgram(Shader);
-
-        this.$context.useProgram(this.$program);
-
-        this.$createLocationsUniform(this.$program, Shader);
-        this.$createLocationsAttribute(this.$program, Shader);
-
-        this.$createBufferPositions();
-        this.$createIndices();
-
-        this.$textureColorDefault = this.$createTextureDefault(new Vector3(127, 127, 127), SystemRender.UNITTEXTURE1);
-        this.$textureOpacityDefault = this.$createTextureDefault(new Vector3(255, 255, 255), SystemRender.UNITTEXTURE2);
-
-        this.$resizeOberver = new ResizeObserver(this.$resize.bind(this));
-        this.$resizeOberver.observe(this.$container);
-
-        window.addEventListener('beforeunload', this.$onBeforeUnload.bind(this));
-
-        this.$initiated = true;
+        return this.$cache.has($asset) === true;
     }
 
     /**
@@ -630,56 +661,46 @@ class SystemRender {
     }
 
     /**
-     * Sets the rendering background color.
-     * @param {Vector3} $color The rendering background color to set.
+     * Called when the system is being initiated.
      * @public
      */
-    setColor($color) {
+    onInitiate() {
 
-        this.$color = $color;
+        this.$cache = new Map();
+        this.$indices = 0;
+        this.$locationsAttribute = {};
+        this.$locationsUniform = {};
+        this.$mappingBuffersUv = {};
+
+        this.$initiateCanvas();
+        this.$initiateContext();
+
+        this.$resizeOberver = new ResizeObserver(this.$resize.bind(this));
+        this.$resizeOberver.observe(this.$container);
     }
 
     /**
-     * Sets the rendering resolution.
-     * @param {Vector2} $resolution The rendering resolution to set.
+     * Called when the system is being terminated.
      * @public
      */
-    setResolution($resolution) {
+    onTerminate() {
 
-        this.$resolution = $resolution.clone();
-
-        this.$resize();
-    }
-
-    /**
-     * Terminates the system.
-     * @public
-     */
-    terminate() {
-
-        if (this.$initiated === false) {
-
-            return;
-        }
+        this.$terminateContext();
 
         this.$resizeOberver.disconnect();
+        this.$container.removeChild(this.$canvas);
 
         window.removeEventListener('beforeunload', this.$onBeforeUnload.bind(this));
-
-        this.$initiated = false;
     }
 
     /**
-     * Updates the system by one tick update.
-     * @param {Stage} $stage The stage on which to execute the system.
+     * Called when the system is being updated by one tick update.
+     * @param {Object} $parameters The given parameters.
+     * @param {Stage} $parameters.$stage The stage on which to execute the system.
+     * @param {number} $parameters.$timetick The tick duration (in ms).
      * @public
      */
-    tick($stage) {
-
-        if (this.$initiated === false) {
-
-            this.initiate();
-        }
+    onTick({$stage}) {
 
         this.$resetCanvas(this.$canvas.width, this.$canvas.height);
 
@@ -739,6 +760,28 @@ class SystemRender {
 
             this.$context.drawElements(this.$context.TRIANGLE_FAN, this.$indices, this.$context.UNSIGNED_INT, 0);
         });
+    }
+
+    /**
+     * Sets the rendering background color.
+     * @param {Vector3} $color The rendering background color to set.
+     * @public
+     */
+    setColor($color) {
+
+        this.$color = $color;
+    }
+
+    /**
+     * Sets the rendering resolution.
+     * @param {Vector2} $resolution The rendering resolution to set.
+     * @public
+     */
+    setResolution($resolution) {
+
+        this.$resolution = $resolution.clone();
+
+        this.$resize();
     }
 }
 

@@ -1,4 +1,4 @@
-import {Sound, Stage, UTILS} from '../index.js';
+import {Sound, Stage, System, UTILS} from '../index.js';
 
 /**
  * Creates audio systems.
@@ -7,7 +7,7 @@ import {Sound, Stage, UTILS} from '../index.js';
  *
  * const system = new SystemAudio();
  */
-class SystemAudio {
+class SystemAudio extends System {
 
     /**
      * @typedef {Object} typedataaudio The audio data.
@@ -52,9 +52,7 @@ class SystemAudio {
      */
     constructor() {
 
-        this.$cache = new Map();
-        this.$context = new AudioContext();
-        this.$mappingSoundsPlaying = new Map();
+        super();
     }
 
     /**
@@ -153,6 +151,11 @@ class SystemAudio {
      */
     hasAssetLoaded($asset) {
 
+        if (this.$initiated === false) {
+
+            this.initiate();
+        }
+
         return this.$cache.has($asset) === true;
     }
 
@@ -163,6 +166,11 @@ class SystemAudio {
      * @public
      */
     loadAudio($content) {
+
+        if (this.$initiated === false) {
+
+            this.initiate();
+        }
 
         if (this.$cache.has($content.url) === true) {
 
@@ -182,10 +190,21 @@ class SystemAudio {
     }
 
     /**
-     * Terminates the system.
+     * Called when the system is being initiated.
      * @public
      */
-    terminate() {
+    onInitiate() {
+
+        this.$cache = new Map();
+        this.$context = new AudioContext();
+        this.$mappingSoundsPlaying = new Map();
+    }
+
+    /**
+     * Called when the system is being terminated.
+     * @public
+     */
+    onTerminate() {
 
         let delayFadeOut = 0;
 
@@ -208,11 +227,13 @@ class SystemAudio {
     }
 
     /**
-     * Updates the system by one tick update.
-     * @param {Stage} $stage The stage on which to execute the system.
+     * Called when the system is being updated by one tick update.
+     * @param {Object} $parameters The given parameters.
+     * @param {Stage} $parameters.$stage The stage on which to execute the system.
+     * @param {number} $parameters.$timetick The tick duration (in ms).
      * @public
      */
-    tick($stage) {
+    onTick({$stage}) {
 
         /**
          * @type {Array<Sound>}

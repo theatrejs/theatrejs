@@ -1,4 +1,4 @@
-import {AABB, Actor, COLLIDERTYPES, Stage, Vector2} from '../index.js';
+import {AABB, Actor, COLLIDERTYPES, Stage, System, Vector2} from '../index.js';
 
 /**
  * Creates collision systems.
@@ -7,7 +7,7 @@ import {AABB, Actor, COLLIDERTYPES, Stage, Vector2} from '../index.js';
  *
  * const system = new SystemCollision();
  */
-class SystemCollision {
+class SystemCollision extends System {
 
     /**
      * @typedef {Array<Actor>} typepairactor A pair of actors.
@@ -33,8 +33,7 @@ class SystemCollision {
      */
     constructor() {
 
-        this.$current = [];
-        this.$previous = [];
+        super();
     }
 
     /**
@@ -50,18 +49,29 @@ class SystemCollision {
 
             return $dynamic === $dynamicPrevious
             && $inert === $inertPrevious;
-
         });
 
         return typeof result !== 'undefined';
     }
 
     /**
-     * Updates the system by one tick update.
-     * @param {Stage} $stage The stage on which to execute the system.
+     * Called when the system is being initiated.
      * @public
      */
-    tick($stage) {
+    onInitiate() {
+
+        this.$current = [];
+        this.$previous = [];
+    }
+
+    /**
+     * Called when the system is being updated by one tick update.
+     * @param {Object} $parameters The given parameters.
+     * @param {Stage} $parameters.$stage The stage on which to execute the system.
+     * @param {number} $parameters.$timetick The tick duration (in ms).
+     * @public
+     */
+    onTick({$stage}) {
 
         /**
          * @typedef {Object} typepaircollision A pair of candidates for collision.

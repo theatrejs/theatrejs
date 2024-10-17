@@ -229,10 +229,14 @@ class Engine {
      */
     initiate($tickrateMinimum = 60) {
 
-        this.$loop.initiate($tickrateMinimum);
-
         this.$systemInput.initiate();
+        this.$systemActor.initiate();
+        this.$systemCollision.initiate();
         this.$systemRender.initiate();
+        this.$systemAudio.initiate();
+        this.$systemVibration.initiate();
+
+        this.$loop.initiate($tickrateMinimum);
     }
 
     /**
@@ -349,9 +353,13 @@ class Engine {
         this.tick(0);
 
         this.$systemInput.terminate();
+        this.$systemActor.terminate();
+        this.$systemCollision.terminate();
         this.$systemRender.terminate();
         this.$systemAudio.terminate();
         this.$systemVibration.terminate();
+
+        this.$preloaded = new Set();
     }
 
     /**
@@ -375,15 +383,36 @@ class Engine {
             return;
         }
 
-        this.$systemInput.tick();
+        this.$systemInput.tick({
+
+            $stage: this.$stage,
+            $timetick: $timetick
+        });
+
         this.$systemActor.tick({
 
             $stage: this.$stage,
             $timetick: $timetick
         });
-        this.$systemCollision.tick(this.$stage);
-        this.$systemRender.tick(this.$stage);
-        this.$systemAudio.tick(this.$stage);
+
+        this.$systemCollision.tick({
+
+            $stage: this.$stage,
+            $timetick: $timetick
+        });
+
+        this.$systemRender.tick({
+
+            $stage: this.$stage,
+            $timetick: $timetick
+        });
+
+        this.$systemAudio.tick({
+
+            $stage: this.$stage,
+            $timetick: $timetick
+        });
+
         this.$systemVibration.tick({
 
             $stage: this.$stage,

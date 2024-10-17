@@ -1,4 +1,4 @@
-import {Stage} from '../index.js';
+import {Stage, System} from '../index.js';
 
 /**
  * Creates actor systems.
@@ -8,16 +8,24 @@ import {Stage} from '../index.js';
  * const system = new SystemActor();
  * system.tick({$stage, $timetick});
  */
-class SystemActor {
+class SystemActor extends System {
 
     /**
-     * Updates the system by one tick update.
+     * Creates a new actor system.
+     */
+    constructor() {
+
+        super();
+    }
+
+    /**
+     * Called when the system is being updated by one tick update.
      * @param {Object} $parameters The given parameters.
      * @param {Stage} $parameters.$stage The stage on which to execute the system.
      * @param {number} $parameters.$timetick The tick duration (in ms).
      * @public
      */
-    tick({$stage, $timetick}) {
+    onTick({$stage, $timetick}) {
 
         $stage.actors.forEach(($actor) => {
 

@@ -1,4 +1,4 @@
-import {EventGamepadAnalog, EventGamepadDigital} from '../index.js';
+import {EventGamepadAnalog, EventGamepadDigital, Stage, System} from '../index.js';
 
 /**
  * Creates input systems.
@@ -9,7 +9,7 @@ import {EventGamepadAnalog, EventGamepadDigital} from '../index.js';
  * system.initiate();
  * system.tick();
  */
-class SystemInput {
+class SystemInput extends System {
 
     /**
      * Stores the container.
@@ -24,13 +24,6 @@ class SystemInput {
      * @private
      */
     $events;
-
-    /**
-     * Stores the initiated status.
-     * @type {boolean}
-     * @private
-     */
-    $initiated;
 
     /**
      * Stores the state of the accepted inputs.
@@ -53,12 +46,9 @@ class SystemInput {
      */
     constructor({$container}) {
 
-        this.$container = $container;
+        super();
 
-        this.$events = [];
-        this.$initiated = false;
-        this.$inputs = {};
-        this.$inputsAnalog = {};
+        this.$container = $container;
     }
 
     /**
@@ -110,15 +100,14 @@ class SystemInput {
     }
 
     /**
-     * Initiates the system.
+     * Called when the system is being initiated.
      * @public
      */
-    initiate() {
+    onInitiate() {
 
-        if (this.$initiated === true) {
-
-            return;
-        }
+        this.$events = [];
+        this.$inputs = {};
+        this.$inputsAnalog = {};
 
         window.addEventListener('blur', this.$stack.bind(this));
 
@@ -131,20 +120,13 @@ class SystemInput {
 
         this.$container.addEventListener('keydown', this.$stack.bind(this));
         this.$container.addEventListener('keyup', this.$stack.bind(this));
-
-        this.$initiated = true;
     }
 
     /**
-     * Terminates the system.
+     * Called when the system is being terminated.
      * @public
      */
-    terminate() {
-
-        if (this.$initiated === false) {
-
-            return;
-        }
+    onTerminate() {
 
         window.removeEventListener('blur', this.$stack.bind(this));
 
@@ -157,20 +139,16 @@ class SystemInput {
 
         this.$container.removeEventListener('keydown', this.$stack.bind(this));
         this.$container.removeEventListener('keyup', this.$stack.bind(this));
-
-        this.$initiated = false;
     }
 
     /**
-     * Updates the system by one tick update.
+     * Called when the system is being updated by one tick update.
+     * @param {Object} $parameters The given parameters.
+     * @param {Stage} $parameters.$stage The stage on which to execute the system.
+     * @param {number} $parameters.$timetick The tick duration (in ms).
      * @public
      */
-    tick() {
-
-        if (this.$initiated === false) {
-
-            this.initiate();
-        }
+    onTick() {
 
         while (this.$events.length > 0) {
 
