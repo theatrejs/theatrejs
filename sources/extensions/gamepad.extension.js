@@ -51,8 +51,6 @@ const $THRESHOLDGAMEPADAXES = 0.5;
 
 /**
  * Creates gamepad extensions.
- * @hideconstructor
- * @public
  *
  * @example
  *
@@ -91,7 +89,6 @@ class ExtensionGamepad {
 
     /**
      * Creates a new gamepad extension.
-     * @private
      */
     constructor() {
 

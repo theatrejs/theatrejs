@@ -36,7 +36,10 @@ function ActorWithPreloadables($preloadables) {
         });
     });
 
-    return class extends Actor {
+    /**
+     * @ignore
+     */
+    class ActorWithPreloadables extends Actor {
 
         /**
          * Stores the preloadable assets.
@@ -46,6 +49,8 @@ function ActorWithPreloadables($preloadables) {
          */
         static preloadables = Array.from(preloadables);
     };
+
+    return ActorWithPreloadables;
 }
 
 /**
@@ -57,7 +62,10 @@ function ActorWithPreloadables($preloadables) {
  */
 function PreloadableSound($sound) {
 
-    return class extends Preloadable {
+    /**
+     * @ignore
+     */
+    class PreloadableSound extends Preloadable {
 
         /**
          * Stores the preloadable assets.
@@ -67,6 +75,8 @@ function PreloadableSound($sound) {
          */
         static preloadables = [$sound];
     };
+
+    return PreloadableSound;
 }
 
 /**
@@ -78,7 +88,10 @@ function PreloadableSound($sound) {
  */
 function PreloadableTexture($texture) {
 
-    return class extends Preloadable {
+    /**
+     * @ignore
+     */
+    class PreloadableTexture extends Preloadable {
 
         /**
          * Stores the preloadable assets.
@@ -88,6 +101,8 @@ function PreloadableTexture($texture) {
          */
         static preloadables = [$texture];
     };
+
+    return PreloadableTexture;
 }
 
 /**
@@ -122,7 +137,10 @@ function StageWithPreloadables($preloadables) {
         });
     });
 
-    return class extends Stage {
+    /**
+     * @ignore
+     */
+    class StageWithPreloadables extends Stage {
 
         /**
          * Stores the preloadable assets.
@@ -132,6 +150,8 @@ function StageWithPreloadables($preloadables) {
          */
         static preloadables = Array.from(preloadables);
     };
+
+    return StageWithPreloadables;
 }
 
 export {
