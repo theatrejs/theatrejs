@@ -73,6 +73,13 @@ class Actor extends Preloadable {
     $vibrations;
 
     /**
+     * Stores the visible status.
+     * @type {boolean}
+     * @private
+     */
+    $visible;
+
+    /**
      * Stores the z-index.
      * @type {number}
      * @private
@@ -167,6 +174,16 @@ class Actor extends Preloadable {
     get vibrations() {
 
         return this.$vibrations;
+    }
+
+    /**
+     * Gets the visible status.
+     * @type {boolean}
+     * @public
+     */
+    get visible() {
+
+        return this.$visible;
     }
 
     /**
@@ -452,6 +469,35 @@ class Actor extends Preloadable {
     setSprite($sprite) {
 
         this.$sprite = $sprite;
+
+        return this;
+    }
+
+    /**
+     * Sets the visible status.
+     * @param {boolean} $visible The visible status to set.
+     * @param {boolean} [$cascade] The cascade status for updating the followers too.
+     * @returns {this}
+     * @public
+     */
+    setVisible($visible, $cascade = false) {
+
+        this.$visible = $visible;
+
+        if ($cascade === true) {
+
+            Array.from(this.$followers).forEach(($follower) => {
+
+                if (this.stage.hasActor($follower) === false) {
+
+                    this.$followers.delete($follower);
+
+                    return;
+                }
+
+                $follower.setVisible($visible, $cascade);
+            });
+        }
 
         return this;
     }

@@ -735,6 +735,11 @@ class SystemRender extends System {
                 return;
             }
 
+            if ($actor.visible === false) {
+
+                return;
+            }
+
             let textureColor = this.$textureColorDefault;
 
             this.$prepareTexture($actor.sprite.textureColor, this.$context.TEXTURE0 + SystemRender.UNITTEXTURE1);
