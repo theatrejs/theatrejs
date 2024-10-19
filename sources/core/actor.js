@@ -459,7 +459,7 @@ class Actor extends Preloadable {
     /**
      * Sets the z-index.
      * @param {number} $zIndex The z-index to set.
-     * @param {boolean} $cascade The cascade status for updating the followers too.
+     * @param {boolean} [$cascade] The cascade status for updating the followers too.
      * @returns {this}
      * @public
      */
@@ -478,7 +478,7 @@ class Actor extends Preloadable {
                     return;
                 }
 
-                $follower.setZIndex($zIndex);
+                $follower.setZIndex($zIndex, $cascade);
             });
         }
 
