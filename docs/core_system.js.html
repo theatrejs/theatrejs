@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>constants/eventcodes/keyboard.qwertylockers.js - Documentation</title>
+    <title>core/system.js - Documentation</title>
     
     
     <script src="scripts/prettify/prettify.js"></script>
@@ -37,7 +37,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">constants/eventcodes/keyboard.qwertylockers.js</h1>
+    <h1 class="page-title">core/system.js</h1>
     
 
     
@@ -47,19 +47,110 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/**
- * The QWERTY-based keyboard 'CAPSLOCK' event code.
- * @type {'CapsLock'}
- * @constant
+            <pre class="prettyprint source linenums"><code>import {Stage} from '../index.js';
+
+/**
+ * Abstract systems.
  *
- * @memberof module:EVENTCODES/KEYBOARDQWERTY
+ * @example
+ *
+ * class SystemExample extends System {}
  */
-const CAPSLOCK = 'CapsLock';
+class System {
+
+    /**
+     * Stores the initiated status.
+     * @type {boolean}
+     * @protected
+     */
+    $initiated;
+
+    /**
+     * Creates a new system.
+     * @protected
+     */
+    constructor() {
+
+        this.$initiated = false;
+    }
+
+    /**
+     * Initiates the system.
+     * @public
+     */
+    initiate() {
+
+        if (this.$initiated === true) {
+
+            return;
+        }
+
+        this.onInitiate();
+
+        this.$initiated = true;
+    }
+
+    /**
+     * Called when the system is being initiated.
+     * @public
+     */
+    onInitiate() {}
+
+    /**
+     * Called when the system is being terminated.
+     * @public
+     */
+    onTerminate() {}
+
+    /**
+     * Called when the system is being updated by one tick update.
+     * @param {Object} $parameters The given parameters.
+     * @param {Stage} $parameters.$stage The stage on which to execute the system.
+     * @param {number} $parameters.$timetick The tick duration (in ms).
+     * @public
+     */
+    onTick({$stage, $timetick}) {}
+
+    /**
+     * Terminates the system.
+     * @public
+     */
+    terminate() {
+
+        if (this.$initiated === false) {
+
+            return;
+        }
+
+        this.onTerminate();
+
+        this.$initiated = false;
+    }
+
+    /**
+     * Updates the system by one tick update.
+     * @param {Object} $parameters The given parameters.
+     * @param {Stage} $parameters.$stage The stage on which to execute the system.
+     * @param {number} $parameters.$timetick The tick duration (in ms).
+     * @public
+     */
+    tick({$stage, $timetick}) {
+
+        if (this.$initiated === false) {
+
+            this.initiate();
+        }
+
+        this.onTick({$stage, $timetick});
+    }
+}
 
 export {
 
-    CAPSLOCK
+    System
 };
+
+export default System;
 </code></pre>
         </article>
     </section>
