@@ -419,6 +419,16 @@ class SystemRender extends System {
      */
     $onBeforeUnload() {
 
+        if (this.$context instanceof WebGL2RenderingContext === false) {
+
+            return;
+        }
+
+        if (this.$context.getExtension('WEBGL_lose_context') === null) {
+
+            return;
+        }
+
         this.$context.getExtension('WEBGL_lose_context').loseContext();
     }
 
@@ -612,6 +622,8 @@ class SystemRender extends System {
         this.$context.deleteShader(this.$shaderVertex);
 
         this.$context.deleteProgram(this.$program);
+
+        this.$context = undefined;
     }
 
     /**
