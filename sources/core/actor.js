@@ -212,6 +212,7 @@ class Actor extends Preloadable {
         this.$translation = new Vector2(0, 0);
         this.$uuid = UTILS.uuid();
         this.$vibrations = [];
+        this.$visible = true;
         this.$zIndex = 0;
     }
 
