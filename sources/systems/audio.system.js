@@ -202,6 +202,7 @@ class SystemAudio extends System {
 
     /**
      * Called when the system is being terminated.
+     * @returns {(void | Promise<void>)}
      * @public
      */
     onTerminate() {
@@ -218,12 +219,22 @@ class SystemAudio extends System {
             this.$terminateSound($sound);
         });
 
-        window.setTimeout(() => {
+        const promise = new Promise(($resolve) => {
 
-            this.$context.close();
-            this.$context = undefined;
+            window.setTimeout(() => {
 
-        }, delayFadeOut + SystemAudio.DELAYCONTEXTCLEARSAFE);
+                this.$context.close()
+                .then(() => {
+
+                    this.$context = undefined;
+
+                    $resolve();
+                });
+
+            }, delayFadeOut + SystemAudio.DELAYCONTEXTCLEARSAFE);
+        });
+
+        return promise;
     }
 
     /**

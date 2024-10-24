@@ -49,6 +49,7 @@ class System {
 
     /**
      * Called when the system is being terminated.
+     * @returns {(void | Promise<void>)}
      * @public
      */
     onTerminate() {}
@@ -73,9 +74,19 @@ class System {
             return;
         }
 
-        this.onTerminate();
+        const terminated = this.onTerminate();
 
-        this.$initiated = false;
+        if (typeof terminated === 'undefined') {
+
+            this.$initiated = false;
+
+            return;
+        }
+
+        terminated.then(() => {
+
+            this.$initiated = false;
+        });
     }
 
     /**

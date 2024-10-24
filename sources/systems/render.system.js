@@ -693,6 +693,7 @@ class SystemRender extends System {
 
     /**
      * Called when the system is being terminated.
+     * @returns {(void | Promise<void>)}
      * @public
      */
     onTerminate() {
