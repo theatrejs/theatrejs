@@ -24,13 +24,6 @@ class Actor extends Preloadable {
     $components;
 
     /**
-     * Stores the follower actors.
-     * @type {Set<Actor>}
-     * @private
-     */
-    $followers;
-
-    /**
      * Stores the sounds.
      * @type {Array<Sound>}
      * @private
@@ -104,16 +97,6 @@ class Actor extends Preloadable {
     get engine() {
 
         return this.stage.engine;
-    }
-
-    /**
-     * Gets the follower actors.
-     * @type {Array<Actor>}
-     * @public
-     */
-    get followers() {
-
-        return Array.from(this.$followers);
     }
 
     /**
@@ -207,26 +190,12 @@ class Actor extends Preloadable {
         this.$stage = $stage;
 
         this.$components = {};
-        this.$followers = new Set();
         this.$sounds = [];
         this.$translation = new Vector2(0, 0);
         this.$uuid = UTILS.uuid();
         this.$vibrations = [];
         this.$visible = true;
         this.$zIndex = 0;
-    }
-
-    /**
-     * Adds a follower actor.
-     * @param {Actor} $actor The follower actor to add.
-     * @returns {this}
-     * @public
-     */
-    addFollower($actor) {
-
-        this.$followers.add($actor);
-
-        return this;
     }
 
     /**
@@ -285,17 +254,6 @@ class Actor extends Preloadable {
     hasComponent($name) {
 
         return this.$components.hasOwnProperty($name) === true;
-    }
-
-    /**
-     * Checks if the actor has the given follower actor.
-     * @param {Actor} $actor The actor to check.
-     * @returns {boolean}
-     * @public
-     */
-    hasFollower($actor) {
-
-        return this.$followers.has($actor) === true;
     }
 
     /**
@@ -370,19 +328,6 @@ class Actor extends Preloadable {
      * @public
      */
     onTick($timetick) {}
-
-    /**
-     * Removes a follower actor.
-     * @param {Actor} $actor The follower actor to remove.
-     * @returns {this}
-     * @public
-     */
-    removeFollower($actor) {
-
-        this.$followers.delete($actor);
-
-        return this;
-    }
 
     /**
      * Removes the given sound.
@@ -477,28 +422,12 @@ class Actor extends Preloadable {
     /**
      * Sets the visible status.
      * @param {boolean} $visible The visible status to set.
-     * @param {boolean} [$cascade] The cascade status for updating the followers too.
      * @returns {this}
      * @public
      */
-    setVisible($visible, $cascade = false) {
+    setVisible($visible) {
 
         this.$visible = $visible;
-
-        if ($cascade === true) {
-
-            Array.from(this.$followers).forEach(($follower) => {
-
-                if (this.stage.hasActor($follower) === false) {
-
-                    this.$followers.delete($follower);
-
-                    return;
-                }
-
-                $follower.setVisible($visible, $cascade);
-            });
-        }
 
         return this;
     }
@@ -506,28 +435,12 @@ class Actor extends Preloadable {
     /**
      * Sets the z-index.
      * @param {number} $zIndex The z-index to set.
-     * @param {boolean} [$cascade] The cascade status for updating the followers too.
      * @returns {this}
      * @public
      */
-    setZIndex($zIndex, $cascade = false) {
+    setZIndex($zIndex) {
 
         this.$zIndex = $zIndex;
-
-        if ($cascade === true) {
-
-            Array.from(this.$followers).forEach(($follower) => {
-
-                if (this.stage.hasActor($follower) === false) {
-
-                    this.$followers.delete($follower);
-
-                    return;
-                }
-
-                $follower.setZIndex($zIndex, $cascade);
-            });
-        }
 
         return this;
     }
@@ -541,18 +454,6 @@ class Actor extends Preloadable {
     translate($vector) {
 
         const translation = $vector.clone();
-
-        Array.from(this.$followers).forEach(($follower) => {
-
-            if (this.stage.hasActor($follower) === false) {
-
-                this.$followers.delete($follower);
-
-                return;
-            }
-
-            $follower.translate(translation);
-        });
 
         this.$translation.add(translation);
 
@@ -568,18 +469,6 @@ class Actor extends Preloadable {
     translateTo($vector) {
 
         const translation = $vector.clone().subtract(this.$translation);
-
-        Array.from(this.$followers).forEach(($follower) => {
-
-            if (this.stage.hasActor($follower) === false) {
-
-                this.$followers.delete($follower);
-
-                return;
-            }
-
-            $follower.translate(translation);
-        });
 
         this.$translation.add(translation);
 
