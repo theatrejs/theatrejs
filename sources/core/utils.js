@@ -38,7 +38,7 @@ function extract($item, $array) {
 
 /**
  * Resolves when the browser is ready to perform an animation frame request.
- * @returns Promise<void>
+ * @returns {Promise<number>}
  *
  * @memberof module:UTILS
  */
@@ -96,7 +96,7 @@ function ready() {
 /**
  * Resolves when the given delay has passed.
  * @param {number} $delay The delay (in ms).
- * @returns Promise<void>
+ * @returns {Promise<void>}
  *
  * @memberof module:UTILS
  */
