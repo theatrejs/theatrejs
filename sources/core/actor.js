@@ -316,6 +316,20 @@ class Actor extends Preloadable {
     onCreate() {}
 
     /**
+     * Called when the visible status is being set.
+     * @param {boolean} $visible The visible status set.
+     * @public
+     */
+    onSetVisible($visible) {}
+
+    /**
+     * Called when the z-index is being set.
+     * @param {number} $zIndex The z-index set.
+     * @public
+     */
+    onSetZIndex($zIndex) {}
+
+    /**
      * Called when a sound is finishing playing.
      * @param {Sound} $sound The sound.
      * @public
@@ -328,6 +342,13 @@ class Actor extends Preloadable {
      * @public
      */
     onTick($timetick) {}
+
+    /**
+     * Called when the actor is being translated.
+     * @param {Vector2} $vector The translation applied.
+     * @public
+     */
+    onTranslate($vector) {}
 
     /**
      * Removes the given sound.
@@ -429,6 +450,8 @@ class Actor extends Preloadable {
 
         this.$visible = $visible;
 
+        this.onSetVisible($visible);
+
         return this;
     }
 
@@ -441,6 +464,8 @@ class Actor extends Preloadable {
     setZIndex($zIndex) {
 
         this.$zIndex = $zIndex;
+
+        this.onSetZIndex($zIndex);
 
         return this;
     }
@@ -457,6 +482,8 @@ class Actor extends Preloadable {
 
         this.$translation.add(translation);
 
+        this.onTranslate(translation);
+
         return this;
     }
 
@@ -471,6 +498,8 @@ class Actor extends Preloadable {
         const translation = $vector.clone().subtract(this.$translation);
 
         this.$translation.add(translation);
+
+        this.onTranslate(translation);
 
         return this;
     }
