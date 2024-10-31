@@ -48,7 +48,7 @@ function ActorWithPreloadables($preloadables) {
          * @static
          */
         static preloadables = Array.from(preloadables);
-    };
+    }
 
     return ActorWithPreloadables;
 }
@@ -74,7 +74,7 @@ function PreloadableSound($sound) {
          * @static
          */
         static preloadables = [$sound];
-    };
+    }
 
     return PreloadableSound;
 }
@@ -100,7 +100,7 @@ function PreloadableTexture($texture) {
          * @static
          */
         static preloadables = [$texture];
-    };
+    }
 
     return PreloadableTexture;
 }
@@ -149,7 +149,7 @@ function StageWithPreloadables($preloadables) {
          * @static
          */
         static preloadables = Array.from(preloadables);
-    };
+    }
 
     return StageWithPreloadables;
 }
