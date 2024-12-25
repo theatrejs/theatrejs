@@ -342,11 +342,11 @@ class SystemRender extends System {
     $initiateCanvas() {
 
         this.$canvas = document.createElement('canvas');
-        this.$canvas.style.width = '100%';
-        this.$canvas.style.height = '100%';
-        this.$canvas.style.display = 'block';
-        this.$canvas.style.outline = '0';
-        this.$canvas.style.imageRendering = 'pixelated';
+        this.$canvas.style.setProperty('width', '100%');
+        this.$canvas.style.setProperty('height', '100%');
+        this.$canvas.style.setProperty('display', 'block');
+        this.$canvas.style.setProperty('outline', '0');
+        this.$canvas.style.setProperty('image-rendering', 'pixelated');
 
         this.$container.appendChild(this.$canvas);
 

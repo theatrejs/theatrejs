@@ -243,8 +243,8 @@ class ExtensionGamepad {
 
             gamepad.vibrationActuator.playEffect('dual-rumble', {
 
-                startDelay: 0,
                 duration: $event.vibration.duration,
+                startDelay: 0,
                 strongMagnitude: $event.vibration.intensityFrequencyLow,
                 weakMagnitude: $event.vibration.intensityFrequencyHigh
             });
