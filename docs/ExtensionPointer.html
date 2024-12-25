@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>core/vector3.js - Documentation</title>
+    <title>ExtensionPointer - Documentation</title>
     
     
     <script src="scripts/prettify/prettify.js"></script>
@@ -37,322 +37,339 @@
 
 <div id="main">
     
-    <h1 class="page-title">core/vector3.js</h1>
+    <h1 class="page-title">ExtensionPointer</h1>
     
 
     
 
 
 
+
+<section>
+
+<header>
     
-    <section>
-        <article>
-            <pre class="prettyprint source linenums"><code>import {Quaternion} from '../index.js';
+        <h2>
+        
+            ExtensionPointer
+        
+        </h2>
+        
+            <div class="class-description usertext">Creates pointer extensions.</div>
+        
+    
+</header>
 
-/**
- * Creates three-dimensional vectors.
- *
- * @example
- *
- * // without chaining
- * const vector = new Vector3(3, 2, 1);
- * vector.add(new Vector3(1, 0, -1));
- *
- * @example
- *
- * // with chaining
- * const vector = new Vector3(3, 2, 1).add(new Vector3(1, 0, -1));
- */
-class Vector3 {
+<article>
+    
+        <div class="container-overview">
+        
+            
 
-    /**
-     * Stores the x component.
-     * @type {number}
-     * @private
-     */
-    $x;
+    
+    <h2>Constructor</h2>
+    
 
-    /**
-     * Stores the y component.
-     * @type {number}
-     * @private
-     */
-    $y;
+    <h4 class="name" id="ExtensionPointer"><span class="type-signature"></span>new ExtensionPointer<span class="signature">($container)</span><span class="type-signature"></span></h4>
 
-    /**
-     * Stores the z component.
-     * @type {number}
-     * @private
-     */
-    $z;
+    
 
-    /**
-     * Gets the x component.
-     * @type {number}
-     * @public
-     */
-    get x() {
 
-        return this.$x;
-    }
 
-    /**
-     * Gets the y component.
-     * @type {number}
-     * @public
-     */
-    get y() {
 
-        return this.$y;
-    }
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>Creates a new pointer extension.</li></ul></dd>
+    
 
-    /**
-     * Gets the z component.
-     * @type {number}
-     * @public
-     */
-    get z() {
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="extensions_pointer.extension.js.html">extensions/pointer.extension.js</a>, <a href="extensions_pointer.extension.js.html#line10">line 10</a>
+    </li></ul></dd>
+    
 
-        return this.$z;
-    }
+    
 
-    /**
-     * Creates a new three-dimensional vector.
-     * @param {number} $x The x component of the vector to create.
-     * @param {number} $y The y component of the vector to create.
-     * @param {number} $z The z component of the vector to create.
-     */
-    constructor($x, $y, $z) {
+    
 
-        this.$x = $x;
-        this.$y = $y;
-        this.$z = $z;
-    }
+    
 
-    /**
-     * Creates a new vector from the given vector.
-     * @param {Vector3} $vector The given vector.
-     * @returns {Vector3}
-     * @public
-     * @static
-     */
-    static from($vector) {
+    
 
-        return $vector.clone();
-    }
+    
 
-    /**
-     * Adds the given vector.
-     * @param {Vector3} $vector The vector to add.
-     * @returns {this}
-     * @public
-     */
-    add($vector) {
+    
 
-        const x = this.$x;
-        const y = this.$y;
-        const z = this.$z;
+    
 
-        this.$x = x + $vector.x;
-        this.$y = y + $vector.y;
-        this.$z = z + $vector.z;
+    
 
-        return this;
-    }
+    
 
-    /**
-     * Clones the vector.
-     * @returns {Vector3}
-     * @public
-     */
-    clone() {
+    
 
-        const x = this.$x;
-        const y = this.$y;
-        const z = this.$z;
+    
 
-        return new Vector3(x, y, z);
-    }
+    
 
-    /**
-     * Checks the equality with the given vector.
-     * @param {Vector3} $vector The vector to check with.
-     * @returns {boolean}
-     * @public
-     */
-    equal($vector) {
+    
 
-        return this.$x === $vector.x
-        &amp;&amp; this.$y === $vector.y
-        &amp;&amp; this.$z === $vector.z;
-    }
+    
 
-    /**
-     * Gets the length of the vector.
-     * @returns {number}
-     * @public
-     */
-    length() {
+    
+</dl>
 
-        const x = this.$x;
-        const y = this.$y;
-        const z = this.$z;
 
-        return Math.sqrt(x * x + y * y + z * z);
-    }
 
-    /**
-     * Multiplies with the given vector.
-     * @param {Vector3} $vector The vector to multiply with.
-     * @returns {this}
-     * @public
-     */
-    multiply($vector) {
 
-        const x = this.$x;
-        const y = this.$y;
-        const z = this.$z;
 
-        this.$x = x * $vector.x;
-        this.$y = y * $vector.y;
-        this.$z = z * $vector.z;
 
-        return this;
-    }
 
-    /**
-     * Negates the vector.
-     * @returns {this}
-     * @public
-     */
-    negate() {
 
-        const x = this.$x;
-        const y = this.$y;
-        const z = this.$z;
 
-        this.$x = - x;
-        this.$y = - y;
-        this.$z = - z;
 
-        return this;
-    }
 
-    /**
-     * Normalizes the vector.
-     * @returns {this}
-     * @public
-     */
-    normalize() {
+    <h5 class="h5-examples">Example</h5>
+    
+    <pre class="prettyprint"><code>ExtensionPointer.activate($container);</code></pre>
 
-        const x = this.$x;
-        const y = this.$y;
-        const z = this.$z;
 
-        let length = x * x + y * y + z * z;
 
-        if (length > 0) {
 
-            length = 1 / Math.sqrt(length);
-        }
+    <h5 class="h5-parameters">Parameters:</h5>
+    
 
-        this.$x = x * length;
-        this.$y = y * length;
-        this.$z = z * length;
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
 
-        return this;
-    }
+        <th>Type</th>
 
-    /**
-     * Rotates the vector.
-     * @param {Quaternion} $quaternion The rotation to apply.
-     * @returns {this}
-     * @public
-     */
-    rotate($quaternion) {
+        
 
-        const x = this.$x;
-        const y = this.$y;
-        const z = this.$z;
+        
 
-        const xq = $quaternion.x;
-        const yq = $quaternion.y;
-        const zq = $quaternion.z;
-        const wq = $quaternion.w;
+        <th class="last">Description</th>
+    </tr>
+    </thead>
 
-        let xu = yq * z - zq * y;
-        let yu = zq * x - xq * z;
-        let zu = xq * y - yq * x;
+    <tbody>
+    
 
-        let xv = yq * zu - zq * yu;
-        let yv = zq * xu - xq * zu;
-        let zv = xq * yu - yq * xu;
+        <tr>
+            
+                <td class="name"><code>$container</code></td>
+            
 
-        const w = wq * 2;
+            <td class="type">
+            
+                
+<span class="param-type">HTMLElement</span>
 
-        xu *= w;
-        yu *= w;
-        zu *= w;
 
-        xv *= 2;
-        yv *= 2;
-        zv *= 2;
 
-        this.$x = x + xu + xv;
-        this.$y = y + yu + yv;
-        this.$z = z + zu + zv;
+            
+            </td>
 
-        return this;
-    }
+            
 
-    /**
-     * Scales the vector by the given scalar factor.
-     * @param {number} $factor The scalar factor to multiply with.
-     * @returns {this}
-     * @public
-     */
-    scale($factor) {
+            
 
-        const x = this.$x;
-        const y = this.$y;
-        const z = this.$z;
+            <td class="description last">The container on which to attach the extension.</td>
+        </tr>
 
-        this.$x = x * $factor;
-        this.$y = y * $factor;
-        this.$z = z * $factor;
+    
+    </tbody>
+</table>
 
-        return this;
-    }
 
-    /**
-     * Subtracts the given vector.
-     * @param {Vector3} $vector The vector to subtract.
-     * @returns {this}
-     * @public
-     */
-    subtract($vector) {
 
-        const x = this.$x;
-        const y = this.$y;
-        const z = this.$z;
 
-        this.$x = x - $vector.x;
-        this.$y = y - $vector.y;
-        this.$z = z - $vector.z;
 
-        return this;
-    }
-}
 
-export {
 
-    Vector3
-};
 
-export default Vector3;
-</code></pre>
-        </article>
-    </section>
+
+
+
+
+
+
+
+
+
+
+
+        
+        </div>
+    
+
+    
+
+    
+
+    
+    
+    
+
+     
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    <h4 class="name" id=".activate"><span class="type-signature type-signature-static">(static) </span>activate<span class="signature">($container)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>Activates the extension.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="extensions_pointer.extension.js.html">extensions/pointer.extension.js</a>, <a href="extensions_pointer.extension.js.html#line58">line 58</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5 class="h5-parameters">Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>$container</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">HTMLElement</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The container on which to attach the extension.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+    
+
+    
+
+    
+</article>
+
+</section>
 
 
 

@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>core/vector3.js - Documentation</title>
+    <title>extensions/pointer.extension.js - Documentation</title>
     
     
     <script src="scripts/prettify/prettify.js"></script>
@@ -37,7 +37,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">core/vector3.js</h1>
+    <h1 class="page-title">extensions/pointer.extension.js</h1>
     
 
     
@@ -47,309 +47,169 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import {Quaternion} from '../index.js';
+            <pre class="prettyprint source linenums"><code>import {EventPointerAnalog, EventPointerDigital} from '../index.js';
 
 /**
- * Creates three-dimensional vectors.
+ * Creates pointer extensions.
  *
  * @example
  *
- * // without chaining
- * const vector = new Vector3(3, 2, 1);
- * vector.add(new Vector3(1, 0, -1));
- *
- * @example
- *
- * // with chaining
- * const vector = new Vector3(3, 2, 1).add(new Vector3(1, 0, -1));
+ * ExtensionPointer.activate($container);
  */
-class Vector3 {
+class ExtensionPointer {
 
     /**
-     * Stores the x component.
-     * @type {number}
+     * Stores the activated status.
+     * @type {boolean}
+     * @private
+     * @static
+     */
+    static $activated = false;
+
+    /**
+     * Stores the container.
+     * @type {HTMLElement}
      * @private
      */
-    $x;
+    $container;
 
     /**
-     * Stores the y component.
-     * @type {number}
+     * Stores the pointer state.
+     * @type {boolean}
      * @private
      */
-    $y;
+    $statePointer;
 
     /**
-     * Stores the z component.
-     * @type {number}
-     * @private
+     * Creates a new pointer extension.
+     * @param {HTMLElement} $container The container on which to attach the extension.
      */
-    $z;
+    constructor($container) {
 
-    /**
-     * Gets the x component.
-     * @type {number}
-     * @public
-     */
-    get x() {
+        this.$container = $container;
 
-        return this.$x;
+        this.$statePointer = false;
+
+        window.addEventListener('blur', this.$onPointerblur.bind(this));
+
+        this.$container.addEventListener('pointerdown', this.$onPointerDown.bind(this));
+        this.$container.addEventListener('pointerleave', this.$onPointerLeave.bind(this));
+        this.$container.addEventListener('pointermove', this.$onPointerMove.bind(this));
+        this.$container.addEventListener('pointerup', this.$onPointerUp.bind(this));
     }
 
     /**
-     * Gets the y component.
-     * @type {number}
-     * @public
-     */
-    get y() {
-
-        return this.$y;
-    }
-
-    /**
-     * Gets the z component.
-     * @type {number}
-     * @public
-     */
-    get z() {
-
-        return this.$z;
-    }
-
-    /**
-     * Creates a new three-dimensional vector.
-     * @param {number} $x The x component of the vector to create.
-     * @param {number} $y The y component of the vector to create.
-     * @param {number} $z The z component of the vector to create.
-     */
-    constructor($x, $y, $z) {
-
-        this.$x = $x;
-        this.$y = $y;
-        this.$z = $z;
-    }
-
-    /**
-     * Creates a new vector from the given vector.
-     * @param {Vector3} $vector The given vector.
-     * @returns {Vector3}
+     * Activates the extension.
+     * @param {HTMLElement} $container The container on which to attach the extension.
      * @public
      * @static
      */
-    static from($vector) {
+    static activate($container) {
 
-        return $vector.clone();
-    }
+        if (ExtensionPointer.$activated === true) {
 
-    /**
-     * Adds the given vector.
-     * @param {Vector3} $vector The vector to add.
-     * @returns {this}
-     * @public
-     */
-    add($vector) {
-
-        const x = this.$x;
-        const y = this.$y;
-        const z = this.$z;
-
-        this.$x = x + $vector.x;
-        this.$y = y + $vector.y;
-        this.$z = z + $vector.z;
-
-        return this;
-    }
-
-    /**
-     * Clones the vector.
-     * @returns {Vector3}
-     * @public
-     */
-    clone() {
-
-        const x = this.$x;
-        const y = this.$y;
-        const z = this.$z;
-
-        return new Vector3(x, y, z);
-    }
-
-    /**
-     * Checks the equality with the given vector.
-     * @param {Vector3} $vector The vector to check with.
-     * @returns {boolean}
-     * @public
-     */
-    equal($vector) {
-
-        return this.$x === $vector.x
-        &amp;&amp; this.$y === $vector.y
-        &amp;&amp; this.$z === $vector.z;
-    }
-
-    /**
-     * Gets the length of the vector.
-     * @returns {number}
-     * @public
-     */
-    length() {
-
-        const x = this.$x;
-        const y = this.$y;
-        const z = this.$z;
-
-        return Math.sqrt(x * x + y * y + z * z);
-    }
-
-    /**
-     * Multiplies with the given vector.
-     * @param {Vector3} $vector The vector to multiply with.
-     * @returns {this}
-     * @public
-     */
-    multiply($vector) {
-
-        const x = this.$x;
-        const y = this.$y;
-        const z = this.$z;
-
-        this.$x = x * $vector.x;
-        this.$y = y * $vector.y;
-        this.$z = z * $vector.z;
-
-        return this;
-    }
-
-    /**
-     * Negates the vector.
-     * @returns {this}
-     * @public
-     */
-    negate() {
-
-        const x = this.$x;
-        const y = this.$y;
-        const z = this.$z;
-
-        this.$x = - x;
-        this.$y = - y;
-        this.$z = - z;
-
-        return this;
-    }
-
-    /**
-     * Normalizes the vector.
-     * @returns {this}
-     * @public
-     */
-    normalize() {
-
-        const x = this.$x;
-        const y = this.$y;
-        const z = this.$z;
-
-        let length = x * x + y * y + z * z;
-
-        if (length > 0) {
-
-            length = 1 / Math.sqrt(length);
+            return;
         }
 
-        this.$x = x * length;
-        this.$y = y * length;
-        this.$z = z * length;
+        new ExtensionPointer($container);
 
-        return this;
+        ExtensionPointer.$activated = true;
     }
 
     /**
-     * Rotates the vector.
-     * @param {Quaternion} $quaternion The rotation to apply.
-     * @returns {this}
-     * @public
+     * Called when the pointer has left.
+     * @private
      */
-    rotate($quaternion) {
+    $onPointerblur() {
 
-        const x = this.$x;
-        const y = this.$y;
-        const z = this.$z;
+        if (this.$statePointer === false) {
 
-        const xq = $quaternion.x;
-        const yq = $quaternion.y;
-        const zq = $quaternion.z;
-        const wq = $quaternion.w;
+            return;
+        }
 
-        let xu = yq * z - zq * y;
-        let yu = zq * x - xq * z;
-        let zu = xq * y - yq * x;
+        this.$statePointer = false;
 
-        let xv = yq * zu - zq * yu;
-        let yv = zq * xu - xq * zu;
-        let zv = xq * yu - yq * xu;
-
-        const w = wq * 2;
-
-        xu *= w;
-        yu *= w;
-        zu *= w;
-
-        xv *= 2;
-        yv *= 2;
-        zv *= 2;
-
-        this.$x = x + xu + xv;
-        this.$y = y + yu + yv;
-        this.$z = z + zu + zv;
-
-        return this;
+        window.dispatchEvent(new EventPointerDigital('pointerup', 'Point'));
+        window.dispatchEvent(new EventPointerDigital('pointerup', 'Position'));
     }
 
     /**
-     * Scales the vector by the given scalar factor.
-     * @param {number} $factor The scalar factor to multiply with.
-     * @returns {this}
-     * @public
+     * Called when the pointer is down.
+     * @param {PointerEvent} $event The native pointer down event.
+     * @private
      */
-    scale($factor) {
+    $onPointerDown($event) {
 
-        const x = this.$x;
-        const y = this.$y;
-        const z = this.$z;
+        if (this.$statePointer === true) {
 
-        this.$x = x * $factor;
-        this.$y = y * $factor;
-        this.$z = z * $factor;
+            return;
+        }
 
-        return this;
+        this.$statePointer = true;
+
+        window.dispatchEvent(new EventPointerDigital('pointerdown', 'Point'));
+        window.dispatchEvent(new EventPointerAnalog('pointeranalog', 'PositionX', 2 * ($event.offsetX / this.$container.clientWidth) - 1));
+        window.dispatchEvent(new EventPointerAnalog('pointeranalog', 'PositionY', 2 * ($event.offsetY / this.$container.clientHeight) - 1));
     }
 
     /**
-     * Subtracts the given vector.
-     * @param {Vector3} $vector The vector to subtract.
-     * @returns {this}
-     * @public
+     * Called when the pointer has left.
+     * @param {PointerEvent} $event The native pointer up event.
+     * @private
      */
-    subtract($vector) {
+    $onPointerLeave($event) {
 
-        const x = this.$x;
-        const y = this.$y;
-        const z = this.$z;
+        if (this.$statePointer === false) {
 
-        this.$x = x - $vector.x;
-        this.$y = y - $vector.y;
-        this.$z = z - $vector.z;
+            return;
+        }
 
-        return this;
+        this.$statePointer = false;
+
+        window.dispatchEvent(new EventPointerDigital('pointerup', 'Point'));
+        window.dispatchEvent(new EventPointerDigital('pointerup', 'Position'));
+        window.dispatchEvent(new EventPointerAnalog('pointeranalog', 'PositionX', 2 * ($event.offsetX / this.$container.clientWidth) - 1));
+        window.dispatchEvent(new EventPointerAnalog('pointeranalog', 'PositionY', 2 * ($event.offsetY / this.$container.clientHeight) - 1));
+    }
+
+    /**
+     * Called when the pointer has moved.
+     * @param {PointerEvent} $event The native pointer move event.
+     * @private
+     */
+    $onPointerMove($event) {
+
+        window.dispatchEvent(new EventPointerDigital('pointerdown', 'Position'));
+        window.dispatchEvent(new EventPointerAnalog('pointeranalog', 'PositionX', 2 * ($event.offsetX / this.$container.clientWidth) - 1));
+        window.dispatchEvent(new EventPointerAnalog('pointeranalog', 'PositionY', 2 * ($event.offsetY / this.$container.clientHeight) - 1));
+    }
+
+    /**
+     * Called when the pointer is up.
+     * @param {PointerEvent} $event The native pointer up event.
+     * @private
+     */
+    $onPointerUp($event) {
+
+        if (this.$statePointer === false) {
+
+            return;
+        }
+
+        this.$statePointer = false;
+
+        window.dispatchEvent(new EventPointerDigital('pointerup', 'Point'));
+        window.dispatchEvent(new EventPointerAnalog('pointeranalog', 'PositionX', 2 * ($event.offsetX / this.$container.clientWidth) - 1));
+        window.dispatchEvent(new EventPointerAnalog('pointeranalog', 'PositionY', 2 * ($event.offsetY / this.$container.clientHeight) - 1));
     }
 }
 
 export {
 
-    Vector3
+    ExtensionPointer
 };
 
-export default Vector3;
+export default ExtensionPointer;
 </code></pre>
         </article>
     </section>
