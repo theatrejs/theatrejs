@@ -1,4 +1,8 @@
 /**
+ * @module EVENTCODES/POINTER
+ */
+
+/**
  * The pointer 'POINT' event code.
  * @type {'Point'}
  * @constant
