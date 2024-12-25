@@ -627,6 +627,28 @@ class SystemRender extends System {
     }
 
     /**
+     * Gets the position in the current stage from the given clipped position in the screen.
+     * @param {Stage} $stage The current stage.
+     * @param {Vector2} $vector The position in the screen (with values in [-1, 1] ranges).
+     * @returns {Vector2}
+     * @public
+     */
+    getPosition($stage, $vector) {
+
+        const width = this.$resolution.x;
+        const height = this.$resolution.y;
+
+        const widthContext = Math.max(width, Math.floor(height * this.$canvas.clientWidth / this.$canvas.clientHeight));
+        const heightContext = Math.max(height, Math.floor(width * this.$canvas.clientHeight / this.$canvas.clientWidth));
+
+        return new Vector2(
+
+            Math.floor(($vector.x * widthContext / 2) + $stage.pointOfView.translation.x),
+            - Math.floor(($vector.y * heightContext / 2) - $stage.pointOfView.translation.y)
+        );
+    }
+
+    /**
      * Checks if the system has loaded the given asset.
      * @param {string} $asset The asset source.
      * @returns {boolean}
@@ -778,6 +800,20 @@ class SystemRender extends System {
 
             this.$context.drawElements(this.$context.TRIANGLE_FAN, this.$indices, this.$context.UNSIGNED_INT, 0);
         });
+    }
+
+    /**
+     * Removes the native pointer display.
+     * @public
+     */
+    removePointerNative() {
+
+        if (this.$initiated === false) {
+
+            this.initiate();
+        }
+
+        this.$canvas.style.setProperty('cursor', 'none');
     }
 
     /**

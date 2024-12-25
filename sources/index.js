@@ -33,8 +33,11 @@ export {Vibration} from './core/vibration.js';
 export {EventGamepad} from './events/gamepad.js';
 export {EventGamepadAnalog} from './events/gamepadanalog.js';
 export {EventGamepadDigital} from './events/gamepaddigital.js';
+export {EventPointerAnalog} from './events/pointeranalog.js';
+export {EventPointerDigital} from './events/pointerdigital.js';
 
 export {ExtensionGamepad} from './extensions/gamepad.extension.js';
+export {ExtensionPointer} from './extensions/pointer.extension.js';
 
 export {SystemActor} from './systems/actor.system.js';
 export {SystemAudio} from './systems/audio.system.js';

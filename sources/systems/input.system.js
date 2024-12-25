@@ -1,4 +1,4 @@
-import {EventGamepadAnalog, EventGamepadDigital, Stage, System} from '../index.js';
+import {EventGamepadAnalog, EventGamepadDigital, EventPointerAnalog, EventPointerDigital, Stage, System} from '../index.js';
 
 /**
  * Creates input systems.
@@ -118,6 +118,10 @@ class SystemInput extends System {
         window.addEventListener('gamepaddown', this.$stack.bind(this));
         window.addEventListener('gamepadup', this.$stack.bind(this));
 
+        window.addEventListener('pointeranalog', this.$stack.bind(this));
+        window.addEventListener('pointerdown', this.$stack.bind(this));
+        window.addEventListener('pointerup', this.$stack.bind(this));
+
         this.$container.addEventListener('keydown', this.$stack.bind(this));
         this.$container.addEventListener('keyup', this.$stack.bind(this));
     }
@@ -137,6 +141,10 @@ class SystemInput extends System {
         window.removeEventListener('gamepadconnect', this.$stack.bind(this));
         window.removeEventListener('gamepaddown', this.$stack.bind(this));
         window.removeEventListener('gamepadup', this.$stack.bind(this));
+
+        window.removeEventListener('pointeranalog', this.$stack.bind(this));
+        window.removeEventListener('pointerdown', this.$stack.bind(this));
+        window.removeEventListener('pointerup', this.$stack.bind(this));
 
         this.$container.removeEventListener('keydown', this.$stack.bind(this));
         this.$container.removeEventListener('keyup', this.$stack.bind(this));
@@ -196,6 +204,30 @@ class SystemInput extends System {
 
             else if ($event instanceof KeyboardEvent
             && $event.type === 'keyup') {
+
+                if (typeof this.$inputs[$event.code] !== 'undefined') {
+
+                    delete this.$inputs[$event.code];
+                }
+            }
+
+            else if ($event instanceof EventPointerAnalog
+            && $event.type === 'pointeranalog') {
+
+                this.$inputsAnalog[$event.code] = $event.value;
+            }
+
+            else if ($event instanceof EventPointerDigital
+            && $event.type === 'pointerdown') {
+
+                if (typeof this.$inputs[$event.code] === 'undefined') {
+
+                    this.$inputs[$event.code] = true;
+                }
+            }
+
+            else if ($event instanceof EventPointerDigital
+            && $event.type === 'pointerup') {
 
                 if (typeof this.$inputs[$event.code] !== 'undefined') {
 

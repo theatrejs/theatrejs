@@ -212,6 +212,17 @@ class Engine {
     }
 
     /**
+     * Gets the position in the current stage from the given clipped position in the screen.
+     * @param {Vector2} $vector The position in the screen (with values in [-1, 1] ranges).
+     * @returns {Vector2}
+     * @public
+     */
+    getPosition($vector) {
+
+        return this.$systemRender.getPosition(this.$stage, $vector);
+    }
+
+    /**
      * Checks if the engine has loaded the given asset.
      * @param {string} $asset The asset source.
      * @returns {boolean}
@@ -319,6 +330,15 @@ class Engine {
         });
 
         return Promise.all(promises);
+    }
+
+    /**
+     * Removes the native pointer display.
+     * @public
+     */
+    removePointerNative() {
+
+        return this.$systemRender.removePointerNative();
     }
 
     /**
