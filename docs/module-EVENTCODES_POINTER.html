@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>core/quaternion.js - Documentation</title>
+    <title>EVENTCODES/POINTER - Documentation</title>
     
     
     <script src="scripts/prettify/prettify.js"></script>
@@ -37,118 +37,371 @@
 
 <div id="main">
     
-    <h1 class="page-title">core/quaternion.js</h1>
+    <h1 class="page-title">EVENTCODES/POINTER</h1>
     
 
     
 
 
 
+
+<section>
+
+<header>
     
-    <section>
-        <article>
-            <pre class="prettyprint source linenums"><code>/**
- * Creates quaternions.
- *
- * @example
- *
- * const quaternion = new Quaternion(0, 0, 0, 1);
- */
-class Quaternion {
+        
+    
+</header>
 
-    /**
-     * Stores the w component.
-     * @type {number}
-     * @private
-     */
-    $w;
+<article>
+    
+        <div class="container-overview">
+        
+            
 
-    /**
-     * Stores the x component.
-     * @type {number}
-     * @private
-     */
-    $x;
+            
+        
+        </div>
+    
 
-    /**
-     * Stores the y component.
-     * @type {number}
-     * @private
-     */
-    $y;
+    
 
-    /**
-     * Stores the z component.
-     * @type {number}
-     * @private
-     */
-    $z;
+    
 
-    /**
-     * Gets the w component.
-     * @type {number}
-     * @public
-     */
-    get w() {
+    
+    
+    
 
-        return this.$w;
-    }
+     
 
-    /**
-     * Gets the x component.
-     * @type {number}
-     * @public
-     */
-    get x() {
+    
 
-        return this.$x;
-    }
+    
+        <h3 class="subsection-title">Members</h3>
 
-    /**
-     * Gets the y component.
-     * @type {number}
-     * @public
-     */
-    get y() {
+        
+            
+<h4 class="name" id=".POINT"><span class="type-signature type-signature-static, constant">(static, constant) </span>POINT<span class="type-signature"> :'Point'</span></h4>
 
-        return this.$y;
-    }
 
-    /**
-     * Gets the z component.
-     * @type {number}
-     * @public
-     */
-    get z() {
 
-        return this.$z;
-    }
 
-    /**
-     * Creates a new quaternion.
-     * @param {number} $x The x component of the quaternion to create.
-     * @param {number} $y The y component of the quaternion to create.
-     * @param {number} $z The z component of the quaternion to create.
-     * @param {number} $w The w component of the quaternion to create.
-     */
-    constructor($x, $y, $z, $w) {
 
-        this.$w = $w;
-        this.$x = $x;
-        this.$y = $y;
-        this.$z = $z;
-    }
-}
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>The pointer 'POINT' event code.</li></ul></dd>
+    
 
-export {
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="constants_eventcodes_pointer.js.html">constants/eventcodes/pointer.js</a>, <a href="constants_eventcodes_pointer.js.html#line12">line 12</a>
+    </li></ul></dd>
+    
 
-    Quaternion
-};
+    
 
-export default Quaternion;
-</code></pre>
-        </article>
-    </section>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    The pointer 'POINT' event code.
+</div>
+
+
+
+    <h5 class="h5-types">Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">'Point'</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id=".POSITION"><span class="type-signature type-signature-static, constant">(static, constant) </span>POSITION<span class="type-signature"> :'Position'</span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>The pointer 'POSITION' event code.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="constants_eventcodes_pointer.js.html">constants/eventcodes/pointer.js</a>, <a href="constants_eventcodes_pointer.js.html#line21">line 21</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    The pointer 'POSITION' event code.
+</div>
+
+
+
+    <h5 class="h5-types">Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">'Position'</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id=".POSITIONX"><span class="type-signature type-signature-static, constant">(static, constant) </span>POSITIONX<span class="type-signature"> :'PositionX'</span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>The pointer 'POSITIONX' event code.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="constants_eventcodes_pointer.js.html">constants/eventcodes/pointer.js</a>, <a href="constants_eventcodes_pointer.js.html#line30">line 30</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    The pointer 'POSITIONX' event code.
+</div>
+
+
+
+    <h5 class="h5-types">Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">'PositionX'</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id=".POSITIONY"><span class="type-signature type-signature-static, constant">(static, constant) </span>POSITIONY<span class="type-signature"> :'PositionY'</span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>The pointer 'POSITIONY' event code.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="constants_eventcodes_pointer.js.html">constants/eventcodes/pointer.js</a>, <a href="constants_eventcodes_pointer.js.html#line39">line 39</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    The pointer 'POSITIONY' event code.
+</div>
+
+
+
+    <h5 class="h5-types">Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">'PositionY'</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
 
 
 
