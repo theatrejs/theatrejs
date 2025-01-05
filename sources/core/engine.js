@@ -217,9 +217,9 @@ class Engine {
      * @returns {Vector2}
      * @public
      */
-    getPosition($vector) {
+    getTranslationFromScreen($vector) {
 
-        return this.$systemRender.getPosition(this.$stage, $vector);
+        return this.$systemRender.getTranslationFromScreen(this.$stage, $vector);
     }
 
     /**

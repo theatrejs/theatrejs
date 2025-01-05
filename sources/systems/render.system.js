@@ -633,7 +633,7 @@ class SystemRender extends System {
      * @returns {Vector2}
      * @public
      */
-    getPosition($stage, $vector) {
+    getTranslationFromScreen($stage, $vector) {
 
         const width = this.$resolution.x;
         const height = this.$resolution.y;
