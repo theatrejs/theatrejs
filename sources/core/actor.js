@@ -2,12 +2,30 @@ import {Collider, Engine, Preloadable, Sound, Sprite, Stage, UTILS, Vector2, Vib
 
 /**
  * Abstract actors.
+ * @template {string} [TAction=string] The generic type of the actions.
+ * @template {string} [TState=string] The generic type of the states.
  *
  * @example
  *
  * class ActorExample extends Actor {}
  */
 class Actor extends Preloadable {
+
+    /**
+     * @callback typelisteneraction An action listener.
+     * @param {TAction} $action The action to listen.
+     * @protected
+     *
+     * @memberof Actor
+     */
+
+    /**
+     * @callback typelistenerstate A state listener.
+     * @param {TState} $state The state to listen.
+     * @protected
+     *
+     * @memberof Actor
+     */
 
     /**
      * Stores the collider.
@@ -22,6 +40,20 @@ class Actor extends Preloadable {
      * @private
      */
     $components;
+
+    /**
+     * Stores the action listeners.
+     * @type {Object<string, typelisteneraction>}
+     * @private
+     */
+    $listenerActions;
+
+    /**
+     * Stores the state listeners.
+     * @type {Object<string, Array<typelistenerstate>>}
+     * @private
+     */
+    $listenersStates;
 
     /**
      * Stores the sounds.
@@ -190,12 +222,68 @@ class Actor extends Preloadable {
         this.$stage = $stage;
 
         this.$components = {};
+        this.$listenerActions = {};
+        this.$listenersStates = {};
         this.$sounds = [];
         this.$translation = new Vector2(0, 0);
         this.$uuid = UTILS.uuid();
         this.$vibrations = [];
         this.$visible = true;
         this.$zIndex = 0;
+    }
+
+    /**
+     * Sets an action listener.
+     * @param {TAction} $action The action to listen.
+     * @param {typelisteneraction} $handler The listener to set.
+     * @returns {this}
+     * @protected
+     */
+    $setListener($action, $handler) {
+
+        this.$listenerActions[$action] = $handler;
+
+        return this;
+    }
+
+    /**
+     * Triggers a changing state on listeners.
+     * @param {TState} $state The changing state to trigger.
+     * @returns {this}
+     * @protected
+     */
+    $trigger($state) {
+
+        if (this.$listenersStates.hasOwnProperty($state) === false) {
+
+            return this;
+        }
+
+        this.$listenersStates[$state].forEach(($handler) => {
+
+            $handler($state);
+        });
+
+        return this;
+    }
+
+    /**
+     * Adds a state listener.
+     * @param {TState} $state The state to listen.
+     * @param {typelistenerstate} $handler The listener to add.
+     * @returns {this}
+     * @public
+     */
+    addListener($state, $handler) {
+
+        if (this.$listenersStates.hasOwnProperty($state) === false) {
+
+            this.$listenersStates[$state] = [];
+        }
+
+        this.$listenersStates[$state].push($handler);
+
+        return this;
     }
 
     /**
@@ -500,6 +588,24 @@ class Actor extends Preloadable {
         this.$translation.add(translation);
 
         this.onTranslate(translation);
+
+        return this;
+    }
+
+    /**
+     * Triggers an action.
+     * @param {TAction} $action The action to trigger.
+     * @returns {this}
+     * @public
+     */
+    trigger($action) {
+
+        if (this.$listenerActions.hasOwnProperty($action) === false) {
+
+            return this;
+        }
+
+        this.$listenerActions[$action]($action);
 
         return this;
     }

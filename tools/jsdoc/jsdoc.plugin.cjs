@@ -14,7 +14,12 @@ module.exports = {
                 return;
             }
 
-            $event.comment = $event.comment.replace(/typeof\s+([A-Z][A-Za-z0-9]*)/g, 'Class<$1>');
+            const regex = /typeof\s+([A-Z][A-Za-z0-9]*)(<.+>)?/g;
+
+            while (regex.test($event.comment) === true) {
+
+                $event.comment = $event.comment.replace(regex, 'Class<$1$2>');
+            }
         }
     }
 };

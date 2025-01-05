@@ -6,8 +6,8 @@ import {Actor, Preloadable, Stage} from '../index.js';
 
 /**
  * Prepares an actor with preloadable assets.
- * @param {Array<typeof Preloadable | typeof Actor>} $preloadables The preloadable assets (mix of preloadable assets and/or actors with preloadable assets).
- * @returns {typeof Actor}
+ * @param {Array<typeof Preloadable | typeof Actor<string, string>>} $preloadables The preloadable assets (mix of preloadable assets and/or actors with preloadable assets).
+ * @returns {typeof Actor<string, string>}
  *
  * @memberof module:FACTORIES
  */
@@ -107,7 +107,7 @@ function PreloadableTexture($texture) {
 
 /**
  * Prepares a stage with preloadable assets.
- * @param {Array<typeof Preloadable | typeof Actor>} $preloadables The preloadable assets (mix of preloadable assets and/or actors with preloadable assets).
+ * @param {Array<typeof Preloadable | typeof Actor<string, string>>} $preloadables The preloadable assets (mix of preloadable assets and/or actors with preloadable assets).
  * @returns {typeof Stage}
  *
  * @memberof module:FACTORIES

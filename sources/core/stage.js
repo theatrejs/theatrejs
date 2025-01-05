@@ -94,7 +94,10 @@ class Stage extends Preloadable {
 
     /**
      * Creates the given actor.
-     * @param {typeof Actor} [$actor] The actor to create.
+     * @template {string} [TAction=string] The generic type of the actions.
+     * @template {string} [TState=string] The generic type of the states.
+     * @param {typeof Actor<TAction, TState>} [$actor] The actor to create.
+     * @returns {Actor<TAction, TState>}
      * @public
      */
     createActor($actor = Actor) {
