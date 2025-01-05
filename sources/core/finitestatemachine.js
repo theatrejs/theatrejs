@@ -48,6 +48,17 @@ class FiniteStateMachine {
      */
 
     /**
+     * @callback typestatehandlertick A state updating handler.
+     * @param {Object} $parameters The given parameters.
+     * @param {number} $parameters.$timetick The tick duration (in ms).
+     * @param {number} $parameters.$timer The timer of the current state.
+     * @returns {void}
+     * @protected
+     *
+     * @memberof FiniteStateMachine
+     */
+
+    /**
      * @callback typestatetransitioncondition A state transition condition.
      * @param {Object} $parameters The given parameters.
      * @param {T} $parameters.$previous The previous state.
@@ -72,6 +83,7 @@ class FiniteStateMachine {
      * @property {T} typestate.$state The name of the state.
      * @property {typestatehandlerenter} [typestate.$onEnter] The handler to execute when entering the state.
      * @property {typestatehandlerleave} [typestate.$onLeave] The handler to execute when leaving the state.
+     * @property {typestatehandlertick} [typestate.$onTick] The handler to execute when updating the state.
      * @property {Array<typestatetransition>} typestate.$transitions The transitions to given states.
      * @protected
      *
@@ -112,6 +124,16 @@ class FiniteStateMachine {
      * @private
      */
     $timer;
+
+    /**
+     * Gets the name of the current state.
+     * @type {T}
+     * @public
+     */
+    get state() {
+
+        return this.$state.$state;
+    }
 
     /**
      * Creates a new finite state machine.
@@ -166,6 +188,11 @@ class FiniteStateMachine {
 
         this.$timer += $timetick;
 
+        if (typeof this.$state.$onTick === 'function') {
+
+            this.$state.$onTick({$timetick: $timetick, $timer: this.$timer});
+        }
+
         for (let $transition of this.$state.$transitions) {
 
             let previous;
@@ -194,6 +221,8 @@ class FiniteStateMachine {
 
                     this.$state.$onEnter({$previous: current});
                 }
+
+                this.update(0);
 
                 break;
             }
