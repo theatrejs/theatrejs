@@ -136,6 +136,16 @@ class FiniteStateMachine {
     }
 
     /**
+     * Gets the initiated status.
+     * @type {boolean}
+     * @public
+     */
+    get initiated() {
+
+        return this.$initiated;
+    }
+
+    /**
      * Creates a new finite state machine.
      * @param {Array<typestate>} $data The representation of the finite state machine.
      */
