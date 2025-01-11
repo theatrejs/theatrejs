@@ -456,6 +456,31 @@ class Actor extends Preloadable {
     onTranslate($vector) {}
 
     /**
+     * Removes the collider.
+     * @returns {this}
+     * @public
+     */
+    removeCollider() {
+
+        this.$collider = undefined;
+
+        return this;
+    }
+
+    /**
+     * Removes the given component.
+     * @param {string} $name The name of the component to remove.
+     * @returns {this}
+     * @public
+     */
+    removeComponent($name) {
+
+        this.$components[$name] = undefined;
+
+        return this;
+    }
+
+    /**
      * Removes the given sound.
      * @param {Sound} $sound The sound to remove.
      * @returns {this}
@@ -476,6 +501,18 @@ class Actor extends Preloadable {
     removeSounds() {
 
         this.$sounds = [];
+
+        return this;
+    }
+
+    /**
+     * Removes the sprite.
+     * @returns {this}
+     * @public
+     */
+    removeSprite() {
+
+        this.$sprite = undefined;
 
         return this;
     }
