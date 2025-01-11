@@ -42,6 +42,13 @@ class Actor extends Preloadable {
     $components;
 
     /**
+     * Stores the identifier.
+     * @type {string}
+     * @private
+     */
+    $identifier;
+
+    /**
      * Stores the action listeners.
      * @type {Object<string, typelisteneraction>}
      * @private
@@ -129,6 +136,16 @@ class Actor extends Preloadable {
     get engine() {
 
         return this.stage.engine;
+    }
+
+    /**
+     * Gets the identifier.
+     * @type {string}
+     * @public
+     */
+    get identifier() {
+
+        return this.$identifier;
     }
 
     /**
@@ -511,6 +528,19 @@ class Actor extends Preloadable {
     setComponent($name, $component) {
 
         this.$components[$name] = $component;
+
+        return this;
+    }
+
+    /**
+     * Sets the identifier.
+     * @param {string} $identifier The identifier to set.
+     * @returns {this}
+     * @public
+     */
+    setIdentifier($identifier) {
+
+        this.$identifier = $identifier;
 
         return this;
     }
