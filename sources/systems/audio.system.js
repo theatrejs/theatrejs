@@ -10,7 +10,7 @@ import {Sound, Stage, System, UTILS} from '../index.js';
 class SystemAudio extends System {
 
     /**
-     * @typedef {Object} typedataaudio The audio data.
+     * @typedef {Object} typedataaudio An audio data.
      * @property {AudioBufferSourceNode} typeaudio.$audio The audio buffer source node.
      * @property {GainNode} typeaudio.$gain The gain.
      * @property {number} typeaudio.$startTime The start time of the audio in the audio context timeline.
