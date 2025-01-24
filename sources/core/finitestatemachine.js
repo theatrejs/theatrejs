@@ -23,6 +23,8 @@
  *         }]
  *     }
  * ]);
+ *
+ * toggle.tick(timetick);
  */
 class FiniteStateMachine {
 
@@ -84,7 +86,7 @@ class FiniteStateMachine {
      * @property {typestatehandlerenter} [typestate.$onEnter] The handler to execute when entering the state.
      * @property {typestatehandlerleave} [typestate.$onLeave] The handler to execute when leaving the state.
      * @property {typestatehandlertick} [typestate.$onTick] The handler to execute when updating the state.
-     * @property {Array<typestatetransition>} typestate.$transitions The transitions to given states.
+     * @property {Array<typestatetransition>} [typestate.$transitions] The transitions to given states.
      * @protected
      *
      * @memberof FiniteStateMachine
@@ -185,11 +187,11 @@ class FiniteStateMachine {
     }
 
     /**
-     * Updates the finite state machine.
+     * Updates the finite state machine by one tick update.
      * @param {number} $timetick The tick duration (in ms).
      * @public
      */
-    update($timetick) {
+    tick($timetick) {
 
         if (this.$initiated === false) {
 
@@ -203,7 +205,14 @@ class FiniteStateMachine {
             this.$state.$onTick({$timetick: $timetick, $timer: this.$timer});
         }
 
-        for (let $transition of this.$state.$transitions) {
+        const transitions = this.$state.$transitions;
+
+        if (Array.isArray(transitions) === false) {
+
+            return;
+        }
+
+        for (let $transition of transitions) {
 
             let previous;
 
@@ -232,7 +241,7 @@ class FiniteStateMachine {
                     this.$state.$onEnter({$previous: current});
                 }
 
-                this.update(0);
+                this.tick(0);
 
                 break;
             }
