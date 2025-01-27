@@ -65,7 +65,7 @@ class Level1 extends FACTORIES.StageWithPreloadables([Hero]) {
     }
 }
 
-const engine = new Engine({$container: document.body});
+const engine = new Engine();
 engine.initiate();
 
 await engine.preloadStage(Level1);
@@ -78,7 +78,7 @@ engine.createStage(Level1);
 ```javascript
 ...
 
-const engine = new Engine({$container: document.body});
+const engine = new Engine();
 engine.initiate();
 
 engine.preloadStage(Level1).then(() => {
