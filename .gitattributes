@@ -5,12 +5,36 @@
 * text eol=lf
 
 # prevent changes on binary files
+*.7z binary
+*.aac binary
+*.asar binary
+*.ase binary
+*.aseprite binary
+*.bin binary
+*.bmp binary
+*.dat binary
+*.dll binary
 *.eot binary
+*.exe binary
+*.flac binary
+*.gif binary
+*.gz binary
+*.ico binary
 *.jpeg binary
 *.jpg binary
+*.m4a binary
 *.mp3 binary
+*.ogg binary
+*.otf binary
+*.pak binary
+*.pdf binary
 *.png binary
+*.rar binary
+*.svg binary
+*.tar binary
+*.tiff binary
 *.ttf binary
 *.wav binary
 *.woff binary
 *.woff2 binary
+*.zip binary
