@@ -144,12 +144,12 @@ class Engine {
 
     /**
      * Creates a new game engine.
-     * @param {Object} $parameters The given parameters.
+     * @param {Object} [$parameters] The given parameters.
      * @param {Vector3} [$parameters.$color] The rendering background color to use.
-     * @param {HTMLElement} $parameters.$container The container for the game engine to create.
+     * @param {HTMLElement} [$parameters.$container] The container for the game engine to create.
      * @param {Vector2} [$parameters.$resolution] The rendering resolution to use.
      */
-    constructor({$color = new Vector3(0, 0, 0), $container, $resolution = new Vector2(320, 240)}) {
+    constructor({$color = new Vector3(0, 0, 0), $container = document.body, $resolution = new Vector2(320, 240)} = {}) {
 
         this.$color = $color;
         this.$container = $container;

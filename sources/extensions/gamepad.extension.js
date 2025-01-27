@@ -89,6 +89,7 @@ class ExtensionGamepad {
 
     /**
      * Creates a new gamepad extension.
+     * @protected
      */
     constructor() {
 

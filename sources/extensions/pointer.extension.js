@@ -34,6 +34,7 @@ class ExtensionPointer {
     /**
      * Creates a new pointer extension.
      * @param {HTMLElement} $container The container on which to attach the extension.
+     * @protected
      */
     constructor($container) {
 
@@ -51,11 +52,11 @@ class ExtensionPointer {
 
     /**
      * Activates the extension.
-     * @param {HTMLElement} $container The container on which to attach the extension.
+     * @param {HTMLElement} [$container] The container on which to attach the extension.
      * @public
      * @static
      */
-    static activate($container) {
+    static activate($container = document.body) {
 
         if (ExtensionPointer.$activated === true) {
 
