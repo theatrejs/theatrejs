@@ -21,27 +21,27 @@ const POINT = 'Point';
 const POSITION = 'Position';
 
 /**
- * The pointer 'POSITIONX' event code.
+ * The pointer 'POSITION_X' event code.
  * @type {'PositionX'}
  * @constant
  *
  * @memberof module:EVENTCODES/POINTER
  */
-const POSITIONX = 'PositionX';
+const POSITION_X = 'PositionX';
 
 /**
- * The pointer 'POSITIONY' event code.
+ * The pointer 'POSITION_Y' event code.
  * @type {'PositionY'}
  * @constant
  *
  * @memberof module:EVENTCODES/POINTER
  */
-const POSITIONY = 'PositionY';
+const POSITION_Y = 'PositionY';
 
 export {
 
     POINT,
     POSITION,
-    POSITIONX,
-    POSITIONY
+    POSITION_X,
+    POSITION_Y
 };

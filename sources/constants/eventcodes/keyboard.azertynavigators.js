@@ -3,7 +3,7 @@
  * @type {'Tab'}
  * @constant
  *
- * @memberof module:EVENTCODES/KEYBOARDAZERTY
+ * @memberof module:EVENTCODES/KEYBOARDS/AZERTY
  */
 const TAB = 'Tab';
 
@@ -12,7 +12,7 @@ const TAB = 'Tab';
  * @type {'ArrowUp'}
  * @constant
  *
- * @memberof module:EVENTCODES/KEYBOARDAZERTY
+ * @memberof module:EVENTCODES/KEYBOARDS/AZERTY
  */
 const UP = 'ArrowUp';
 
@@ -21,7 +21,7 @@ const UP = 'ArrowUp';
  * @type {'ArrowLeft'}
  * @constant
  *
- * @memberof module:EVENTCODES/KEYBOARDAZERTY
+ * @memberof module:EVENTCODES/KEYBOARDS/AZERTY
  */
 const LEFT = 'ArrowLeft';
 
@@ -30,7 +30,7 @@ const LEFT = 'ArrowLeft';
  * @type {'ArrowRight'}
  * @constant
  *
- * @memberof module:EVENTCODES/KEYBOARDAZERTY
+ * @memberof module:EVENTCODES/KEYBOARDS/AZERTY
  */
 const RIGHT = 'ArrowRight';
 
@@ -39,7 +39,7 @@ const RIGHT = 'ArrowRight';
  * @type {'ArrowDown'}
  * @constant
  *
- * @memberof module:EVENTCODES/KEYBOARDAZERTY
+ * @memberof module:EVENTCODES/KEYBOARDS/AZERTY
  */
 const DOWN = 'ArrowDown';
 

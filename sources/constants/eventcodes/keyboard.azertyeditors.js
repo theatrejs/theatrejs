@@ -3,7 +3,7 @@
  * @type {'Delete'}
  * @constant
  *
- * @memberof module:EVENTCODES/KEYBOARDAZERTY
+ * @memberof module:EVENTCODES/KEYBOARDS/AZERTY
  */
 const DELETE = 'Delete';
 
@@ -12,7 +12,7 @@ const DELETE = 'Delete';
  * @type {'Enter'}
  * @constant
  *
- * @memberof module:EVENTCODES/KEYBOARDAZERTY
+ * @memberof module:EVENTCODES/KEYBOARDS/AZERTY
  */
 const ENTER = 'Enter';
 

@@ -294,8 +294,8 @@ class Engine {
 
                     switch(contentType) {
 
-                        case CONTENTTYPES.IMAGEJPEG:
-                        case CONTENTTYPES.IMAGEPNG: {
+                        case CONTENTTYPES.IMAGE_JPEG:
+                        case CONTENTTYPES.IMAGE_PNG: {
 
                             this.$systemRender.loadTexture($content)
                             .then(($texture) => {
@@ -306,8 +306,8 @@ class Engine {
                             break;
                         }
 
-                        case CONTENTTYPES.AUDIOMPEG:
-                        case CONTENTTYPES.AUDIOWAVE: {
+                        case CONTENTTYPES.AUDIO_MPEG:
+                        case CONTENTTYPES.AUDIO_WAVE: {
 
                             this.$systemAudio.loadAudio($content)
                             .then(($bufferAudio) => {

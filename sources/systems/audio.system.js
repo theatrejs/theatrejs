@@ -24,7 +24,7 @@ class SystemAudio extends System {
      * @readonly
      * @static
      */
-    static DELAYCONTEXTCLEARSAFE = 1000;
+    static DELAY_CONTEXT_CLEAR_SAFE = 1000;
 
     /**
      * Stores the cache of the audio assets.
@@ -231,7 +231,7 @@ class SystemAudio extends System {
                     $resolve();
                 });
 
-            }, delayFadeOut + SystemAudio.DELAYCONTEXTCLEARSAFE);
+            }, delayFadeOut + SystemAudio.DELAY_CONTEXT_CLEAR_SAFE);
         });
 
         return promise;

@@ -9,7 +9,7 @@
  *
  * @memberof module:CONTENTTYPES
  */
-const AUDIOMPEG = 'audio/mpeg';
+const AUDIO_MPEG = 'audio/mpeg';
 
 /**
  * The audio/wave Content-Type.
@@ -18,7 +18,7 @@ const AUDIOMPEG = 'audio/mpeg';
  *
  * @memberof module:CONTENTTYPES
  */
-const AUDIOWAVE = 'audio/wave';
+const AUDIO_WAVE = 'audio/wave';
 
 /**
  * The image/jpeg Content-Type.
@@ -27,7 +27,7 @@ const AUDIOWAVE = 'audio/wave';
  *
  * @memberof module:CONTENTTYPES
  */
-const IMAGEJPEG = 'image/jpeg';
+const IMAGE_JPEG = 'image/jpeg';
 
 /**
  * The image/png Content-Type.
@@ -36,12 +36,12 @@ const IMAGEJPEG = 'image/jpeg';
  *
  * @memberof module:CONTENTTYPES
  */
-const IMAGEPNG = 'image/png';
+const IMAGE_PNG = 'image/png';
 
 export {
 
-    AUDIOMPEG,
-    AUDIOWAVE,
-    IMAGEJPEG,
-    IMAGEPNG
+    AUDIO_MPEG,
+    AUDIO_WAVE,
+    IMAGE_JPEG,
+    IMAGE_PNG
 };

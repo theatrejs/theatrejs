@@ -3,7 +3,7 @@
  * @type {'CapsLock'}
  * @constant
  *
- * @memberof module:EVENTCODES/KEYBOARDAZERTY
+ * @memberof module:EVENTCODES/KEYBOARDS/AZERTY
  */
 const CAPSLOCK = 'CapsLock';
 

@@ -3,7 +3,7 @@
  * @type {'ContextMenu'}
  * @constant
  *
- * @memberof module:EVENTCODES/KEYBOARDQWERTY
+ * @memberof module:EVENTCODES/KEYBOARDS/QWERTY
  */
 const CONTEXTMENU = 'ContextMenu';
 
@@ -12,7 +12,7 @@ const CONTEXTMENU = 'ContextMenu';
  * @type {'Escape'}
  * @constant
  *
- * @memberof module:EVENTCODES/KEYBOARDQWERTY
+ * @memberof module:EVENTCODES/KEYBOARDS/QWERTY
  */
 const ESCAPE = 'Escape';
 

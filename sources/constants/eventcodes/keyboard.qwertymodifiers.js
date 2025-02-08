@@ -1,63 +1,63 @@
 /**
- * The QWERTY-based keyboard 'ALTLEFT' event code.
+ * The QWERTY-based keyboard 'ALT_LEFT' event code.
  * @type {'AltLeft'}
  * @constant
  *
- * @memberof module:EVENTCODES/KEYBOARDQWERTY
+ * @memberof module:EVENTCODES/KEYBOARDS/QWERTY
  */
-const ALTLEFT = 'AltLeft';
+const ALT_LEFT = 'AltLeft';
 
 /**
- * The QWERTY-based keyboard 'ALTRIGHT' event code.
+ * The QWERTY-based keyboard 'ALT_RIGHT' event code.
  * @type {'AltRight'}
  * @constant
  *
- * @memberof module:EVENTCODES/KEYBOARDQWERTY
+ * @memberof module:EVENTCODES/KEYBOARDS/QWERTY
  */
-const ALTRIGHT = 'AltRight';
+const ALT_RIGHT = 'AltRight';
 
 /**
- * The QWERTY-based keyboard 'CONTROLLEFT' event code.
+ * The QWERTY-based keyboard 'CONTROL_LEFT' event code.
  * @type {'ControlLeft'}
  * @constant
  *
- * @memberof module:EVENTCODES/KEYBOARDQWERTY
+ * @memberof module:EVENTCODES/KEYBOARDS/QWERTY
  */
-const CONTROLLEFT = 'ControlLeft';
+const CONTROL_LEFT = 'ControlLeft';
 
 /**
- * The QWERTY-based keyboard 'CONTROLRIGHT' event code.
+ * The QWERTY-based keyboard 'CONTROL_RIGHT' event code.
  * @type {'ControlRight'}
  * @constant
  *
- * @memberof module:EVENTCODES/KEYBOARDQWERTY
+ * @memberof module:EVENTCODES/KEYBOARDS/QWERTY
  */
-const CONTROLRIGHT = 'ControlRight';
+const CONTROL_RIGHT = 'ControlRight';
 
 /**
- * The QWERTY-based keyboard 'SHIFTLEFT' event code.
+ * The QWERTY-based keyboard 'SHIFT_LEFT' event code.
  * @type {'ShiftLeft'}
  * @constant
  *
- * @memberof module:EVENTCODES/KEYBOARDQWERTY
+ * @memberof module:EVENTCODES/KEYBOARDS/QWERTY
  */
-const SHIFTLEFT = 'ShiftLeft';
+const SHIFT_LEFT = 'ShiftLeft';
 
 /**
- * The QWERTY-based keyboard 'SHIFTRIGHT' event code.
+ * The QWERTY-based keyboard 'SHIFT_RIGHT' event code.
  * @type {'ShiftRight'}
  * @constant
  *
- * @memberof module:EVENTCODES/KEYBOARDQWERTY
+ * @memberof module:EVENTCODES/KEYBOARDS/QWERTY
  */
-const SHIFTRIGHT = 'ShiftRight';
+const SHIFT_RIGHT = 'ShiftRight';
 
 export {
 
-    CONTROLLEFT,
-    CONTROLRIGHT,
-    ALTLEFT,
-    ALTRIGHT,
-    SHIFTLEFT,
-    SHIFTRIGHT
+    CONTROL_LEFT,
+    CONTROL_RIGHT,
+    ALT_LEFT,
+    ALT_RIGHT,
+    SHIFT_LEFT,
+    SHIFT_RIGHT
 };

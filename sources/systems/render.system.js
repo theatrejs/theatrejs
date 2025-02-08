@@ -18,7 +18,7 @@ class SystemRender extends System {
      * @readonly
      * @static
      */
-    static UNITTEXTURE0 = 0;
+    static UNIT_TEXTURE_0 = 0;
 
     /**
      * Stores the texture unit for the color textures.
@@ -27,7 +27,7 @@ class SystemRender extends System {
      * @readonly
      * @static
      */
-    static UNITTEXTURE1 = 1;
+    static UNIT_TEXTURE_1 = 1;
 
     /**
      * Stores the texture unit for the opacity textures.
@@ -36,7 +36,7 @@ class SystemRender extends System {
      * @readonly
      * @static
      */
-    static UNITTEXTURE2 = 2;
+    static UNIT_TEXTURE_2 = 2;
 
     /**
      * Stores the common vertices positions of the sprites.
@@ -381,8 +381,8 @@ class SystemRender extends System {
         this.$createBufferPositions();
         this.$createIndices();
 
-        this.$textureColorDefault = this.$createTextureDefault(new Vector3(127, 127, 127), SystemRender.UNITTEXTURE1);
-        this.$textureOpacityDefault = this.$createTextureDefault(new Vector3(255, 255, 255), SystemRender.UNITTEXTURE2);
+        this.$textureColorDefault = this.$createTextureDefault(new Vector3(127, 127, 127), SystemRender.UNIT_TEXTURE_1);
+        this.$textureOpacityDefault = this.$createTextureDefault(new Vector3(255, 255, 255), SystemRender.UNIT_TEXTURE_2);
 
         window.addEventListener('beforeunload', this.$onBeforeUnload.bind(this));
     }
@@ -691,7 +691,7 @@ class SystemRender extends System {
 
         this.$cache.set($content.url, undefined);
 
-        return this.$loadTexture($content, this.$context.TEXTURE0 + SystemRender.UNITTEXTURE0);
+        return this.$loadTexture($content, this.$context.TEXTURE0 + SystemRender.UNIT_TEXTURE_0);
     }
 
     /**
@@ -765,22 +765,22 @@ class SystemRender extends System {
 
             let textureColor = this.$textureColorDefault;
 
-            this.$prepareTexture($actor.sprite.textureColor, this.$context.TEXTURE0 + SystemRender.UNITTEXTURE1);
+            this.$prepareTexture($actor.sprite.textureColor, this.$context.TEXTURE0 + SystemRender.UNIT_TEXTURE_1);
 
             if (typeof this.$cache.get($actor.sprite.textureColor) !== 'undefined') {
 
                 textureColor = this.$cache.get($actor.sprite.textureColor);
             }
 
-            this.$context.activeTexture(this.$context.TEXTURE0 + SystemRender.UNITTEXTURE1);
+            this.$context.activeTexture(this.$context.TEXTURE0 + SystemRender.UNIT_TEXTURE_1);
             this.$context.bindTexture(this.$context.TEXTURE_2D, textureColor);
-            this.$sendUniform(Shader, 'uniformTextureColor', SystemRender.UNITTEXTURE1);
+            this.$sendUniform(Shader, 'uniformTextureColor', SystemRender.UNIT_TEXTURE_1);
 
             let textureOpacity = this.$textureOpacityDefault;
 
             if (typeof $actor.sprite.textureOpacity !== 'undefined') {
 
-                this.$prepareTexture($actor.sprite.textureOpacity, this.$context.TEXTURE0 + SystemRender.UNITTEXTURE2);
+                this.$prepareTexture($actor.sprite.textureOpacity, this.$context.TEXTURE0 + SystemRender.UNIT_TEXTURE_2);
 
                 if (typeof this.$cache.get($actor.sprite.textureOpacity) !== 'undefined') {
 
@@ -788,9 +788,9 @@ class SystemRender extends System {
                 }
             }
 
-            this.$context.activeTexture(this.$context.TEXTURE0 + SystemRender.UNITTEXTURE2);
+            this.$context.activeTexture(this.$context.TEXTURE0 + SystemRender.UNIT_TEXTURE_2);
             this.$context.bindTexture(this.$context.TEXTURE_2D, textureOpacity);
-            this.$sendUniform(Shader, 'uniformTextureOpacity', SystemRender.UNITTEXTURE2);
+            this.$sendUniform(Shader, 'uniformTextureOpacity', SystemRender.UNIT_TEXTURE_2);
 
             this.$sendUniform(Shader, 'uniformSize', [$actor.sprite.sizeTarget.x, $actor.sprite.sizeTarget.y]);
             this.$sendUniform(Shader, 'uniformTranslation', [Math.floor($actor.translation.x), Math.floor($actor.translation.y)]);

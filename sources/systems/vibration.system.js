@@ -49,7 +49,7 @@ class SystemVibration extends System {
      */
     onTerminate() {
 
-        window.dispatchEvent(new EventGamepadDigital('gamepadvibrate', EVENTCODES.GAMEPADXBOX.VIBRATEEND));
+        window.dispatchEvent(new EventGamepadDigital('gamepadvibrate', EVENTCODES.GAMEPAD_XBOX.VIBRATE_END));
     }
 
     /**
@@ -121,7 +121,7 @@ class SystemVibration extends System {
             intensityFrequencyLow = Math.max(intensityFrequencyLow, $vibration.intensityFrequencyLow);
         });
 
-        window.dispatchEvent(new EventGamepad('gamepadvibrate', EVENTCODES.GAMEPADXBOX.VIBRATESTART, new Vibration({
+        window.dispatchEvent(new EventGamepad('gamepadvibrate', EVENTCODES.GAMEPAD_XBOX.VIBRATE_START, new Vibration({
 
             $duration: SystemVibration.DELAYVIBRATIONEND,
             $intensityFrequencyHigh: intensityFrequencyHigh,

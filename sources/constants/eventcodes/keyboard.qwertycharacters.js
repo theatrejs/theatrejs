@@ -1,99 +1,99 @@
 /**
- * The QWERTY-based keyboard 'DIGIT0' event code.
+ * The QWERTY-based keyboard 'DIGIT_0' event code.
  * @type {'Digit0'}
  * @constant
  *
- * @memberof module:EVENTCODES/KEYBOARDQWERTY
+ * @memberof module:EVENTCODES/KEYBOARDS/QWERTY
  */
-const DIGIT0 = 'Digit0';
+const DIGIT_0 = 'Digit0';
 
 /**
- * The QWERTY-based keyboard 'DIGIT1' event code.
+ * The QWERTY-based keyboard 'DIGIT_1' event code.
  * @type {'Digit1'}
  * @constant
  *
- * @memberof module:EVENTCODES/KEYBOARDQWERTY
+ * @memberof module:EVENTCODES/KEYBOARDS/QWERTY
  */
-const DIGIT1 = 'Digit1';
+const DIGIT_1 = 'Digit1';
 
 /**
- * The QWERTY-based keyboard 'DIGIT2' event code.
+ * The QWERTY-based keyboard 'DIGIT_2' event code.
  * @type {'Digit2'}
  * @constant
  *
- * @memberof module:EVENTCODES/KEYBOARDQWERTY
+ * @memberof module:EVENTCODES/KEYBOARDS/QWERTY
  */
-const DIGIT2 = 'Digit2';
+const DIGIT_2 = 'Digit2';
 
 /**
- * The QWERTY-based keyboard 'DIGIT3' event code.
+ * The QWERTY-based keyboard 'DIGIT_3' event code.
  * @type {'Digit3'}
  * @constant
  *
- * @memberof module:EVENTCODES/KEYBOARDQWERTY
+ * @memberof module:EVENTCODES/KEYBOARDS/QWERTY
  */
-const DIGIT3 = 'Digit3';
+const DIGIT_3 = 'Digit3';
 
 /**
- * The QWERTY-based keyboard 'DIGIT4' event code.
+ * The QWERTY-based keyboard 'DIGIT_4' event code.
  * @type {'Digit4'}
  * @constant
  *
- * @memberof module:EVENTCODES/KEYBOARDQWERTY
+ * @memberof module:EVENTCODES/KEYBOARDS/QWERTY
  */
-const DIGIT4 = 'Digit4';
+const DIGIT_4 = 'Digit4';
 
 /**
- * The QWERTY-based keyboard 'DIGIT5' event code.
+ * The QWERTY-based keyboard 'DIGIT_5' event code.
  * @type {'Digit5'}
  * @constant
  *
- * @memberof module:EVENTCODES/KEYBOARDQWERTY
+ * @memberof module:EVENTCODES/KEYBOARDS/QWERTY
  */
-const DIGIT5 = 'Digit5';
+const DIGIT_5 = 'Digit5';
 
 /**
- * The QWERTY-based keyboard 'DIGIT6' event code.
+ * The QWERTY-based keyboard 'DIGIT_6' event code.
  * @type {'Digit6'}
  * @constant
  *
- * @memberof module:EVENTCODES/KEYBOARDQWERTY
+ * @memberof module:EVENTCODES/KEYBOARDS/QWERTY
  */
-const DIGIT6 = 'Digit6';
+const DIGIT_6 = 'Digit6';
 
 /**
- * The QWERTY-based keyboard 'DIGIT7' event code.
+ * The QWERTY-based keyboard 'DIGIT_7' event code.
  * @type {'Digit7'}
  * @constant
  *
- * @memberof module:EVENTCODES/KEYBOARDQWERTY
+ * @memberof module:EVENTCODES/KEYBOARDS/QWERTY
  */
-const DIGIT7 = 'Digit7';
+const DIGIT_7 = 'Digit7';
 
 /**
- * The QWERTY-based keyboard 'DIGIT8' event code.
+ * The QWERTY-based keyboard 'DIGIT_8' event code.
  * @type {'Digit8'}
  * @constant
  *
- * @memberof module:EVENTCODES/KEYBOARDQWERTY
+ * @memberof module:EVENTCODES/KEYBOARDS/QWERTY
  */
-const DIGIT8 = 'Digit8';
+const DIGIT_8 = 'Digit8';
 
 /**
- * The QWERTY-based keyboard 'DIGIT9' event code.
+ * The QWERTY-based keyboard 'DIGIT_9' event code.
  * @type {'Digit9'}
  * @constant
  *
- * @memberof module:EVENTCODES/KEYBOARDQWERTY
+ * @memberof module:EVENTCODES/KEYBOARDS/QWERTY
  */
-const DIGIT9 = 'Digit9';
+const DIGIT_9 = 'Digit9';
 
 /**
  * The QWERTY-based keyboard 'A' event code.
  * @type {'KeyA'}
  * @constant
  *
- * @memberof module:EVENTCODES/KEYBOARDQWERTY
+ * @memberof module:EVENTCODES/KEYBOARDS/QWERTY
  */
 const A = 'KeyA';
 
@@ -102,7 +102,7 @@ const A = 'KeyA';
  * @type {'KeyB'}
  * @constant
  *
- * @memberof module:EVENTCODES/KEYBOARDQWERTY
+ * @memberof module:EVENTCODES/KEYBOARDS/QWERTY
  */
 const B = 'KeyB';
 
@@ -111,7 +111,7 @@ const B = 'KeyB';
  * @type {'KeyC'}
  * @constant
  *
- * @memberof module:EVENTCODES/KEYBOARDQWERTY
+ * @memberof module:EVENTCODES/KEYBOARDS/QWERTY
  */
 const C = 'KeyC';
 
@@ -120,7 +120,7 @@ const C = 'KeyC';
  * @type {'KeyD'}
  * @constant
  *
- * @memberof module:EVENTCODES/KEYBOARDQWERTY
+ * @memberof module:EVENTCODES/KEYBOARDS/QWERTY
  */
 const D = 'KeyD';
 
@@ -129,7 +129,7 @@ const D = 'KeyD';
  * @type {'KeyE'}
  * @constant
  *
- * @memberof module:EVENTCODES/KEYBOARDQWERTY
+ * @memberof module:EVENTCODES/KEYBOARDS/QWERTY
  */
 const E = 'KeyE';
 
@@ -138,7 +138,7 @@ const E = 'KeyE';
  * @type {'KeyF'}
  * @constant
  *
- * @memberof module:EVENTCODES/KEYBOARDQWERTY
+ * @memberof module:EVENTCODES/KEYBOARDS/QWERTY
  */
 const F = 'KeyF';
 
@@ -147,7 +147,7 @@ const F = 'KeyF';
  * @type {'KeyG'}
  * @constant
  *
- * @memberof module:EVENTCODES/KEYBOARDQWERTY
+ * @memberof module:EVENTCODES/KEYBOARDS/QWERTY
  */
 const G = 'KeyG';
 
@@ -156,7 +156,7 @@ const G = 'KeyG';
  * @type {'KeyH'}
  * @constant
  *
- * @memberof module:EVENTCODES/KEYBOARDQWERTY
+ * @memberof module:EVENTCODES/KEYBOARDS/QWERTY
  */
 const H = 'KeyH';
 
@@ -165,7 +165,7 @@ const H = 'KeyH';
  * @type {'KeyI'}
  * @constant
  *
- * @memberof module:EVENTCODES/KEYBOARDQWERTY
+ * @memberof module:EVENTCODES/KEYBOARDS/QWERTY
  */
 const I = 'KeyI';
 
@@ -174,7 +174,7 @@ const I = 'KeyI';
  * @type {'KeyJ'}
  * @constant
  *
- * @memberof module:EVENTCODES/KEYBOARDQWERTY
+ * @memberof module:EVENTCODES/KEYBOARDS/QWERTY
  */
 const J = 'KeyJ';
 
@@ -183,7 +183,7 @@ const J = 'KeyJ';
  * @type {'KeyK'}
  * @constant
  *
- * @memberof module:EVENTCODES/KEYBOARDQWERTY
+ * @memberof module:EVENTCODES/KEYBOARDS/QWERTY
  */
 const K = 'KeyK';
 
@@ -192,7 +192,7 @@ const K = 'KeyK';
  * @type {'KeyL'}
  * @constant
  *
- * @memberof module:EVENTCODES/KEYBOARDQWERTY
+ * @memberof module:EVENTCODES/KEYBOARDS/QWERTY
  */
 const L = 'KeyL';
 
@@ -201,7 +201,7 @@ const L = 'KeyL';
  * @type {'KeyM'}
  * @constant
  *
- * @memberof module:EVENTCODES/KEYBOARDQWERTY
+ * @memberof module:EVENTCODES/KEYBOARDS/QWERTY
  */
 const M = 'KeyM';
 
@@ -210,7 +210,7 @@ const M = 'KeyM';
  * @type {'KeyN'}
  * @constant
  *
- * @memberof module:EVENTCODES/KEYBOARDQWERTY
+ * @memberof module:EVENTCODES/KEYBOARDS/QWERTY
  */
 const N = 'KeyN';
 
@@ -219,7 +219,7 @@ const N = 'KeyN';
  * @type {'KeyO'}
  * @constant
  *
- * @memberof module:EVENTCODES/KEYBOARDQWERTY
+ * @memberof module:EVENTCODES/KEYBOARDS/QWERTY
  */
 const O = 'KeyO';
 
@@ -228,7 +228,7 @@ const O = 'KeyO';
  * @type {'KeyP'}
  * @constant
  *
- * @memberof module:EVENTCODES/KEYBOARDQWERTY
+ * @memberof module:EVENTCODES/KEYBOARDS/QWERTY
  */
 const P = 'KeyP';
 
@@ -237,7 +237,7 @@ const P = 'KeyP';
  * @type {'KeyQ'}
  * @constant
  *
- * @memberof module:EVENTCODES/KEYBOARDQWERTY
+ * @memberof module:EVENTCODES/KEYBOARDS/QWERTY
  */
 const Q = 'KeyQ';
 
@@ -246,7 +246,7 @@ const Q = 'KeyQ';
  * @type {'KeyR'}
  * @constant
  *
- * @memberof module:EVENTCODES/KEYBOARDQWERTY
+ * @memberof module:EVENTCODES/KEYBOARDS/QWERTY
  */
 const R = 'KeyR';
 
@@ -255,7 +255,7 @@ const R = 'KeyR';
  * @type {'KeyS'}
  * @constant
  *
- * @memberof module:EVENTCODES/KEYBOARDQWERTY
+ * @memberof module:EVENTCODES/KEYBOARDS/QWERTY
  */
 const S = 'KeyS';
 
@@ -264,7 +264,7 @@ const S = 'KeyS';
  * @type {'KeyT'}
  * @constant
  *
- * @memberof module:EVENTCODES/KEYBOARDQWERTY
+ * @memberof module:EVENTCODES/KEYBOARDS/QWERTY
  */
 const T = 'KeyT';
 
@@ -273,7 +273,7 @@ const T = 'KeyT';
  * @type {'KeyU'}
  * @constant
  *
- * @memberof module:EVENTCODES/KEYBOARDQWERTY
+ * @memberof module:EVENTCODES/KEYBOARDS/QWERTY
  */
 const U = 'KeyU';
 
@@ -282,7 +282,7 @@ const U = 'KeyU';
  * @type {'KeyV'}
  * @constant
  *
- * @memberof module:EVENTCODES/KEYBOARDQWERTY
+ * @memberof module:EVENTCODES/KEYBOARDS/QWERTY
  */
 const V = 'KeyV';
 
@@ -291,7 +291,7 @@ const V = 'KeyV';
  * @type {'KeyW'}
  * @constant
  *
- * @memberof module:EVENTCODES/KEYBOARDQWERTY
+ * @memberof module:EVENTCODES/KEYBOARDS/QWERTY
  */
 const W = 'KeyW';
 
@@ -300,7 +300,7 @@ const W = 'KeyW';
  * @type {'KeyX'}
  * @constant
  *
- * @memberof module:EVENTCODES/KEYBOARDQWERTY
+ * @memberof module:EVENTCODES/KEYBOARDS/QWERTY
  */
 const X = 'KeyX';
 
@@ -309,7 +309,7 @@ const X = 'KeyX';
  * @type {'KeyY'}
  * @constant
  *
- * @memberof module:EVENTCODES/KEYBOARDQWERTY
+ * @memberof module:EVENTCODES/KEYBOARDS/QWERTY
  */
 const Y = 'KeyY';
 
@@ -318,7 +318,7 @@ const Y = 'KeyY';
  * @type {'KeyZ'}
  * @constant
  *
- * @memberof module:EVENTCODES/KEYBOARDQWERTY
+ * @memberof module:EVENTCODES/KEYBOARDS/QWERTY
  */
 const Z = 'KeyZ';
 
@@ -327,22 +327,22 @@ const Z = 'KeyZ';
  * @type {'Space'}
  * @constant
  *
- * @memberof module:EVENTCODES/KEYBOARDQWERTY
+ * @memberof module:EVENTCODES/KEYBOARDS/QWERTY
  */
 const SPACE = 'Space';
 
 export {
 
-    DIGIT0,
-    DIGIT1,
-    DIGIT2,
-    DIGIT3,
-    DIGIT4,
-    DIGIT5,
-    DIGIT6,
-    DIGIT7,
-    DIGIT8,
-    DIGIT9,
+    DIGIT_0,
+    DIGIT_1,
+    DIGIT_2,
+    DIGIT_3,
+    DIGIT_4,
+    DIGIT_5,
+    DIGIT_6,
+    DIGIT_7,
+    DIGIT_8,
+    DIGIT_9,
 
     A,
     B,

@@ -3,7 +3,7 @@
  * @type {'Tab'}
  * @constant
  *
- * @memberof module:EVENTCODES/KEYBOARDQWERTY
+ * @memberof module:EVENTCODES/KEYBOARDS/QWERTY
  */
 const TAB = 'Tab';
 
@@ -12,7 +12,7 @@ const TAB = 'Tab';
  * @type {'ArrowUp'}
  * @constant
  *
- * @memberof module:EVENTCODES/KEYBOARDQWERTY
+ * @memberof module:EVENTCODES/KEYBOARDS/QWERTY
  */
 const UP = 'ArrowUp';
 
@@ -21,7 +21,7 @@ const UP = 'ArrowUp';
  * @type {'ArrowLeft'}
  * @constant
  *
- * @memberof module:EVENTCODES/KEYBOARDQWERTY
+ * @memberof module:EVENTCODES/KEYBOARDS/QWERTY
  */
 const LEFT = 'ArrowLeft';
 
@@ -30,7 +30,7 @@ const LEFT = 'ArrowLeft';
  * @type {'ArrowRight'}
  * @constant
  *
- * @memberof module:EVENTCODES/KEYBOARDQWERTY
+ * @memberof module:EVENTCODES/KEYBOARDS/QWERTY
  */
 const RIGHT = 'ArrowRight';
 
@@ -39,7 +39,7 @@ const RIGHT = 'ArrowRight';
  * @type {'ArrowDown'}
  * @constant
  *
- * @memberof module:EVENTCODES/KEYBOARDQWERTY
+ * @memberof module:EVENTCODES/KEYBOARDS/QWERTY
  */
 const DOWN = 'ArrowDown';
 

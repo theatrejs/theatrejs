@@ -1,5 +1,5 @@
 /**
- * @module EVENTCODES/GAMEPADPLAYSTATION
+ * @module EVENTCODES/GAMEPADS/PLAYSTATION
  */
 
 /**
@@ -7,7 +7,7 @@
  * @type {'ClusterRightButtonBottom'}
  * @constant
  *
- * @memberof module:EVENTCODES/GAMEPADPLAYSTATION
+ * @memberof module:EVENTCODES/GAMEPADS/PLAYSTATION
  */
 const CROSS = 'ClusterRightButtonBottom';
 
@@ -16,7 +16,7 @@ const CROSS = 'ClusterRightButtonBottom';
  * @type {'ClusterRightButtonRight'}
  * @constant
  *
- * @memberof module:EVENTCODES/GAMEPADPLAYSTATION
+ * @memberof module:EVENTCODES/GAMEPADS/PLAYSTATION
  */
 const CIRCLE = 'ClusterRightButtonRight';
 
@@ -25,7 +25,7 @@ const CIRCLE = 'ClusterRightButtonRight';
  * @type {'ClusterRightButtonLeft'}
  * @constant
  *
- * @memberof module:EVENTCODES/GAMEPADPLAYSTATION
+ * @memberof module:EVENTCODES/GAMEPADS/PLAYSTATION
  */
 const SQUARE = 'ClusterRightButtonLeft';
 
@@ -34,7 +34,7 @@ const SQUARE = 'ClusterRightButtonLeft';
  * @type {'ClusterRightButtonTop'}
  * @constant
  *
- * @memberof module:EVENTCODES/GAMEPADPLAYSTATION
+ * @memberof module:EVENTCODES/GAMEPADS/PLAYSTATION
  */
 const TRIANGLE = 'ClusterRightButtonTop';
 
@@ -43,7 +43,7 @@ const TRIANGLE = 'ClusterRightButtonTop';
  * @type {'ClusterFrontButtonTopLeft'}
  * @constant
  *
- * @memberof module:EVENTCODES/GAMEPADPLAYSTATION
+ * @memberof module:EVENTCODES/GAMEPADS/PLAYSTATION
  */
 const L1 = 'ClusterFrontButtonTopLeft';
 
@@ -52,7 +52,7 @@ const L1 = 'ClusterFrontButtonTopLeft';
  * @type {'ClusterFrontButtonTopRight'}
  * @constant
  *
- * @memberof module:EVENTCODES/GAMEPADPLAYSTATION
+ * @memberof module:EVENTCODES/GAMEPADS/PLAYSTATION
  */
 const R1 = 'ClusterFrontButtonTopRight';
 
@@ -61,7 +61,7 @@ const R1 = 'ClusterFrontButtonTopRight';
  * @type {'ClusterFrontButtonBottomLeft'}
  * @constant
  *
- * @memberof module:EVENTCODES/GAMEPADPLAYSTATION
+ * @memberof module:EVENTCODES/GAMEPADS/PLAYSTATION
  */
 const L2 = 'ClusterFrontButtonBottomLeft';
 
@@ -70,7 +70,7 @@ const L2 = 'ClusterFrontButtonBottomLeft';
  * @type {'ClusterFrontButtonBottomRight'}
  * @constant
  *
- * @memberof module:EVENTCODES/GAMEPADPLAYSTATION
+ * @memberof module:EVENTCODES/GAMEPADS/PLAYSTATION
  */
 const R2 = 'ClusterFrontButtonBottomRight';
 
@@ -79,7 +79,7 @@ const R2 = 'ClusterFrontButtonBottomRight';
  * @type {'ClusterCenterButtonLeft'}
  * @constant
  *
- * @memberof module:EVENTCODES/GAMEPADPLAYSTATION
+ * @memberof module:EVENTCODES/GAMEPADS/PLAYSTATION
  */
 const SELECT = 'ClusterCenterButtonLeft';
 
@@ -88,7 +88,7 @@ const SELECT = 'ClusterCenterButtonLeft';
  * @type {'ClusterCenterButtonRight'}
  * @constant
  *
- * @memberof module:EVENTCODES/GAMEPADPLAYSTATION
+ * @memberof module:EVENTCODES/GAMEPADS/PLAYSTATION
  */
 const START = 'ClusterCenterButtonRight';
 
@@ -97,7 +97,7 @@ const START = 'ClusterCenterButtonRight';
  * @type {'StickLeftButton'}
  * @constant
  *
- * @memberof module:EVENTCODES/GAMEPADPLAYSTATION
+ * @memberof module:EVENTCODES/GAMEPADS/PLAYSTATION
  */
 const L3 = 'StickLeftButton';
 
@@ -106,7 +106,7 @@ const L3 = 'StickLeftButton';
  * @type {'StickRightButton'}
  * @constant
  *
- * @memberof module:EVENTCODES/GAMEPADPLAYSTATION
+ * @memberof module:EVENTCODES/GAMEPADS/PLAYSTATION
  */
 const R3 = 'StickRightButton';
 
@@ -115,7 +115,7 @@ const R3 = 'StickRightButton';
  * @type {'ClusterLeftButtonTop'}
  * @constant
  *
- * @memberof module:EVENTCODES/GAMEPADPLAYSTATION
+ * @memberof module:EVENTCODES/GAMEPADS/PLAYSTATION
  */
 const UP = 'ClusterLeftButtonTop';
 
@@ -124,7 +124,7 @@ const UP = 'ClusterLeftButtonTop';
  * @type {'ClusterLeftButtonBottom'}
  * @constant
  *
- * @memberof module:EVENTCODES/GAMEPADPLAYSTATION
+ * @memberof module:EVENTCODES/GAMEPADS/PLAYSTATION
  */
 const DOWN = 'ClusterLeftButtonBottom';
 
@@ -133,7 +133,7 @@ const DOWN = 'ClusterLeftButtonBottom';
  * @type {'ClusterLeftButtonLeft'}
  * @constant
  *
- * @memberof module:EVENTCODES/GAMEPADPLAYSTATION
+ * @memberof module:EVENTCODES/GAMEPADS/PLAYSTATION
  */
 const LEFT = 'ClusterLeftButtonLeft';
 
@@ -142,7 +142,7 @@ const LEFT = 'ClusterLeftButtonLeft';
  * @type {'ClusterLeftButtonRight'}
  * @constant
  *
- * @memberof module:EVENTCODES/GAMEPADPLAYSTATION
+ * @memberof module:EVENTCODES/GAMEPADS/PLAYSTATION
  */
 const RIGHT = 'ClusterLeftButtonRight';
 
@@ -151,88 +151,88 @@ const RIGHT = 'ClusterLeftButtonRight';
  * @type {'ClusterCenterButtonCenter'}
  * @constant
  *
- * @memberof module:EVENTCODES/GAMEPADPLAYSTATION
+ * @memberof module:EVENTCODES/GAMEPADS/PLAYSTATION
  */
 const PLAYSTATION = 'ClusterCenterButtonCenter';
 
 /**
- * The PLAYSTATION gamepad 'LSLEFT' event code.
+ * The PLAYSTATION gamepad 'LS_LEFT' event code.
  * @type {'StickLeftLeft'}
  * @constant
  *
- * @memberof module:EVENTCODES/GAMEPADPLAYSTATION
+ * @memberof module:EVENTCODES/GAMEPADS/PLAYSTATION
  */
-const LSLEFT = 'StickLeftLeft';
+const LS_LEFT = 'StickLeftLeft';
 
 /**
- * The PLAYSTATION gamepad 'LSRIGHT' event code.
+ * The PLAYSTATION gamepad 'LS_RIGHT' event code.
  * @type {'StickLeftRight'}
  * @constant
  *
- * @memberof module:EVENTCODES/GAMEPADPLAYSTATION
+ * @memberof module:EVENTCODES/GAMEPADS/PLAYSTATION
  */
-const LSRIGHT = 'StickLeftRight';
+const LS_RIGHT = 'StickLeftRight';
 
 /**
- * The PLAYSTATION gamepad 'LSUP' event code.
+ * The PLAYSTATION gamepad 'LS_UP' event code.
  * @type {'StickLeftUp'}
  * @constant
  *
- * @memberof module:EVENTCODES/GAMEPADPLAYSTATION
+ * @memberof module:EVENTCODES/GAMEPADS/PLAYSTATION
  */
-const LSUP = 'StickLeftUp';
+const LS_UP = 'StickLeftUp';
 
 /**
- * The PLAYSTATION gamepad 'LSDOWN' event code.
+ * The PLAYSTATION gamepad 'LS_DOWN' event code.
  * @type {'StickLeftDown'}
  * @constant
  *
- * @memberof module:EVENTCODES/GAMEPADPLAYSTATION
+ * @memberof module:EVENTCODES/GAMEPADS/PLAYSTATION
  */
-const LSDOWN = 'StickLeftDown';
+const LS_DOWN = 'StickLeftDown';
 
 /**
- * The PLAYSTATION gamepad 'RSLEFT' event code.
+ * The PLAYSTATION gamepad 'RS_LEFT' event code.
  * @type {'StickRightLeft'}
  * @constant
  *
- * @memberof module:EVENTCODES/GAMEPADPLAYSTATION
+ * @memberof module:EVENTCODES/GAMEPADS/PLAYSTATION
  */
-const RSLEFT = 'StickRightLeft';
+const RS_LEFT = 'StickRightLeft';
 
 /**
- * The PLAYSTATION gamepad 'RSRIGHT' event code.
+ * The PLAYSTATION gamepad 'RS_RIGHT' event code.
  * @type {'StickRightRight'}
  * @constant
  *
- * @memberof module:EVENTCODES/GAMEPADPLAYSTATION
+ * @memberof module:EVENTCODES/GAMEPADS/PLAYSTATION
  */
-const RSRIGHT = 'StickRightRight';
+const RS_RIGHT = 'StickRightRight';
 
 /**
- * The PLAYSTATION gamepad 'RSUP' event code.
+ * The PLAYSTATION gamepad 'RS_UP' event code.
  * @type {'StickRightUp'}
  * @constant
  *
- * @memberof module:EVENTCODES/GAMEPADPLAYSTATION
+ * @memberof module:EVENTCODES/GAMEPADS/PLAYSTATION
  */
-const RSUP = 'StickRightUp';
+const RS_UP = 'StickRightUp';
 
 /**
- * The PLAYSTATION gamepad 'RSDOWN' event code.
+ * The PLAYSTATION gamepad 'RS_DOWN' event code.
  * @type {'StickRightDown'}
  * @constant
  *
- * @memberof module:EVENTCODES/GAMEPADPLAYSTATION
+ * @memberof module:EVENTCODES/GAMEPADS/PLAYSTATION
  */
-const RSDOWN = 'StickRightDown';
+const RS_DOWN = 'StickRightDown';
 
 /**
  * The PLAYSTATION gamepad 'CONNECTED' event code.
  * @type {'Connected'}
  * @constant
  *
- * @memberof module:EVENTCODES/GAMEPADPLAYSTATION
+ * @memberof module:EVENTCODES/GAMEPADS/PLAYSTATION
  */
 const CONNECTED = 'Connected';
 
@@ -241,27 +241,27 @@ const CONNECTED = 'Connected';
  * @type {'Disconnected'}
  * @constant
  *
- * @memberof module:EVENTCODES/GAMEPADPLAYSTATION
+ * @memberof module:EVENTCODES/GAMEPADS/PLAYSTATION
  */
 const DISCONNECTED = 'Disconnected';
 
 /**
- * The PLAYSTATION gamepad 'VIBRATEEND' event code.
+ * The PLAYSTATION gamepad 'VIBRATE_END' event code.
  * @type {'VibrateEnd'}
  * @constant
  *
- * @memberof module:EVENTCODES/GAMEPADPLAYSTATION
+ * @memberof module:EVENTCODES/GAMEPADS/PLAYSTATION
  */
-const VIBRATEEND = 'VibrateEnd';
+const VIBRATE_END = 'VibrateEnd';
 
 /**
- * The PLAYSTATION gamepad 'VIBRATESTART' event code.
+ * The PLAYSTATION gamepad 'VIBRATE_START' event code.
  * @type {'VibrateStart'}
  * @constant
  *
- * @memberof module:EVENTCODES/GAMEPADPLAYSTATION
+ * @memberof module:EVENTCODES/GAMEPADS/PLAYSTATION
  */
-const VIBRATESTART = 'VibrateStart';
+const VIBRATE_START = 'VibrateStart';
 
 export {
 
@@ -288,17 +288,17 @@ export {
 
     PLAYSTATION,
 
-    LSLEFT,
-    LSRIGHT,
-    LSUP,
-    LSDOWN,
-    RSLEFT,
-    RSRIGHT,
-    RSUP,
-    RSDOWN,
+    LS_LEFT,
+    LS_RIGHT,
+    LS_UP,
+    LS_DOWN,
+    RS_LEFT,
+    RS_RIGHT,
+    RS_UP,
+    RS_DOWN,
 
     CONNECTED,
     DISCONNECTED,
-    VIBRATEEND,
-    VIBRATESTART
+    VIBRATE_END,
+    VIBRATE_START
 };

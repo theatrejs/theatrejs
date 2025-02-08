@@ -3,7 +3,7 @@
  * @type {'F1'}
  * @constant
  *
- * @memberof module:EVENTCODES/KEYBOARDQWERTY
+ * @memberof module:EVENTCODES/KEYBOARDS/QWERTY
  */
 const F1 = 'F1';
 
@@ -12,7 +12,7 @@ const F1 = 'F1';
  * @type {'F2'}
  * @constant
  *
- * @memberof module:EVENTCODES/KEYBOARDQWERTY
+ * @memberof module:EVENTCODES/KEYBOARDS/QWERTY
  */
 const F2 = 'F2';
 
@@ -21,7 +21,7 @@ const F2 = 'F2';
  * @type {'F3'}
  * @constant
  *
- * @memberof module:EVENTCODES/KEYBOARDQWERTY
+ * @memberof module:EVENTCODES/KEYBOARDS/QWERTY
  */
 const F3 = 'F3';
 
@@ -30,7 +30,7 @@ const F3 = 'F3';
  * @type {'F4'}
  * @constant
  *
- * @memberof module:EVENTCODES/KEYBOARDQWERTY
+ * @memberof module:EVENTCODES/KEYBOARDS/QWERTY
  */
 const F4 = 'F4';
 
@@ -39,7 +39,7 @@ const F4 = 'F4';
  * @type {'F5'}
  * @constant
  *
- * @memberof module:EVENTCODES/KEYBOARDQWERTY
+ * @memberof module:EVENTCODES/KEYBOARDS/QWERTY
  */
 const F5 = 'F5';
 
@@ -48,7 +48,7 @@ const F5 = 'F5';
  * @type {'F6'}
  * @constant
  *
- * @memberof module:EVENTCODES/KEYBOARDQWERTY
+ * @memberof module:EVENTCODES/KEYBOARDS/QWERTY
  */
 const F6 = 'F6';
 
@@ -57,7 +57,7 @@ const F6 = 'F6';
  * @type {'F7'}
  * @constant
  *
- * @memberof module:EVENTCODES/KEYBOARDQWERTY
+ * @memberof module:EVENTCODES/KEYBOARDS/QWERTY
  */
 const F7 = 'F7';
 
@@ -66,7 +66,7 @@ const F7 = 'F7';
  * @type {'F8'}
  * @constant
  *
- * @memberof module:EVENTCODES/KEYBOARDQWERTY
+ * @memberof module:EVENTCODES/KEYBOARDS/QWERTY
  */
 const F8 = 'F8';
 
@@ -75,7 +75,7 @@ const F8 = 'F8';
  * @type {'F9'}
  * @constant
  *
- * @memberof module:EVENTCODES/KEYBOARDQWERTY
+ * @memberof module:EVENTCODES/KEYBOARDS/QWERTY
  */
 const F9 = 'F9';
 
@@ -84,7 +84,7 @@ const F9 = 'F9';
  * @type {'F10'}
  * @constant
  *
- * @memberof module:EVENTCODES/KEYBOARDQWERTY
+ * @memberof module:EVENTCODES/KEYBOARDS/QWERTY
  */
 const F10 = 'F10';
 
@@ -93,7 +93,7 @@ const F10 = 'F10';
  * @type {'F11'}
  * @constant
  *
- * @memberof module:EVENTCODES/KEYBOARDQWERTY
+ * @memberof module:EVENTCODES/KEYBOARDS/QWERTY
  */
 const F11 = 'F11';
 
@@ -102,7 +102,7 @@ const F11 = 'F11';
  * @type {'F12'}
  * @constant
  *
- * @memberof module:EVENTCODES/KEYBOARDQWERTY
+ * @memberof module:EVENTCODES/KEYBOARDS/QWERTY
  */
 const F12 = 'F12';
 
