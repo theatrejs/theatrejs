@@ -1,6 +1,6 @@
 /**
  * Creates stacks.
- * @template {any} T The generic type of the items.
+ * @template {any} TypeGeneric The generic type of the items.
  *
  * @example
  *
@@ -19,7 +19,7 @@ class Stack {
 
     /**
      * Stores the items.
-     * @type {Array<T>}
+     * @type {Array<TypeGeneric>}
      * @private
      */
     $data;
@@ -46,7 +46,7 @@ class Stack {
 
     /**
      * Pops an item.
-     * @returns {(T | undefined)}
+     * @returns {(TypeGeneric | undefined)}
      * @public
      */
     pop() {
@@ -56,7 +56,7 @@ class Stack {
 
     /**
      * Pushes an item.
-     * @param {T} $item The item to push.
+     * @param {TypeGeneric} $item The item to push.
      * @returns {this}
      * @public
      */

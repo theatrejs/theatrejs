@@ -10,10 +10,10 @@ import {Sound, Stage, System, UTILS} from '../index.js';
 class SystemAudio extends System {
 
     /**
-     * @typedef {Object} typedataaudio An audio data.
-     * @property {AudioBufferSourceNode} typeaudio.$audio The audio buffer source node.
-     * @property {GainNode} typeaudio.$gain The gain.
-     * @property {number} typeaudio.$startTime The start time of the audio in the audio context timeline.
+     * @typedef {Object} TypeDataAudio An audio data.
+     * @property {AudioBufferSourceNode} TypeDataAudio.$audio The audio buffer source node.
+     * @property {GainNode} TypeDataAudio.$gain The gain.
+     * @property {number} TypeDataAudio.$startTime The start time of the audio in the audio context timeline.
      * @private
      */
 
@@ -42,7 +42,7 @@ class SystemAudio extends System {
 
     /**
      * Stores the mapping between the playing sounds and their audio data.
-     * @type {Map<Sound, typedataaudio>}
+     * @type {Map<Sound, TypeDataAudio>}
      * @private
      */
     $mappingSoundsPlaying;

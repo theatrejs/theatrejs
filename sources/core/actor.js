@@ -2,8 +2,8 @@ import {Collider, Engine, Preloadable, Sound, Sprite, Stage, UTILS, Vector2, Vib
 
 /**
  * Abstract actors.
- * @template {string} [TAction=string] The generic type of the actions.
- * @template {string} [TState=string] The generic type of the states.
+ * @template {string} [TypeGenericAction=string] The generic type of the actions.
+ * @template {string} [TypeGenericState=string] The generic type of the states.
  *
  * @example
  *
@@ -12,16 +12,16 @@ import {Collider, Engine, Preloadable, Sound, Sprite, Stage, UTILS, Vector2, Vib
 class Actor extends Preloadable {
 
     /**
-     * @callback typelisteneraction An action listener.
-     * @param {TAction} $action The action to listen.
+     * @callback TypeListenerAction An action listener.
+     * @param {TypeGenericAction} $action The action to listen.
      * @protected
      *
      * @memberof Actor
      */
 
     /**
-     * @callback typelistenerstate A state listener.
-     * @param {TState} $state The state to listen.
+     * @callback TypeListenerState A state listener.
+     * @param {TypeGenericState} $state The state to listen.
      * @protected
      *
      * @memberof Actor
@@ -50,14 +50,14 @@ class Actor extends Preloadable {
 
     /**
      * Stores the action listeners.
-     * @type {Object<string, typelisteneraction>}
+     * @type {Object<string, TypeListenerAction>}
      * @private
      */
     $listenerActions;
 
     /**
      * Stores the state listeners.
-     * @type {Object<string, Array<typelistenerstate>>}
+     * @type {Object<string, Array<TypeListenerState>>}
      * @private
      */
     $listenersStates;
@@ -251,8 +251,8 @@ class Actor extends Preloadable {
 
     /**
      * Sets an action listener.
-     * @param {TAction} $action The action to listen.
-     * @param {typelisteneraction} $handler The listener to set.
+     * @param {TypeGenericAction} $action The action to listen.
+     * @param {TypeListenerAction} $handler The listener to set.
      * @returns {this}
      * @protected
      */
@@ -265,7 +265,7 @@ class Actor extends Preloadable {
 
     /**
      * Triggers a changing state on listeners.
-     * @param {TState} $state The changing state to trigger.
+     * @param {TypeGenericState} $state The changing state to trigger.
      * @returns {this}
      * @protected
      */
@@ -286,8 +286,8 @@ class Actor extends Preloadable {
 
     /**
      * Adds a state listener.
-     * @param {TState} $state The state to listen.
-     * @param {typelistenerstate} $handler The listener to add.
+     * @param {TypeGenericState} $state The state to listen.
+     * @param {TypeListenerState} $handler The listener to add.
      * @returns {this}
      * @public
      */
@@ -661,7 +661,7 @@ class Actor extends Preloadable {
 
     /**
      * Triggers an action.
-     * @param {TAction} $action The action to trigger.
+     * @param {TypeGenericAction} $action The action to trigger.
      * @returns {this}
      * @public
      */

@@ -10,20 +10,20 @@ import {AABB, Actor, COLLIDERTYPES, Stage, System, Vector2} from '../index.js';
 class SystemCollision extends System {
 
     /**
-     * @typedef {Array<Actor>} typepairactor A pair of actors.
+     * @typedef {Array<Actor>} TypePairActor A pair of actors.
      * @private
      */
 
     /**
      * Stores the current collision pairs.
-     * @type {Array<typepairactor>}
+     * @type {Array<TypePairActor>}
      * @private
      */
     $current;
 
     /**
      * Stores the previous collision pairs.
-     * @type {Array<typepairactor>}
+     * @type {Array<TypePairActor>}
      * @private
      */
     $previous;
@@ -74,15 +74,15 @@ class SystemCollision extends System {
     onTick({$stage}) {
 
         /**
-         * @typedef {Object} typepaircollision A pair of candidates for collision.
-         * @property {number} typepaircollision.$distance The manhattan distance between the two actors.
-         * @property {Actor} typepaircollision.$dynamic The first actor.
-         * @property {Actor} typepaircollision.$inert The second actor.
+         * @typedef {Object} TypePairCollision A pair of candidates for collision.
+         * @property {number} TypePairCollision.$distance The manhattan distance between the two actors.
+         * @property {Actor} TypePairCollision.$dynamic The first actor.
+         * @property {Actor} TypePairCollision.$inert The second actor.
          * @private
          */
 
         /**
-         * @type {Array<typepaircollision>}
+         * @type {Array<TypePairCollision>}
          */
         const pairs = [];
 

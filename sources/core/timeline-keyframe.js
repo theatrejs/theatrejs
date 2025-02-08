@@ -16,7 +16,7 @@ import {Timeline} from '../index.js';
 class TimelineKeyframe {
 
     /**
-     * @callback typehandlerenter A handler to execute when entering a keyframe.
+     * @callback TypeHandlerEnter A handler to execute when entering a keyframe.
      * @param {Timeline} $timeline The reference timeline.
      * @returns {void}
      * @protected
@@ -33,7 +33,7 @@ class TimelineKeyframe {
 
     /**
      * Stores the keyframe entering handler.
-     * @type {typehandlerenter}
+     * @type {TypeHandlerEnter}
      * @private
      */
     $onEnter;
@@ -57,7 +57,7 @@ class TimelineKeyframe {
 
     /**
      * Gets the keyframe entering handler.
-     * @type {typehandlerenter}
+     * @type {TypeHandlerEnter}
      * @public
      */
     get onEnter() {
@@ -79,7 +79,7 @@ class TimelineKeyframe {
      * Creates a new timeline keyframe.
      * @param {Object} $parameters The given parameters.
      * @param {string} [$parameters.$name] The name.
-     * @param {typehandlerenter} $parameters.$onEnter The keyframe entering handler.
+     * @param {TypeHandlerEnter} $parameters.$onEnter The keyframe entering handler.
      * @param {number} $parameters.$timecode The timecode.
      */
     constructor({$name, $onEnter, $timecode}) {

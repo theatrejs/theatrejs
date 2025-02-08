@@ -1,6 +1,6 @@
 /**
  * Creates state managers.
- * @template {any} T The generic type of the data state.
+ * @template {any} TypeGeneric The generic type of the data state.
  *
  * @example
  *
@@ -9,8 +9,8 @@
 class State {
 
     /**
-     * @callback typewatcherstate A state changing handler.
-     * @param {T} $state The new data state.
+     * @callback TypeWatcherState A state changing handler.
+     * @param {TypeGeneric} $state The new data state.
      * @returns {void}
      * @protected
      *
@@ -19,21 +19,21 @@ class State {
 
     /**
      * Stores the data state.
-     * @type {T}
+     * @type {TypeGeneric}
      * @private
      */
     $data;
 
     /**
      * Stores the state changing handlers.
-     * @type {Array<typewatcherstate>}
+     * @type {Array<TypeWatcherState>}
      * @private
      */
     $watchers;
 
     /**
      * Creates a new state manager.
-     * @param {T} $data The data state to store.
+     * @param {TypeGeneric} $data The data state to store.
      */
     constructor($data) {
 
@@ -43,7 +43,7 @@ class State {
 
     /**
      * Gets the data state.
-     * @returns {T}
+     * @returns {TypeGeneric}
      * @public
      */
     getState() {
@@ -53,7 +53,7 @@ class State {
 
     /**
      * Sets the data state.
-     * @param {T} $data The data state to set.
+     * @param {TypeGeneric} $data The data state to set.
      * @public
      */
     setState($data) {
@@ -77,7 +77,7 @@ class State {
 
     /**
      * Removes a watcher of the data state changes.
-     * @param {typewatcherstate} $handler The state changing handler to detach.
+     * @param {TypeWatcherState} $handler The state changing handler to detach.
      * @public
      */
     unwatchState($handler) {
@@ -90,7 +90,7 @@ class State {
 
     /**
      * Adds a watcher for the data state changes.
-     * @param {typewatcherstate} $handler The state changing handler to attach.
+     * @param {TypeWatcherState} $handler The state changing handler to attach.
      * @public
      */
     watchState($handler) {

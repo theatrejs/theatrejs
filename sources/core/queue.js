@@ -1,6 +1,6 @@
 /**
  * Creates queues.
- * @template {any} T The generic type of the items.
+ * @template {any} TypeGeneric The generic type of the items.
  *
  * @example
  *
@@ -19,7 +19,7 @@ class Queue {
 
     /**
      * Stores the items.
-     * @type {Array<T>}
+     * @type {Array<TypeGeneric>}
      * @private
      */
     items;
@@ -46,7 +46,7 @@ class Queue {
 
     /**
      * Pops an item.
-     * @returns {(T | undefined)}
+     * @returns {(TypeGeneric | undefined)}
      * @public
      */
     pop() {
@@ -56,7 +56,7 @@ class Queue {
 
     /**
      * Pushes an item.
-     * @param {T} $item The item to push.
+     * @param {TypeGeneric} $item The item to push.
      * @returns {this}
      * @public
      */

@@ -1,6 +1,6 @@
 /**
  * Creates finite state machines.
- * @template {string} T The generic type of the names of a state.
+ * @template {string} TypeGeneric The generic type of the names of a state.
  *
  * @example
  *
@@ -29,9 +29,9 @@
 class FiniteStateMachine {
 
     /**
-     * @callback typestatehandlerenter A state entering handler.
+     * @callback TypeStateHandlerEnter A state entering handler.
      * @param {Object} $parameters The given parameters.
-     * @param {T} $parameters.$previous The previous state.
+     * @param {TypeGeneric} $parameters.$previous The previous state.
      * @returns {void}
      * @protected
      *
@@ -39,10 +39,10 @@ class FiniteStateMachine {
      */
 
     /**
-     * @callback typestatehandlerleave A state leaving handler.
+     * @callback TypeStateHandlerLeave A state leaving handler.
      * @param {Object} $parameters The given parameters.
      * @param {number} $parameters.$timer The timer of the current state.
-     * @param {T} $parameters.$next The next state.
+     * @param {TypeGeneric} $parameters.$next The next state.
      * @returns {void}
      * @protected
      *
@@ -50,7 +50,7 @@ class FiniteStateMachine {
      */
 
     /**
-     * @callback typestatehandlertick A state updating handler.
+     * @callback TypeStateHandlerTick A state updating handler.
      * @param {Object} $parameters The given parameters.
      * @param {number} $parameters.$timetick The tick duration (in ms).
      * @param {number} $parameters.$timer The timer of the current state.
@@ -61,9 +61,9 @@ class FiniteStateMachine {
      */
 
     /**
-     * @callback typestatetransitioncondition A state transition condition.
+     * @callback TypeStateTransitionCondition A state transition condition.
      * @param {Object} $parameters The given parameters.
-     * @param {T} $parameters.$previous The previous state.
+     * @param {TypeGeneric} $parameters.$previous The previous state.
      * @param {number} $parameters.$timer The timer of the current state.
      * @returns {boolean}
      * @protected
@@ -72,21 +72,21 @@ class FiniteStateMachine {
      */
 
     /**
-     * @typedef {Object} typestatetransition A transition to a state.
-     * @property {typestatetransitioncondition} typestatetransition.$condition The condition to transition to given state.
-     * @property {T} typestatetransition.$state The given state to transition to.
+     * @typedef {Object} TypeStateTransition A transition to a state.
+     * @property {TypeStateTransitionCondition} TypeStateTransition.$condition The condition to transition to given state.
+     * @property {TypeGeneric} TypeStateTransition.$state The given state to transition to.
      * @protected
      *
      * @memberof FiniteStateMachine
      */
 
     /**
-     * @typedef {Object} typestate A state.
-     * @property {T} typestate.$state The name of the state.
-     * @property {typestatehandlerenter} [typestate.$onEnter] The handler to execute when entering the state.
-     * @property {typestatehandlerleave} [typestate.$onLeave] The handler to execute when leaving the state.
-     * @property {typestatehandlertick} [typestate.$onTick] The handler to execute when updating the state.
-     * @property {Array<typestatetransition>} [typestate.$transitions] The transitions to given states.
+     * @typedef {Object} TypeState A state.
+     * @property {TypeGeneric} TypeState.$state The name of the state.
+     * @property {TypeStateHandlerEnter} [TypeState.$onEnter] The handler to execute when entering the state.
+     * @property {TypeStateHandlerLeave} [TypeState.$onLeave] The handler to execute when leaving the state.
+     * @property {TypeStateHandlerTick} [TypeState.$onTick] The handler to execute when updating the state.
+     * @property {Array<TypeStateTransition>} [TypeState.$transitions] The transitions to given states.
      * @protected
      *
      * @memberof FiniteStateMachine
@@ -101,21 +101,21 @@ class FiniteStateMachine {
 
     /**
      * Stores the previous state.
-     * @type {typestate}
+     * @type {TypeState}
      * @private
      */
     $previous;
 
     /**
      * Stores the current state.
-     * @type {typestate}
+     * @type {TypeState}
      * @private
      */
     $state;
 
     /**
      * Stores the states.
-     * @type {Map<T, typestate>}
+     * @type {Map<TypeGeneric, TypeState>}
      * @private
      */
     $states;
@@ -129,7 +129,7 @@ class FiniteStateMachine {
 
     /**
      * Gets the name of the current state.
-     * @type {T}
+     * @type {TypeGeneric}
      * @public
      */
     get state() {
@@ -149,7 +149,7 @@ class FiniteStateMachine {
 
     /**
      * Creates a new finite state machine.
-     * @param {Array<typestate>} $data The representation of the finite state machine.
+     * @param {Array<TypeState>} $data The representation of the finite state machine.
      */
     constructor($data) {
 
@@ -165,7 +165,7 @@ class FiniteStateMachine {
 
     /**
      * Initiates the finite state machine.
-     * @param {T} $state The name of the state to initiate.
+     * @param {TypeGeneric} $state The name of the state to initiate.
      * @public
      */
     initiate($state) {

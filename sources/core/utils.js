@@ -4,9 +4,9 @@
 
 /**
  * Deduplicates the items of the given array (a new array is created).
- * @template {any} T The generic type of the values of the array.
- * @param {Array<T>} $array The array.
- * @returns {Array<T>}
+ * @template {any} TypeGeneric The generic type of the values of the array.
+ * @param {Array<TypeGeneric>} $array The array.
+ * @returns {Array<TypeGeneric>}
  *
  * @memberof module:UTILS
  */
@@ -17,10 +17,10 @@ function deduplicate($array) {
 
 /**
  * Extracts the given item from the given array.
- * @template {any} T The generic type of the values of the array.
- * @param {T} $item The item to remove.
- * @param {Array<T>} $array The array.
- * @returns {Array<T>}
+ * @template {any} TypeGeneric The generic type of the values of the array.
+ * @param {TypeGeneric} $item The item to remove.
+ * @param {Array<TypeGeneric>} $array The array.
+ * @returns {Array<TypeGeneric>}
  *
  * @memberof module:UTILS
  */
