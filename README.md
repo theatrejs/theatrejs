@@ -34,7 +34,7 @@ class Level1 extends Stage {
     }
 }
 
-const engine = new Engine({$container: document.body});
+const engine = new Engine();
 engine.initiate();
 engine.createStage(Level1);
 ```
