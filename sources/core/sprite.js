@@ -9,7 +9,7 @@ import {AABB, Vector2} from '../index.js';
  * const sprite = new Sprite({
  *
  *     $sizeTarget: new Vector2(32, 32),
- *     $textureColor: textureColor
+ *     $texture: texture
  * });
  *
  * @example
@@ -19,8 +19,7 @@ import {AABB, Vector2} from '../index.js';
  *
  *     $frameSource: new AABB(new Vector2(0, 0), new Vector2(1, 1)),
  *     $sizeTarget: new Vector2(32, 32),
- *     $textureColor: textureColor,
- *     $textureOpacity: textureOpacity
+ *     $texture: texture
  * });
  */
 class Sprite {
@@ -47,18 +46,11 @@ class Sprite {
     $sizeTarget;
 
     /**
-     * Stores the color texture source.
+     * Stores the texture source.
      * @type {string}
      * @private
      */
-    $textureColor;
-
-    /**
-     * Stores the opacity texture source.
-     * @type {string}
-     * @private
-     */
-    $textureOpacity;
+    $texture;
 
     /**
      * Gets the frame to use from the texture sources.
@@ -91,23 +83,13 @@ class Sprite {
     }
 
     /**
-     * Gets the color texture source.
+     * Gets the texture source.
      * @type {string}
      * @public
      */
-    get textureColor() {
+    get texture() {
 
-        return this.$textureColor;
-    }
-
-    /**
-     * Gets the opacity texture source.
-     * @type {string}
-     * @public
-     */
-    get textureOpacity() {
-
-        return this.$textureOpacity;
+        return this.$texture;
     }
 
     /**
@@ -115,15 +97,13 @@ class Sprite {
      * @param {Object} $parameters The given parameters.
      * @param {AABB} [$parameters.$frameSource] The frame to use from the texture sources (with values in [0, 1] ranges) (if not specified then the full texture is used).
      * @param {Vector2} $parameters.$sizeTarget The target size.
-     * @param {string} $parameters.$textureColor The color texture source.
-     * @param {string} [$parameters.$textureOpacity] The opacity texture source.
+     * @param {string} $parameters.$texture The texture source.
      */
-    constructor({$frameSource = new AABB(new Vector2(0, 0), new Vector2(1, 1)), $sizeTarget, $textureColor, $textureOpacity}) {
+    constructor({$frameSource = new AABB(new Vector2(0, 0), new Vector2(1, 1)), $sizeTarget, $texture}) {
 
         this.$frameSource = $frameSource;
         this.$sizeTarget = $sizeTarget;
-        this.$textureColor = $textureColor;
-        this.$textureOpacity = $textureOpacity;
+        this.$texture = $texture;
 
         this.$frameSourceSerialized = JSON.stringify([
 

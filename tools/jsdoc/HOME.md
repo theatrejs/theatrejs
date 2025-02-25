@@ -23,7 +23,7 @@ class Hero extends Actor {
     onCreate() {
         this.setSprite(new Sprite({
             $sizeTarget: new Vector2(16, 16),
-            $textureColor: textureHero
+            $texture: textureHero
         }));
     }
 }
@@ -54,7 +54,7 @@ class Hero extends FACTORIES.ActorWithPreloadables([FACTORIES.PreloadableTexture
     onCreate() {
         this.setSprite(new Sprite({
             $sizeTarget: new Vector2(16, 16),
-            $textureColor: textureHero
+            $texture: textureHero
         }));
     }
 }

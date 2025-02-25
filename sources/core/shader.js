@@ -46,20 +46,13 @@ class Shader {
 
         'precision highp float;' +
 
-        'uniform sampler2D uniformTextureColor;' +
-        'uniform sampler2D uniformTextureOpacity;' +
-        'uniform vec2 uniformTranslationPointOfView;' +
+        'uniform sampler2D uniformTexture;' +
 
         'varying vec2 varyingUvmapping;' +
 
         'void main(void) {' +
 
-            'vec4 colorTextureColor = texture2D(uniformTextureColor, varyingUvmapping);' +
-            'vec4 colorTextureOpacity = texture2D(uniformTextureOpacity, varyingUvmapping);' +
-
-            'float alpha = colorTextureColor.a * colorTextureOpacity.r;' +
-
-            'gl_FragColor = vec4(colorTextureColor.rgb, alpha);' +
+            'gl_FragColor = texture2D(uniformTexture, varyingUvmapping);' +
         '}'
     );
 
@@ -104,8 +97,7 @@ class Shader {
 
         'uniformAspect': 'vec2',
         'uniformSize': 'vec2',
-        'uniformTextureColor': 'sampler2D',
-        'uniformTextureOpacity': 'sampler2D',
+        'uniformTexture': 'sampler2D',
         'uniformTranslation': 'vec2',
         'uniformTranslationPointOfView': 'vec2'
     };

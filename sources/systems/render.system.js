@@ -21,22 +21,13 @@ class SystemRender extends System {
     static UNIT_TEXTURE_0 = 0;
 
     /**
-     * Stores the texture unit for the color textures.
+     * Stores the texture unit for the textures.
      * @type {1}
      * @public
      * @readonly
      * @static
      */
     static UNIT_TEXTURE_1 = 1;
-
-    /**
-     * Stores the texture unit for the opacity textures.
-     * @type {2}
-     * @public
-     * @readonly
-     * @static
-     */
-    static UNIT_TEXTURE_2 = 2;
 
     /**
      * Stores the common vertices positions of the sprites.
@@ -144,18 +135,11 @@ class SystemRender extends System {
     $shaderVertex;
 
     /**
-     * Stores the texture of the default color texture source.
+     * Stores the texture of the default texture source.
      * @type {WebGLTexture}
      * @private
      */
-    $textureColorDefault;
-
-    /**
-     * Stores the texture of the default opacity texture source.
-     * @type {WebGLTexture}
-     * @private
-     */
-    $textureOpacityDefault;
+    $textureDefault;
 
     /**
      * Creates a new render system.
@@ -381,8 +365,7 @@ class SystemRender extends System {
         this.$createBufferPositions();
         this.$createIndices();
 
-        this.$textureColorDefault = this.$createTextureDefault(new Vector3(127, 127, 127), SystemRender.UNIT_TEXTURE_1);
-        this.$textureOpacityDefault = this.$createTextureDefault(new Vector3(255, 255, 255), SystemRender.UNIT_TEXTURE_2);
+        this.$textureDefault = this.$createTextureDefault(new Vector3(127, 127, 127), SystemRender.UNIT_TEXTURE_1);
 
         window.addEventListener('beforeunload', this.$onBeforeUnload.bind(this));
     }
@@ -610,8 +593,7 @@ class SystemRender extends System {
             this.$context.deleteBuffer($buffer);
         });
 
-        this.$context.deleteTexture(this.$textureColorDefault);
-        this.$context.deleteTexture(this.$textureOpacityDefault);
+        this.$context.deleteTexture(this.$textureDefault);
 
         this.$cache.forEach(($texture) => {
 
@@ -763,34 +745,18 @@ class SystemRender extends System {
                 return;
             }
 
-            let textureColor = this.$textureColorDefault;
+            let texture = this.$textureDefault;
 
-            this.$prepareTexture($actor.sprite.textureColor, this.$context.TEXTURE0 + SystemRender.UNIT_TEXTURE_1);
+            this.$prepareTexture($actor.sprite.texture, this.$context.TEXTURE0 + SystemRender.UNIT_TEXTURE_1);
 
-            if (typeof this.$cache.get($actor.sprite.textureColor) !== 'undefined') {
+            if (typeof this.$cache.get($actor.sprite.texture) !== 'undefined') {
 
-                textureColor = this.$cache.get($actor.sprite.textureColor);
+                texture = this.$cache.get($actor.sprite.texture);
             }
 
             this.$context.activeTexture(this.$context.TEXTURE0 + SystemRender.UNIT_TEXTURE_1);
-            this.$context.bindTexture(this.$context.TEXTURE_2D, textureColor);
-            this.$sendUniform(Shader, 'uniformTextureColor', SystemRender.UNIT_TEXTURE_1);
-
-            let textureOpacity = this.$textureOpacityDefault;
-
-            if (typeof $actor.sprite.textureOpacity !== 'undefined') {
-
-                this.$prepareTexture($actor.sprite.textureOpacity, this.$context.TEXTURE0 + SystemRender.UNIT_TEXTURE_2);
-
-                if (typeof this.$cache.get($actor.sprite.textureOpacity) !== 'undefined') {
-
-                    textureOpacity = this.$cache.get($actor.sprite.textureOpacity);
-                }
-            }
-
-            this.$context.activeTexture(this.$context.TEXTURE0 + SystemRender.UNIT_TEXTURE_2);
-            this.$context.bindTexture(this.$context.TEXTURE_2D, textureOpacity);
-            this.$sendUniform(Shader, 'uniformTextureOpacity', SystemRender.UNIT_TEXTURE_2);
+            this.$context.bindTexture(this.$context.TEXTURE_2D, texture);
+            this.$sendUniform(Shader, 'uniformTexture', SystemRender.UNIT_TEXTURE_1);
 
             this.$sendUniform(Shader, 'uniformSize', [$actor.sprite.sizeTarget.x, $actor.sprite.sizeTarget.y]);
             this.$sendUniform(Shader, 'uniformTranslation', [Math.floor($actor.translation.x), Math.floor($actor.translation.y)]);
