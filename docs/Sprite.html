@@ -86,7 +86,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="core_sprite.js.html">core/sprite.js</a>, <a href="core_sprite.js.html#line26">line 26</a>
+        <a href="core_sprite.js.html">core/sprite.js</a>, <a href="core_sprite.js.html#line25">line 25</a>
     </li></ul></dd>
     
 
@@ -137,7 +137,7 @@
 const sprite = new Sprite({
 
     $sizeTarget: new Vector2(32, 32),
-    $textureColor: textureColor
+    $texture: texture
 });</code></pre>
 
     <pre class="prettyprint"><code>// full
@@ -145,8 +145,7 @@ const sprite = new Sprite({
 
     $frameSource: new AABB(new Vector2(0, 0), new Vector2(1, 1)),
     $sizeTarget: new Vector2(32, 32),
-    $textureColor: textureColor,
-    $textureOpacity: textureOpacity
+    $texture: texture
 });</code></pre>
 
 
@@ -277,7 +276,7 @@ const sprite = new Sprite({
 
         <tr>
             
-                <td class="name"><code>$parameters.$textureColor</code></td>
+                <td class="name"><code>$parameters.$texture</code></td>
             
 
             <td class="type">
@@ -302,41 +301,7 @@ const sprite = new Sprite({
 
             
 
-            <td class="description last">The color texture source.</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>$parameters.$textureOpacity</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last">The opacity texture source.</td>
+            <td class="description last">The texture source.</td>
         </tr>
 
     
@@ -397,7 +362,7 @@ const sprite = new Sprite({
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="core_sprite.js.html">core/sprite.js</a>, <a href="core_sprite.js.html#line68">line 68</a>
+        <a href="core_sprite.js.html">core/sprite.js</a>, <a href="core_sprite.js.html#line60">line 60</a>
     </li></ul></dd>
     
 
@@ -475,7 +440,7 @@ const sprite = new Sprite({
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="core_sprite.js.html">core/sprite.js</a>, <a href="core_sprite.js.html#line78">line 78</a>
+        <a href="core_sprite.js.html">core/sprite.js</a>, <a href="core_sprite.js.html#line70">line 70</a>
     </li></ul></dd>
     
 
@@ -553,7 +518,7 @@ const sprite = new Sprite({
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="core_sprite.js.html">core/sprite.js</a>, <a href="core_sprite.js.html#line88">line 88</a>
+        <a href="core_sprite.js.html">core/sprite.js</a>, <a href="core_sprite.js.html#line80">line 80</a>
     </li></ul></dd>
     
 
@@ -616,7 +581,7 @@ const sprite = new Sprite({
 
         
             
-<h4 class="name" id="textureColor"><span class="type-signature"></span>textureColor<span class="type-signature"> :string</span></h4>
+<h4 class="name" id="texture"><span class="type-signature"></span>texture<span class="type-signature"> :string</span></h4>
 
 
 
@@ -625,13 +590,13 @@ const sprite = new Sprite({
 <dl class="details">
     
     <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li>Gets the color texture source.</li></ul></dd>
+    <dd class="tag-description"><ul class="dummy"><li>Gets the texture source.</li></ul></dd>
     
 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="core_sprite.js.html">core/sprite.js</a>, <a href="core_sprite.js.html#line98">line 98</a>
+        <a href="core_sprite.js.html">core/sprite.js</a>, <a href="core_sprite.js.html#line90">line 90</a>
     </li></ul></dd>
     
 
@@ -671,85 +636,7 @@ const sprite = new Sprite({
 
 
 <div class="description usertext">
-    Gets the color texture source.
-</div>
-
-
-
-    <h5 class="h5-types">Type:</h5>
-    <ul>
-        <li>
-            
-<span class="param-type">string</span>
-
-
-
-        </li>
-    </ul>
-
-
-
-
-
-
-        
-            
-<h4 class="name" id="textureOpacity"><span class="type-signature"></span>textureOpacity<span class="type-signature"> :string</span></h4>
-
-
-
-
-
-<dl class="details">
-    
-    <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li>Gets the opacity texture source.</li></ul></dd>
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="core_sprite.js.html">core/sprite.js</a>, <a href="core_sprite.js.html#line108">line 108</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-<div class="description usertext">
-    Gets the opacity texture source.
+    Gets the texture source.
 </div>
 
 
@@ -792,7 +679,7 @@ const sprite = new Sprite({
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.3</a> on Sat Feb 08 2025 23:12:47 GMT+0000 (Coordinated Universal Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.3</a> on Tue Feb 25 2025 23:02:33 GMT+0000 (Coordinated Universal Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
