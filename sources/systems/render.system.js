@@ -335,6 +335,8 @@ class SystemRender extends System {
         this.$container.appendChild(this.$canvas);
 
         this.$resize();
+
+        window.addEventListener('click', this.$setFocus.bind(this));
     }
 
     /**
@@ -367,7 +369,7 @@ class SystemRender extends System {
 
         this.$textureDefault = this.$createTextureDefault(new Vector3(127, 127, 127), SystemRender.UNIT_TEXTURE_1);
 
-        window.addEventListener('beforeunload', this.$onBeforeUnload.bind(this));
+        window.addEventListener('beforeunload', this.$loseContext.bind(this));
     }
 
     /**
@@ -397,10 +399,10 @@ class SystemRender extends System {
     }
 
     /**
-     * Called when the scope is about to be unloaded.
+     * Loses the canvas context.
      * @private
      */
-    $onBeforeUnload() {
+    $loseContext() {
 
         if (this.$context instanceof WebGL2RenderingContext === false) {
 
@@ -581,10 +583,33 @@ class SystemRender extends System {
     }
 
     /**
+     * Sets the focus on the canvas element.
+     * @public
+     */
+    $setFocus() {
+
+        this.$canvas.setAttribute('tabindex', '0');
+        this.$canvas.focus();
+    }
+
+    /**
+     * Terminates the canvas.
+     * @private
+     */
+    $terminateCanvas() {
+
+        window.removeEventListener('click', this.$setFocus.bind(this));
+
+        this.$container.removeChild(this.$canvas);
+    }
+
+    /**
      * Terminates the canvas context.
      * @private
      */
     $terminateContext() {
+
+        window.removeEventListener('beforeunload', this.$loseContext.bind(this));
 
         this.$context.deleteBuffer(this.$bufferPosition);
 
@@ -702,12 +727,10 @@ class SystemRender extends System {
      */
     onTerminate() {
 
-        this.$terminateContext();
-
         this.$resizeOberver.disconnect();
-        this.$container.removeChild(this.$canvas);
 
-        window.removeEventListener('beforeunload', this.$onBeforeUnload.bind(this));
+        this.$terminateContext();
+        this.$terminateCanvas();
     }
 
     /**
