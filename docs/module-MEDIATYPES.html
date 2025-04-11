@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>core/engine.js - Documentation</title>
+    <title>MEDIATYPES - Documentation</title>
     
     
     <script src="scripts/prettify/prettify.js"></script>
@@ -37,467 +37,215 @@
 
 <div id="main">
     
-    <h1 class="page-title">core/engine.js</h1>
+    <h1 class="page-title">MEDIATYPES</h1>
     
 
     
 
 
 
+
+<section>
+
+<header>
     
-    <section>
-        <article>
-            <pre class="prettyprint source linenums"><code>import {Loop, MEDIATYPES, Stage, SystemActor, SystemAudio, SystemCollision, SystemInput, SystemRender, SystemVibration, UTILS, Vector2, Vector3} from '../index.js';
-
-/**
- * Creates game engines.
- *
- * @example
- *
- * const engine = new Engine({$color, $container, $resolution});
- * engine.initiate(60);
- *
- * await engine.preloadStage(SceneExample);
- *
- * engine.createStage(SceneExample);
- */
-class Engine {
-
-    /**
-     * Stores the rendering background color.
-     * @type {Vector3}
-     * @private
-     */
-    $color;
-
-    /**
-     * Stores the container.
-     * @type {HTMLElement}
-     * @private
-     */
-    $container;
-
-    /**
-     * Stores the loop.
-     * @type {Loop}
-     * @private
-     */
-    $loop;
-
-    /**
-     * Stores the next stage.
-     * @type {typeof Stage}
-     * @private
-     */
-    $next;
-
-    /**
-     * Stores the preloaded status of the assets.
-     * @type {Set&lt;string>}
-     * @private
-     */
-    $preloaded;
-
-    /**
-     * Stores the rendering resolution.
-     * @type {Vector2}
-     * @private
-     */
-    $resolution;
-
-    /**
-     * Stores the current stage.
-     * @type {Stage}
-     * @private
-     */
-    $stage;
-
-    /**
-     * Stores the current actor system.
-     * @type {SystemActor}
-     * @private
-     */
-    $systemActor;
-
-    /**
-     * Stores the current audio system.
-     * @type {SystemAudio}
-     * @private
-     */
-    $systemAudio;
-
-    /**
-     * Stores the current collision system.
-     * @type {SystemCollision}
-     * @private
-     */
-    $systemCollision;
-
-    /**
-     * Stores the current input system.
-     * @type {SystemInput}
-     * @private
-     */
-    $systemInput;
-
-    /**
-     * Stores the current render system.
-     * @type {SystemRender}
-     * @private
-     */
-    $systemRender;
-
-    /**
-     * Stores the current vibration system.
-     * @type {SystemVibration}
-     * @private
-     */
-    $systemVibration;
-
-    /**
-     * Stores the uuid.
-     * @type {string}
-     * @private
-     */
-    $uuid;
-
-    /**
-     * Gets the container.
-     * @type {HTMLElement}
-     * @public
-     */
-    get container() {
-
-        return this.$container;
-    }
-
-    /**
-     * Gets the current stage.
-     * @type {Stage}
-     * @public
-     */
-    get stage() {
-
-        return this.$stage;
-    }
-
-    /**
-     * Gets the uuid.
-     * @type {string}
-     * @public
-     */
-    get uuid() {
-
-        return this.$uuid;
-    }
-
-    /**
-     * Creates a new game engine.
-     * @param {Object} [$parameters] The given parameters.
-     * @param {Vector3} [$parameters.$color] The rendering background color to use.
-     * @param {HTMLElement} [$parameters.$container] The container for the game engine to create.
-     * @param {Vector2} [$parameters.$resolution] The rendering resolution to use.
-     */
-    constructor({$color = new Vector3(0, 0, 0), $container = document.body, $resolution = new Vector2(320, 240)} = {}) {
-
-        this.$color = $color;
-        this.$container = $container;
-        this.$resolution = $resolution;
-
-        this.$uuid = UTILS.uuid();
-
-        this.$loop = new Loop(this.tick.bind(this));
-        this.$preloaded = new Set();
-
-        this.$systemActor = new SystemActor();
-        this.$systemAudio = new SystemAudio();
-        this.$systemCollision = new SystemCollision();
-        this.$systemInput = new SystemInput({$container: this.$container});
-        this.$systemRender = new SystemRender({$color: this.$color, $container: this.$container, $resolution: this.$resolution});
-        this.$systemVibration = new SystemVibration();
-    }
-
-    /**
-     * Creates the given stage.
-     * @param {typeof Stage} $stage The stage to create.
-     * @private
-     */
-    $createStage($stage) {
-
-        this.$stage = new $stage(this);
-        this.$stage.onCreate();
-    }
-
-    /**
-     * Creates the given stage on the next tick update.
-     * @param {typeof Stage} $stage The stage to create on the next tick update.
-     * @public
-     */
-    createStage($stage) {
-
-        this.$next = $stage;
-    }
-
-    /**
-     * Gets the current input state value of the given digital input.
-     * @param {string} $input The event code of the given digital input.
-     * @returns {boolean}
-     * @public
-     */
-    getInput($input) {
-
-        return this.$systemInput.getInput($input);
-    }
-
-    /**
-     * Gets the current input state value of the given analog input.
-     * @param {string} $input The event code of the given analog input.
-     * @returns {number}
-     * @public
-     */
-    getInputAnalog($input) {
-
-        return this.$systemInput.getInputAnalog($input);
-    }
-
-    /**
-     * Gets the position in the current stage from the given clipped position in the screen.
-     * @param {Vector2} $vector The position in the screen (with values in [-1, 1] ranges).
-     * @returns {Vector2}
-     * @public
-     */
-    getTranslationFromScreen($vector) {
-
-        return this.$systemRender.getTranslationFromScreen(this.$stage, $vector);
-    }
-
-    /**
-     * Checks if the engine has loaded the given asset.
-     * @param {string} $asset The asset source.
-     * @returns {boolean}
-     * @public
-     */
-    hasAssetLoaded($asset) {
-
-        return this.$preloaded.has($asset) === true;
-    }
-
-    /**
-     * Initiates the engine.
-     * @param {number} [$tickrateMinimum] The minimum acceptable number of ticks per virtual second (in ticks/s).
-     * @public
-     */
-    initiate($tickrateMinimum = 60) {
-
-        this.$systemInput.initiate();
-        this.$systemActor.initiate();
-        this.$systemCollision.initiate();
-        this.$systemRender.initiate();
-        this.$systemAudio.initiate();
-        this.$systemVibration.initiate();
-
-        this.$loop.initiate($tickrateMinimum);
-    }
-
-    /**
-     * Preloads the assets of the given stage.
-     * @param {typeof Stage} $stage The stage to preload the assets from.
-     * @returns {Promise&lt;Array&lt;undefined | AudioBuffer | WebGLTexture>>}
-     * @public
-     */
-    preloadStage($stage) {
-
-        /**
-         * @type {Array&lt;Promise&lt;undefined | AudioBuffer | WebGLTexture>>}
-         */
-        const promises = [];
-
-        UTILS.deduplicate($stage.preloadables).forEach(($asset) => {
-
-            if (this.hasAssetLoaded($asset) === true) {
-
-                return;
-            }
-
-            this.$preloaded.add($asset);
-
-            if (this.$systemAudio.hasAssetLoaded($asset) === true) {
-
-                return;
-            }
-
-            if (this.$systemRender.hasAssetLoaded($asset) === true) {
-
-                return;
-            }
-
-            /**
-             * @type {Promise&lt;undefined | AudioBuffer | WebGLTexture>}
-             */
-            const promise = new Promise(($resolve) => {
-
-                fetch($asset)
-                .then(($content) => {
-
-                    const contenttype = $content.headers.get('Content-Type').toLowerCase();
-                    const mediatype = contenttype.split('/')[0];
-
-                    switch(mediatype) {
-
-                        case MEDIATYPES.AUDIO: {
-
-                            this.$systemAudio.loadAudio($content)
-                            .then(($bufferAudio) => {
-
-                                $resolve($bufferAudio);
-                            });
-
-                            break;
-                        }
-
-                        case MEDIATYPES.IMAGE: {
-
-                            this.$systemRender.loadTexture($content)
-                            .then(($texture) => {
-
-                                $resolve($texture);
-                            });
-
-                            break;
-                        }
-
-                        default: {
-
-                            $resolve(undefined);
-                        }
-                    }
-                });
-            });
-
-            promises.push(promise);
-        });
-
-        return Promise.all(promises);
-    }
-
-    /**
-     * Removes the native pointer display.
-     * @public
-     */
-    removePointerNative() {
-
-        return this.$systemRender.removePointerNative();
-    }
-
-    /**
-     * Sets the rendering background color.
-     * @param {Vector3} $color The rendering background color to set.
-     * @public
-     */
-    setColor($color) {
-
-        return this.$systemRender.setColor($color);
-    }
-
-    /**
-     * Sets the rendering resolution.
-     * @param {Vector2} $resolution The rendering resolution to set.
-     * @public
-     */
-    setResolution($resolution) {
-
-        return this.$systemRender.setResolution($resolution);
-    }
-
-    /**
-     * Terminates the engine (immediately) (must be used outside the lifecycle of this engine).
-     * @public
-     */
-    terminate() {
-
-        this.$loop.terminate();
-
-        this.$createStage(Stage);
-        this.tick(0);
-
-        this.$systemInput.terminate();
-        this.$systemActor.terminate();
-        this.$systemCollision.terminate();
-        this.$systemRender.terminate();
-        this.$systemAudio.terminate();
-        this.$systemVibration.terminate();
-
-        this.$preloaded = new Set();
-    }
-
-    /**
-     * Updates each system once.
-     * @param {number} $timetick The tick duration (in ms).
-     * @public
-     */
-    tick($timetick) {
-
-        if (typeof this.$next === typeof Stage) {
-
-            const stage = this.$next;
-
-            this.$next = undefined;
-
-            this.$createStage(stage);
-        }
-
-        if (typeof this.$stage === 'undefined') {
-
-            return;
-        }
-
-        this.$systemInput.tick({
-
-            $stage: this.$stage,
-            $timetick: $timetick
-        });
-
-        this.$systemActor.tick({
-
-            $stage: this.$stage,
-            $timetick: $timetick
-        });
-
-        this.$systemCollision.tick({
-
-            $stage: this.$stage,
-            $timetick: $timetick
-        });
-
-        this.$systemRender.tick({
-
-            $stage: this.$stage,
-            $timetick: $timetick
-        });
-
-        this.$systemAudio.tick({
-
-            $stage: this.$stage,
-            $timetick: $timetick
-        });
-
-        this.$systemVibration.tick({
-
-            $stage: this.$stage,
-            $timetick: $timetick
-        });
-    }
-}
-
-export {
-
-    Engine
-};
-
-export default Engine;
-</code></pre>
-        </article>
-    </section>
+        
+    
+</header>
+
+<article>
+    
+        <div class="container-overview">
+        
+            
+
+            
+        
+        </div>
+    
+
+    
+
+    
+
+    
+    
+    
+
+     
+
+    
+
+    
+        <h3 class="subsection-title">Members</h3>
+
+        
+            
+<h4 class="name" id=".AUDIO"><span class="type-signature type-signature-static, constant">(static, constant) </span>AUDIO<span class="type-signature"> :'audio'</span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>The audio media type.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="constants_mediatypes.js.html">constants/mediatypes.js</a>, <a href="constants_mediatypes.js.html#line12">line 12</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    The audio media type.
+</div>
+
+
+
+    <h5 class="h5-types">Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">'audio'</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id=".IMAGE"><span class="type-signature type-signature-static, constant">(static, constant) </span>IMAGE<span class="type-signature"> :'image'</span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>The image media type.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="constants_mediatypes.js.html">constants/mediatypes.js</a>, <a href="constants_mediatypes.js.html#line21">line 21</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    The image media type.
+</div>
+
+
+
+    <h5 class="h5-types">Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">'image'</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
 
 
 
