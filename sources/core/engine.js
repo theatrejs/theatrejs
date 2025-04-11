@@ -1,4 +1,4 @@
-import {CONTENTTYPES, Loop, Stage, SystemActor, SystemAudio, SystemCollision, SystemInput, SystemRender, SystemVibration, UTILS, Vector2, Vector3} from '../index.js';
+import {Loop, MEDIATYPES, Stage, SystemActor, SystemAudio, SystemCollision, SystemInput, SystemRender, SystemVibration, UTILS, Vector2, Vector3} from '../index.js';
 
 /**
  * Creates game engines.
@@ -290,29 +290,28 @@ class Engine {
                 fetch($asset)
                 .then(($content) => {
 
-                    const contentType = $content.headers.get('Content-Type');
+                    const contenttype = $content.headers.get('Content-Type').toLowerCase();
+                    const mediatype = contenttype.split('/')[0];
 
-                    switch(contentType) {
+                    switch(mediatype) {
 
-                        case CONTENTTYPES.IMAGE_JPEG:
-                        case CONTENTTYPES.IMAGE_PNG: {
-
-                            this.$systemRender.loadTexture($content)
-                            .then(($texture) => {
-
-                                $resolve($texture);
-                            });
-
-                            break;
-                        }
-
-                        case CONTENTTYPES.AUDIO_MPEG:
-                        case CONTENTTYPES.AUDIO_WAVE: {
+                        case MEDIATYPES.AUDIO: {
 
                             this.$systemAudio.loadAudio($content)
                             .then(($bufferAudio) => {
 
                                 $resolve($bufferAudio);
+                            });
+
+                            break;
+                        }
+
+                        case MEDIATYPES.IMAGE: {
+
+                            this.$systemRender.loadTexture($content)
+                            .then(($texture) => {
+
+                                $resolve($texture);
                             });
 
                             break;

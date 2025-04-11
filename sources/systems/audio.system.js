@@ -81,13 +81,13 @@ class SystemAudio extends System {
         const promise = new Promise(($resolve) => {
 
             $content.arrayBuffer()
-            .then(($bufferArray) => (this.$context.decodeAudioData($bufferArray))
+            .then(($bufferArray) => (this.$context.decodeAudioData($bufferArray)))
             .then(($bufferAudio) => {
 
                 this.$cache.set($content.url, $bufferAudio);
 
                 $resolve($bufferAudio);
-            }));
+            });
         });
 
         return promise;

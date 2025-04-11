@@ -2,6 +2,7 @@ export * as COLLIDERTYPES from './constants/collidertypes.js';
 export * as CONTENTTYPES from './constants/contenttypes.js';
 export * as EVENTCODES from './constants/eventcodes.js';
 export * as MATHEMATICS from './constants/mathematics.js';
+export * as MEDIATYPES from './constants/mediatypes.js';
 
 export {Preloadable} from './core/preloadable.js';
 
