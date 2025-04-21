@@ -30,7 +30,6 @@
 *.pdf binary
 *.png binary
 *.rar binary
-*.svg binary
 *.tar binary
 *.tiff binary
 *.ttf binary
