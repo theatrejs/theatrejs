@@ -16,7 +16,7 @@ class SystemVibration extends System {
      * @readonly
      * @static
      */
-    static DELAYVIBRATIONEND = 1000;
+    static DELAY_VIBRATION_END = 1000;
 
     /**
      * Stores the mapping between the playing vibrations and their elapsed time.
@@ -49,7 +49,7 @@ class SystemVibration extends System {
      */
     onTerminate() {
 
-        window.dispatchEvent(new EventGamepadDigital('gamepadvibrate', EVENTCODES.GAMEPAD_XBOX.VIBRATE_END));
+        window.dispatchEvent(new EventGamepadDigital('gamepadvibrate', EVENTCODES.GAMEPAD_STANDARD.VIBRATE_END));
     }
 
     /**
@@ -121,9 +121,9 @@ class SystemVibration extends System {
             intensityFrequencyLow = Math.max(intensityFrequencyLow, $vibration.intensityFrequencyLow);
         });
 
-        window.dispatchEvent(new EventGamepad('gamepadvibrate', EVENTCODES.GAMEPAD_XBOX.VIBRATE_START, new Vibration({
+        window.dispatchEvent(new EventGamepad('gamepadvibrate', EVENTCODES.GAMEPAD_STANDARD.VIBRATE_START, new Vibration({
 
-            $duration: SystemVibration.DELAYVIBRATIONEND,
+            $duration: SystemVibration.DELAY_VIBRATION_END,
             $intensityFrequencyHigh: intensityFrequencyHigh,
             $intensityFrequencyLow: intensityFrequencyLow
         })));

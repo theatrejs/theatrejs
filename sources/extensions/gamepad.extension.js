@@ -1,4 +1,4 @@
-import {EventGamepad, EventGamepadAnalog, EventGamepadDigital} from '../index.js';
+import {EVENTCODES, EventGamepad, EventGamepadAnalog, EventGamepadDigital} from '../index.js';
 
 /**
  * The ordered list of the axes event codes of the gamepad.
@@ -8,10 +8,10 @@ import {EventGamepad, EventGamepadAnalog, EventGamepadDigital} from '../index.js
  */
 const $GAMEPAD_AXES = [
 
-    ['StickLeftLeft', 'StickLeftRight'],
-    ['StickLeftUp', 'StickLeftDown'],
-    ['StickRightLeft', 'StickRightRight'],
-    ['StickRightUp', 'StickRightDown']
+    [EVENTCODES.GAMEPAD_STANDARD.STICK_LEFT_LEFT, EVENTCODES.GAMEPAD_STANDARD.STICK_LEFT_RIGHT],
+    [EVENTCODES.GAMEPAD_STANDARD.STICK_LEFT_UP, EVENTCODES.GAMEPAD_STANDARD.STICK_LEFT_DOWN],
+    [EVENTCODES.GAMEPAD_STANDARD.STICK_RIGHT_LEFT, EVENTCODES.GAMEPAD_STANDARD.STICK_RIGHT_RIGHT],
+    [EVENTCODES.GAMEPAD_STANDARD.STICK_RIGHT_UP, EVENTCODES.GAMEPAD_STANDARD.STICK_RIGHT_DOWN]
 ];
 
 /**
@@ -22,23 +22,23 @@ const $GAMEPAD_AXES = [
  */
 const $GAMEPAD_BUTTONS = [
 
-    'ClusterRightButtonBottom',
-    'ClusterRightButtonRight',
-    'ClusterRightButtonLeft',
-    'ClusterRightButtonTop',
-    'ClusterFrontButtonTopLeft',
-    'ClusterFrontButtonTopRight',
-    'ClusterFrontButtonBottomLeft',
-    'ClusterFrontButtonBottomRight',
-    'ClusterCenterButtonLeft',
-    'ClusterCenterButtonRight',
-    'StickLeftButton',
-    'StickRightButton',
-    'ClusterLeftButtonTop',
-    'ClusterLeftButtonBottom',
-    'ClusterLeftButtonLeft',
-    'ClusterLeftButtonRight',
-    'ClusterCenterButtonCenter'
+    EVENTCODES.GAMEPAD_STANDARD.CLUSTER_RIGHT_BUTTON_BOTTOM,
+    EVENTCODES.GAMEPAD_STANDARD.CLUSTER_RIGHT_BUTTON_RIGHT,
+    EVENTCODES.GAMEPAD_STANDARD.CLUSTER_RIGHT_BUTTON_LEFT,
+    EVENTCODES.GAMEPAD_STANDARD.CLUSTER_RIGHT_BUTTON_TOP,
+    EVENTCODES.GAMEPAD_STANDARD.CLUSTER_FRONT_BUTTON_TOP_LEFT,
+    EVENTCODES.GAMEPAD_STANDARD.CLUSTER_FRONT_BUTTON_TOP_RIGHT,
+    EVENTCODES.GAMEPAD_STANDARD.CLUSTER_FRONT_BUTTON_BOTTOM_LEFT,
+    EVENTCODES.GAMEPAD_STANDARD.CLUSTER_FRONT_BUTTON_BOTTOM_RIGHT,
+    EVENTCODES.GAMEPAD_STANDARD.CLUSTER_CENTER_BUTTON_LEFT,
+    EVENTCODES.GAMEPAD_STANDARD.CLUSTER_CENTER_BUTTON_RIGHT,
+    EVENTCODES.GAMEPAD_STANDARD.STICK_LEFT_BUTTON,
+    EVENTCODES.GAMEPAD_STANDARD.STICK_RIGHT_BUTTON,
+    EVENTCODES.GAMEPAD_STANDARD.CLUSTER_LEFT_BUTTON_TOP,
+    EVENTCODES.GAMEPAD_STANDARD.CLUSTER_LEFT_BUTTON_BOTTOM,
+    EVENTCODES.GAMEPAD_STANDARD.CLUSTER_LEFT_BUTTON_LEFT,
+    EVENTCODES.GAMEPAD_STANDARD.CLUSTER_LEFT_BUTTON_RIGHT,
+    EVENTCODES.GAMEPAD_STANDARD.CLUSTER_CENTER_BUTTON_CENTER
 ];
 
 /**
@@ -176,7 +176,7 @@ class ExtensionGamepad {
 
         this.$indexLastConnected = $event.gamepad.index;
 
-        window.dispatchEvent(new EventGamepadDigital('gamepadconnect', 'Connected'));
+        window.dispatchEvent(new EventGamepadDigital('gamepadconnect', EVENTCODES.GAMEPAD_STANDARD.CONNECTED));
     }
 
     /**
@@ -203,7 +203,7 @@ class ExtensionGamepad {
 
         this.$indexLastConnected = undefined;
 
-        window.dispatchEvent(new EventGamepadDigital('gamepadconnect', 'Disconnected'));
+        window.dispatchEvent(new EventGamepadDigital('gamepadconnect', EVENTCODES.GAMEPAD_STANDARD.DISCONNECTED));
     }
 
     /**
@@ -232,7 +232,7 @@ class ExtensionGamepad {
         }
 
         if ($event instanceof EventGamepadDigital
-        && $event.code === 'VibrateEnd') {
+        && $event.code === EVENTCODES.GAMEPAD_STANDARD.VIBRATE_END) {
 
             gamepad.vibrationActuator.reset();
 
@@ -240,7 +240,7 @@ class ExtensionGamepad {
         }
 
         if ($event instanceof EventGamepad
-        && $event.code === 'VibrateStart') {
+        && $event.code === EVENTCODES.GAMEPAD_STANDARD.VIBRATE_START) {
 
             gamepad.vibrationActuator.playEffect('dual-rumble', {
 
