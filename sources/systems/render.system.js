@@ -1,4 +1,4 @@
-import {Shader, Sprite, Stage, System, Vector2, Vector3} from '../index.js';
+import {EVENTTYPES, Shader, Sprite, Stage, System, Vector2, Vector3} from '../index.js';
 
 /**
  * Creates render systems.
@@ -336,7 +336,7 @@ class SystemRender extends System {
 
         this.$resize();
 
-        window.addEventListener('click', this.$setFocus.bind(this));
+        window.addEventListener(EVENTTYPES.POINTER.CLICK, this.$setFocus.bind(this));
     }
 
     /**
@@ -369,7 +369,7 @@ class SystemRender extends System {
 
         this.$textureDefault = this.$createTextureDefault(new Vector3(127, 127, 127), SystemRender.UNIT_TEXTURE_1);
 
-        window.addEventListener('beforeunload', this.$loseContext.bind(this));
+        window.addEventListener(EVENTTYPES.WINDOW.BEFORE_UNLOAD, this.$loseContext.bind(this));
     }
 
     /**
@@ -598,7 +598,7 @@ class SystemRender extends System {
      */
     $terminateCanvas() {
 
-        window.removeEventListener('click', this.$setFocus.bind(this));
+        window.removeEventListener(EVENTTYPES.POINTER.CLICK, this.$setFocus.bind(this));
 
         this.$container.removeChild(this.$canvas);
     }
@@ -609,7 +609,7 @@ class SystemRender extends System {
      */
     $terminateContext() {
 
-        window.removeEventListener('beforeunload', this.$loseContext.bind(this));
+        window.removeEventListener(EVENTTYPES.WINDOW.BEFORE_UNLOAD, this.$loseContext.bind(this));
 
         this.$context.deleteBuffer(this.$bufferPosition);
 
