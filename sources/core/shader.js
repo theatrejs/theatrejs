@@ -1,3 +1,5 @@
+import {SHADER_PARAMETER_TYPES} from '../index.js';
+
 /**
  * Static default shader sources.
  *
@@ -9,14 +11,14 @@
 class Shader {
 
     /**
-     * @typedef {('vec2' | 'vec3')} TypeTypeAttribute A type of attribute.
+     * @typedef {(SHADER_PARAMETER_TYPES.VECTOR_2 | SHADER_PARAMETER_TYPES.VECTOR_3)} TypeTypeAttribute A type of attribute.
      * @protected
      *
      * @memberof Shader
      */
 
     /**
-     * @typedef {('bool' | 'bool[]' | 'float' | 'float[]' | 'int' | 'int[]' | 'mat4' | 'mat4[]' | 'sampler2D' | 'vec2' | 'vec2[]' | 'vec3' | 'vec3[]')} TypeTypeUniform A type of uniform.
+     * @typedef {(SHADER_PARAMETER_TYPES.BOOLEAN | SHADER_PARAMETER_TYPES.ARRAY_BOOLEAN | SHADER_PARAMETER_TYPES.FLOAT | SHADER_PARAMETER_TYPES.ARRAY_FLOAT | SHADER_PARAMETER_TYPES.INTEGER | SHADER_PARAMETER_TYPES.ARRAY_INTEGER | SHADER_PARAMETER_TYPES.MATRIX_4 | SHADER_PARAMETER_TYPES.ARRAY_MATRIX_4 | SHADER_PARAMETER_TYPES.SAMPLER_2D | SHADER_PARAMETER_TYPES.VECTOR_2 | SHADER_PARAMETER_TYPES.ARRAY_VECTOR_2 | SHADER_PARAMETER_TYPES.VECTOR_3 | SHADER_PARAMETER_TYPES.ARRAY_VECTOR_3)} TypeTypeUniform A type of uniform.
      * @protected
      *
      * @memberof Shader
@@ -31,8 +33,8 @@ class Shader {
      */
     static attributes = {
 
-        'attributePosition': 'vec2',
-        'attributeUvmapping': 'vec2'
+        'attributePosition': SHADER_PARAMETER_TYPES.VECTOR_2,
+        'attributeUvmapping': SHADER_PARAMETER_TYPES.VECTOR_2
     };
 
     /**
@@ -95,11 +97,11 @@ class Shader {
      */
     static uniforms = {
 
-        'uniformAspect': 'vec2',
-        'uniformSize': 'vec2',
-        'uniformTexture': 'sampler2D',
-        'uniformTranslation': 'vec2',
-        'uniformTranslationPointOfView': 'vec2'
+        'uniformAspect': SHADER_PARAMETER_TYPES.VECTOR_2,
+        'uniformSize': SHADER_PARAMETER_TYPES.VECTOR_2,
+        'uniformTexture': SHADER_PARAMETER_TYPES.SAMPLER_2D,
+        'uniformTranslation': SHADER_PARAMETER_TYPES.VECTOR_2,
+        'uniformTranslationPointOfView': SHADER_PARAMETER_TYPES.VECTOR_2
     };
 }
 

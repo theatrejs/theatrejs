@@ -1,4 +1,4 @@
-import {EVENT_TYPES, Shader, Sprite, Stage, System, Vector2, Vector3} from '../index.js';
+import {EVENT_TYPES, SHADER_PARAMETER_TYPES, Shader, Sprite, Stage, System, Vector2, Vector3} from '../index.js';
 
 /**
  * Creates render systems.
@@ -485,7 +485,7 @@ class SystemRender extends System {
 
         switch (type) {
 
-            case 'vec2': {
+            case SHADER_PARAMETER_TYPES.VECTOR_2: {
 
                 this.$context.bindBuffer(this.$context.ARRAY_BUFFER, $value);
                 const location = this.$locationsAttribute[$name];
@@ -495,7 +495,7 @@ class SystemRender extends System {
                 break;
             }
 
-            case 'vec3': {
+            case SHADER_PARAMETER_TYPES.VECTOR_3: {
 
                 this.$context.bindBuffer(this.$context.ARRAY_BUFFER, $value);
                 const location = this.$locationsAttribute[$name];
@@ -525,55 +525,55 @@ class SystemRender extends System {
 
         switch (type) {
 
-            case 'bool':
-            case 'int':
-            case 'sampler2D': {
+            case SHADER_PARAMETER_TYPES.BOOLEAN:
+            case SHADER_PARAMETER_TYPES.INTEGER:
+            case SHADER_PARAMETER_TYPES.SAMPLER_2D: {
 
                 this.$context.uniform1i(this.$locationsUniform[$name], $value);
 
                 break;
             }
 
-            case 'bool[]':
-            case 'int[]': {
+            case SHADER_PARAMETER_TYPES.ARRAY_BOOLEAN:
+            case SHADER_PARAMETER_TYPES.ARRAY_INTEGER: {
 
                 this.$context.uniform1iv(this.$locationsUniform[$name], $value);
 
                 break;
             }
 
-            case 'float': {
+            case SHADER_PARAMETER_TYPES.FLOAT: {
 
                 this.$context.uniform1f(this.$locationsUniform[$name], $value);
 
                 break;
             }
 
-            case 'float[]': {
+            case SHADER_PARAMETER_TYPES.ARRAY_FLOAT: {
 
                 this.$context.uniform1fv(this.$locationsUniform[$name], $value);
 
                 break;
             }
 
-            case 'mat4':
-            case 'mat4[]': {
+            case SHADER_PARAMETER_TYPES.MATRIX_4:
+            case SHADER_PARAMETER_TYPES.ARRAY_MATRIX_4: {
 
                 this.$context.uniformMatrix4fv(this.$locationsUniform[$name], false, $value);
 
                 break;
             }
 
-            case 'vec2':
-            case 'vec2[]': {
+            case SHADER_PARAMETER_TYPES.VECTOR_2:
+            case SHADER_PARAMETER_TYPES.ARRAY_VECTOR_2: {
 
                 this.$context.uniform2fv(this.$locationsUniform[$name], $value);
 
                 break;
             }
 
-            case 'vec3':
-            case 'vec3[]': {
+            case SHADER_PARAMETER_TYPES.VECTOR_3:
+            case SHADER_PARAMETER_TYPES.ARRAY_VECTOR_3: {
 
                 this.$context.uniform3fv(this.$locationsUniform[$name], $value);
 
