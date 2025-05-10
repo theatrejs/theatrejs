@@ -3,7 +3,7 @@
  */
 
 /**
- * The dynamic collider type.
+ * The 'dynamic' collider type.
  * @type {'DYNAMIC'}
  * @constant
  *
@@ -12,7 +12,7 @@
 const DYNAMIC = 'DYNAMIC';
 
 /**
- * The kinetic collider type.
+ * The 'kinetic' collider type.
  * @type {'KINETIC'}
  * @constant
  *
@@ -21,7 +21,7 @@ const DYNAMIC = 'DYNAMIC';
 const KINETIC = 'KINETIC';
 
 /**
- * The static collider type.
+ * The 'static' collider type.
  * @type {'STATIC'}
  * @constant
  *

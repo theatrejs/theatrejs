@@ -3,7 +3,7 @@
  */
 
 /**
- * The audio media type.
+ * The 'audio' media type.
  * @type {'audio'}
  * @constant
  *
@@ -12,7 +12,7 @@
 const AUDIO = 'audio';
 
 /**
- * The image media type.
+ * The 'image' media type.
  * @type {'image'}
  * @constant
  *

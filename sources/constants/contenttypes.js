@@ -3,7 +3,7 @@
  */
 
 /**
- * The audio/mpeg Content-Type.
+ * The 'audio/mpeg' Content-Type.
  * @type {'audio/mpeg'}
  * @constant
  *
@@ -12,7 +12,7 @@
 const AUDIO_MPEG = 'audio/mpeg';
 
 /**
- * The audio/wave Content-Type.
+ * The 'audio/wave' Content-Type.
  * @type {'audio/wave'}
  * @constant
  *
@@ -21,7 +21,7 @@ const AUDIO_MPEG = 'audio/mpeg';
 const AUDIO_WAVE = 'audio/wave';
 
 /**
- * The image/jpeg Content-Type.
+ * The 'image/jpeg' Content-Type.
  * @type {'image/jpeg'}
  * @constant
  *
@@ -30,7 +30,7 @@ const AUDIO_WAVE = 'audio/wave';
 const IMAGE_JPEG = 'image/jpeg';
 
 /**
- * The image/png Content-Type.
+ * The 'image/png' Content-Type.
  * @type {'image/png'}
  * @constant
  *
