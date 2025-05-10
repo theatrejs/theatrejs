@@ -1,4 +1,4 @@
-import {EVENTTYPES} from '../index.js';
+import {EVENT_TYPES} from '../index.js';
 
 /**
  * Creates gamepad analog events.
@@ -45,7 +45,7 @@ class EventGamepadAnalog extends Event {
 
     /**
      * Creates a new gamepad analog event.
-     * @param {(EVENTTYPES.GAMEPAD.GAMEPAD_ANALOG)} $type The event type.
+     * @param {(EVENT_TYPES.GAMEPAD.GAMEPAD_ANALOG)} $type The event type.
      * @param {string} $code The event code.
      * @param {number} $value The analog value.
      */

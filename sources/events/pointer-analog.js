@@ -1,4 +1,4 @@
-import {EVENTTYPES} from '../index.js';
+import {EVENT_TYPES} from '../index.js';
 
 /**
  * Creates pointer analog events.
@@ -45,7 +45,7 @@ class EventPointerAnalog extends Event {
 
     /**
      * Creates a new pointer analog event.
-     * @param {(EVENTTYPES.POINTER.POINTER_ANALOG)} $type The event type.
+     * @param {(EVENT_TYPES.POINTER.POINTER_ANALOG)} $type The event type.
      * @param {string} $code The event code.
      * @param {number} $value The analog value.
      */

@@ -1,9 +1,9 @@
-export * as COLLIDERTYPES from './constants/collidertypes.js';
-export * as CONTENTTYPES from './constants/contenttypes.js';
-export * as EVENTCODES from './constants/eventcodes.js';
-export * as EVENTTYPES from './constants/eventtypes.js';
+export * as COLLIDER_TYPES from './constants/collider-types.js';
+export * as CONTENT_TYPES from './constants/content-types.js';
+export * as EVENT_CODES from './constants/event-codes.js';
+export * as EVENT_TYPES from './constants/event-types.js';
 export * as MATHEMATICS from './constants/mathematics.js';
-export * as MEDIATYPES from './constants/mediatypes.js';
+export * as MEDIA_TYPES from './constants/media-types.js';
 
 export {Preloadable} from './core/preloadable.js';
 

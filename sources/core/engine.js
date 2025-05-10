@@ -1,4 +1,4 @@
-import {Loop, MEDIATYPES, Stage, SystemActor, SystemAudio, SystemCollision, SystemInput, SystemRender, SystemVibration, UTILS, Vector2, Vector3} from '../index.js';
+import {Loop, MEDIA_TYPES, Stage, SystemActor, SystemAudio, SystemCollision, SystemInput, SystemRender, SystemVibration, UTILS, Vector2, Vector3} from '../index.js';
 
 /**
  * Creates game engines.
@@ -295,7 +295,7 @@ class Engine {
 
                     switch(mediatype) {
 
-                        case MEDIATYPES.AUDIO: {
+                        case MEDIA_TYPES.AUDIO: {
 
                             this.$systemAudio.loadAudio($content)
                             .then(($bufferAudio) => {
@@ -306,7 +306,7 @@ class Engine {
                             break;
                         }
 
-                        case MEDIATYPES.IMAGE: {
+                        case MEDIA_TYPES.IMAGE: {
 
                             this.$systemRender.loadTexture($content)
                             .then(($texture) => {

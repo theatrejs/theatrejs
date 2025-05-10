@@ -1,4 +1,4 @@
-import {EVENTTYPES} from '../index.js';
+import {EVENT_TYPES} from '../index.js';
 
 /**
  * Creates gamepad digital events.
@@ -28,7 +28,7 @@ class EventGamepadDigital extends Event {
 
     /**
      * Creates a new gamepad digital event.
-     * @param {(EVENTTYPES.GAMEPAD.GAMEPAD_CONNECT | EVENTTYPES.GAMEPAD.GAMEPAD_DOWN | EVENTTYPES.GAMEPAD.GAMEPAD_UP | EVENTTYPES.GAMEPAD.GAMEPAD_VIBRATE)} $type The event type.
+     * @param {(EVENT_TYPES.GAMEPAD.GAMEPAD_CONNECT | EVENT_TYPES.GAMEPAD.GAMEPAD_DOWN | EVENT_TYPES.GAMEPAD.GAMEPAD_UP | EVENT_TYPES.GAMEPAD.GAMEPAD_VIBRATE)} $type The event type.
      * @param {string} $code The event code.
      */
     constructor($type, $code) {

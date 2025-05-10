@@ -1,4 +1,4 @@
-import {AABB, Actor, COLLIDERTYPES, Stage, System, Vector2} from '../index.js';
+import {AABB, Actor, COLLIDER_TYPES, Stage, System, Vector2} from '../index.js';
 
 /**
  * Creates collision systems.
@@ -110,21 +110,21 @@ class SystemCollision extends System {
 
             switch ($actor.collider.type) {
 
-                case COLLIDERTYPES.DYNAMIC: {
+                case COLLIDER_TYPES.DYNAMIC: {
 
                     dynamics.push($actor);
 
                     break;
                 }
 
-                case COLLIDERTYPES.KINETIC: {
+                case COLLIDER_TYPES.KINETIC: {
 
                     kinetics.push($actor);
 
                     break;
                 }
 
-                case COLLIDERTYPES.STATIC: {
+                case COLLIDER_TYPES.STATIC: {
 
                     statics.push($actor);
 

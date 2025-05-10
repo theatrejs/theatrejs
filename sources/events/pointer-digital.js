@@ -1,4 +1,4 @@
-import {EVENTTYPES} from '../index.js';
+import {EVENT_TYPES} from '../index.js';
 
 /**
  * Creates pointer digital events.
@@ -28,7 +28,7 @@ class EventPointerDigital extends Event {
 
     /**
      * Creates a new pointer digital event.
-     * @param {(EVENTTYPES.POINTER.POINTER_DOWN | EVENTTYPES.POINTER.POINTER_UP)} $type The event type.
+     * @param {(EVENT_TYPES.POINTER.POINTER_DOWN | EVENT_TYPES.POINTER.POINTER_UP)} $type The event type.
      * @param {string} $code The event code.
      */
     constructor($type, $code) {

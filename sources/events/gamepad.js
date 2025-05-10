@@ -1,4 +1,4 @@
-import {EVENTTYPES, Vibration} from '../index.js';
+import {EVENT_TYPES, Vibration} from '../index.js';
 
 /**
  * Creates gamepad events.
@@ -45,7 +45,7 @@ class EventGamepad extends Event {
 
     /**
      * Creates a new gamepad event.
-     * @param {(EVENTTYPES.GAMEPAD.GAMEPAD_VIBRATE)} $type The event type.
+     * @param {(EVENT_TYPES.GAMEPAD.GAMEPAD_VIBRATE)} $type The event type.
      * @param {string} $code The event code.
      * @param {Vibration} $vibration The vibration.
      */

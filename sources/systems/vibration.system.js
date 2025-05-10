@@ -1,4 +1,4 @@
-import {EVENTCODES, EVENTTYPES, EventGamepad, EventGamepadDigital, Stage, System, UTILS, Vibration} from '../index.js';
+import {EVENT_CODES, EVENT_TYPES, EventGamepad, EventGamepadDigital, Stage, System, UTILS, Vibration} from '../index.js';
 
 /**
  * Creates vibration systems.
@@ -49,7 +49,7 @@ class SystemVibration extends System {
      */
     onTerminate() {
 
-        window.dispatchEvent(new EventGamepadDigital(EVENTTYPES.GAMEPAD.GAMEPAD_VIBRATE, EVENTCODES.GAMEPAD_STANDARD.VIBRATE_END));
+        window.dispatchEvent(new EventGamepadDigital(EVENT_TYPES.GAMEPAD.GAMEPAD_VIBRATE, EVENT_CODES.GAMEPAD_STANDARD.VIBRATE_END));
     }
 
     /**
@@ -121,7 +121,7 @@ class SystemVibration extends System {
             intensityFrequencyLow = Math.max(intensityFrequencyLow, $vibration.intensityFrequencyLow);
         });
 
-        window.dispatchEvent(new EventGamepad(EVENTTYPES.GAMEPAD.GAMEPAD_VIBRATE, EVENTCODES.GAMEPAD_STANDARD.VIBRATE_START, new Vibration({
+        window.dispatchEvent(new EventGamepad(EVENT_TYPES.GAMEPAD.GAMEPAD_VIBRATE, EVENT_CODES.GAMEPAD_STANDARD.VIBRATE_START, new Vibration({
 
             $duration: SystemVibration.DELAY_VIBRATION_END,
             $intensityFrequencyHigh: intensityFrequencyHigh,

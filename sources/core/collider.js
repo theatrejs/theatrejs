@@ -1,4 +1,4 @@
-import {AABB, COLLIDERTYPES} from '../index.js';
+import {AABB, COLLIDER_TYPES} from '../index.js';
 
 /**
  * Creates colliders.
@@ -10,7 +10,7 @@ import {AABB, COLLIDERTYPES} from '../index.js';
 class Collider {
 
     /**
-     * @typedef {(COLLIDERTYPES.DYNAMIC | COLLIDERTYPES.KINETIC | COLLIDERTYPES.STATIC)} TypeCollider A collider type.
+     * @typedef {(COLLIDER_TYPES.DYNAMIC | COLLIDER_TYPES.KINETIC | COLLIDER_TYPES.STATIC)} TypeCollider A collider type.
      * @protected
      *
      * @memberof Collider

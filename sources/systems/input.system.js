@@ -1,4 +1,4 @@
-import {EVENTTYPES, EventGamepadAnalog, EventGamepadDigital, EventPointerAnalog, EventPointerDigital, Stage, System} from '../index.js';
+import {EVENT_TYPES, EventGamepadAnalog, EventGamepadDigital, EventPointerAnalog, EventPointerDigital, Stage, System} from '../index.js';
 
 /**
  * Creates input systems.
@@ -109,20 +109,20 @@ class SystemInput extends System {
         this.$inputs = {};
         this.$inputsAnalog = {};
 
-        window.addEventListener(EVENTTYPES.FOCUS.BLUR, this.$stack.bind(this));
+        window.addEventListener(EVENT_TYPES.FOCUS.BLUR, this.$stack.bind(this));
 
-        window.addEventListener(EVENTTYPES.GAMEPAD.GAMEPAD_ANALOG, this.$stack.bind(this));
-        window.addEventListener(EVENTTYPES.GAMEPAD.GAMEPAD_CONNECT, this.$stack.bind(this));
-        window.addEventListener(EVENTTYPES.GAMEPAD.GAMEPAD_DOWN, this.$stack.bind(this));
-        window.addEventListener(EVENTTYPES.GAMEPAD.GAMEPAD_UP, this.$stack.bind(this));
+        window.addEventListener(EVENT_TYPES.GAMEPAD.GAMEPAD_ANALOG, this.$stack.bind(this));
+        window.addEventListener(EVENT_TYPES.GAMEPAD.GAMEPAD_CONNECT, this.$stack.bind(this));
+        window.addEventListener(EVENT_TYPES.GAMEPAD.GAMEPAD_DOWN, this.$stack.bind(this));
+        window.addEventListener(EVENT_TYPES.GAMEPAD.GAMEPAD_UP, this.$stack.bind(this));
 
-        window.addEventListener(EVENTTYPES.POINTER.CONTEXTMENU, this.$stack.bind(this));
-        window.addEventListener(EVENTTYPES.POINTER.POINTER_ANALOG, this.$stack.bind(this));
-        window.addEventListener(EVENTTYPES.POINTER.POINTER_DOWN, this.$stack.bind(this));
-        window.addEventListener(EVENTTYPES.POINTER.POINTER_UP, this.$stack.bind(this));
+        window.addEventListener(EVENT_TYPES.POINTER.CONTEXTMENU, this.$stack.bind(this));
+        window.addEventListener(EVENT_TYPES.POINTER.POINTER_ANALOG, this.$stack.bind(this));
+        window.addEventListener(EVENT_TYPES.POINTER.POINTER_DOWN, this.$stack.bind(this));
+        window.addEventListener(EVENT_TYPES.POINTER.POINTER_UP, this.$stack.bind(this));
 
-        this.$container.addEventListener(EVENTTYPES.KEYBOARD.KEY_DOWN, this.$stack.bind(this));
-        this.$container.addEventListener(EVENTTYPES.KEYBOARD.KEY_UP, this.$stack.bind(this));
+        this.$container.addEventListener(EVENT_TYPES.KEYBOARD.KEY_DOWN, this.$stack.bind(this));
+        this.$container.addEventListener(EVENT_TYPES.KEYBOARD.KEY_UP, this.$stack.bind(this));
     }
 
     /**
@@ -132,20 +132,20 @@ class SystemInput extends System {
      */
     onTerminate() {
 
-        window.removeEventListener(EVENTTYPES.FOCUS.BLUR, this.$stack.bind(this));
+        window.removeEventListener(EVENT_TYPES.FOCUS.BLUR, this.$stack.bind(this));
 
-        window.removeEventListener(EVENTTYPES.GAMEPAD.GAMEPAD_ANALOG, this.$stack.bind(this));
-        window.removeEventListener(EVENTTYPES.GAMEPAD.GAMEPAD_CONNECT, this.$stack.bind(this));
-        window.removeEventListener(EVENTTYPES.GAMEPAD.GAMEPAD_DOWN, this.$stack.bind(this));
-        window.removeEventListener(EVENTTYPES.GAMEPAD.GAMEPAD_UP, this.$stack.bind(this));
+        window.removeEventListener(EVENT_TYPES.GAMEPAD.GAMEPAD_ANALOG, this.$stack.bind(this));
+        window.removeEventListener(EVENT_TYPES.GAMEPAD.GAMEPAD_CONNECT, this.$stack.bind(this));
+        window.removeEventListener(EVENT_TYPES.GAMEPAD.GAMEPAD_DOWN, this.$stack.bind(this));
+        window.removeEventListener(EVENT_TYPES.GAMEPAD.GAMEPAD_UP, this.$stack.bind(this));
 
-        window.removeEventListener(EVENTTYPES.POINTER.CONTEXTMENU, this.$stack.bind(this));
-        window.removeEventListener(EVENTTYPES.POINTER.POINTER_ANALOG, this.$stack.bind(this));
-        window.removeEventListener(EVENTTYPES.POINTER.POINTER_DOWN, this.$stack.bind(this));
-        window.removeEventListener(EVENTTYPES.POINTER.POINTER_UP, this.$stack.bind(this));
+        window.removeEventListener(EVENT_TYPES.POINTER.CONTEXTMENU, this.$stack.bind(this));
+        window.removeEventListener(EVENT_TYPES.POINTER.POINTER_ANALOG, this.$stack.bind(this));
+        window.removeEventListener(EVENT_TYPES.POINTER.POINTER_DOWN, this.$stack.bind(this));
+        window.removeEventListener(EVENT_TYPES.POINTER.POINTER_UP, this.$stack.bind(this));
 
-        this.$container.removeEventListener(EVENTTYPES.KEYBOARD.KEY_DOWN, this.$stack.bind(this));
-        this.$container.removeEventListener(EVENTTYPES.KEYBOARD.KEY_UP, this.$stack.bind(this));
+        this.$container.removeEventListener(EVENT_TYPES.KEYBOARD.KEY_DOWN, this.$stack.bind(this));
+        this.$container.removeEventListener(EVENT_TYPES.KEYBOARD.KEY_UP, this.$stack.bind(this));
     }
 
     /**
@@ -161,20 +161,20 @@ class SystemInput extends System {
 
             const $event = this.$events.shift();
 
-            if ($event.type === EVENTTYPES.FOCUS.BLUR) {
+            if ($event.type === EVENT_TYPES.FOCUS.BLUR) {
 
                 this.$inputs = {};
                 this.$inputsAnalog = {};
             }
 
             else if ($event instanceof EventGamepadAnalog
-            && $event.type === EVENTTYPES.GAMEPAD.GAMEPAD_ANALOG) {
+            && $event.type === EVENT_TYPES.GAMEPAD.GAMEPAD_ANALOG) {
 
                 this.$inputsAnalog[$event.code] = $event.value;
             }
 
             else if ($event instanceof EventGamepadDigital
-            && $event.type === EVENTTYPES.GAMEPAD.GAMEPAD_DOWN) {
+            && $event.type === EVENT_TYPES.GAMEPAD.GAMEPAD_DOWN) {
 
                 if (typeof this.$inputs[$event.code] === 'undefined') {
 
@@ -183,7 +183,7 @@ class SystemInput extends System {
             }
 
             else if ($event instanceof EventGamepadDigital
-            && $event.type === EVENTTYPES.GAMEPAD.GAMEPAD_UP) {
+            && $event.type === EVENT_TYPES.GAMEPAD.GAMEPAD_UP) {
 
                 if (typeof this.$inputs[$event.code] !== 'undefined') {
 
@@ -192,7 +192,7 @@ class SystemInput extends System {
             }
 
             else if ($event instanceof KeyboardEvent
-            && $event.type === EVENTTYPES.KEYBOARD.KEY_DOWN) {
+            && $event.type === EVENT_TYPES.KEYBOARD.KEY_DOWN) {
 
                 if (typeof this.$inputs[$event.code] === 'undefined') {
 
@@ -201,7 +201,7 @@ class SystemInput extends System {
             }
 
             else if ($event instanceof KeyboardEvent
-            && $event.type === EVENTTYPES.KEYBOARD.KEY_UP) {
+            && $event.type === EVENT_TYPES.KEYBOARD.KEY_UP) {
 
                 if (typeof this.$inputs[$event.code] !== 'undefined') {
 
@@ -210,13 +210,13 @@ class SystemInput extends System {
             }
 
             else if ($event instanceof EventPointerAnalog
-            && $event.type === EVENTTYPES.POINTER.POINTER_ANALOG) {
+            && $event.type === EVENT_TYPES.POINTER.POINTER_ANALOG) {
 
                 this.$inputsAnalog[$event.code] = $event.value;
             }
 
             else if ($event instanceof EventPointerDigital
-            && $event.type === EVENTTYPES.POINTER.POINTER_DOWN) {
+            && $event.type === EVENT_TYPES.POINTER.POINTER_DOWN) {
 
                 if (typeof this.$inputs[$event.code] === 'undefined') {
 
@@ -225,7 +225,7 @@ class SystemInput extends System {
             }
 
             else if ($event instanceof EventPointerDigital
-            && $event.type === EVENTTYPES.POINTER.POINTER_UP) {
+            && $event.type === EVENT_TYPES.POINTER.POINTER_UP) {
 
                 if (typeof this.$inputs[$event.code] !== 'undefined') {
 

@@ -1,4 +1,4 @@
-import {EVENTCODES, EVENTTYPES, EventGamepad, EventGamepadAnalog, EventGamepadDigital} from '../index.js';
+import {EVENT_CODES, EVENT_TYPES, EventGamepad, EventGamepadAnalog, EventGamepadDigital} from '../index.js';
 
 /**
  * The ordered list of the axes event codes of the gamepad.
@@ -8,10 +8,10 @@ import {EVENTCODES, EVENTTYPES, EventGamepad, EventGamepadAnalog, EventGamepadDi
  */
 const $GAMEPAD_AXES = [
 
-    [EVENTCODES.GAMEPAD_STANDARD.STICK_LEFT_LEFT, EVENTCODES.GAMEPAD_STANDARD.STICK_LEFT_RIGHT],
-    [EVENTCODES.GAMEPAD_STANDARD.STICK_LEFT_UP, EVENTCODES.GAMEPAD_STANDARD.STICK_LEFT_DOWN],
-    [EVENTCODES.GAMEPAD_STANDARD.STICK_RIGHT_LEFT, EVENTCODES.GAMEPAD_STANDARD.STICK_RIGHT_RIGHT],
-    [EVENTCODES.GAMEPAD_STANDARD.STICK_RIGHT_UP, EVENTCODES.GAMEPAD_STANDARD.STICK_RIGHT_DOWN]
+    [EVENT_CODES.GAMEPAD_STANDARD.STICK_LEFT_LEFT, EVENT_CODES.GAMEPAD_STANDARD.STICK_LEFT_RIGHT],
+    [EVENT_CODES.GAMEPAD_STANDARD.STICK_LEFT_UP, EVENT_CODES.GAMEPAD_STANDARD.STICK_LEFT_DOWN],
+    [EVENT_CODES.GAMEPAD_STANDARD.STICK_RIGHT_LEFT, EVENT_CODES.GAMEPAD_STANDARD.STICK_RIGHT_RIGHT],
+    [EVENT_CODES.GAMEPAD_STANDARD.STICK_RIGHT_UP, EVENT_CODES.GAMEPAD_STANDARD.STICK_RIGHT_DOWN]
 ];
 
 /**
@@ -22,23 +22,23 @@ const $GAMEPAD_AXES = [
  */
 const $GAMEPAD_BUTTONS = [
 
-    EVENTCODES.GAMEPAD_STANDARD.CLUSTER_RIGHT_BUTTON_BOTTOM,
-    EVENTCODES.GAMEPAD_STANDARD.CLUSTER_RIGHT_BUTTON_RIGHT,
-    EVENTCODES.GAMEPAD_STANDARD.CLUSTER_RIGHT_BUTTON_LEFT,
-    EVENTCODES.GAMEPAD_STANDARD.CLUSTER_RIGHT_BUTTON_TOP,
-    EVENTCODES.GAMEPAD_STANDARD.CLUSTER_FRONT_BUTTON_TOP_LEFT,
-    EVENTCODES.GAMEPAD_STANDARD.CLUSTER_FRONT_BUTTON_TOP_RIGHT,
-    EVENTCODES.GAMEPAD_STANDARD.CLUSTER_FRONT_BUTTON_BOTTOM_LEFT,
-    EVENTCODES.GAMEPAD_STANDARD.CLUSTER_FRONT_BUTTON_BOTTOM_RIGHT,
-    EVENTCODES.GAMEPAD_STANDARD.CLUSTER_CENTER_BUTTON_LEFT,
-    EVENTCODES.GAMEPAD_STANDARD.CLUSTER_CENTER_BUTTON_RIGHT,
-    EVENTCODES.GAMEPAD_STANDARD.STICK_LEFT_BUTTON,
-    EVENTCODES.GAMEPAD_STANDARD.STICK_RIGHT_BUTTON,
-    EVENTCODES.GAMEPAD_STANDARD.CLUSTER_LEFT_BUTTON_TOP,
-    EVENTCODES.GAMEPAD_STANDARD.CLUSTER_LEFT_BUTTON_BOTTOM,
-    EVENTCODES.GAMEPAD_STANDARD.CLUSTER_LEFT_BUTTON_LEFT,
-    EVENTCODES.GAMEPAD_STANDARD.CLUSTER_LEFT_BUTTON_RIGHT,
-    EVENTCODES.GAMEPAD_STANDARD.CLUSTER_CENTER_BUTTON_CENTER
+    EVENT_CODES.GAMEPAD_STANDARD.CLUSTER_RIGHT_BUTTON_BOTTOM,
+    EVENT_CODES.GAMEPAD_STANDARD.CLUSTER_RIGHT_BUTTON_RIGHT,
+    EVENT_CODES.GAMEPAD_STANDARD.CLUSTER_RIGHT_BUTTON_LEFT,
+    EVENT_CODES.GAMEPAD_STANDARD.CLUSTER_RIGHT_BUTTON_TOP,
+    EVENT_CODES.GAMEPAD_STANDARD.CLUSTER_FRONT_BUTTON_TOP_LEFT,
+    EVENT_CODES.GAMEPAD_STANDARD.CLUSTER_FRONT_BUTTON_TOP_RIGHT,
+    EVENT_CODES.GAMEPAD_STANDARD.CLUSTER_FRONT_BUTTON_BOTTOM_LEFT,
+    EVENT_CODES.GAMEPAD_STANDARD.CLUSTER_FRONT_BUTTON_BOTTOM_RIGHT,
+    EVENT_CODES.GAMEPAD_STANDARD.CLUSTER_CENTER_BUTTON_LEFT,
+    EVENT_CODES.GAMEPAD_STANDARD.CLUSTER_CENTER_BUTTON_RIGHT,
+    EVENT_CODES.GAMEPAD_STANDARD.STICK_LEFT_BUTTON,
+    EVENT_CODES.GAMEPAD_STANDARD.STICK_RIGHT_BUTTON,
+    EVENT_CODES.GAMEPAD_STANDARD.CLUSTER_LEFT_BUTTON_TOP,
+    EVENT_CODES.GAMEPAD_STANDARD.CLUSTER_LEFT_BUTTON_BOTTOM,
+    EVENT_CODES.GAMEPAD_STANDARD.CLUSTER_LEFT_BUTTON_LEFT,
+    EVENT_CODES.GAMEPAD_STANDARD.CLUSTER_LEFT_BUTTON_RIGHT,
+    EVENT_CODES.GAMEPAD_STANDARD.CLUSTER_CENTER_BUTTON_CENTER
 ];
 
 /**
@@ -101,12 +101,12 @@ class ExtensionGamepad {
             this.$stateGamepad[$code] = false;
         });
 
-        window.addEventListener(EVENTTYPES.WINDOW.BEFORE_UNLOAD, this.$onBeforeUnload.bind(this));
+        window.addEventListener(EVENT_TYPES.WINDOW.BEFORE_UNLOAD, this.$onBeforeUnload.bind(this));
 
-        window.addEventListener(EVENTTYPES.GAMEPAD.GAMEPAD_CONNECTED, this.$onConnect.bind(this));
-        window.addEventListener(EVENTTYPES.GAMEPAD.GAMEPAD_DISCONNECTED, this.$onDisconnect.bind(this));
+        window.addEventListener(EVENT_TYPES.GAMEPAD.GAMEPAD_CONNECTED, this.$onConnect.bind(this));
+        window.addEventListener(EVENT_TYPES.GAMEPAD.GAMEPAD_DISCONNECTED, this.$onDisconnect.bind(this));
 
-        window.addEventListener(EVENTTYPES.GAMEPAD.GAMEPAD_VIBRATE, this.$onVibrate.bind(this));
+        window.addEventListener(EVENT_TYPES.GAMEPAD.GAMEPAD_VIBRATE, this.$onVibrate.bind(this));
 
         window.requestAnimationFrame(this.$update.bind(this));
     }
@@ -170,13 +170,13 @@ class ExtensionGamepad {
 
                 this.$stateGamepad[$code] = false;
 
-                window.dispatchEvent(new EventGamepadDigital(EVENTTYPES.GAMEPAD.GAMEPAD_UP, $code));
+                window.dispatchEvent(new EventGamepadDigital(EVENT_TYPES.GAMEPAD.GAMEPAD_UP, $code));
             }
         });
 
         this.$indexLastConnected = $event.gamepad.index;
 
-        window.dispatchEvent(new EventGamepadDigital(EVENTTYPES.GAMEPAD.GAMEPAD_CONNECT, EVENTCODES.GAMEPAD_STANDARD.CONNECTED));
+        window.dispatchEvent(new EventGamepadDigital(EVENT_TYPES.GAMEPAD.GAMEPAD_CONNECT, EVENT_CODES.GAMEPAD_STANDARD.CONNECTED));
     }
 
     /**
@@ -197,13 +197,13 @@ class ExtensionGamepad {
 
                 this.$stateGamepad[$code] = false;
 
-                window.dispatchEvent(new EventGamepadDigital(EVENTTYPES.GAMEPAD.GAMEPAD_UP, $code));
+                window.dispatchEvent(new EventGamepadDigital(EVENT_TYPES.GAMEPAD.GAMEPAD_UP, $code));
             }
         });
 
         this.$indexLastConnected = undefined;
 
-        window.dispatchEvent(new EventGamepadDigital(EVENTTYPES.GAMEPAD.GAMEPAD_CONNECT, EVENTCODES.GAMEPAD_STANDARD.DISCONNECTED));
+        window.dispatchEvent(new EventGamepadDigital(EVENT_TYPES.GAMEPAD.GAMEPAD_CONNECT, EVENT_CODES.GAMEPAD_STANDARD.DISCONNECTED));
     }
 
     /**
@@ -232,7 +232,7 @@ class ExtensionGamepad {
         }
 
         if ($event instanceof EventGamepadDigital
-        && $event.code === EVENTCODES.GAMEPAD_STANDARD.VIBRATE_END) {
+        && $event.code === EVENT_CODES.GAMEPAD_STANDARD.VIBRATE_END) {
 
             gamepad.vibrationActuator.reset();
 
@@ -240,7 +240,7 @@ class ExtensionGamepad {
         }
 
         if ($event instanceof EventGamepad
-        && $event.code === EVENTCODES.GAMEPAD_STANDARD.VIBRATE_START) {
+        && $event.code === EVENT_CODES.GAMEPAD_STANDARD.VIBRATE_START) {
 
             gamepad.vibrationActuator.playEffect('dual-rumble', {
 
@@ -276,8 +276,8 @@ class ExtensionGamepad {
                         this.$stateGamepad[$button] = true;
                     }
 
-                    window.dispatchEvent(new EventGamepadDigital(EVENTTYPES.GAMEPAD.GAMEPAD_DOWN, $button));
-                    window.dispatchEvent(new EventGamepadAnalog(EVENTTYPES.GAMEPAD.GAMEPAD_ANALOG, $button, button.value));
+                    window.dispatchEvent(new EventGamepadDigital(EVENT_TYPES.GAMEPAD.GAMEPAD_DOWN, $button));
+                    window.dispatchEvent(new EventGamepadAnalog(EVENT_TYPES.GAMEPAD.GAMEPAD_ANALOG, $button, button.value));
                 }
 
                 else {
@@ -285,7 +285,7 @@ class ExtensionGamepad {
                     if (this.$stateGamepad[$button] === true) {
 
                         this.$stateGamepad[$button] = false;
-                        window.dispatchEvent(new EventGamepadDigital(EVENTTYPES.GAMEPAD.GAMEPAD_UP, $button));
+                        window.dispatchEvent(new EventGamepadDigital(EVENT_TYPES.GAMEPAD.GAMEPAD_UP, $button));
                     }
                 }
             });
@@ -299,12 +299,12 @@ class ExtensionGamepad {
                     if (this.$stateGamepad[axeMaximum] === true) {
 
                         this.$stateGamepad[axeMaximum] = false;
-                        window.dispatchEvent(new EventGamepadDigital(EVENTTYPES.GAMEPAD.GAMEPAD_UP, axeMaximum));
+                        window.dispatchEvent(new EventGamepadDigital(EVENT_TYPES.GAMEPAD.GAMEPAD_UP, axeMaximum));
                     }
 
                     this.$stateGamepad[axeMinimum] = true;
-                    window.dispatchEvent(new EventGamepadDigital(EVENTTYPES.GAMEPAD.GAMEPAD_DOWN, axeMinimum));
-                    window.dispatchEvent(new EventGamepadAnalog(EVENTTYPES.GAMEPAD.GAMEPAD_ANALOG, axeMinimum, ($direction - (Math.sign($direction) * $THRESHOLD_GAMEPAD_AXES)) / (1 - $THRESHOLD_GAMEPAD_AXES)));
+                    window.dispatchEvent(new EventGamepadDigital(EVENT_TYPES.GAMEPAD.GAMEPAD_DOWN, axeMinimum));
+                    window.dispatchEvent(new EventGamepadAnalog(EVENT_TYPES.GAMEPAD.GAMEPAD_ANALOG, axeMinimum, ($direction - (Math.sign($direction) * $THRESHOLD_GAMEPAD_AXES)) / (1 - $THRESHOLD_GAMEPAD_AXES)));
                 }
 
                 else if ($direction >= $THRESHOLD_GAMEPAD_AXES) {
@@ -312,12 +312,12 @@ class ExtensionGamepad {
                     if (this.$stateGamepad[axeMinimum] === true) {
 
                         this.$stateGamepad[axeMinimum] = false;
-                        window.dispatchEvent(new EventGamepadDigital(EVENTTYPES.GAMEPAD.GAMEPAD_UP, axeMinimum));
+                        window.dispatchEvent(new EventGamepadDigital(EVENT_TYPES.GAMEPAD.GAMEPAD_UP, axeMinimum));
                     }
 
                     this.$stateGamepad[axeMaximum] = true;
-                    window.dispatchEvent(new EventGamepadDigital(EVENTTYPES.GAMEPAD.GAMEPAD_DOWN, axeMaximum));
-                    window.dispatchEvent(new EventGamepadAnalog(EVENTTYPES.GAMEPAD.GAMEPAD_ANALOG, axeMaximum, ($direction - (Math.sign($direction) * $THRESHOLD_GAMEPAD_AXES)) / (1 - $THRESHOLD_GAMEPAD_AXES)));
+                    window.dispatchEvent(new EventGamepadDigital(EVENT_TYPES.GAMEPAD.GAMEPAD_DOWN, axeMaximum));
+                    window.dispatchEvent(new EventGamepadAnalog(EVENT_TYPES.GAMEPAD.GAMEPAD_ANALOG, axeMaximum, ($direction - (Math.sign($direction) * $THRESHOLD_GAMEPAD_AXES)) / (1 - $THRESHOLD_GAMEPAD_AXES)));
                 }
 
                 else {
@@ -325,13 +325,13 @@ class ExtensionGamepad {
                     if (this.$stateGamepad[axeMinimum] === true) {
 
                         this.$stateGamepad[axeMinimum] = false;
-                        window.dispatchEvent(new EventGamepadDigital(EVENTTYPES.GAMEPAD.GAMEPAD_UP, axeMinimum));
+                        window.dispatchEvent(new EventGamepadDigital(EVENT_TYPES.GAMEPAD.GAMEPAD_UP, axeMinimum));
                     }
 
                     if (this.$stateGamepad[axeMaximum] === true) {
 
                         this.$stateGamepad[axeMaximum] = false;
-                        window.dispatchEvent(new EventGamepadDigital(EVENTTYPES.GAMEPAD.GAMEPAD_UP, axeMaximum));
+                        window.dispatchEvent(new EventGamepadDigital(EVENT_TYPES.GAMEPAD.GAMEPAD_UP, axeMaximum));
                     }
                 }
             });
