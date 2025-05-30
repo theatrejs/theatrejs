@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>constants/event-codes/keyboard.standard-lockers.js - Documentation</title>
+    <title>constants/event-types/native.js - Documentation</title>
     
     
     <script src="scripts/prettify/prettify.js"></script>
@@ -37,7 +37,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">constants/event-codes/keyboard.standard-lockers.js</h1>
+    <h1 class="page-title">constants/event-types/native.js</h1>
     
 
     
@@ -48,17 +48,81 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>/**
- * The STANDARD-based keyboard 'CAPS_LOCK' event code.
- * @type {'CapsLock'}
+ * @module EVENT_TYPES/NATIVE
+ */
+
+/**
+ * The native 'BEFORE_UNLOAD' event type.
+ * @type {'beforeunload'}
  * @constant
  *
- * @memberof module:EVENT_CODES/KEYBOARDS/STANDARD
+ * @memberof module:EVENT_TYPES/NATIVE
  */
-const CAPS_LOCK = 'CapsLock';
+const BEFORE_UNLOAD = 'beforeunload';
+
+/**
+ * The native 'BLUR' event type.
+ * @type {'blur'}
+ * @constant
+ *
+ * @memberof module:EVENT_TYPES/NATIVE
+ */
+const BLUR = 'blur';
+
+/**
+ * The native 'CLICK' event type.
+ * @type {'click'}
+ * @constant
+ *
+ * @memberof module:EVENT_TYPES/NATIVE
+ */
+const CLICK = 'click';
+
+/**
+ * The native 'CONTEXT_MENU' event type.
+ * @type {'contextmenu'}
+ * @constant
+ *
+ * @memberof module:EVENT_TYPES/NATIVE
+ */
+const CONTEXT_MENU = 'contextmenu';
+
+/**
+ * The native 'GAMEPAD_CONNECTED' event type.
+ * @type {'gamepadconnected'}
+ * @constant
+ *
+ * @memberof module:EVENT_TYPES/NATIVE
+ */
+const GAMEPAD_CONNECTED = 'gamepadconnected';
+
+/**
+ * The native 'GAMEPAD_DISCONNECTED' event type.
+ * @type {'gamepaddisconnected'}
+ * @constant
+ *
+ * @memberof module:EVENT_TYPES/NATIVE
+ */
+const GAMEPAD_DISCONNECTED = 'gamepaddisconnected';
+
+/**
+ * The native 'READING' event type.
+ * @type {'reading'}
+ * @constant
+ *
+ * @memberof module:EVENT_TYPES/NATIVE
+ */
+const READING = 'reading';
 
 export {
 
-    CAPS_LOCK
+    BEFORE_UNLOAD,
+    BLUR,
+    CLICK,
+    CONTEXT_MENU,
+    GAMEPAD_CONNECTED,
+    GAMEPAD_DISCONNECTED,
+    READING
 };
 </code></pre>
         </article>
