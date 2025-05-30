@@ -16,6 +16,8 @@
     },
     "include": [
 
+        "sources/types/**/*.d.ts",
+
         "sources/index.js"
     ]
 }

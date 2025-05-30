@@ -1,4 +1,4 @@
-import {EVENT_TYPES, EventGamepadAnalog, EventGamepadDigital, EventPointerAnalog, EventPointerDigital, Stage, System} from '../index.js';
+import {EVENT_TYPES, EventGamepadAnalog, EventGamepadDigital, EventGyroscopeAnalog, EventGyroscopeDigital, EventPointerAnalog, EventPointerDigital, Stage, System} from '../index.js';
 
 /**
  * Creates input systems.
@@ -116,6 +116,10 @@ class SystemInput extends System {
         window.addEventListener(EVENT_TYPES.GAMEPAD.GAMEPAD_DOWN, this.$stack.bind(this));
         window.addEventListener(EVENT_TYPES.GAMEPAD.GAMEPAD_UP, this.$stack.bind(this));
 
+        window.addEventListener(EVENT_TYPES.GYROSCOPE.GYROSCOPE_ANALOG, this.$stack.bind(this));
+        window.addEventListener(EVENT_TYPES.GYROSCOPE.GYROSCOPE_DOWN, this.$stack.bind(this));
+        window.addEventListener(EVENT_TYPES.GYROSCOPE.GYROSCOPE_UP, this.$stack.bind(this));
+
         window.addEventListener(EVENT_TYPES.POINTER.CONTEXTMENU, this.$stack.bind(this));
         window.addEventListener(EVENT_TYPES.POINTER.POINTER_ANALOG, this.$stack.bind(this));
         window.addEventListener(EVENT_TYPES.POINTER.POINTER_DOWN, this.$stack.bind(this));
@@ -138,6 +142,10 @@ class SystemInput extends System {
         window.removeEventListener(EVENT_TYPES.GAMEPAD.GAMEPAD_CONNECT, this.$stack.bind(this));
         window.removeEventListener(EVENT_TYPES.GAMEPAD.GAMEPAD_DOWN, this.$stack.bind(this));
         window.removeEventListener(EVENT_TYPES.GAMEPAD.GAMEPAD_UP, this.$stack.bind(this));
+
+        window.removeEventListener(EVENT_TYPES.GYROSCOPE.GYROSCOPE_ANALOG, this.$stack.bind(this));
+        window.removeEventListener(EVENT_TYPES.GYROSCOPE.GYROSCOPE_DOWN, this.$stack.bind(this));
+        window.removeEventListener(EVENT_TYPES.GYROSCOPE.GYROSCOPE_UP, this.$stack.bind(this));
 
         window.removeEventListener(EVENT_TYPES.POINTER.CONTEXTMENU, this.$stack.bind(this));
         window.removeEventListener(EVENT_TYPES.POINTER.POINTER_ANALOG, this.$stack.bind(this));
@@ -184,6 +192,30 @@ class SystemInput extends System {
 
             else if ($event instanceof EventGamepadDigital
             && $event.type === EVENT_TYPES.GAMEPAD.GAMEPAD_UP) {
+
+                if (typeof this.$inputs[$event.code] !== 'undefined') {
+
+                    delete this.$inputs[$event.code];
+                }
+            }
+
+            else if ($event instanceof EventGyroscopeAnalog
+            && $event.type === EVENT_TYPES.GYROSCOPE.GYROSCOPE_ANALOG) {
+
+                this.$inputsAnalog[$event.code] = $event.value;
+            }
+
+            else if ($event instanceof EventGyroscopeDigital
+            && $event.type === EVENT_TYPES.GYROSCOPE.GYROSCOPE_DOWN) {
+
+                if (typeof this.$inputs[$event.code] === 'undefined') {
+
+                    this.$inputs[$event.code] = true;
+                }
+            }
+
+            else if ($event instanceof EventGyroscopeDigital
+            && $event.type === EVENT_TYPES.GYROSCOPE.GYROSCOPE_UP) {
 
                 if (typeof this.$inputs[$event.code] !== 'undefined') {
 
