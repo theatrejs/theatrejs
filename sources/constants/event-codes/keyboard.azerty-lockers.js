@@ -1,13 +1,13 @@
 /**
- * The AZERTY-based keyboard 'CAPSLOCK' event code.
+ * The AZERTY-based keyboard 'CAPS_LOCK' event code.
  * @type {'CapsLock'}
  * @constant
  *
  * @memberof module:EVENT_CODES/KEYBOARDS/AZERTY
  */
-const CAPSLOCK = 'CapsLock';
+const CAPS_LOCK = 'CapsLock';
 
 export {
 
-    CAPSLOCK
+    CAPS_LOCK
 };

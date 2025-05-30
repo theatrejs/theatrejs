@@ -30,13 +30,13 @@ const BLUR = 'blur';
 const CLICK = 'click';
 
 /**
- * The native 'CONTEXTMENU' event type.
+ * The native 'CONTEXT_MENU' event type.
  * @type {'contextmenu'}
  * @constant
  *
  * @memberof module:EVENT_TYPES/NATIVE
  */
-const CONTEXTMENU = 'contextmenu';
+const CONTEXT_MENU = 'contextmenu';
 
 /**
  * The native 'GAMEPAD_CONNECTED' event type.
@@ -70,7 +70,7 @@ export {
     BEFORE_UNLOAD,
     BLUR,
     CLICK,
-    CONTEXTMENU,
+    CONTEXT_MENU,
     GAMEPAD_CONNECTED,
     GAMEPAD_DISCONNECTED,
     READING

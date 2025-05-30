@@ -110,7 +110,7 @@ class SystemInput extends System {
         this.$inputsAnalog = {};
 
         window.addEventListener(EVENT_TYPES.NATIVE.BLUR, this.$stack.bind(this));
-        window.addEventListener(EVENT_TYPES.NATIVE.CONTEXTMENU, this.$stack.bind(this));
+        window.addEventListener(EVENT_TYPES.NATIVE.CONTEXT_MENU, this.$stack.bind(this));
 
         window.addEventListener(EVENT_TYPES.GAMEPAD.GAMEPAD_ANALOG, this.$stack.bind(this));
         window.addEventListener(EVENT_TYPES.GAMEPAD.GAMEPAD_CONNECT, this.$stack.bind(this));
@@ -137,7 +137,7 @@ class SystemInput extends System {
     onTerminate() {
 
         window.removeEventListener(EVENT_TYPES.NATIVE.BLUR, this.$stack.bind(this));
-        window.removeEventListener(EVENT_TYPES.NATIVE.CONTEXTMENU, this.$stack.bind(this));
+        window.removeEventListener(EVENT_TYPES.NATIVE.CONTEXT_MENU, this.$stack.bind(this));
 
         window.removeEventListener(EVENT_TYPES.GAMEPAD.GAMEPAD_ANALOG, this.$stack.bind(this));
         window.removeEventListener(EVENT_TYPES.GAMEPAD.GAMEPAD_CONNECT, this.$stack.bind(this));

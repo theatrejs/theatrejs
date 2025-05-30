@@ -1,11 +1,11 @@
 /**
- * The QWERTY-based keyboard 'ESCAPE' event code.
+ * The QWERTY-based keyboard 'CONTEXT_MENU' event code.
  * @type {'ContextMenu'}
  * @constant
  *
  * @memberof module:EVENT_CODES/KEYBOARDS/QWERTY
  */
-const CONTEXTMENU = 'ContextMenu';
+const CONTEXT_MENU = 'ContextMenu';
 
 /**
  * The QWERTY-based keyboard 'ESCAPE' event code.
@@ -18,6 +18,6 @@ const ESCAPE = 'Escape';
 
 export {
 
-    CONTEXTMENU,
+    CONTEXT_MENU,
     ESCAPE
 };

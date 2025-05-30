@@ -1,11 +1,11 @@
 /**
- * The AZERTY-based keyboard 'ESCAPE' event code.
+ * The AZERTY-based keyboard 'CONTEXT_MENU' event code.
  * @type {'ContextMenu'}
  * @constant
  *
  * @memberof module:EVENT_CODES/KEYBOARDS/AZERTY
  */
-const CONTEXTMENU = 'ContextMenu';
+const CONTEXT_MENU = 'ContextMenu';
 
 /**
  * The AZERTY-based keyboard 'ESCAPE' event code.
@@ -18,6 +18,6 @@ const ESCAPE = 'Escape';
 
 export {
 
-    CONTEXTMENU,
+    CONTEXT_MENU,
     ESCAPE
 };
