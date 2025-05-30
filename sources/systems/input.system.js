@@ -109,7 +109,8 @@ class SystemInput extends System {
         this.$inputs = {};
         this.$inputsAnalog = {};
 
-        window.addEventListener(EVENT_TYPES.FOCUS.BLUR, this.$stack.bind(this));
+        window.addEventListener(EVENT_TYPES.NATIVE.BLUR, this.$stack.bind(this));
+        window.addEventListener(EVENT_TYPES.NATIVE.CONTEXTMENU, this.$stack.bind(this));
 
         window.addEventListener(EVENT_TYPES.GAMEPAD.GAMEPAD_ANALOG, this.$stack.bind(this));
         window.addEventListener(EVENT_TYPES.GAMEPAD.GAMEPAD_CONNECT, this.$stack.bind(this));
@@ -120,7 +121,6 @@ class SystemInput extends System {
         window.addEventListener(EVENT_TYPES.GYROSCOPE.GYROSCOPE_DOWN, this.$stack.bind(this));
         window.addEventListener(EVENT_TYPES.GYROSCOPE.GYROSCOPE_UP, this.$stack.bind(this));
 
-        window.addEventListener(EVENT_TYPES.POINTER.CONTEXTMENU, this.$stack.bind(this));
         window.addEventListener(EVENT_TYPES.POINTER.POINTER_ANALOG, this.$stack.bind(this));
         window.addEventListener(EVENT_TYPES.POINTER.POINTER_DOWN, this.$stack.bind(this));
         window.addEventListener(EVENT_TYPES.POINTER.POINTER_UP, this.$stack.bind(this));
@@ -136,7 +136,8 @@ class SystemInput extends System {
      */
     onTerminate() {
 
-        window.removeEventListener(EVENT_TYPES.FOCUS.BLUR, this.$stack.bind(this));
+        window.removeEventListener(EVENT_TYPES.NATIVE.BLUR, this.$stack.bind(this));
+        window.removeEventListener(EVENT_TYPES.NATIVE.CONTEXTMENU, this.$stack.bind(this));
 
         window.removeEventListener(EVENT_TYPES.GAMEPAD.GAMEPAD_ANALOG, this.$stack.bind(this));
         window.removeEventListener(EVENT_TYPES.GAMEPAD.GAMEPAD_CONNECT, this.$stack.bind(this));
@@ -147,7 +148,6 @@ class SystemInput extends System {
         window.removeEventListener(EVENT_TYPES.GYROSCOPE.GYROSCOPE_DOWN, this.$stack.bind(this));
         window.removeEventListener(EVENT_TYPES.GYROSCOPE.GYROSCOPE_UP, this.$stack.bind(this));
 
-        window.removeEventListener(EVENT_TYPES.POINTER.CONTEXTMENU, this.$stack.bind(this));
         window.removeEventListener(EVENT_TYPES.POINTER.POINTER_ANALOG, this.$stack.bind(this));
         window.removeEventListener(EVENT_TYPES.POINTER.POINTER_DOWN, this.$stack.bind(this));
         window.removeEventListener(EVENT_TYPES.POINTER.POINTER_UP, this.$stack.bind(this));
@@ -169,7 +169,7 @@ class SystemInput extends System {
 
             const $event = this.$events.shift();
 
-            if ($event.type === EVENT_TYPES.FOCUS.BLUR) {
+            if ($event.type === EVENT_TYPES.NATIVE.BLUR) {
 
                 this.$inputs = {};
                 this.$inputsAnalog = {};

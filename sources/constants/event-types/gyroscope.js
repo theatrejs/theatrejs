@@ -29,19 +29,9 @@ const GYROSCOPE_DOWN = 'gyroscopedown';
  */
 const GYROSCOPE_UP = 'gyroscopeup';
 
-/**
- * The gyroscope 'READING' event type.
- * @type {'reading'}
- * @constant
- *
- * @memberof module:EVENT_TYPES/GYROSCOPE
- */
-const READING = 'reading';
-
 export {
 
     GYROSCOPE_ANALOG,
     GYROSCOPE_DOWN,
-    GYROSCOPE_UP,
-    READING
+    GYROSCOPE_UP
 };

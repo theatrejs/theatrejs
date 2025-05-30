@@ -3,24 +3,6 @@
  */
 
 /**
- * The pointer 'CLICK' event type.
- * @type {'click'}
- * @constant
- *
- * @memberof module:EVENT_TYPES/POINTER
- */
-const CLICK = 'click';
-
-/**
- * The pointer 'CONTEXTMENU' event type.
- * @type {'contextmenu'}
- * @constant
- *
- * @memberof module:EVENT_TYPES/POINTER
- */
-const CONTEXTMENU = 'contextmenu';
-
-/**
  * The pointer 'POINTER_ANALOG' event type.
  * @type {'pointeranalog'}
  * @constant
@@ -67,8 +49,6 @@ const POINTER_UP = 'pointerup';
 
 export {
 
-    CLICK,
-    CONTEXTMENU,
     POINTER_ANALOG,
     POINTER_DOWN,
     POINTER_LEAVE,

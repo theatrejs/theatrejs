@@ -101,10 +101,10 @@ class ExtensionGamepad {
             this.$stateGamepad[$code] = false;
         });
 
-        window.addEventListener(EVENT_TYPES.WINDOW.BEFORE_UNLOAD, this.$onBeforeUnload.bind(this));
+        window.addEventListener(EVENT_TYPES.NATIVE.BEFORE_UNLOAD, this.$onBeforeUnload.bind(this));
 
-        window.addEventListener(EVENT_TYPES.GAMEPAD.GAMEPAD_CONNECTED, this.$onConnect.bind(this));
-        window.addEventListener(EVENT_TYPES.GAMEPAD.GAMEPAD_DISCONNECTED, this.$onDisconnect.bind(this));
+        window.addEventListener(EVENT_TYPES.NATIVE.GAMEPAD_CONNECTED, this.$onConnect.bind(this));
+        window.addEventListener(EVENT_TYPES.NATIVE.GAMEPAD_DISCONNECTED, this.$onDisconnect.bind(this));
 
         window.addEventListener(EVENT_TYPES.GAMEPAD.GAMEPAD_VIBRATE, this.$onVibrate.bind(this));
 

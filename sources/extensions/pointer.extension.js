@@ -42,7 +42,7 @@ class ExtensionPointer {
 
         this.$statePointer = false;
 
-        window.addEventListener(EVENT_TYPES.FOCUS.BLUR, this.$onBlur.bind(this));
+        window.addEventListener(EVENT_TYPES.NATIVE.BLUR, this.$onBlur.bind(this));
 
         this.$container.addEventListener(EVENT_TYPES.POINTER.POINTER_DOWN, this.$onPointerDown.bind(this));
         this.$container.addEventListener(EVENT_TYPES.POINTER.POINTER_LEAVE, this.$onPointerLeave.bind(this));
