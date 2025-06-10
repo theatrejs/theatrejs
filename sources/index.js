@@ -36,12 +36,15 @@ export {Vibration} from './core/vibration.js';
 export {EventGamepad} from './events/gamepad.js';
 export {EventGamepadAnalog} from './events/gamepad-analog.js';
 export {EventGamepadDigital} from './events/gamepad-digital.js';
+export {EventGravityAnalog} from './events/gravity-analog.js';
+export {EventGravityDigital} from './events/gravity-digital.js';
 export {EventGyroscopeAnalog} from './events/gyroscope-analog.js';
 export {EventGyroscopeDigital} from './events/gyroscope-digital.js';
 export {EventPointerAnalog} from './events/pointer-analog.js';
 export {EventPointerDigital} from './events/pointer-digital.js';
 
 export {ExtensionGamepad} from './extensions/gamepad.extension.js';
+export {ExtensionGravity} from './extensions/gravity.extension.js';
 export {ExtensionGyroscope} from './extensions/gyroscope.extension.js';
 export {ExtensionPointer} from './extensions/pointer.extension.js';
 
