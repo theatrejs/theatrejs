@@ -47,5 +47,5 @@
         "postversion": "node ./tools/custom/postversion.cjs"
     },
     "type": "module",
-    "version": "1.18.1"
+    "version": "1.19.0"
 }
