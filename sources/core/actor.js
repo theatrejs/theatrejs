@@ -1,3 +1,7 @@
+// 'ESLint' configuration
+/* global TypeGenericAction */
+/* global TypeGenericState */
+
 import {Collider, Engine, Preloadable, Sound, Sprite, Stage, UTILS, Vector2, Vibration} from '../index.js';
 
 /**
@@ -271,7 +275,7 @@ class Actor extends Preloadable {
      */
     $trigger($state) {
 
-        if (this.$listenersStates.hasOwnProperty($state) === false) {
+        if (Object.hasOwn(this.$listenersStates, $state) === false) {
 
             return this;
         }
@@ -293,7 +297,7 @@ class Actor extends Preloadable {
      */
     addListener($state, $handler) {
 
-        if (this.$listenersStates.hasOwnProperty($state) === false) {
+        if (Object.hasOwn(this.$listenersStates, $state) === false) {
 
             this.$listenersStates[$state] = [];
         }
@@ -358,7 +362,7 @@ class Actor extends Preloadable {
      */
     hasComponent($name) {
 
-        return this.$components.hasOwnProperty($name) === true;
+        return Object.hasOwn(this.$components, $name) === true;
     }
 
     /**
@@ -393,7 +397,14 @@ class Actor extends Preloadable {
      * @param {boolean} $parameters.$west If the origin of collision is facing the west face.
      * @public
      */
-    onCollide({$actor, $east, $north, $south, $west}) {}
+    onCollide({$actor, $east, $north, $south, $west}) {
+
+        void $actor;
+        void $east;
+        void $north;
+        void $south;
+        void $west;
+    }
 
     /**
      * Called when a collision is being entered.
@@ -405,14 +416,24 @@ class Actor extends Preloadable {
      * @param {boolean} $parameters.$west If the origin of collision is facing the west face.
      * @public
      */
-    onCollideEnter({$actor, $east, $north, $south, $west}) {}
+    onCollideEnter({$actor, $east, $north, $south, $west}) {
+
+        void $actor;
+        void $east;
+        void $north;
+        void $south;
+        void $west;
+    }
 
     /**
      * Called when a collision is being left.
      * @param {Actor} $actor The colliding actor.
      * @public
      */
-    onCollideLeave($actor) {}
+    onCollideLeave($actor) {
+
+        void $actor;
+    }
 
     /**
      * Called when the actor is being created.
@@ -425,35 +446,50 @@ class Actor extends Preloadable {
      * @param {boolean} $visible The visible status set.
      * @public
      */
-    onSetVisible($visible) {}
+    onSetVisible($visible) {
+
+        void $visible;
+    }
 
     /**
      * Called when the z-index is being set.
      * @param {number} $zIndex The z-index set.
      * @public
      */
-    onSetZIndex($zIndex) {}
+    onSetZIndex($zIndex) {
+
+        void $zIndex;
+    }
 
     /**
      * Called when a sound is finishing playing.
      * @param {Sound} $sound The sound.
      * @public
      */
-    onSoundFinish($sound) {}
+    onSoundFinish($sound) {
+
+        void $sound;
+    }
 
     /**
      * Called when the actor is being updated by one tick update.
      * @param {number} $timetick The tick duration (in ms).
      * @public
      */
-    onTick($timetick) {}
+    onTick($timetick) {
+
+        void $timetick;
+    }
 
     /**
      * Called when the actor is being translated.
      * @param {Vector2} $vector The translation applied.
      * @public
      */
-    onTranslate($vector) {}
+    onTranslate($vector) {
+
+        void $vector;
+    }
 
     /**
      * Removes the collider.
@@ -667,7 +703,7 @@ class Actor extends Preloadable {
      */
     trigger($action) {
 
-        if (this.$listenerActions.hasOwnProperty($action) === false) {
+        if (Object.hasOwn(this.$listenerActions, $action) === false) {
 
             return this;
         }

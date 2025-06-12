@@ -1,3 +1,6 @@
+// 'ESLint' configuration
+/* global TypeGeneric */
+
 /**
  * Creates finite state machines.
  * @template {string} TypeGeneric The generic type of the names of a state.
@@ -180,7 +183,10 @@ class FiniteStateMachine {
 
         if (typeof this.$state.$onEnter === 'function') {
 
-            this.$state.$onEnter({$previous: undefined});
+            this.$state.$onEnter({
+
+                $previous: undefined
+            });
         }
 
         this.$initiated = true;
@@ -202,7 +208,11 @@ class FiniteStateMachine {
 
         if (typeof this.$state.$onTick === 'function') {
 
-            this.$state.$onTick({$timetick: $timetick, $timer: this.$timer});
+            this.$state.$onTick({
+
+                $timer: this.$timer,
+                $timetick: $timetick
+            });
         }
 
         const transitions = this.$state.$transitions;
@@ -212,7 +222,7 @@ class FiniteStateMachine {
             return;
         }
 
-        for (let $transition of transitions) {
+        for (const $transition of transitions) {
 
             let previous;
 
@@ -224,11 +234,21 @@ class FiniteStateMachine {
             const current = this.$state.$state;
             const next = $transition.$state;
 
-            if ($transition.$condition({$previous: previous, $timer: this.$timer}) === true) {
+            const condition = $transition.$condition({
+
+                $previous: previous,
+                $timer: this.$timer
+            });
+
+            if (condition === true) {
 
                 if (typeof this.$state.$onLeave === 'function') {
 
-                    this.$state.$onLeave({$timer: this.$timer, $next: next});
+                    this.$state.$onLeave({
+
+                        $next: next,
+                        $timer: this.$timer
+                    });
                 }
 
                 this.$timer = 0;
@@ -238,7 +258,10 @@ class FiniteStateMachine {
 
                 if (typeof this.$state.$onEnter === 'function') {
 
-                    this.$state.$onEnter({$previous: current});
+                    this.$state.$onEnter({
+
+                        $previous: current
+                    });
                 }
 
                 this.tick(0);

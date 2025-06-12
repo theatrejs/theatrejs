@@ -291,7 +291,7 @@ class Engine {
                 .then(($content) => {
 
                     const contentType = $content.headers.get('Content-Type');
-                    const mediaType = contentType.toLowerCase().split('/')[0];
+                    const [mediaType] = contentType.toLowerCase().split('/');
 
                     switch(mediaType) {
 

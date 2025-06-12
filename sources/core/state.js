@@ -1,3 +1,6 @@
+// 'ESLint' configuration
+/* global TypeGeneric */
+
 /**
  * Creates state managers.
  * @template {any} TypeGeneric The generic type of the data state.

@@ -4,6 +4,8 @@
     "devDependencies": {
 
         "docdash": "2.0.2",
+        "eslint": "8.57.1",
+        "eslint-plugin-jsdoc": "40.2.0",
         "jsdoc": "4.0.3"
     },
     "engines": {
@@ -44,6 +46,7 @@
         "github-pages": "npm run github-pages:clean && npm run github-pages:generate ",
         "github-pages:clean": "rm -rf ./docs/",
         "github-pages:generate": "jsdoc ./tools/jsdoc/HOME.md ./sources/ --recurse --destination ./docs/ --template ./node_modules/docdash --configure ./tools/jsdoc/jsdoc.config.json",
+        "lint": "eslint ./sources/",
         "postversion": "node ./tools/custom/postversion.cjs"
     },
     "type": "module",

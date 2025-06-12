@@ -1,3 +1,6 @@
+// 'ESLint' configuration
+/* global Gyroscope */
+
 import {EVENT_CODES, EVENT_TYPES, EventGyroscopeAnalog, EventGyroscopeDigital, MATHEMATICS} from '../index.js';
 
 /**

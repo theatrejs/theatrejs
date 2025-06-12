@@ -61,7 +61,11 @@ class System {
      * @param {number} $parameters.$timetick The tick duration (in ms).
      * @public
      */
-    onTick({$stage, $timetick}) {}
+    onTick({$stage, $timetick}) {
+
+        void $stage;
+        void $timetick;
+    }
 
     /**
      * Terminates the system.

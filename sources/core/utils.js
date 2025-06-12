@@ -1,3 +1,6 @@
+// 'ESLint' configuration
+/* global TypeGeneric */
+
 /**
  * @module UTILS
  */
