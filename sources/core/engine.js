@@ -290,10 +290,10 @@ class Engine {
                 fetch($asset)
                 .then(($content) => {
 
-                    const contenttype = $content.headers.get('Content-Type').toLowerCase();
-                    const mediatype = contenttype.split('/')[0];
+                    const contentType = $content.headers.get('Content-Type');
+                    const mediaType = contentType.toLowerCase().split('/')[0];
 
-                    switch(mediatype) {
+                    switch(mediaType) {
 
                         case MEDIA_TYPES.AUDIO: {
 
