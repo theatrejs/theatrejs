@@ -150,6 +150,22 @@ class AABB {
     }
 
     /**
+     * Creates a new AABB from the given size.
+     * @param {Vector2} $size The given size.
+     * @returns {AABB}
+     * @public
+     * @static
+     */
+    static fromSize($size) {
+
+        return new AABB(
+
+            $size.clone().scale(-0.5),
+            $size.clone().scale(0.5)
+        );
+    }
+
+    /**
      * Gets the delta penetration between two AABBs strictly overlaping with each other on the x-axis (the common area).
      * @param {AABB} $a The first AABB to compare.
      * @param {AABB} $b The second AABB to compare.

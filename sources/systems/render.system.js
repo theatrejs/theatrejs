@@ -1,4 +1,4 @@
-import {EVENT_TYPES, SHADER_PARAMETER_TYPES, Shader, Sprite, Stage, System, Vector2, Vector3} from '../index.js';
+import {AABB, EVENT_TYPES, SHADER_PARAMETER_TYPES, Shader, Sprite, Stage, System, Vector2, Vector3} from '../index.js';
 
 /**
  * Creates render systems.
@@ -749,7 +749,42 @@ class SystemRender extends System {
 
         this.$sendAttribute(Shader, 'attributePosition', this.$bufferPosition);
 
-        const actors = [...$stage.actors];
+        const boundariesViewport = AABB
+        .fromSize(new Vector2(this.$canvas.width, this.$canvas.height))
+        .translate($stage.pointOfView.translation);
+
+        const actors = $stage.actors.filter(($actor) => {
+
+            if ($actor.hasSprite() === false) {
+
+                return false;
+            }
+
+            if ($actor.visible === false) {
+
+                return false;
+            }
+
+            const boundariesSprite = AABB
+            .fromSize($actor.sprite.sizeTarget)
+            .translate($actor.translation);
+
+            const overlapX = AABB.overlapX(boundariesViewport, boundariesSprite);
+
+            if (overlapX <= 0) {
+
+                return false;
+            }
+
+            const overlapY = AABB.overlapY(boundariesViewport, boundariesSprite);
+
+            if (overlapY <= 0) {
+
+                return false;
+            }
+
+            return true;
+        });
 
         actors.sort(($a, $b) => {
 
@@ -757,16 +792,6 @@ class SystemRender extends System {
         });
 
         actors.forEach(($actor) => {
-
-            if ($actor.hasSprite() === false) {
-
-                return;
-            }
-
-            if ($actor.visible === false) {
-
-                return;
-            }
 
             let texture = this.$textureDefault;
 
