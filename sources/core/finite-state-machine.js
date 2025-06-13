@@ -33,7 +33,7 @@ class FiniteStateMachine {
 
     /**
      * @callback TypeStateHandlerEnter A state entering handler.
-     * @param {Object} $parameters The given parameters.
+     * @param {object} $parameters The given parameters.
      * @param {TypeGeneric} $parameters.$previous The previous state.
      * @returns {void}
      * @protected
@@ -43,7 +43,7 @@ class FiniteStateMachine {
 
     /**
      * @callback TypeStateHandlerLeave A state leaving handler.
-     * @param {Object} $parameters The given parameters.
+     * @param {object} $parameters The given parameters.
      * @param {number} $parameters.$timer The timer of the current state.
      * @param {TypeGeneric} $parameters.$next The next state.
      * @returns {void}
@@ -54,7 +54,7 @@ class FiniteStateMachine {
 
     /**
      * @callback TypeStateHandlerTick A state updating handler.
-     * @param {Object} $parameters The given parameters.
+     * @param {object} $parameters The given parameters.
      * @param {number} $parameters.$timetick The tick duration (in ms).
      * @param {number} $parameters.$timer The timer of the current state.
      * @returns {void}
@@ -65,7 +65,7 @@ class FiniteStateMachine {
 
     /**
      * @callback TypeStateTransitionCondition A state transition condition.
-     * @param {Object} $parameters The given parameters.
+     * @param {object} $parameters The given parameters.
      * @param {TypeGeneric} $parameters.$previous The previous state.
      * @param {number} $parameters.$timer The timer of the current state.
      * @returns {boolean}
@@ -75,21 +75,21 @@ class FiniteStateMachine {
      */
 
     /**
-     * @typedef {Object} TypeStateTransition A transition to a state.
-     * @property {TypeStateTransitionCondition} TypeStateTransition.$condition The condition to transition to given state.
-     * @property {TypeGeneric} TypeStateTransition.$state The given state to transition to.
+     * @typedef {object} TypeStateTransition A transition to a state.
+     * @property {TypeStateTransitionCondition} $condition The condition to transition to given state.
+     * @property {TypeGeneric} $state The given state to transition to.
      * @protected
      *
      * @memberof FiniteStateMachine
      */
 
     /**
-     * @typedef {Object} TypeState A state.
-     * @property {TypeGeneric} TypeState.$state The name of the state.
-     * @property {TypeStateHandlerEnter} [TypeState.$onEnter] The handler to execute when entering the state.
-     * @property {TypeStateHandlerLeave} [TypeState.$onLeave] The handler to execute when leaving the state.
-     * @property {TypeStateHandlerTick} [TypeState.$onTick] The handler to execute when updating the state.
-     * @property {Array<TypeStateTransition>} [TypeState.$transitions] The transitions to given states.
+     * @typedef {object} TypeState A state.
+     * @property {TypeGeneric} $state The name of the state.
+     * @property {TypeStateHandlerEnter} [$onEnter] The handler to execute when entering the state.
+     * @property {TypeStateHandlerLeave} [$onLeave] The handler to execute when leaving the state.
+     * @property {TypeStateHandlerTick} [$onTick] The handler to execute when updating the state.
+     * @property {Array<TypeStateTransition>} [$transitions] The transitions to given states.
      * @protected
      *
      * @memberof FiniteStateMachine

@@ -69,7 +69,7 @@ class Collider {
 
     /**
      * Creates a new collider.
-     * @param {Object} $parameters The given parameters.
+     * @param {object} $parameters The given parameters.
      * @param {AABB} $parameters.$boundaries The boundaries of the collider to create.
      * @param {boolean} [$parameters.$traversable] The traversable status of the collider to create.
      * @param {TypeCollider} $parameters.$type The type of the collider to create.

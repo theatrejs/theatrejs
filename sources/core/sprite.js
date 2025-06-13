@@ -94,7 +94,7 @@ class Sprite {
 
     /**
      * Creates a new sprite.
-     * @param {Object} $parameters The given parameters.
+     * @param {object} $parameters The given parameters.
      * @param {AABB} [$parameters.$frameSource] The frame to use from the texture sources (with values in [0, 1] ranges) (if not specified then the full texture is used).
      * @param {Vector2} $parameters.$sizeTarget The target size.
      * @param {string} $parameters.$texture The texture source.

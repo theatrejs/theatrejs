@@ -7,7 +7,9 @@ module.exports = {
     },
     'extends': [
 
-        'eslint:all'
+        'eslint:all',
+
+        'plugin:jsdoc/recommended-error'
     ],
     'parserOptions': {
 
@@ -47,6 +49,15 @@ module.exports = {
         'one-var': 'off',
         'prefer-template': 'off',
 
-        'jsdoc/no-undefined-types': 'error'
+        'jsdoc/newline-after-description': 'off',
+        'jsdoc/require-returns-description': 'off',
+        'jsdoc/tag-lines': 'off'
+    },
+    'settings': {
+
+        'jsdoc': {
+
+            'mode': 'typescript'
+        }
     }
 };

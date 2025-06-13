@@ -65,7 +65,7 @@ class Vibration {
 
     /**
      * Creates a new vibration.
-     * @param {Object} $parameters The given parameters.
+     * @param {object} $parameters The given parameters.
      * @param {number} $parameters.$duration The duration (in ms).
      * @param {number} $parameters.$intensityFrequencyHigh The intensity of the high-frequency (weak) rumble motors (with value in [0, 1] range).
      * @param {number} $parameters.$intensityFrequencyLow The intensity of the low-frequency (strong) rumble motors (with value in [0, 1] range).

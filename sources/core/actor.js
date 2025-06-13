@@ -389,7 +389,7 @@ class Actor extends Preloadable {
 
     /**
      * Called when a collision is being resolved.
-     * @param {Object} $parameters The given parameters.
+     * @param {object} $parameters The given parameters.
      * @param {Actor} $parameters.$actor The colliding actor.
      * @param {boolean} $parameters.$east If the origin of collision is facing the east face.
      * @param {boolean} $parameters.$north If the origin of collision is facing the north face.
@@ -408,7 +408,7 @@ class Actor extends Preloadable {
 
     /**
      * Called when a collision is being entered.
-     * @param {Object} $parameters The given parameters.
+     * @param {object} $parameters The given parameters.
      * @param {Actor} $parameters.$actor The colliding actor.
      * @param {boolean} $parameters.$east If the origin of collision is facing the east face.
      * @param {boolean} $parameters.$north If the origin of collision is facing the north face.

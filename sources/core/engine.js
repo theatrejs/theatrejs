@@ -144,7 +144,7 @@ class Engine {
 
     /**
      * Creates a new game engine.
-     * @param {Object} [$parameters] The given parameters.
+     * @param {object} [$parameters] The given parameters.
      * @param {Vector3} [$parameters.$color] The rendering background color to use.
      * @param {HTMLElement} [$parameters.$container] The container for the game engine to create.
      * @param {Vector2} [$parameters.$resolution] The rendering resolution to use.
@@ -337,7 +337,7 @@ class Engine {
      */
     removePointerNative() {
 
-        return this.$systemRender.removePointerNative();
+        this.$systemRender.removePointerNative();
     }
 
     /**
@@ -347,7 +347,7 @@ class Engine {
      */
     setColor($color) {
 
-        return this.$systemRender.setColor($color);
+        this.$systemRender.setColor($color);
     }
 
     /**
@@ -357,7 +357,7 @@ class Engine {
      */
     setResolution($resolution) {
 
-        return this.$systemRender.setResolution($resolution);
+        this.$systemRender.setResolution($resolution);
     }
 
     /**

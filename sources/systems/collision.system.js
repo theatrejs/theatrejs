@@ -66,18 +66,20 @@ class SystemCollision extends System {
 
     /**
      * Called when the system is being updated by one tick update.
-     * @param {Object} $parameters The given parameters.
+     * @param {object} $parameters The given parameters.
      * @param {Stage} $parameters.$stage The stage on which to execute the system.
      * @param {number} $parameters.$timetick The tick duration (in ms).
      * @public
      */
-    onTick({$stage}) {
+    onTick({$stage, $timetick}) {
+
+        void $timetick;
 
         /**
-         * @typedef {Object} TypePairCollision A pair of candidates for collision.
-         * @property {number} TypePairCollision.$distance The manhattan distance between the two actors.
-         * @property {Actor} TypePairCollision.$dynamic The first actor.
-         * @property {Actor} TypePairCollision.$inert The second actor.
+         * @typedef {object} TypePairCollision A pair of candidates for collision.
+         * @property {number} $distance The manhattan distance between the two actors.
+         * @property {Actor} $dynamic The first actor.
+         * @property {Actor} $inert The second actor.
          * @private
          */
 

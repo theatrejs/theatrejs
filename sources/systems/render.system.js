@@ -143,7 +143,7 @@ class SystemRender extends System {
 
     /**
      * Creates a new render system.
-     * @param {Object} $parameters The given parameters.
+     * @param {object} $parameters The given parameters.
      * @param {Vector3} [$parameters.$color] The rendering background color to use.
      * @param {HTMLElement} $parameters.$container The container on which to attach the canvas.
      * @param {Vector2} $parameters.$resolution The rendering resolution to use.
@@ -732,7 +732,7 @@ class SystemRender extends System {
 
     /**
      * Called when the system is being terminated.
-     * @returns {(void | Promise<void>)}
+     * @returns {(undefined | Promise<void>)}
      * @public
      */
     onTerminate() {
@@ -741,16 +741,20 @@ class SystemRender extends System {
 
         this.$terminateContext();
         this.$terminateCanvas();
+
+        return undefined;
     }
 
     /**
      * Called when the system is being updated by one tick update.
-     * @param {Object} $parameters The given parameters.
+     * @param {object} $parameters The given parameters.
      * @param {Stage} $parameters.$stage The stage on which to execute the system.
      * @param {number} $parameters.$timetick The tick duration (in ms).
      * @public
      */
-    onTick({$stage}) {
+    onTick({$stage, $timetick}) {
+
+        void $timetick;
 
         this.$resetCanvas(this.$canvas.width, this.$canvas.height);
 

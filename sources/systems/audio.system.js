@@ -10,10 +10,10 @@ import {Sound, Stage, System, UTILS} from '../index.js';
 class SystemAudio extends System {
 
     /**
-     * @typedef {Object} TypeDataAudio An audio data.
-     * @property {AudioBufferSourceNode} TypeDataAudio.$audio The audio buffer source node.
-     * @property {GainNode} TypeDataAudio.$gain The gain.
-     * @property {number} TypeDataAudio.$startTime The start time of the audio in the audio context timeline.
+     * @typedef {object} TypeDataAudio An audio data.
+     * @property {AudioBufferSourceNode} $audio The audio buffer source node.
+     * @property {GainNode} $gain The gain.
+     * @property {number} $startTime The start time of the audio in the audio context timeline.
      * @private
      */
 
@@ -202,7 +202,7 @@ class SystemAudio extends System {
 
     /**
      * Called when the system is being terminated.
-     * @returns {(void | Promise<void>)}
+     * @returns {(undefined | Promise<void>)}
      * @public
      */
     onTerminate() {
@@ -239,12 +239,14 @@ class SystemAudio extends System {
 
     /**
      * Called when the system is being updated by one tick update.
-     * @param {Object} $parameters The given parameters.
+     * @param {object} $parameters The given parameters.
      * @param {Stage} $parameters.$stage The stage on which to execute the system.
      * @param {number} $parameters.$timetick The tick duration (in ms).
      * @public
      */
-    onTick({$stage}) {
+    onTick({$stage, $timetick}) {
+
+        void $timetick;
 
         /**
          * @type {Array<Sound>}

@@ -77,7 +77,7 @@ class TimelineKeyframe {
 
     /**
      * Creates a new timeline keyframe.
-     * @param {Object} $parameters The given parameters.
+     * @param {object} $parameters The given parameters.
      * @param {string} [$parameters.$name] The name.
      * @param {TypeHandlerEnter} $parameters.$onEnter The keyframe entering handler.
      * @param {number} $parameters.$timecode The timecode.

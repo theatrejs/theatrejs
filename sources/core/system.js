@@ -49,14 +49,17 @@ class System {
 
     /**
      * Called when the system is being terminated.
-     * @returns {(void | Promise<void>)}
+     * @returns {(undefined | Promise<void>)}
      * @public
      */
-    onTerminate() {}
+    onTerminate() {
+
+        return undefined;
+    }
 
     /**
      * Called when the system is being updated by one tick update.
-     * @param {Object} $parameters The given parameters.
+     * @param {object} $parameters The given parameters.
      * @param {Stage} $parameters.$stage The stage on which to execute the system.
      * @param {number} $parameters.$timetick The tick duration (in ms).
      * @public
@@ -95,7 +98,7 @@ class System {
 
     /**
      * Updates the system by one tick update.
-     * @param {Object} $parameters The given parameters.
+     * @param {object} $parameters The given parameters.
      * @param {Stage} $parameters.$stage The stage on which to execute the system.
      * @param {number} $parameters.$timetick The tick duration (in ms).
      * @public

@@ -41,7 +41,7 @@ class SystemInput extends System {
 
     /**
      * Creates a new input system.
-     * @param {Object} $parameters The given parameters.
+     * @param {object} $parameters The given parameters.
      * @param {HTMLElement} $parameters.$container The container on which to attach input events.
      */
     constructor({$container}) {
@@ -135,7 +135,7 @@ class SystemInput extends System {
 
     /**
      * Called when the system is being terminated.
-     * @returns {(void | Promise<void>)}
+     * @returns {(undefined | Promise<void>)}
      * @public
      */
     onTerminate() {
@@ -162,16 +162,21 @@ class SystemInput extends System {
 
         this.$container.removeEventListener(EVENT_TYPES.KEYBOARD.KEY_DOWN, this.$stack.bind(this));
         this.$container.removeEventListener(EVENT_TYPES.KEYBOARD.KEY_UP, this.$stack.bind(this));
+
+        return undefined;
     }
 
     /**
      * Called when the system is being updated by one tick update.
-     * @param {Object} $parameters The given parameters.
+     * @param {object} $parameters The given parameters.
      * @param {Stage} $parameters.$stage The stage on which to execute the system.
      * @param {number} $parameters.$timetick The tick duration (in ms).
      * @public
      */
-    onTick() {
+    onTick({$stage, $timetick}) {
+
+        void $stage;
+        void $timetick;
 
         while (this.$events.length > 0) {
 

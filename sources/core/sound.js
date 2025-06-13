@@ -92,7 +92,7 @@ class Sound {
 
     /**
      * Creates a new sound.
-     * @param {Object} $parameters The given parameters.
+     * @param {object} $parameters The given parameters.
      * @param {string} $parameters.$audio The audio source.
      * @param {number} [$parameters.$durationFadeOut] The fade out duration (in ms) (must be positive).
      * @param {boolean} [$parameters.$loop] The loop status.
