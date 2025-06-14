@@ -27,6 +27,7 @@ module.exports = {
         'arrow-body-style': 'off',
         'class-methods-use-this': 'off',
         'complexity': 'off',
+        'default-case': 'off',
         'func-style': 'off',
         'id-length': 'off',
         'init-declarations': 'off',

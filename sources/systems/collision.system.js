@@ -132,11 +132,6 @@ class SystemCollision extends System {
 
                     break;
                 }
-
-                default: {
-
-                    break;
-                }
             }
         });
 

@@ -504,11 +504,6 @@ class SystemRender extends System {
 
                 break;
             }
-
-            default: {
-
-                break;
-            }
         }
     }
 
@@ -581,11 +576,6 @@ class SystemRender extends System {
             case SHADER_PARAMETER_TYPES.ARRAY_VECTOR_3: {
 
                 this.$context.uniform3fv(this.$locationsUniform[$name], $value);
-
-                break;
-            }
-
-            default: {
 
                 break;
             }
