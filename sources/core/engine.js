@@ -293,7 +293,7 @@ class Engine {
                     const contentType = $content.headers.get('Content-Type');
                     const [mediaType] = contentType.toLowerCase().split('/');
 
-                    switch(mediaType) {
+                    switch (mediaType) {
 
                         case MEDIA_TYPES.AUDIO: {
 

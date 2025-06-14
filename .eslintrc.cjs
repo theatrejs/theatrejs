@@ -9,6 +9,7 @@ module.exports = {
 
         'eslint:all',
 
+        'plugin:@stylistic/all-extends',
         'plugin:jsdoc/recommended-error'
     ],
     'parserOptions': {
@@ -18,6 +19,7 @@ module.exports = {
     },
     'plugins': [
 
+        '@stylistic',
         'jsdoc'
     ],
     'rules': {
@@ -48,6 +50,22 @@ module.exports = {
         'object-shorthand': 'off',
         'one-var': 'off',
         'prefer-template': 'off',
+
+        '@stylistic/array-element-newline': 'off',
+        '@stylistic/brace-style': ['error', 'stroustrup'],
+        '@stylistic/dot-location': ['error', 'property'],
+        '@stylistic/function-call-argument-newline': ['error', 'consistent'],
+        '@stylistic/indent': ['error', 4, {'MemberExpression': 0, 'SwitchCase': 1}],
+        '@stylistic/indent-binary-ops': ['error', 0],
+        '@stylistic/multiline-ternary': ['error', 'never'],
+        '@stylistic/no-extra-parens': 'off',
+        '@stylistic/object-property-newline': ['error', {'allowAllPropertiesOnSameLine': true}],
+        '@stylistic/operator-linebreak': ['error', 'none', {'overrides': {'&&': 'before', '||': 'before'}}],
+        '@stylistic/padded-blocks': ['error', 'start'],
+        '@stylistic/quotes': ['error', 'single', {'allowTemplateLiterals': false}],
+        '@stylistic/quote-props': ['error', 'consistent'],
+        '@stylistic/space-before-function-paren': ['error', {'named': 'never'}],
+        '@stylistic/space-unary-ops': 'off',
 
         'jsdoc/newline-after-description': 'off',
         'jsdoc/require-returns-description': 'off',

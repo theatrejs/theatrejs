@@ -123,7 +123,7 @@ class SystemAudio extends System {
         if ($sound.loop === false
         && this.$context.currentTime > $startTime + Math.max(0, $audio.buffer.duration - ($sound.durationFadeOut / 1000))) {
 
-            return
+            return;
         }
 
         $gain.gain.cancelScheduledValues(this.$context.currentTime);
@@ -221,7 +221,7 @@ class SystemAudio extends System {
 
         const promise = new Promise(($resolve) => {
 
-            window.setTimeout(() => {
+            const handler = () => {
 
                 this.$context.close()
                 .then(() => {
@@ -230,8 +230,9 @@ class SystemAudio extends System {
 
                     $resolve();
                 });
+            };
 
-            }, delayFadeOut + SystemAudio.DELAY_CONTEXT_CLEAR_SAFE);
+            window.setTimeout(handler, delayFadeOut + SystemAudio.DELAY_CONTEXT_CLEAR_SAFE);
         });
 
         return promise;

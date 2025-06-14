@@ -277,8 +277,9 @@ class SystemCollision extends System {
             });
 
             return typeof result === 'undefined';
+        });
 
-        }).forEach(([$dynamicPrevious, $inertPrevious]) => {
+        this.$previous.forEach(([$dynamicPrevious, $inertPrevious]) => {
 
             $dynamicPrevious.onCollideLeave($inertPrevious);
             $inertPrevious.onCollideLeave($dynamicPrevious);

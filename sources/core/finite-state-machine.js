@@ -178,7 +178,7 @@ class FiniteStateMachine {
             return;
         }
 
-        this.$previous = this.$state
+        this.$previous = this.$state;
         this.$state = this.$states.get($state);
 
         if (typeof this.$state.$onEnter === 'function') {

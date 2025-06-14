@@ -1,3 +1,7 @@
+// 'ESLint' configuration
+/* eslint-disable @stylistic/indent-binary-ops */
+/* eslint-disable @stylistic/operator-linebreak */
+
 import {SHADER_PARAMETER_TYPES} from '../index.js';
 
 /**
