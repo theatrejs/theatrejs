@@ -1,4 +1,4 @@
-import {EVENT_TYPES, EventGamepadAnalog, EventGamepadDigital, EventGravityAnalog, EventGravityDigital, EventGyroscopeAnalog, EventGyroscopeDigital, EventPointerAnalog, EventPointerDigital, Stage, System} from '../index.js';
+import {EVENT_CODES, EVENT_TYPES, EventGamepadAnalog, EventGamepadDigital, EventGravityAnalog, EventGravityDigital, EventGyroscopeAnalog, EventGyroscopeDigital, EventPointerAnalog, EventPointerDigital, Stage, System} from '../index.js';
 
 /**
  * Creates input systems.
@@ -178,6 +178,16 @@ class SystemInput extends System {
         void $stage;
         void $timetick;
 
+        if (typeof this.$inputs[EVENT_CODES.GAMEPAD_STANDARD.CONNECTED] !== 'undefined') {
+
+            delete this.$inputs[EVENT_CODES.GAMEPAD_STANDARD.CONNECTED];
+        }
+
+        if (typeof this.$inputs[EVENT_CODES.GAMEPAD_STANDARD.DISCONNECTED] !== 'undefined') {
+
+            delete this.$inputs[EVENT_CODES.GAMEPAD_STANDARD.DISCONNECTED];
+        }
+
         while (this.$events.length > 0) {
 
             const $event = this.$events.shift();
@@ -192,6 +202,12 @@ class SystemInput extends System {
             && $event.type === EVENT_TYPES.GAMEPAD.GAMEPAD_ANALOG) {
 
                 this.$inputsAnalog[$event.code] = $event.value;
+            }
+
+            else if ($event instanceof EventGamepadDigital
+            && $event.type === EVENT_TYPES.GAMEPAD.GAMEPAD_CONNECT) {
+
+                this.$inputs[$event.code] = true;
             }
 
             else if ($event instanceof EventGamepadDigital
