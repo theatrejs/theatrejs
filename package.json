@@ -47,7 +47,7 @@
         "github-pages": "npm run github-pages:clean && npm run github-pages:generate ",
         "github-pages:clean": "rm -rf ./docs/",
         "github-pages:generate": "jsdoc ./tools/jsdoc/HOME.md ./sources/ --recurse --destination ./docs/ --template ./node_modules/docdash --configure ./tools/jsdoc/jsdoc.config.json",
-        "lint": "eslint ./sources/",
+        "lint": "eslint ./sources/ --config ./tools/eslint/eslint.config.cjs",
         "postversion": "node ./tools/custom/postversion.cjs"
     },
     "type": "module",
