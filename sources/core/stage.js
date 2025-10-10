@@ -260,31 +260,53 @@ class Stage extends Preloadable {
 
     /**
      * Removes all actors.
+     * @param {boolean} $force If the removal should also be applied to all actors created during this removal.
      * @public
      */
-    removeActors() {
+    removeActors($force = false) {
 
-        while (this.$actors.length > 0) {
+        if ($force === true) {
 
-            const [actor] = this.$actors;
+            while (this.$actors.length > 0) {
 
-            this.$removeActor(actor);
+                const [actor] = this.$actors;
+
+                this.$removeActor(actor);
+            }
+
+            return;
         }
+
+        [...this.$actors].forEach(($actor) => {
+
+            this.$removeActor($actor);
+        });
     }
 
     /**
      * Removes the actors with the given identifier.
      * @param {string} $identifier The identifier of the actors to remove.
+     * @param {boolean} $force If the removal should also be applied to the actors with the given identifier created during this removal.
      * @public
      */
-    removeActorsWithIdentifier($identifier) {
+    removeActorsWithIdentifier($identifier, $force = false) {
 
-        while (this.$actors.some(($actor) => ($actor.identifier === $identifier)) === true) {
+        if ($force === true) {
 
-            const actor = this.$actors.find(($actor) => ($actor.identifier === $identifier));
+            while (this.$actors.some(($actor) => ($actor.identifier === $identifier)) === true) {
 
-            this.$removeActor(actor);
+                const actor = this.$actors.find(($actor) => ($actor.identifier === $identifier));
+
+                this.$removeActor(actor);
+            }
+
+            return;
         }
+
+        [...this.$actors.filter(($actor) => ($actor.identifier === $identifier))].forEach(($actor) => {
+
+            this.$removeActor($actor);
+        });
     }
 
     /**
