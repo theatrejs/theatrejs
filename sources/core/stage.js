@@ -5,6 +5,14 @@
 import {Actor, Engine, Preloadable, UTILS} from '../index.js';
 
 /**
+ * The identifier of the 'origin' actor.
+ * @type {string}
+ * @constant
+ * @private
+ */
+const $IDENTIFIER_ACTOR_ORIGIN = '$origin';
+
+/**
  * Abstract stages.
  *
  * @example
@@ -26,6 +34,13 @@ class Stage extends Preloadable {
      * @private
      */
     $engine;
+
+    /**
+     * Stores the 'origin' actor (not attached).
+     * @type {Actor}
+     * @private
+     */
+    $origin;
 
     /**
      * Stores the point of view.
@@ -62,6 +77,16 @@ class Stage extends Preloadable {
     }
 
     /**
+     * Gets the 'origin' actor (not attached).
+     * @type {Actor}
+     * @public
+     */
+    get origin() {
+
+        return this.$origin;
+    }
+
+    /**
      * Gets the point of view.
      * @type {Actor}
      * @public
@@ -92,8 +117,44 @@ class Stage extends Preloadable {
         this.$engine = $engine;
 
         this.$actors = [];
-        this.$pointOfView = this.createActor(Actor);
+        this.$origin = this.$createActorOrigin();
+        this.$pointOfView = this.$origin;
         this.$uuid = UTILS.uuid();
+    }
+
+    /**
+     * Creates the 'origin' actor.
+     * @returns {Actor}
+     * @private
+     */
+    $createActorOrigin() {
+
+        const actor = new Actor(this)
+        .setIdentifier($IDENTIFIER_ACTOR_ORIGIN);
+
+        actor.onCreate();
+
+        return actor;
+    }
+
+    /**
+     * Removes the given actor.
+     * @param {Actor} $actor The actor to remove.
+     * @private
+     */
+    $removeActor($actor) {
+
+        $actor.onBeforeRemove();
+
+        if (this.$pointOfView === $actor) {
+
+            this.$pointOfView = this.$origin;
+        }
+
+        const index = this.$actors.indexOf($actor);
+        this.$actors.splice(index, 1);
+
+        $actor.onAfterRemove();
     }
 
     /**
@@ -116,6 +177,28 @@ class Stage extends Preloadable {
     }
 
     /**
+     * Gets the first actor with the given identifier.
+     * @param {string} $identifier The identifier of the actor to get.
+     * @returns {Actor}
+     * @public
+     */
+    getActorWithIdentifier($identifier) {
+
+        return this.$actors.find(($actor) => ($actor.identifier === $identifier));
+    }
+
+    /**
+     * Gets the actors with the given identifier.
+     * @param {string} $identifier The identifier of the actors to get.
+     * @returns {Array<Actor>}
+     * @public
+     */
+    getActorsWithIdentifier($identifier) {
+
+        return this.$actors.filter(($actor) => ($actor.identifier === $identifier));
+    }
+
+    /**
      * Checks if the stage has the given actor.
      * @param {Actor} $actor The actor to check.
      * @returns {boolean}
@@ -124,6 +207,17 @@ class Stage extends Preloadable {
     hasActor($actor) {
 
         return this.$actors.indexOf($actor) !== -1;
+    }
+
+    /**
+     * Checks if the stage has an actor with the given identifier.
+     * @param {string} $identifier The identifier of the actor to check.
+     * @returns {boolean}
+     * @public
+     */
+    hasActorWithIdentifier($identifier) {
+
+        return this.$actors.some(($actor) => ($actor.identifier === $identifier)) === true;
     }
 
     /**
@@ -139,18 +233,29 @@ class Stage extends Preloadable {
      */
     removeActor($actor) {
 
-        const index = this.$actors.indexOf($actor);
-
-        if (index === -1) {
+        if (this.$actors.indexOf($actor) === -1) {
 
             return;
         }
 
-        $actor.onBeforeRemove();
+        this.$removeActor($actor);
+    }
 
-        this.$actors.splice(index, 1);
+    /**
+     * Removes the first actor with the given identifier.
+     * @param {string} $identifier The identifier of the actor to remove.
+     * @public
+     */
+    removeActorWithIdentifier($identifier) {
 
-        $actor.onAfterRemove();
+        const actor = this.$actors.find(($actor) => ($actor.identifier === $identifier));
+
+        if (typeof actor === 'undefined') {
+
+            return;
+        }
+
+        this.$removeActor(actor);
     }
 
     /**
@@ -161,7 +266,24 @@ class Stage extends Preloadable {
 
         while (this.$actors.length > 0) {
 
-            this.removeActor(this.$actors[0]);
+            const [actor] = this.$actors;
+
+            this.$removeActor(actor);
+        }
+    }
+
+    /**
+     * Removes the actors with the given identifier.
+     * @param {string} $identifier The identifier of the actors to remove.
+     * @public
+     */
+    removeActorsWithIdentifier($identifier) {
+
+        while (this.$actors.some(($actor) => ($actor.identifier === $identifier)) === true) {
+
+            const actor = this.$actors.find(($actor) => ($actor.identifier === $identifier));
+
+            this.$removeActor(actor);
         }
     }
 
