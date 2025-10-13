@@ -5,12 +5,12 @@
 import {Actor, Engine, Preloadable, UTILS} from '../index.js';
 
 /**
- * The identifier of the 'origin' actor.
+ * The label of the 'origin' actor.
  * @type {string}
  * @constant
  * @private
  */
-const $IDENTIFIER_ACTOR_ORIGIN = '$origin';
+const $LABEL_ACTOR_ORIGIN = '$origin';
 
 /**
  * Abstract stages.
@@ -130,7 +130,7 @@ class Stage extends Preloadable {
     $createActorOrigin() {
 
         const actor = new Actor(this)
-        .setIdentifier($IDENTIFIER_ACTOR_ORIGIN);
+        .setLabel($LABEL_ACTOR_ORIGIN);
 
         actor.onCreate();
 
@@ -177,25 +177,25 @@ class Stage extends Preloadable {
     }
 
     /**
-     * Gets the first actor with the given identifier.
-     * @param {string} $identifier The identifier of the actor to get.
+     * Gets the first actor with the given label.
+     * @param {string} $label The label of the actor to get.
      * @returns {Actor}
      * @public
      */
-    getActorWithIdentifier($identifier) {
+    getActorWithLabel($label) {
 
-        return this.$actors.find(($actor) => ($actor.identifier === $identifier));
+        return this.$actors.find(($actor) => ($actor.label === $label));
     }
 
     /**
-     * Gets the actors with the given identifier.
-     * @param {string} $identifier The identifier of the actors to get.
+     * Gets the actors with the given label.
+     * @param {string} $label The label of the actors to get.
      * @returns {Array<Actor>}
      * @public
      */
-    getActorsWithIdentifier($identifier) {
+    getActorsWithLabel($label) {
 
-        return this.$actors.filter(($actor) => ($actor.identifier === $identifier));
+        return this.$actors.filter(($actor) => ($actor.label === $label));
     }
 
     /**
@@ -210,14 +210,14 @@ class Stage extends Preloadable {
     }
 
     /**
-     * Checks if the stage has an actor with the given identifier.
-     * @param {string} $identifier The identifier of the actor to check.
+     * Checks if the stage has an actor with the given label.
+     * @param {string} $label The label of the actor to check.
      * @returns {boolean}
      * @public
      */
-    hasActorWithIdentifier($identifier) {
+    hasActorWithLabel($label) {
 
-        return this.$actors.some(($actor) => ($actor.identifier === $identifier)) === true;
+        return this.$actors.some(($actor) => ($actor.label === $label)) === true;
     }
 
     /**
@@ -242,13 +242,13 @@ class Stage extends Preloadable {
     }
 
     /**
-     * Removes the first actor with the given identifier.
-     * @param {string} $identifier The identifier of the actor to remove.
+     * Removes the first actor with the given label.
+     * @param {string} $label The label of the actor to remove.
      * @public
      */
-    removeActorWithIdentifier($identifier) {
+    removeActorWithLabel($label) {
 
-        const actor = this.$actors.find(($actor) => ($actor.identifier === $identifier));
+        const actor = this.$actors.find(($actor) => ($actor.label === $label));
 
         if (typeof actor === 'undefined') {
 
@@ -284,18 +284,18 @@ class Stage extends Preloadable {
     }
 
     /**
-     * Removes the actors with the given identifier.
-     * @param {string} $identifier The identifier of the actors to remove.
-     * @param {boolean} $force If the removal should also be applied to the actors with the given identifier created during this removal.
+     * Removes the actors with the given label.
+     * @param {string} $label The label of the actors to remove.
+     * @param {boolean} $force If the removal should also be applied to the actors with the given label created during this removal.
      * @public
      */
-    removeActorsWithIdentifier($identifier, $force = false) {
+    removeActorsWithLabel($label, $force = false) {
 
         if ($force === true) {
 
-            while (this.$actors.some(($actor) => ($actor.identifier === $identifier)) === true) {
+            while (this.$actors.some(($actor) => ($actor.label === $label)) === true) {
 
-                const actor = this.$actors.find(($actor) => ($actor.identifier === $identifier));
+                const actor = this.$actors.find(($actor) => ($actor.label === $label));
 
                 this.$removeActor(actor);
             }
@@ -303,7 +303,7 @@ class Stage extends Preloadable {
             return;
         }
 
-        [...this.$actors.filter(($actor) => ($actor.identifier === $identifier))].forEach(($actor) => {
+        [...this.$actors.filter(($actor) => ($actor.label === $label))].forEach(($actor) => {
 
             this.$removeActor($actor);
         });

@@ -47,7 +47,7 @@ class Timeline {
     }
 
     /**
-     * Seeks to the given name.
+     * Seeks to the first keyframe with the given name.
      * @param {string} $name The name of the keyframe to seek to.
      * @returns {this}
      * @public

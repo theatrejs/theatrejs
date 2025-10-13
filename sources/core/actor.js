@@ -46,11 +46,11 @@ class Actor extends Preloadable {
     $components;
 
     /**
-     * Stores the identifier.
+     * Stores the label.
      * @type {string}
      * @private
      */
-    $identifier;
+    $label;
 
     /**
      * Stores the action listeners.
@@ -143,13 +143,13 @@ class Actor extends Preloadable {
     }
 
     /**
-     * Gets the identifier.
+     * Gets the label.
      * @type {string}
      * @public
      */
-    get identifier() {
+    get label() {
 
-        return this.$identifier;
+        return this.$label;
     }
 
     /**
@@ -606,14 +606,14 @@ class Actor extends Preloadable {
     }
 
     /**
-     * Sets the identifier.
-     * @param {string} $identifier The identifier to set.
+     * Sets the label.
+     * @param {string} $label The label to set.
      * @returns {this}
      * @public
      */
-    setIdentifier($identifier) {
+    setLabel($label) {
 
-        this.$identifier = $identifier;
+        this.$label = $label;
 
         return this;
     }
