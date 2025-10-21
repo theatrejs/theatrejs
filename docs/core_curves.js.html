@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>Vibration - Documentation</title>
+    <title>core/curves.js - Documentation</title>
     
     
     <script src="scripts/prettify/prettify.js"></script>
@@ -37,515 +37,180 @@
 
 <div id="main">
     
-    <h1 class="page-title">Vibration</h1>
-    
-
-    
-
-
-
-
-<section>
-
-<header>
-    
-        <h2>
-        
-            Vibration
-        
-        </h2>
-        
-            <div class="class-description usertext">Creates vibrations.</div>
-        
-    
-</header>
-
-<article>
-    
-        <div class="container-overview">
-        
-            
-
-    
-    <h2>Constructor</h2>
-    
-
-    <h4 class="name" id="Vibration"><span class="type-signature"></span>new Vibration<span class="signature">($parameters)</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-
-<dl class="details">
-    
-    <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li>Creates a new vibration.</li></ul></dd>
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="core_vibration.js.html">core/vibration.js</a>, <a href="core_vibration.js.html#line13">line 13</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-    <h5 class="h5-examples">Example</h5>
-    
-    <pre class="prettyprint"><code>const vibration = new Vibration({
-
-    $duration: 200,
-    $intensityFrequencyHigh: 0.8,
-    $intensityFrequencyLow: 0.2
-});</code></pre>
-
-
-
-
-    <h5 class="h5-parameters">Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>$parameters</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">object</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The given parameters.</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>$parameters.$duration</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The duration (in ms).</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>$parameters.$intensityFrequencyHigh</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The intensity of the high-frequency (weak) rumble motors (with value in [0, 1] range).</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>$parameters.$intensityFrequencyLow</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The intensity of the low-frequency (strong) rumble motors (with value in [0, 1] range).</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-        </div>
-    
-
-    
-
-    
-
-    
-    
-    
-
-     
-
-    
-
-    
-        <h3 class="subsection-title">Members</h3>
-
-        
-            
-<h4 class="name" id="duration"><span class="type-signature"></span>duration<span class="type-signature"> :number</span></h4>
-
-
-
-
-
-<dl class="details">
-    
-    <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li>Gets the duration (in ms).</li></ul></dd>
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="core_vibration.js.html">core/vibration.js</a>, <a href="core_vibration.js.html#line41">line 41</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-<div class="description usertext">
-    Gets the duration (in ms).
-</div>
-
-
-
-    <h5 class="h5-types">Type:</h5>
-    <ul>
-        <li>
-            
-<span class="param-type">number</span>
-
-
-
-        </li>
-    </ul>
-
-
-
-
-
-
-        
-            
-<h4 class="name" id="intensityFrequencyHigh"><span class="type-signature"></span>intensityFrequencyHigh<span class="type-signature"> :number</span></h4>
-
-
-
-
-
-<dl class="details">
-    
-    <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li>Gets the intensity of the high-frequency (weak) rumble motors (with value in [0, 1] range).</li></ul></dd>
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="core_vibration.js.html">core/vibration.js</a>, <a href="core_vibration.js.html#line51">line 51</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-<div class="description usertext">
-    Gets the intensity of the high-frequency (weak) rumble motors (with value in [0, 1] range).
-</div>
-
-
-
-    <h5 class="h5-types">Type:</h5>
-    <ul>
-        <li>
-            
-<span class="param-type">number</span>
-
-
-
-        </li>
-    </ul>
-
-
-
-
-
-
-        
-            
-<h4 class="name" id="intensityFrequencyLow"><span class="type-signature"></span>intensityFrequencyLow<span class="type-signature"> :number</span></h4>
-
-
-
-
-
-<dl class="details">
-    
-    <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li>Gets the intensity of the low-frequency (strong) rumble motors (with value in [0, 1] range).</li></ul></dd>
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="core_vibration.js.html">core/vibration.js</a>, <a href="core_vibration.js.html#line61">line 61</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-<div class="description usertext">
-    Gets the intensity of the low-frequency (strong) rumble motors (with value in [0, 1] range).
-</div>
-
-
-
-    <h5 class="h5-types">Type:</h5>
-    <ul>
-        <li>
-            
-<span class="param-type">number</span>
-
-
-
-        </li>
-    </ul>
-
-
-
-
-
-
-        
-    
-
-    
-
-    
-
-    
-</article>
-
-</section>
+    <h1 class="page-title">core/curves.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * @module CURVES
+ */
+
+/**
+ * @callback TypeHandlerCurve Transforms a value according to a curve.
+ * @param {number} $x The value to transform (in [0, 1] range).
+ * @returns {number}
+ * @protected
+ *
+ * @memberof module:CURVES
+ */
+
+/**
+ * Prepares a doubled curve from the given curve.
+ * @param {TypeHandlerCurve} $curve The curve to use.
+ * @returns {TypeHandlerCurve}
+ *
+ * @memberof module:CURVES
+ */
+function double($curve) {
+
+    return ($x) => ($curve($x * 2));
+}
+
+/**
+ * Prepares a halved curve from the given curve.
+ * @param {TypeHandlerCurve} $curve The curve to use.
+ * @returns {TypeHandlerCurve}
+ *
+ * @memberof module:CURVES
+ */
+function half($curve) {
+
+    return ($x) => ($curve($x / 2));
+}
+
+/**
+ * Prepares a inverted curve from the given curve.
+ * @param {TypeHandlerCurve} $curve The curve to use.
+ * @returns {TypeHandlerCurve}
+ *
+ * @memberof module:CURVES
+ */
+function invert($curve) {
+
+    return ($x) => ($curve(1 - $x));
+}
+
+/**
+ * Prepares a multiplied curve from the two given curves.
+ * @param {TypeHandlerCurve} $f The first curve to use.
+ * @param {TypeHandlerCurve} $g The second curve to use.
+ * @returns {TypeHandlerCurve}
+ *
+ * @memberof module:CURVES
+ */
+function multiply($f, $g) {
+
+    return ($x) => ($f($x) * $g($x));
+}
+
+/**
+ * Prepares a negated curve from the given curve.
+ * @param {TypeHandlerCurve} $curve The curve to use.
+ * @returns {TypeHandlerCurve}
+ *
+ * @memberof module:CURVES
+ */
+function negate($curve) {
+
+    return ($x) => (1 - $curve($x));
+}
+
+/**
+ * Prepares a reversed curve from the given curve.
+ * @param {TypeHandlerCurve} $curve The curve to use.
+ * @returns {TypeHandlerCurve}
+ *
+ * @memberof module:CURVES
+ */
+function reverse($curve) {
+
+    return negate(invert($curve));
+}
+
+/**
+ * Prepares a 'cosine' curve with the given amount of pi rotations.
+ * @param {number} $pi The number pi rotations.
+ * @returns {TypeHandlerCurve}
+ *
+ * @memberof module:CURVES
+ */
+function cosine($pi = 2) {
+
+    return ($x) => (Math.cos($x * $pi * Math.PI));
+}
+
+/**
+ * Prepares an 'ease-in' curve with the given power.
+ * @param {number} $power The factor to use.
+ * @returns {TypeHandlerCurve}
+ *
+ * @memberof module:CURVES
+ */
+function easeIn($power = 2) {
+
+    return ($x) => ($x ** $power);
+}
+
+/**
+ * Prepares an 'ease-out' curve with the given power.
+ * @param {number} $power The power to use.
+ * @returns {TypeHandlerCurve}
+ *
+ * @memberof module:CURVES
+ */
+function easeOut($power = 2) {
+
+    return reverse(easeIn($power));
+}
+
+/**
+ * Prepares a 'linear' curve with the given factor.
+ * @param {number} $factor The factor to use.
+ * @returns {TypeHandlerCurve}
+ *
+ * @memberof module:CURVES
+ */
+function linear($factor = 1) {
+
+    return ($x) => ($x * $factor);
+}
+
+/**
+ * Prepares a 'sine' curve with the given amount of pi rotations.
+ * @param {number} $pi The number pi rotations.
+ * @returns {TypeHandlerCurve}
+ *
+ * @memberof module:CURVES
+ */
+function sine($pi = 2) {
+
+    return ($x) => (Math.sin($x * $pi * Math.PI));
+}
+
+export {
+
+    double,
+    half,
+    invert,
+    multiply,
+    negate,
+    reverse,
+
+    cosine,
+    easeIn,
+    easeOut,
+    linear,
+    sine
+};
+</code></pre>
+        </article>
+    </section>
 
 
 
