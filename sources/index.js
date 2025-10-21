@@ -2,7 +2,6 @@ export * as COLLIDER_TYPES from './constants/collider-types.js';
 export * as CONTENT_TYPES from './constants/content-types.js';
 export * as EVENT_CODES from './constants/event-codes.js';
 export * as EVENT_TYPES from './constants/event-types.js';
-export * as MATHEMATICS from './constants/mathematics.js';
 export * as MEDIA_TYPES from './constants/media-types.js';
 export * as SHADER_PARAMETER_TYPES from './constants/shader-parameter-types.js';
 
@@ -17,6 +16,7 @@ export {Engine} from './core/engine.js';
 export * as FACTORIES from './core/factories.js';
 export {FiniteStateMachine} from './core/finite-state-machine.js';
 export {Loop} from './core/loop.js';
+export * as MATHEMATICS from './core/mathematics.js';
 export {Quaternion} from './core/quaternion.js';
 export {Queue} from './core/queue.js';
 export {Shader} from './core/shader.js';
