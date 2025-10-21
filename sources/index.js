@@ -12,6 +12,8 @@ export {Stage} from './core/stage.js';
 
 export {AABB} from './core/aabb.js';
 export {Collider} from './core/collider.js';
+export {Curve} from './core/curve.js';
+export * as CURVES from './core/curves.js';
 export {Engine} from './core/engine.js';
 export * as FACTORIES from './core/factories.js';
 export {FiniteStateMachine} from './core/finite-state-machine.js';
