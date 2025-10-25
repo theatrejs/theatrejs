@@ -584,7 +584,7 @@ class SystemRender extends System {
 
     /**
      * Sets the focus on the canvas element.
-     * @public
+     * @private
      */
     $setFocus() {
 
