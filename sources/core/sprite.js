@@ -101,8 +101,8 @@ class Sprite {
      */
     constructor({$frameSource = new AABB(new Vector2(0, 0), new Vector2(1, 1)), $sizeTarget, $texture}) {
 
-        this.$frameSource = $frameSource;
-        this.$sizeTarget = $sizeTarget;
+        this.$frameSource = $frameSource.clone();
+        this.$sizeTarget = $sizeTarget.clone();
         this.$texture = $texture;
 
         this.$frameSourceSerialized = JSON.stringify([

@@ -5,6 +5,17 @@ import {Loop, MEDIA_TYPES, Stage, SystemActor, SystemAudio, SystemCollision, Sys
  *
  * @example
  *
+ * // minimal
+ * const engine = new Engine();
+ * engine.initiate(60);
+ *
+ * await engine.preloadStage(SceneExample);
+ *
+ * engine.createStage(SceneExample);
+ *
+ * @example
+ *
+ * // full
  * const engine = new Engine({$color, $container, $resolution});
  * engine.initiate(60);
  *
@@ -151,9 +162,9 @@ class Engine {
      */
     constructor({$color = new Vector3(0, 0, 0), $container = document.body, $resolution = new Vector2(320, 240)} = {}) {
 
-        this.$color = $color;
+        this.$color = $color.clone();
         this.$container = $container;
-        this.$resolution = $resolution;
+        this.$resolution = $resolution.clone();
 
         this.$uuid = UTILS.uuid();
 
@@ -219,7 +230,7 @@ class Engine {
      */
     getTranslationFromScreen($vector) {
 
-        return this.$systemRender.getTranslationFromScreen(this.$stage, $vector);
+        return this.$systemRender.getTranslationFromScreen(this.$stage, $vector.clone());
     }
 
     /**
@@ -347,7 +358,7 @@ class Engine {
      */
     setColor($color) {
 
-        this.$systemRender.setColor($color);
+        this.$systemRender.setColor($color.clone());
     }
 
     /**
@@ -357,7 +368,7 @@ class Engine {
      */
     setResolution($resolution) {
 
-        this.$systemRender.setResolution($resolution);
+        this.$systemRender.setResolution($resolution.clone());
     }
 
     /**

@@ -5,6 +5,14 @@ import {AABB, EVENT_TYPES, SHADER_PARAMETER_TYPES, Shader, Sprite, Stage, System
  *
  * @example
  *
+ * // minimal
+ * const system = new SystemRender({$container, $resolution});
+ * system.initiate();
+ * system.tick($stage);
+ *
+ * @example
+ *
+ * // full
  * const system = new SystemRender({$color, $container, $resolution});
  * system.initiate();
  * system.tick($stage);
@@ -152,9 +160,9 @@ class SystemRender extends System {
 
         super();
 
-        this.$color = $color;
+        this.$color = $color.clone();
         this.$container = $container;
-        this.$resolution = $resolution;
+        this.$resolution = $resolution.clone();
     }
 
     /**

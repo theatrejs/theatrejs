@@ -76,7 +76,7 @@ class Collider {
      */
     constructor({$boundaries, $traversable = false, $type}) {
 
-        this.$boundaries = $boundaries;
+        this.$boundaries = $boundaries.clone();
         this.$traversable = $traversable;
         this.$type = $type;
     }

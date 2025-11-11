@@ -80,8 +80,8 @@ class AABB {
      */
     constructor($minimum, $maximum) {
 
-        this.$maximum = $maximum;
-        this.$minimum = $minimum;
+        this.$maximum = $maximum.clone();
+        this.$minimum = $minimum.clone();
     }
 
     /**
@@ -204,7 +204,7 @@ class AABB {
      */
     clone() {
 
-        return new AABB(this.$minimum, this.$maximum);
+        return new AABB(this.$minimum.clone(), this.$maximum.clone());
     }
 
     /**
@@ -215,8 +215,8 @@ class AABB {
      */
     translate($vector) {
 
-        this.$maximum = this.$maximum.clone().add($vector);
-        this.$minimum = this.$minimum.clone().add($vector);
+        this.$maximum.add($vector);
+        this.$minimum.add($vector);
 
         return this;
     }
