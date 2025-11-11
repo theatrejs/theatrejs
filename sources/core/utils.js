@@ -19,7 +19,7 @@ function deduplicate($array) {
 }
 
 /**
- * Extracts the given item from the given array.
+ * Extracts all occurences of the given item from the given array.
  * @template {any} TypeGeneric The generic type of the values of the array.
  * @param {TypeGeneric} $item The item to remove.
  * @param {Array<TypeGeneric>} $array The array.
@@ -29,14 +29,19 @@ function deduplicate($array) {
  */
 function extract($item, $array) {
 
-    const index = $array.indexOf($item);
+    /**
+     * @type {Array<TypeGeneric>}
+     */
+    const extraction = [];
 
-    if (index === -1) {
+    while ($array.indexOf($item) !== -1) {
 
-        return [];
+        const index = $array.indexOf($item);
+
+        extraction.push(...$array.splice(index, 1));
     }
 
-    return $array.splice(index, 1);
+    return extraction;
 }
 
 /**
