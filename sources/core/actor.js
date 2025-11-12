@@ -46,6 +46,13 @@ class Actor extends Preloadable {
     $components;
 
     /**
+     * Stores the followers.
+     * @type {Map<Actor, Vector2>}
+     * @private
+     */
+    $followers;
+
+    /**
      * Stores the label.
      * @type {string}
      * @private
@@ -140,6 +147,16 @@ class Actor extends Preloadable {
     get engine() {
 
         return this.stage.engine;
+    }
+
+    /**
+     * Gets the followers.
+     * @type {Map<Actor, Vector2>}
+     * @public
+     */
+    get followers() {
+
+        return this.$followers;
     }
 
     /**
@@ -243,6 +260,7 @@ class Actor extends Preloadable {
         this.$stage = $stage;
 
         this.$components = {};
+        this.$followers = new Map();
         this.$listenerActions = {};
         this.$listenersStates = {};
         this.$sounds = [];
@@ -251,6 +269,34 @@ class Actor extends Preloadable {
         this.$vibrations = [];
         this.$visible = true;
         this.$zIndex = 0;
+    }
+
+    /**
+     * Adds a following actor.
+     * @param {Actor} $actor The following actor to add.
+     * @private
+     */
+    $addFollower($actor) {
+
+        if (this.$followers.has($actor) === false) {
+
+            const delta = $actor.translation.clone().subtract(this.$translation);
+
+            this.$followers.set($actor, delta);
+        }
+    }
+
+    /**
+     * Removes a following actor.
+     * @param {Actor} $actor The following actor to remove.
+     * @private
+     */
+    $removeFollower($actor) {
+
+        if (this.$followers.has($actor) === true) {
+
+            this.$followers.delete($actor);
+        }
     }
 
     /**
@@ -265,6 +311,30 @@ class Actor extends Preloadable {
         this.$listenerActions[$action] = $handler;
 
         return this;
+    }
+
+    /**
+     * Translates the actor in the world space.
+     * @param {Vector2} $vector The translation to apply.
+     * @private
+     */
+    $translate($vector) {
+
+        this.$translation.add($vector);
+
+        Array.from(this.$followers.entries()).forEach(([$follower, $delta]) => {
+
+            if (this.stage.hasActor($follower) === false) {
+
+                this.$followers.delete($follower);
+
+                return;
+            }
+
+            $follower.translateTo(this.$translation.clone().add($delta));
+        });
+
+        this.onTranslate($vector);
     }
 
     /**
@@ -329,6 +399,19 @@ class Actor extends Preloadable {
     addVibration($vibration) {
 
         this.$vibrations.push($vibration);
+
+        return this;
+    }
+
+    /**
+     * Follows the position of the given actor.
+     * @param {Actor} $actor The actor to follow the position.
+     * @returns {this}
+     * @public
+     */
+    follow($actor) {
+
+        $actor.$addFollower(this);
 
         return this;
     }
@@ -671,9 +754,7 @@ class Actor extends Preloadable {
 
         const translation = $vector.clone();
 
-        this.$translation.add(translation);
-
-        this.onTranslate(translation);
+        this.$translate(translation);
 
         return this;
     }
@@ -688,9 +769,7 @@ class Actor extends Preloadable {
 
         const translation = $vector.clone().subtract(this.$translation);
 
-        this.$translation.add(translation);
-
-        this.onTranslate(translation);
+        this.$translate(translation);
 
         return this;
     }
@@ -709,6 +788,19 @@ class Actor extends Preloadable {
         }
 
         this.$listenerActions[$action]($action);
+
+        return this;
+    }
+
+    /**
+     * Unfollows the position of the given actor.
+     * @param {Actor} $actor The actor to unfollow the position.
+     * @returns {this}
+     * @public
+     */
+    unfollow($actor) {
+
+        $actor.$removeFollower(this);
 
         return this;
     }
