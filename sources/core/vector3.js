@@ -257,6 +257,24 @@ class Vector3 {
     }
 
     /**
+     * Rounds the vector.
+     * @returns {this}
+     * @public
+     */
+    round() {
+
+        const x = this.$x;
+        const y = this.$y;
+        const z = this.$z;
+
+        this.$x = Math.round(x);
+        this.$y = Math.round(y);
+        this.$z = Math.round(z);
+
+        return this;
+    }
+
+    /**
      * Scales the vector by the given scalar factor.
      * @param {number} $factor The scalar factor to multiply with.
      * @returns {this}
