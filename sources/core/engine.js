@@ -1,4 +1,4 @@
-import {Loop, MEDIA_TYPES, Stage, SystemActor, SystemAudio, SystemCollision, SystemInput, SystemRender, SystemVibration, UTILS, Vector2, Vector3} from '../index.js';
+import {AABB, Loop, MEDIA_TYPES, Stage, SystemActor, SystemAudio, SystemCollision, SystemInput, SystemRender, SystemVibration, UTILS, Vector2, Vector3} from '../index.js';
 
 /**
  * Creates game engines.
@@ -16,7 +16,7 @@ import {Loop, MEDIA_TYPES, Stage, SystemActor, SystemAudio, SystemCollision, Sys
  * @example
  *
  * // full
- * const engine = new Engine({$color, $container, $resolution});
+ * const engine = new Engine({$color, $container, $framing});
  * engine.initiate(60);
  *
  * await engine.preloadStage(SceneExample);
@@ -40,6 +40,13 @@ class Engine {
     $container;
 
     /**
+     * Stores the framing (rendering resolution).
+     * @type {Vector2}
+     * @private
+     */
+    $framing;
+
+    /**
      * Stores the loop.
      * @type {Loop}
      * @private
@@ -59,13 +66,6 @@ class Engine {
      * @private
      */
     $preloaded;
-
-    /**
-     * Stores the rendering resolution.
-     * @type {Vector2}
-     * @private
-     */
-    $resolution;
 
     /**
      * Stores the current stage.
@@ -158,13 +158,13 @@ class Engine {
      * @param {object} [$parameters] The given parameters.
      * @param {Vector3} [$parameters.$color] The rendering background color to use.
      * @param {HTMLElement} [$parameters.$container] The container for the game engine to create.
-     * @param {Vector2} [$parameters.$resolution] The rendering resolution to use.
+     * @param {Vector2} [$parameters.$framing] The framing (rendering resolution) to use.
      */
-    constructor({$color = new Vector3(0, 0, 0), $container = document.body, $resolution = new Vector2(320, 240)} = {}) {
+    constructor({$color = new Vector3(0, 0, 0), $container = document.body, $framing = new Vector2(320, 240)} = {}) {
 
         this.$color = $color.clone();
         this.$container = $container;
-        this.$resolution = $resolution.clone();
+        this.$framing = $framing.clone();
 
         this.$uuid = UTILS.uuid();
 
@@ -175,7 +175,7 @@ class Engine {
         this.$systemAudio = new SystemAudio();
         this.$systemCollision = new SystemCollision();
         this.$systemInput = new SystemInput({$container: this.$container});
-        this.$systemRender = new SystemRender({$color: this.$color, $container: this.$container, $resolution: this.$resolution});
+        this.$systemRender = new SystemRender({$color: this.$color, $container: this.$container, $framing: this.$framing});
         this.$systemVibration = new SystemVibration();
     }
 
@@ -198,6 +198,26 @@ class Engine {
     createStage($stage) {
 
         this.$next = $stage;
+    }
+
+    /**
+     * Gets the boundaries in the current stage from the framing (rendering resolution).
+     * @returns {AABB}
+     * @public
+     */
+    getBoundariesFromFraming() {
+
+        return this.$systemRender.getBoundariesFromFraming(this.$stage);
+    }
+
+    /**
+     * Gets the boundaries in the current stage from the screen.
+     * @returns {AABB}
+     * @public
+     */
+    getBoundariesFromScreen() {
+
+        return this.$systemRender.getBoundariesFromScreen(this.$stage);
     }
 
     /**
@@ -362,13 +382,13 @@ class Engine {
     }
 
     /**
-     * Sets the rendering resolution.
-     * @param {Vector2} $resolution The rendering resolution to set.
+     * Sets the framing (rendering resolution).
+     * @param {Vector2} $framing The framing (rendering resolution) to set.
      * @public
      */
-    setResolution($resolution) {
+    setFraming($framing) {
 
-        this.$systemRender.setResolution($resolution.clone());
+        this.$systemRender.setFraming($framing.clone());
     }
 
     /**

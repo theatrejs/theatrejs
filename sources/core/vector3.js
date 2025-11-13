@@ -112,6 +112,24 @@ class Vector3 {
     }
 
     /**
+     * Ceils the vector.
+     * @returns {this}
+     * @public
+     */
+    ceil() {
+
+        const x = this.$x;
+        const y = this.$y;
+        const z = this.$z;
+
+        this.$x = Math.ceil(x);
+        this.$y = Math.ceil(y);
+        this.$z = Math.ceil(z);
+
+        return this;
+    }
+
+    /**
      * Clones the vector.
      * @returns {Vector3}
      * @public
@@ -136,6 +154,24 @@ class Vector3 {
         return this.$x === $vector.x
         && this.$y === $vector.y
         && this.$z === $vector.z;
+    }
+
+    /**
+     * Floors the vector.
+     * @returns {this}
+     * @public
+     */
+    floor() {
+
+        const x = this.$x;
+        const y = this.$y;
+        const z = this.$z;
+
+        this.$x = Math.floor(x);
+        this.$y = Math.floor(y);
+        this.$z = Math.floor(z);
+
+        return this;
     }
 
     /**

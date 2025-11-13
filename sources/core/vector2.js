@@ -91,6 +91,22 @@ class Vector2 {
     }
 
     /**
+     * Ceils the vector.
+     * @returns {this}
+     * @public
+     */
+    ceil() {
+
+        const x = this.$x;
+        const y = this.$y;
+
+        this.$x = Math.ceil(x);
+        this.$y = Math.ceil(y);
+
+        return this;
+    }
+
+    /**
      * Clones the vector.
      * @returns {Vector2}
      * @public
@@ -113,6 +129,22 @@ class Vector2 {
 
         return this.$x === $vector.x
         && this.$y === $vector.y;
+    }
+
+    /**
+     * Floors the vector.
+     * @returns {this}
+     * @public
+     */
+    floor() {
+
+        const x = this.$x;
+        const y = this.$y;
+
+        this.$x = Math.floor(x);
+        this.$y = Math.floor(y);
+
+        return this;
     }
 
     /**

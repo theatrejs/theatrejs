@@ -6,14 +6,14 @@ import {AABB, EVENT_TYPES, SHADER_PARAMETER_TYPES, Shader, Sprite, Stage, System
  * @example
  *
  * // minimal
- * const system = new SystemRender({$container, $resolution});
+ * const system = new SystemRender({$container, $framing});
  * system.initiate();
  * system.tick($stage);
  *
  * @example
  *
  * // full
- * const system = new SystemRender({$color, $container, $resolution});
+ * const system = new SystemRender({$color, $container, $framing});
  * system.initiate();
  * system.tick($stage);
  */
@@ -80,6 +80,13 @@ class SystemRender extends System {
     $context;
 
     /**
+     * Stores the framing (rendering resolution).
+     * @type {Vector2}
+     * @private
+     */
+    $framing;
+
+    /**
      * Stores the number of indices of the vertices positions of the sprites.
      * @type {number}
      * @private
@@ -122,13 +129,6 @@ class SystemRender extends System {
     $resizeOberver;
 
     /**
-     * Stores the resolution.
-     * @type {Vector2}
-     * @private
-     */
-    $resolution;
-
-    /**
      * Stores the fragment shader.
      * @type {WebGLShader}
      * @private
@@ -154,15 +154,15 @@ class SystemRender extends System {
      * @param {object} $parameters The given parameters.
      * @param {Vector3} [$parameters.$color] The rendering background color to use.
      * @param {HTMLElement} $parameters.$container The container on which to attach the canvas.
-     * @param {Vector2} $parameters.$resolution The rendering resolution to use.
+     * @param {Vector2} $parameters.$framing The framing (rendering resolution) to use.
      */
-    constructor({$color = new Vector3(0, 0, 0), $container, $resolution}) {
+    constructor({$color = new Vector3(0, 0, 0), $container, $framing}) {
 
         super();
 
         this.$color = $color.clone();
         this.$container = $container;
-        this.$resolution = $resolution.clone();
+        this.$framing = $framing.clone();
     }
 
     /**
@@ -465,8 +465,8 @@ class SystemRender extends System {
      */
     $resize() {
 
-        const width = this.$resolution.x;
-        const height = this.$resolution.y;
+        const width = this.$framing.x;
+        const height = this.$framing.y;
 
         const widthContext = Math.max(width, Math.floor(height * this.$canvas.clientWidth / this.$canvas.clientHeight));
         const heightContext = Math.max(height, Math.floor(width * this.$canvas.clientHeight / this.$canvas.clientWidth));
@@ -642,6 +642,32 @@ class SystemRender extends System {
     }
 
     /**
+     * Gets the boundaries in the current stage from the framing (rendering resolution).
+     * @param {Stage} $stage The current stage.
+     * @returns {AABB}
+     * @public
+     */
+    getBoundariesFromFraming($stage) {
+
+        return AABB.fromSize(this.$framing).translate($stage.pointOfView.translation);
+    }
+
+    /**
+     * Gets the boundaries in the current stage from the screen.
+     * @param {Stage} $stage The current stage.
+     * @returns {AABB}
+     * @public
+     */
+    getBoundariesFromScreen($stage) {
+
+        return new AABB(
+
+            this.getTranslationFromScreen($stage, new Vector2(-1, 1)).ceil(),
+            this.getTranslationFromScreen($stage, new Vector2(1, -1)).floor()
+        );
+    }
+
+    /**
      * Gets the position in the current stage from the given clipped position in the screen.
      * @param {Stage} $stage The current stage.
      * @param {Vector2} $vector The position in the screen (with values in [-1, 1] ranges).
@@ -650,16 +676,16 @@ class SystemRender extends System {
      */
     getTranslationFromScreen($stage, $vector) {
 
-        const width = this.$resolution.x;
-        const height = this.$resolution.y;
+        const width = this.$framing.x;
+        const height = this.$framing.y;
 
         const widthContext = Math.max(width, Math.floor(height * this.$canvas.clientWidth / this.$canvas.clientHeight));
         const heightContext = Math.max(height, Math.floor(width * this.$canvas.clientHeight / this.$canvas.clientWidth));
 
         return new Vector2(
 
-            Math.floor(($vector.x * widthContext / 2) + $stage.pointOfView.translation.x),
-            - Math.floor(($vector.y * heightContext / 2) - $stage.pointOfView.translation.y)
+            ($vector.x * widthContext / 2) + $stage.pointOfView.translation.x,
+            - ($vector.y * heightContext / 2) + $stage.pointOfView.translation.y
         );
     }
 
@@ -853,13 +879,13 @@ class SystemRender extends System {
     }
 
     /**
-     * Sets the rendering resolution.
-     * @param {Vector2} $resolution The rendering resolution to set.
+     * Sets the framing (rendering resolution).
+     * @param {Vector2} $framing The framing (rendering resolution) to set.
      * @public
      */
-    setResolution($resolution) {
+    setFraming($framing) {
 
-        this.$resolution = $resolution.clone();
+        this.$framing = $framing.clone();
 
         this.$resize();
     }

@@ -24,13 +24,93 @@ class AABB {
     $minimum;
 
     /**
+     * Gets the bottom boundary of the AABB.
+     * @type {Vector2}
+     * @public
+     */
+    get boundaryBottom() {
+
+        return new Vector2(this.center.x, this.$minimum.y);
+    }
+
+    /**
+     * Gets the bottom-left boundary of the AABB.
+     * @type {Vector2}
+     * @public
+     */
+    get boundaryBottomLeft() {
+
+        return this.$minimum;
+    }
+
+    /**
+     * Gets the bottom-right boundary of the AABB.
+     * @type {Vector2}
+     * @public
+     */
+    get boundaryBottomRight() {
+
+        return new Vector2(this.$maximum.x, this.$minimum.y);
+    }
+
+    /**
+     * Gets the left boundary of the AABB.
+     * @type {Vector2}
+     * @public
+     */
+    get boundaryLeft() {
+
+        return new Vector2(this.$minimum.x, this.center.y);
+    }
+
+    /**
+     * Gets the right boundary of the AABB.
+     * @type {Vector2}
+     * @public
+     */
+    get boundaryRight() {
+
+        return new Vector2(this.$maximum.x, this.center.y);
+    }
+
+    /**
+     * Gets the top boundary of the AABB.
+     * @type {Vector2}
+     * @public
+     */
+    get boundaryTop() {
+
+        return new Vector2(this.center.x, this.$maximum.y);
+    }
+
+    /**
+     * Gets the top-left boundary of the AABB.
+     * @type {Vector2}
+     * @public
+     */
+    get boundaryTopLeft() {
+
+        return new Vector2(this.$minimum.x, this.$maximum.y);
+    }
+
+    /**
+     * Gets the top-right boundary of the AABB.
+     * @type {Vector2}
+     * @public
+     */
+    get boundaryTopRight() {
+
+        return this.$maximum;
+    }
+
+    /**
      * Gets the center of the AABB.
      * @type {Vector2}
      * @public
      */
     get center() {
 
-        return this.minimum.clone().add(this.halfSize);
+        return this.$minimum.clone().add(this.halfSize);
     }
 
     /**
@@ -205,6 +285,18 @@ class AABB {
     clone() {
 
         return new AABB(this.$minimum.clone(), this.$maximum.clone());
+    }
+
+    /**
+     * Checks the equality with the given AABB.
+     * @param {AABB} $aabb The AABB to check with.
+     * @returns {boolean}
+     * @public
+     */
+    equal($aabb) {
+
+        return this.$minimum.equal($aabb.minimum) === true
+        && this.$maximum.equal($aabb.maximum) === true;
     }
 
     /**
