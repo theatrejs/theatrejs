@@ -86,7 +86,7 @@ function reverse($curve) {
 
 /**
  * Prepares a 'cosine' curve with the given amount of pi rotations.
- * @param {number} $pi The number pi rotations.
+ * @param {number} [$pi] The number pi rotations.
  * @returns {TypeHandlerCurve}
  *
  * @memberof module:CURVES
@@ -98,7 +98,7 @@ function cosine($pi = 2) {
 
 /**
  * Prepares an 'ease-in' curve with the given power.
- * @param {number} $power The factor to use.
+ * @param {number} [$power] The factor to use.
  * @returns {TypeHandlerCurve}
  *
  * @memberof module:CURVES
@@ -110,7 +110,7 @@ function easeIn($power = 2) {
 
 /**
  * Prepares an 'ease-out' curve with the given power.
- * @param {number} $power The power to use.
+ * @param {number} [$power] The power to use.
  * @returns {TypeHandlerCurve}
  *
  * @memberof module:CURVES
@@ -122,7 +122,7 @@ function easeOut($power = 2) {
 
 /**
  * Prepares a 'linear' curve with the given factor.
- * @param {number} $factor The factor to use.
+ * @param {number} [$factor] The factor to use.
  * @returns {TypeHandlerCurve}
  *
  * @memberof module:CURVES
@@ -134,7 +134,7 @@ function linear($factor = 1) {
 
 /**
  * Prepares a 'sine' curve with the given amount of pi rotations.
- * @param {number} $pi The number pi rotations.
+ * @param {number} [$pi] The number pi rotations.
  * @returns {TypeHandlerCurve}
  *
  * @memberof module:CURVES
