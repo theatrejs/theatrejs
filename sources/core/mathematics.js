@@ -23,8 +23,8 @@ const SQRT_2 = 1.414214;
 /**
  * Clamps the given value between two given bounds.
  * @param {number} $x The value to clamp.
- * @param {number} $minimum The minimum bound.
- * @param {number} $maximum The maximum bound.
+ * @param {number} [$minimum] The minimum bound.
+ * @param {number} [$maximum] The maximum bound.
  * @returns {number}
  *
  * @memberof module:MATHEMATICS
