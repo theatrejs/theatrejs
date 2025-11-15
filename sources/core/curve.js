@@ -43,7 +43,7 @@ class Curve {
 
     /**
      * Creates a new curve.
-     * @param {TypeHandlerCurve} $easing The easing function to use.
+     * @param {TypeHandlerCurve} [$easing] The easing function to use.
      */
     constructor($easing = CURVES.linear(1)) {
 

@@ -39,7 +39,7 @@ class Loop {
     /**
      * Creates a new update loop.
      * @param {Function} $handler The handler to execute with the update loop.
-     * @param {Window} $scope The global scope to use.
+     * @param {Window} [$scope] The global scope to use.
      */
     constructor($handler, $scope = window) {
 
