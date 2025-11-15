@@ -88,6 +88,34 @@ class TimelineKeyframe {
         this.$onEnter = $onEnter;
         this.$timecode = $timecode;
     }
+
+    /**
+     * Clones the timeline keyframe.
+     * @returns {TimelineKeyframe}
+     * @public
+     */
+    clone() {
+
+        return new TimelineKeyframe({
+
+            $name: this.$name,
+            $onEnter: this.$onEnter,
+            $timecode: this.$timecode
+        });
+    }
+
+    /**
+     * Adds a timecode offset.
+     * @param {number} $timecode The timecode offset to add.
+     * @returns {this}
+     * @public
+     */
+    offset($timecode) {
+
+        this.$timecode += $timecode;
+
+        return this;
+    }
 }
 
 export {

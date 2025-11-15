@@ -26,6 +26,16 @@ class Timeline {
     $timecode;
 
     /**
+     * Gets the keyframes.
+     * @type {Array<TimelineKeyframe>}
+     * @public
+     */
+    get keyframes() {
+
+        return this.$keyframes;
+    }
+
+    /**
      * Gets the timecode.
      * @type {number}
      * @public
@@ -44,6 +54,48 @@ class Timeline {
         this.$keyframes = [...$keyframes].sort(($a, $b) => ($a.timecode - $b.timecode));
 
         this.$timecode = 0;
+    }
+
+    /**
+     * Adds the given timeline.
+     * @param {Timeline} $timeline The timeline to add.
+     * @param {number} $timecode The timecode offset of the timeline to add.
+     * @public
+     */
+    addTimeline($timeline, $timecode) {
+
+        this.$keyframes = this.$keyframes
+        .concat($timeline.clone().offset($timecode).keyframes)
+        .sort(($a, $b) => ($a.timecode - $b.timecode));
+    }
+
+    /**
+     * Clones the timeline.
+     * @returns {Timeline}
+     * @public
+     */
+    clone() {
+
+        return new Timeline(this.$keyframes.map(($keyframe) => {
+
+            return $keyframe.clone();
+        }));
+    }
+
+    /**
+     * Adds a timecode offset.
+     * @param {number} $timecode The timecode offset to add.
+     * @returns {this}
+     * @public
+     */
+    offset($timecode) {
+
+        this.$keyframes = this.$keyframes.map(($keyframe) => {
+
+            return $keyframe.offset($timecode);
+        });
+
+        return this;
     }
 
     /**
