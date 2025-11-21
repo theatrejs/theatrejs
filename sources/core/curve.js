@@ -53,6 +53,27 @@ class Curve {
     }
 
     /**
+     * Gets values according to the given number of samples (in [0, 1] range).
+     * @param {number} [$samples] The number of samples (must be greater than or equal to 2).
+     * @returns {Array<number>}
+     * @public
+     */
+    getValues($samples = 2) {
+
+        const gaps = $samples - 1;
+        const values = [];
+
+        for (let $iterator = 0; $iterator < $samples; $iterator += 1) {
+
+            const value = this.$easing(MATHEMATICS.clamp($iterator / gaps));
+
+            values.push(value);
+        }
+
+        return values;
+    }
+
+    /**
      * Gets the progress between two given time cursors.
      * @param {number} $previous The previous time cursor (in [0, 1] range).
      * @param {number} $current The current time cursor (in [0, 1] range).
