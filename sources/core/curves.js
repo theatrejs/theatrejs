@@ -109,6 +109,26 @@ function easeIn($power = 2) {
 }
 
 /**
+ * Prepares an 'ease-in-out' curve with the given power.
+ * @param {number} [$power] The factor to use.
+ * @returns {TypeHandlerCurve}
+ *
+ * @memberof module:CURVES
+ */
+function easeInOut($power = 2) {
+
+    return ($x) => {
+
+        if ($x < 0.5) {
+
+            return double(easeIn($power))($x) / 2;
+        }
+
+        return 0.5 + double(easeOut($power))($x - 0.5) / 2;
+    };
+}
+
+/**
  * Prepares an 'ease-out' curve with the given power.
  * @param {number} [$power] The power to use.
  * @returns {TypeHandlerCurve}
@@ -155,6 +175,7 @@ export {
 
     cosine,
     easeIn,
+    easeInOut,
     easeOut,
     linear,
     sine
