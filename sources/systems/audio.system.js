@@ -1,4 +1,4 @@
-import {Sound, Stage, System, UTILS} from '../index.js';
+import {CURVES, Curve, Sound, Stage, System, UTILS} from '../index.js';
 
 /**
  * Creates audio systems.
@@ -27,6 +27,15 @@ class SystemAudio extends System {
     static DELAY_CONTEXT_CLEAR_SAFE = 1000;
 
     /**
+     * Stores the amount of samples needed for curves.
+     * @type {number}
+     * @public
+     * @readonly
+     * @static
+     */
+    static SAMPLES_CURVES = 128;
+
+    /**
      * Stores the cache of the audio assets.
      * @type {Map<string, AudioBuffer>}
      * @private
@@ -48,6 +57,13 @@ class SystemAudio extends System {
     $mappingSoundsPlaying;
 
     /**
+     * Stores the memoized values for the fade-out curve.
+     * @type {Map<number, Float32Array>}
+     * @private
+     */
+    $memoryValuesCurveFadeOut;
+
+    /**
      * Creates a new audio system.
      */
     constructor() {
@@ -56,18 +72,23 @@ class SystemAudio extends System {
     }
 
     /**
-     * Creates the values for the fade out curve.
+     * Creates the values for the fade-out curve.
      * @param {number} $volume The volume of the sound.
-     * @returns {Array<number>}
+     * @returns {Float32Array}
      * @private
      */
     $createValuesCurveFadeOut($volume) {
 
-        return [
+        if (this.$memoryValuesCurveFadeOut.has($volume) === false) {
 
-            - 1 + $volume * 1,
-            - 1 + $volume * 0
-        ];
+            const values = new Curve(CURVES.invert(CURVES.easeOut(2)))
+            .getValues(SystemAudio.SAMPLES_CURVES)
+            .map(($value) => (- 1 + $volume * $value));
+
+            this.$memoryValuesCurveFadeOut.set($volume, new Float32Array(values));
+        }
+
+        return this.$memoryValuesCurveFadeOut.get($volume);
     }
 
     /**
@@ -198,6 +219,7 @@ class SystemAudio extends System {
         this.$cache = new Map();
         this.$context = new AudioContext();
         this.$mappingSoundsPlaying = new Map();
+        this.$memoryValuesCurveFadeOut = new Map();
     }
 
     /**

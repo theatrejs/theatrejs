@@ -79,23 +79,23 @@ function ready() {
         /**
          * @type {number}
          */
-        let id;
+        let identifier;
 
         const check = () => {
 
             if (navigator.userActivation.hasBeenActive === false) {
 
-                id = window.requestAnimationFrame(check);
+                identifier = window.requestAnimationFrame(check);
 
                 return;
             }
 
-            window.cancelAnimationFrame(id);
+            window.cancelAnimationFrame(identifier);
 
             $resolve();
         };
 
-        id = window.requestAnimationFrame(check);
+        identifier = window.requestAnimationFrame(check);
     });
 
     return promise;
