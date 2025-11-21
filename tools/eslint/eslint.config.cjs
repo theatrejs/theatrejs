@@ -45,6 +45,7 @@ module.exports = {
         'no-shadow': 'off',
         'no-ternary': 'off',
         'no-undefined': 'off',
+        'no-use-before-define': ['error', {'classes': false, 'functions': false}],
         'no-useless-constructor': 'off',
         'no-useless-return': 'off',
         'no-void': 'off',
