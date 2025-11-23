@@ -40,7 +40,14 @@ class SystemAudio extends System {
      * @type {Map<string, AudioBuffer>}
      * @private
      */
-    $cache;
+    $cacheAudios;
+
+    /**
+     * Stores the cache of the values for the fade-out curve.
+     * @type {Map<number, Float32Array>}
+     * @private
+     */
+    $cacheValuesCurveFadeOut;
 
     /**
      * Stores the audio context.
@@ -55,13 +62,6 @@ class SystemAudio extends System {
      * @private
      */
     $mappingSoundsPlaying;
-
-    /**
-     * Stores the memoized values for the fade-out curve.
-     * @type {Map<number, Float32Array>}
-     * @private
-     */
-    $memoryValuesCurveFadeOut;
 
     /**
      * Creates a new audio system.
@@ -79,16 +79,16 @@ class SystemAudio extends System {
      */
     $createValuesCurveFadeOut($volume) {
 
-        if (this.$memoryValuesCurveFadeOut.has($volume) === false) {
+        if (this.$cacheValuesCurveFadeOut.has($volume) === false) {
 
             const values = new Curve(CURVES.invert(CURVES.easeOut(2)))
             .getValues(SystemAudio.SAMPLES_CURVES)
             .map(($value) => (- 1 + $volume * $value));
 
-            this.$memoryValuesCurveFadeOut.set($volume, new Float32Array(values));
+            this.$cacheValuesCurveFadeOut.set($volume, new Float32Array(values));
         }
 
-        return this.$memoryValuesCurveFadeOut.get($volume);
+        return this.$cacheValuesCurveFadeOut.get($volume);
     }
 
     /**
@@ -105,7 +105,7 @@ class SystemAudio extends System {
             .then(($bufferArray) => (this.$context.decodeAudioData($bufferArray)))
             .then(($bufferAudio) => {
 
-                this.$cache.set($content.url, $bufferAudio);
+                this.$cacheAudios.set($content.url, $bufferAudio);
 
                 $resolve($bufferAudio);
             });
@@ -121,12 +121,12 @@ class SystemAudio extends System {
      */
     $prepareAudio($audio) {
 
-        if (this.$cache.has($audio) === true) {
+        if (this.$cacheAudios.has($audio) === true) {
 
             return;
         }
 
-        this.$cache.set($audio, undefined);
+        this.$cacheAudios.set($audio, undefined);
 
         fetch($audio)
         .then(($content) => (this.$loadAudio($content)));
@@ -177,7 +177,7 @@ class SystemAudio extends System {
             this.initiate();
         }
 
-        return this.$cache.has($asset) === true;
+        return this.$cacheAudios.has($asset) === true;
     }
 
     /**
@@ -193,11 +193,11 @@ class SystemAudio extends System {
             this.initiate();
         }
 
-        if (this.$cache.has($content.url) === true) {
+        if (this.$cacheAudios.has($content.url) === true) {
 
             const promise = new Promise(($resolve) => {
 
-                const audio = this.$cache.get($content.url);
+                const audio = this.$cacheAudios.get($content.url);
 
                 $resolve(audio);
             });
@@ -205,7 +205,7 @@ class SystemAudio extends System {
             return promise;
         }
 
-        this.$cache.set($content.url, undefined);
+        this.$cacheAudios.set($content.url, undefined);
 
         return this.$loadAudio($content);
     }
@@ -216,10 +216,10 @@ class SystemAudio extends System {
      */
     onInitiate() {
 
-        this.$cache = new Map();
+        this.$cacheAudios = new Map();
+        this.$cacheValuesCurveFadeOut = new Map();
         this.$context = new AudioContext();
         this.$mappingSoundsPlaying = new Map();
-        this.$memoryValuesCurveFadeOut = new Map();
     }
 
     /**
@@ -289,12 +289,12 @@ class SystemAudio extends System {
 
                 this.$prepareAudio($sound.audio);
 
-                if (typeof this.$cache.get($sound.audio) === 'undefined') {
+                if (typeof this.$cacheAudios.get($sound.audio) === 'undefined') {
 
                     return;
                 }
 
-                const bufferAudio = this.$cache.get($sound.audio);
+                const bufferAudio = this.$cacheAudios.get($sound.audio);
 
                 const audio = this.$context.createBufferSource();
                 audio.buffer = bufferAudio;

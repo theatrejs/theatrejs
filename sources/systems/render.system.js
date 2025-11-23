@@ -49,7 +49,7 @@ class SystemRender extends System {
      * @type {Map<string, WebGLTexture>}
      * @private
      */
-    $cache;
+    $cacheTextures;
 
     /**
      * Stores the canvas element.
@@ -397,7 +397,7 @@ class SystemRender extends System {
 
                 const texture = this.$createTexture($textureBitmap, $unitTexture);
 
-                this.$cache.set($content.url, texture);
+                this.$cacheTextures.set($content.url, texture);
 
                 $resolve(texture);
             });
@@ -433,12 +433,12 @@ class SystemRender extends System {
      */
     $prepareTexture($texture, $unitTexture) {
 
-        if (this.$cache.has($texture) === true) {
+        if (this.$cacheTextures.has($texture) === true) {
 
             return;
         }
 
-        this.$cache.set($texture, undefined);
+        this.$cacheTextures.set($texture, undefined);
 
         fetch($texture)
         .then(($content) => (this.$loadTexture($content, $unitTexture)));
@@ -628,7 +628,7 @@ class SystemRender extends System {
 
         this.$context.deleteTexture(this.$textureDefault);
 
-        this.$cache.forEach(($texture) => {
+        this.$cacheTextures.forEach(($texture) => {
 
             this.$context.deleteTexture($texture);
         });
@@ -702,7 +702,7 @@ class SystemRender extends System {
             this.initiate();
         }
 
-        return this.$cache.has($asset) === true;
+        return this.$cacheTextures.has($asset) === true;
     }
 
     /**
@@ -718,11 +718,11 @@ class SystemRender extends System {
             this.initiate();
         }
 
-        if (this.$cache.has($content.url) === true) {
+        if (this.$cacheTextures.has($content.url) === true) {
 
             const promise = new Promise(($resolve) => {
 
-                const texture = this.$cache.get($content.url);
+                const texture = this.$cacheTextures.get($content.url);
 
                 $resolve(texture);
             });
@@ -730,7 +730,7 @@ class SystemRender extends System {
             return promise;
         }
 
-        this.$cache.set($content.url, undefined);
+        this.$cacheTextures.set($content.url, undefined);
 
         return this.$loadTexture($content, this.$context.TEXTURE0 + SystemRender.UNIT_TEXTURE_0);
     }
@@ -741,7 +741,7 @@ class SystemRender extends System {
      */
     onInitiate() {
 
-        this.$cache = new Map();
+        this.$cacheTextures = new Map();
         this.$indices = 0;
         this.$locationsAttribute = {};
         this.$locationsUniform = {};
@@ -835,9 +835,9 @@ class SystemRender extends System {
 
             this.$prepareTexture($actor.sprite.texture, this.$context.TEXTURE0 + SystemRender.UNIT_TEXTURE_1);
 
-            if (typeof this.$cache.get($actor.sprite.texture) !== 'undefined') {
+            if (typeof this.$cacheTextures.get($actor.sprite.texture) !== 'undefined') {
 
-                texture = this.$cache.get($actor.sprite.texture);
+                texture = this.$cacheTextures.get($actor.sprite.texture);
             }
 
             this.$context.activeTexture(this.$context.TEXTURE0 + SystemRender.UNIT_TEXTURE_1);
