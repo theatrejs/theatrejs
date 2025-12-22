@@ -62,6 +62,23 @@ class Vector2 {
     }
 
     /**
+     * Deserializes the given vector representation (for instance '[4,2]').
+     * @param {string} $serialized The vector representation (for instance '[4,2]').
+     * @returns {Vector2}
+     * @public
+     * @static
+     */
+    static deserialize($serialized) {
+
+        const [x, y] = $serialized
+        .slice(1, -1)
+        .split(',')
+        .map(Number);
+
+        return new Vector2(x, y);
+    }
+
+    /**
      * Creates a new vector from the given vector.
      * @param {Vector2} $vector The given vector.
      * @returns {Vector2}
@@ -71,6 +88,18 @@ class Vector2 {
     static from($vector) {
 
         return $vector.clone();
+    }
+
+    /**
+     * Serializes the given vector (for instance '[4,2]').
+     * @param {Vector2} $vector The given vector.
+     * @returns {string}
+     * @public
+     * @static
+     */
+    static serialize($vector) {
+
+        return '[' + $vector.$x + ',' + $vector.$y + ']';
     }
 
     /**

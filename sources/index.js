@@ -17,6 +17,7 @@ export * as CURVES from './core/curves.js';
 export {Engine} from './core/engine.js';
 export * as FACTORIES from './core/factories.js';
 export {FiniteStateMachine} from './core/finite-state-machine.js';
+export {Grid} from './core/grid.js';
 export {Loop} from './core/loop.js';
 export * as MATHEMATICS from './core/mathematics.js';
 export {Quaternion} from './core/quaternion.js';
