@@ -25,14 +25,14 @@ class Queue {
      * @type {Array<TypeGeneric>}
      * @private
      */
-    items;
+    $items;
 
     /**
      * Creates a new queue.
      */
     constructor() {
 
-        this.items = [];
+        this.$items = [];
     }
 
     /**
@@ -42,7 +42,7 @@ class Queue {
      */
     clear() {
 
-        this.items = [];
+        this.$items = [];
 
         return this;
     }
@@ -54,7 +54,7 @@ class Queue {
      */
     pop() {
 
-        return this.items.shift();
+        return this.$items.shift();
     }
 
     /**
@@ -65,7 +65,7 @@ class Queue {
      */
     push($item) {
 
-        this.items.push($item);
+        this.$items.push($item);
 
         return this;
     }

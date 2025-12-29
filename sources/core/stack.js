@@ -25,14 +25,14 @@ class Stack {
      * @type {Array<TypeGeneric>}
      * @private
      */
-    $data;
+    $items;
 
     /**
      * Creates a new stack.
      */
     constructor() {
 
-        this.$data = [];
+        this.$items = [];
     }
 
     /**
@@ -42,7 +42,7 @@ class Stack {
      */
     clear() {
 
-        this.$data = [];
+        this.$items = [];
 
         return this;
     }
@@ -54,7 +54,7 @@ class Stack {
      */
     pop() {
 
-        return this.$data.pop();
+        return this.$items.pop();
     }
 
     /**
@@ -65,7 +65,7 @@ class Stack {
      */
     push($item) {
 
-        this.$data.unshift($item);
+        this.$items.unshift($item);
 
         return this;
     }

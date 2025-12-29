@@ -1,11 +1,11 @@
 // 'ESLint' configuration
-/* global TypeGenericData */
+/* global TypeGeneric */
 
 import {AABB, Vector2} from '../index.js';
 
 /**
  * Creates two-dimensional grids.
- * @template {any} TypeGenericData The generic type of the data stored.
+ * @template {any} TypeGeneric The generic type of the data stored.
  *
  * @example
  *
@@ -27,8 +27,8 @@ class Grid {
     /**
      * @callback TypeHandlerTraverse A handler to execute when traversal a cell.
      * @param {object} $parameters The given parameters.
-     * @param {TypeGenericData} $parameters.$data The data of the cell.
-     * @param {Grid<TypeGenericData>} $parameters.$grid The reference grid.
+     * @param {TypeGeneric} $parameters.$data The data of the cell.
+     * @param {Grid<TypeGeneric>} $parameters.$grid The reference grid.
      * @param {Vector2} $parameters.$position The position of the cell.
      * @param {TypeHandlerTraverseTerminate} $parameters.$terminate Terminates the traversal of the grid.
      * @returns {void}
@@ -39,7 +39,7 @@ class Grid {
 
     /**
      * Stores the grid structure.
-     * @type {Map<string, TypeGenericData>}
+     * @type {Map<string, TypeGeneric>}
      * @private
      */
     $grid;
@@ -80,7 +80,7 @@ class Grid {
     /**
      * Gets the data from the given position.
      * @param {Vector2} $position The position to get the data from.
-     * @returns {TypeGenericData}
+     * @returns {TypeGeneric}
      * @public
      */
     get($position) {
@@ -140,7 +140,7 @@ class Grid {
     /**
      * Sets the given data to the given position.
      * @param {Vector2} $position The position to set the data to (with integer values).
-     * @param {TypeGenericData} $data The data to set.
+     * @param {TypeGeneric} $data The data to set.
      * @returns {this}
      * @public
      */
