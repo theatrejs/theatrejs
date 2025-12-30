@@ -74,7 +74,7 @@ class Curve {
     }
 
     /**
-     * Gets the progress between two given time cursors.
+     * Gets the progress between the two given time cursors.
      * @param {number} $previous The previous time cursor (in [0, 1] range).
      * @param {number} $current The current time cursor (in [0, 1] range).
      * @returns {number}

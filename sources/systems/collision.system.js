@@ -37,7 +37,7 @@ class SystemCollision extends System {
     }
 
     /**
-     * Checks if a collision previously existed between two given actors.
+     * Checks if a collision previously existed between the two given actors.
      * @param {Actor} $dynamic The first actor to check on.
      * @param {Actor} $inert The second actor to check with.
      * @returns {boolean}
@@ -77,7 +77,7 @@ class SystemCollision extends System {
 
         /**
          * @typedef {object} TypePairCollision A pair of candidates for collision.
-         * @property {number} $distance The manhattan distance between the two actors.
+         * @property {number} $distance The manhattan distance between the two given actors.
          * @property {Actor} $dynamic The first actor.
          * @property {Actor} $inert The second actor.
          * @private

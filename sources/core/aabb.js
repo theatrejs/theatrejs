@@ -165,7 +165,7 @@ class AABB {
     }
 
     /**
-     * Gets the manhattan distance between two AABBs.
+     * Gets the manhattan distance between the two given AABBs.
      * @param {AABB} $a The first AABB to compare.
      * @param {AABB} $b The second AABB to compare.
      * @returns {number}
@@ -186,7 +186,7 @@ class AABB {
     }
 
     /**
-     * Gets the distance between two AABBs on the x-axis.
+     * Gets the distance between the two given AABBs on the x-axis.
      * @param {AABB} $a The first AABB to compare.
      * @param {AABB} $b The second AABB to compare.
      * @returns {number}
@@ -202,7 +202,7 @@ class AABB {
     }
 
     /**
-     * Gets the distance between two AABBs on the y-axis.
+     * Gets the distance between the two given AABBs on the y-axis.
      * @param {AABB} $a The first AABB to compare.
      * @param {AABB} $b The second AABB to compare.
      * @returns {number}
@@ -246,7 +246,7 @@ class AABB {
     }
 
     /**
-     * Gets the delta penetration between two AABBs strictly overlaping with each other on the x-axis (the common area).
+     * Gets the delta penetration between the two given AABBs strictly overlaping with each other on the x-axis (the common area).
      * @param {AABB} $a The first AABB to compare.
      * @param {AABB} $b The second AABB to compare.
      * @returns {number}
@@ -262,7 +262,7 @@ class AABB {
     }
 
     /**
-     * Gets the delta penetration between two AABBs strictly overlaping with each other on the y-axis (the common area).
+     * Gets the delta penetration between the two given AABBs strictly overlaping with each other on the y-axis (the common area).
      * @param {AABB} $a The first AABB to compare.
      * @param {AABB} $b The second AABB to compare.
      * @returns {number}
