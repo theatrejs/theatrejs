@@ -61,8 +61,3 @@ jobs:
         run: |
           git push https://github.com/${{github.repository}} master
           git push https://github.com/${{github.repository}} "${{steps.version.outputs.current-version}}"
-
-      - name: Publish release
-        run: npm publish --access public
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.npm}}
