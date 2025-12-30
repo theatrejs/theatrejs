@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>SystemActor - Documentation</title>
+    <title>core/heap.js - Documentation</title>
     
     
     <script src="scripts/prettify/prettify.js"></script>
@@ -37,338 +37,207 @@
 
 <div id="main">
     
-    <h1 class="page-title">SystemActor</h1>
-    
-
-    
-
-
-
-
-<section>
-
-<header>
-    
-        <h2>
-        
-            SystemActor
-        
-        </h2>
-        
-            <div class="class-description usertext">Creates actor systems.</div>
-        
-    
-</header>
-
-<article>
-    
-        <div class="container-overview">
-        
-            
-
-    
-    <h2>Constructor</h2>
-    
-
-    <h4 class="name" id="SystemActor"><span class="type-signature"></span>new SystemActor<span class="signature">()</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-
-<dl class="details">
-    
-    <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li>Creates a new actor system.</li></ul></dd>
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="systems_actor.system.js.html">systems/actor.system.js</a>, <a href="systems_actor.system.js.html#line11">line 11</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-    <h5 class="h5-examples">Example</h5>
-    
-    <pre class="prettyprint"><code>const system = new SystemActor();
-system.tick({$stage, $timetick});</code></pre>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-        </div>
-    
-
-    
-
-    
-
-    
-    
-    
-
-     
-
-    
-
-    
-
-    
-        <h3 class="subsection-title">Methods</h3>
-
-        
-            
-
-    
-
-    <h4 class="name" id="onTick"><span class="type-signature"></span>onTick<span class="signature">($parameters)</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-
-<dl class="details">
-    
-    <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li>Called when the system is being updated by one tick update.</li></ul></dd>
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="systems_actor.system.js.html">systems/actor.system.js</a>, <a href="systems_actor.system.js.html#line28">line 28</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
+    <h1 class="page-title">core/heap.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>// 'ESLint' configuration
+/* global TypeGeneric */
+
+/**
+ * Creates heaps.
+ * @template {any} TypeGeneric The generic type of the items.
+ *
+ * @example
+ *
+ * // without chaining
+ * const heap = new Heap(compare);
+ * heap.push(four);
+ * heap.push(one);
+ * heap.push(two);
+ *
+ * const maximum = heap.pop();
+ *
+ * @example
+ *
+ * // with chaining
+ * const heap = new Heap(compare).push(four).push(one).push(two);
+ *
+ * const maximum = heap.pop();
+ */
+class Heap {
 
+    /**
+     * @template {any} TypeGeneric The generic type of the items.
+     * @callback TypeHandlerCompare A handler to use to compare the two given items.
+     * @param {TypeGeneric} $a The first item to compare.
+     * @param {TypeGeneric} $b The second item to compare.
+     * @returns {number}
+     * @protected
+     *
+     * @memberof Heap
+     */
+
+    /**
+     * Stores the compare handler.
+     * @type {TypeHandlerCompare&lt;TypeGeneric>}
+     * @private
+     */
+    $compare;
+
+    /**
+     * Stores the items.
+     * @type {Array&lt;TypeGeneric>}
+     * @private
+     */
+    $items;
 
+    /**
+     * Gets the size of the heap.
+     * @type {number}
+     * @public
+     */
+    get size() {
 
-    <h5 class="h5-parameters">Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>$parameters</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">object</span>
-
+        return this.$items.length;
+    }
 
+    /**
+     * Creates a new heap.
+     * @param {TypeHandlerCompare&lt;TypeGeneric>} $compare The compare handler.
+     */
+    constructor($compare) {
 
-            
-            </td>
+        this.$compare = $compare;
 
-            
+        this.$items = [];
+    }
 
-            
+    /**
+     * Shifts down an item from its given index.
+     * @param {number} [$index] The index of the item to shift down.
+     * @private
+     */
+    $shiftDown($index = 0) {
 
-            <td class="description last">The given parameters.</td>
-        </tr>
+        const left = ($index * 2) + 1;
+        const right = ($index * 2) + 2;
 
-    
-
-        <tr>
-            
-                <td class="name"><code>$parameters.$stage</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="Stage.html">Stage</a></span>
-
-
-
-            
-            </td>
+        let best = $index;
 
-            
+        if (left &lt; this.$items.length
+        &amp;&amp; this.$compare(this.$items[best], this.$items[left]) > 0) {
 
-            
+            best = left;
+        }
 
-            <td class="description last">The stage on which to execute the system.</td>
-        </tr>
+        if (right &lt; this.$items.length
+        &amp;&amp; this.$compare(this.$items[best], this.$items[right]) > 0) {
 
-    
+            best = right;
+        }
 
-        <tr>
-            
-                <td class="name"><code>$parameters.$timetick</code></td>
-            
+        if (best === $index) {
 
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
+            return;
+        }
 
+        this.$swap($index, best);
 
+        this.$shiftDown(best);
+    }
 
-            
-            </td>
+    /**
+     * Shifts up the last item.
+     * @private
+     */
+    $shiftUp() {
 
-            
+        let index = this.$items.length - 1;
 
-            
+        while (index > 0) {
 
-            <td class="description last">The tick duration (in ms).</td>
-        </tr>
-
-    
-    </tbody>
-</table>
+            const parent = Math.floor((index - 1) / 2);
 
+            if (this.$compare(this.$items[index], this.$items[parent]) >= 0) {
 
+                break;
+            }
 
+            this.$swap(index, parent);
 
+            index = parent;
+        }
+    }
 
+    /**
+     * Swaps items at the two given indices.
+     * @param {number} $a The index of the first item to swap.
+     * @param {number} $b The index of the second item to swap.
+     * @private
+     */
+    $swap($a, $b) {
 
+        [this.$items[$a], this.$items[$b]] = [this.$items[$b], this.$items[$a]];
+    }
 
+    /**
+     * Pops an item.
+     * @returns {(TypeGeneric | undefined)}
+     * @public
+     */
+    pop() {
 
+        if (this.$items.length === 0) {
 
+            return undefined;
+        }
 
+        if (this.$items.length === 1) {
 
+            return this.$items.pop();
+        }
 
+        this.$swap(0, this.$items.length - 1);
 
+        const best = this.$items.pop();
 
+        this.$shiftDown();
 
+        return best;
+    }
 
+    /**
+     * Pushes an item.
+     * @param {TypeGeneric} $item The item to push.
+     * @returns {this}
+     * @public
+     */
+    push($item) {
 
+        this.$items.push($item);
 
+        this.$shiftUp();
 
-        
-    
+        return this;
+    }
+}
 
-    
+export {
 
-    
-</article>
+    Heap
+};
 
-</section>
+export default Heap;
+</code></pre>
+        </article>
+    </section>
 
 
 
