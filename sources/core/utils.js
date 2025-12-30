@@ -102,6 +102,26 @@ function ready() {
 }
 
 /**
+ * Shuffles the given array ("Fisher–Yates").
+ * @template {any} TypeGeneric The generic type of the values of the array.
+ * @param {Array<TypeGeneric>} $array The array to shuffle.
+ * @returns {Array<TypeGeneric>}
+ *
+ * @memberof module:UTILS
+ */
+function shuffle($array) {
+
+    for (let $iterator = $array.length - 1; $iterator > 0; $iterator -= 1) {
+
+        const index = Math.floor(Math.random() * ($iterator + 1));
+
+        [$array[$iterator], $array[index]] = [$array[index], $array[$iterator]];
+    }
+
+    return $array;
+}
+
+/**
  * Resolves when the given delay has passed.
  * @param {number} $delay The delay (in ms).
  * @returns {Promise<void>}
@@ -138,6 +158,7 @@ export {
     extract,
     frame,
     ready,
+    shuffle,
     sleep,
     uuid
 };

@@ -37,6 +37,7 @@ module.exports = {
         'max-params': 'off',
         'max-statements': 'off',
         'no-bitwise': 'off',
+        'no-continue': 'off',
         'no-empty-function': 'off',
         'no-implicit-coercion': 'off',
         'no-lonely-if': 'off',

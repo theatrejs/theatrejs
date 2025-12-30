@@ -79,6 +79,54 @@ class Vector2 {
     }
 
     /**
+     * Gets the diagonal distance between the two given positions.
+     * @param {Vector2} $a The first position to compare.
+     * @param {Vector2} $b The second position to compare.
+     * @returns {number}
+     * @public
+     * @static
+     */
+    static distanceDiagonal($a, $b) {
+
+        const x = $b.x - $a.x;
+        const y = $b.y - $a.y;
+
+        return Math.max(Math.abs(x), Math.abs(y));
+    }
+
+    /**
+     * Gets the euclidean distance between the two given positions.
+     * @param {Vector2} $a The first position to compare.
+     * @param {Vector2} $b The second position to compare.
+     * @returns {number}
+     * @public
+     * @static
+     */
+    static distanceEuclidean($a, $b) {
+
+        const x = $b.x - $a.x;
+        const y = $b.y - $a.y;
+
+        return MATHEMATICS.hypotenuse(x, y);
+    }
+
+    /**
+     * Gets the manhattan distance between the two given positions.
+     * @param {Vector2} $a The first position to compare.
+     * @param {Vector2} $b The second position to compare.
+     * @returns {number}
+     * @public
+     * @static
+     */
+    static distanceManhattan($a, $b) {
+
+        const x = $b.x - $a.x;
+        const y = $b.y - $a.y;
+
+        return Math.abs(x) + Math.abs(y);
+    }
+
+    /**
      * Creates a new vector from the given vector.
      * @param {Vector2} $vector The given vector.
      * @returns {Vector2}
