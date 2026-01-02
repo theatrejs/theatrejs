@@ -6,6 +6,68 @@
  */
 
 /**
+ * @callback TypeDebouncerHandler A debouncer handler.
+ * @returns {any}
+ * @protected
+ *
+ * @memberof module:UTILS
+ */
+
+/**
+ * @callback TypeDebouncer A debouncer.
+ * @param {TypeDebouncerHandler} $handler The debouncer handler.
+ * @returns {Promise<any>}
+ * @protected
+ *
+ * @memberof module:UTILS
+ */
+
+/**
+ * Creates a debouncer.
+ * @param {number} $delay The delay of the debouncer.
+ * @returns {TypeDebouncer}
+ *
+ * @memberof module:UTILS
+ */
+function debounce($delay) {
+
+    /**
+     * @type {number}
+     */
+    let identifier;
+
+    /**
+     * @type {TypeDebouncer}
+     */
+    const debouncer = ($handler) => {
+
+        /**
+         * @type {Promise<any>}
+         */
+        const promise = new Promise(($resolve) => {
+
+            if (typeof identifier !== 'undefined') {
+
+                window.clearTimeout(identifier);
+            }
+
+            const resolver = () => {
+
+                identifier = undefined;
+
+                $resolve($handler());
+            };
+
+            identifier = window.setTimeout(resolver, $delay);
+        });
+
+        return promise;
+    };
+
+    return debouncer;
+}
+
+/**
  * Deduplicates the items of the given array (a new array is created).
  * @template {any} TypeGeneric The generic type of the values of the array.
  * @param {Array<TypeGeneric>} $array The array.
@@ -154,6 +216,7 @@ function uuid() {
 
 export {
 
+    debounce,
     deduplicate,
     extract,
     frame,
