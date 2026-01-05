@@ -126,7 +126,7 @@ class SystemRender extends System {
      * @type {ResizeObserver}
      * @private
      */
-    $resizeOberver;
+    $resizeObserver;
 
     /**
      * Stores the fragment shader.
@@ -750,8 +750,8 @@ class SystemRender extends System {
         this.$initiateCanvas();
         this.$initiateContext();
 
-        this.$resizeOberver = new ResizeObserver(this.$resize.bind(this));
-        this.$resizeOberver.observe(this.$container);
+        this.$resizeObserver = new ResizeObserver(this.$resize.bind(this));
+        this.$resizeObserver.observe(this.$container);
     }
 
     /**
@@ -761,7 +761,7 @@ class SystemRender extends System {
      */
     onTerminate() {
 
-        this.$resizeOberver.disconnect();
+        this.$resizeObserver.disconnect();
 
         this.$terminateContext();
         this.$terminateCanvas();
