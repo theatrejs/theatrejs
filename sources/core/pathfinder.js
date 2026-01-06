@@ -10,10 +10,10 @@ import {Grid, Heap, UTILS, Vector2} from '../index.js';
  *
  * const path = pathfinder.find({
  *
- *     $grid: grid,
- *     $start: new Vector2(-2, 0),
+ *     $access: accessor,
  *     $finish: new Vector2(2, 0),
- *     $access: accessor
+ *     $grid: grid,
+ *     $start: new Vector2(-2, 0)
  * });
  *
  * // full
@@ -21,10 +21,10 @@ import {Grid, Heap, UTILS, Vector2} from '../index.js';
  *
  * const path = pathfinder.find({
  *
- *     $grid: grid,
- *     $start: new Vector2(-2, 0),
+ *     $access: accessor,
  *     $finish: new Vector2(2, 0),
- *     $access: accessor
+ *     $grid: grid,
+ *     $start: new Vector2(-2, 0)
  * });
  */
 class Pathfinder {
@@ -80,14 +80,14 @@ class Pathfinder {
      * Gets the shortest path between the positions of the two given cells of the given weighted grid.
      * @template {any} TypeGeneric The generic type of the items.
      * @param {object} $parameters The given parameters.
+     * @param {TypeAccessor<TypeGeneric>} $parameters.$access The accessor to the cost of a cell.
+     * @param {Vector2} $parameters.$finish The position of the 'finish' cell.
      * @param {Grid<TypeGeneric>} $parameters.$grid The weighted grid.
      * @param {Vector2} $parameters.$start The position of the 'start' cell.
-     * @param {Vector2} $parameters.$finish The position of the 'finish' cell.
-     * @param {TypeAccessor<TypeGeneric>} $parameters.$access The accessor to the cost of a cell.
      * @returns {Array<Vector2>}
      * @public
      */
-    find({$grid, $start, $finish, $access}) {
+    find({$access, $finish, $grid, $start}) {
 
         if ($grid.has($start) === false) {
 
