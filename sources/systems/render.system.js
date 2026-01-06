@@ -122,6 +122,13 @@ class SystemRender extends System {
     $program;
 
     /**
+     * Stores the resized status.
+     * @type {boolean}
+     * @private
+     */
+    $resized;
+
+    /**
      * Stores the ResizeObserver.
      * @type {ResizeObserver}
      * @private
@@ -163,6 +170,8 @@ class SystemRender extends System {
         this.$color = $color.clone();
         this.$container = $container;
         this.$framing = $framing.clone();
+
+        this.$resized = false;
     }
 
     /**
@@ -473,6 +482,8 @@ class SystemRender extends System {
 
         this.$canvas.setAttribute('width', '' + Math.floor(widthContext / 2) * 2);
         this.$canvas.setAttribute('height', '' + Math.floor(heightContext / 2) * 2);
+
+        this.$resized = true;
     }
 
     /**
@@ -642,6 +653,16 @@ class SystemRender extends System {
     }
 
     /**
+     * Checks the resized status.
+     * @returns {boolean}
+     * @public
+     */
+    checkResized() {
+
+        return this.$resized === true;
+    }
+
+    /**
      * Gets the boundaries in the current stage from the framing (rendering resolution).
      * @param {Stage} $stage The current stage.
      * @returns {AABB}
@@ -762,6 +783,7 @@ class SystemRender extends System {
     onTerminate() {
 
         this.$resizeObserver.disconnect();
+        this.$resized = false;
 
         this.$terminateContext();
         this.$terminateCanvas();
@@ -852,6 +874,8 @@ class SystemRender extends System {
 
             this.$context.drawElements(this.$context.TRIANGLE_FAN, this.$indices, this.$context.UNSIGNED_INT, 0);
         });
+
+        this.$resized = false;
     }
 
     /**

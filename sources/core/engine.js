@@ -191,6 +191,16 @@ class Engine {
     }
 
     /**
+     * Checks the resized status.
+     * @returns {boolean}
+     * @public
+     */
+    checkResized() {
+
+        return this.$systemRender.checkResized() === true;
+    }
+
+    /**
      * Creates the given stage on the next tick update.
      * @param {typeof Stage} $stage The stage to create on the next tick update.
      * @public
@@ -410,6 +420,7 @@ class Engine {
         this.$systemVibration.terminate();
 
         this.$preloaded = new Set();
+        this.$resized = false;
     }
 
     /**
