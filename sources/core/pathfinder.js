@@ -127,14 +127,18 @@ class Pathfinder {
             $position: $start.clone()
         });
 
-        const closed = new Set();
+        /**
+         * @type {Map<string, number>}
+         */
+        const visited = new Map();
 
         while (open.size > 0) {
 
             const current = open.pop();
             const key = Vector2.serialize(current.$position);
 
-            if (closed.has(key) === true) {
+            if (visited.has(key) === true
+            && visited.get(key) <= current.$cost) {
 
                 continue;
             }
@@ -155,7 +159,7 @@ class Pathfinder {
                 return path;
             }
 
-            closed.add(key);
+            visited.set(key, current.$cost);
 
             const neighbors = UTILS.shuffle([
 
@@ -165,25 +169,34 @@ class Pathfinder {
                 new Vector2(0, 1)
             ]);
 
-            neighbors.forEach(($position) => {
+            neighbors.forEach(($direction) => {
 
-                const position = $position.add(current.$position);
+                const position = $direction.add(current.$position);
 
                 if ($grid.has(position) === false) {
 
                     return;
                 }
 
-                const key = Vector2.serialize(position);
+                const weight = $access($grid.get(position));
 
-                if (closed.has(key) === true) {
+                if (weight === Number.POSITIVE_INFINITY) {
+
+                    return;
+                }
+
+                const key = Vector2.serialize(position);
+                const cost = current.$cost + weight;
+
+                if (visited.has(key) === true
+                && visited.get(key) <= cost) {
 
                     return;
                 }
 
                 open.push({
 
-                    $cost: current.$cost + $access($grid.get(position)),
+                    $cost: cost,
                     $heuristic: this.$heuristic(position, $finish),
                     $parent: current,
                     $position: position
