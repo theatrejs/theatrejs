@@ -312,6 +312,38 @@ class AABB {
 
         return this;
     }
+
+    /**
+     * Translates the AABB in the world space from a third person point of view on the x-axis.
+     * @param {number} $x The translation to apply on the x-axis.
+     * @returns {this}
+     * @public
+     */
+    translateX($x) {
+
+        const translation = new Vector2($x, 0);
+
+        this.$maximum.add(translation);
+        this.$minimum.add(translation);
+
+        return this;
+    }
+
+    /**
+     * Translates the AABB in the world space from a third person point of view on the y-axis.
+     * @param {number} $y The translation to apply on the y-axis.
+     * @returns {this}
+     * @public
+     */
+    translateY($y) {
+
+        const translation = new Vector2($y, 0);
+
+        this.$maximum.add(translation);
+        this.$minimum.add(translation);
+
+        return this;
+    }
 }
 
 export {

@@ -805,6 +805,36 @@ class Actor extends Preloadable {
     }
 
     /**
+     * Translates the actor in the world space from a third person point of view on the x-axis.
+     * @param {number} $x The translation to apply on the x-axis.
+     * @returns {this}
+     * @public
+     */
+    translateX($x) {
+
+        const translation = new Vector2($x, 0);
+
+        this.$translate(translation);
+
+        return this;
+    }
+
+    /**
+     * Translates the actor in the world space from a third person point of view on the y-axis.
+     * @param {number} $y The translation to apply on the y-axis.
+     * @returns {this}
+     * @public
+     */
+    translateY($y) {
+
+        const translation = new Vector2(0, $y);
+
+        this.$translate(translation);
+
+        return this;
+    }
+
+    /**
      * Triggers an action.
      * @param {TypeGenericAction} $action The action to trigger.
      * @returns {this}
