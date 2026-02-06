@@ -1,4 +1,4 @@
-import {AABB, Loop, MEDIA_TYPES, Stage, SystemActor, SystemAudio, SystemCollision, SystemInput, SystemRender, SystemVibration, UTILS, Vector2, Vector3} from '../index.js';
+import {AABB, Actor, Loop, MEDIA_TYPES, Stage, SystemActor, SystemAudio, SystemCollision, SystemInput, SystemRender, SystemVibration, UTILS, Vector2, Vector3} from '../index.js';
 
 /**
  * Creates game engines.
@@ -264,6 +264,21 @@ class Engine {
     }
 
     /**
+     * Gets the position in the current stage from the given pointer event in the viewport.
+     * @param {PointerEvent} $event The pointer event.
+     * @returns {Vector2}
+     * @public
+     */
+    getTranslationFromViewportPointer($event) {
+
+        return this.$systemRender.getTranslationFromScreen(this.$stage, new Vector2(
+
+            2 * ($event.clientX / this.container.clientWidth) - 1,
+            2 * ($event.clientY / this.container.clientHeight) - 1
+        ));
+    }
+
+    /**
      * Checks if the engine has loaded the given asset.
      * @param {string} $asset The asset source.
      * @returns {boolean}
@@ -370,6 +385,21 @@ class Engine {
         });
 
         return Promise.all(promises);
+    }
+
+    /**
+     * Gets all the visible actors at the given position (from top to bottom).
+     * @param {Vector2} $position The position to use.
+     * @returns {Array<Actor>}
+     * @public
+     */
+    raycast($position) {
+
+        return this.$systemRender.raycast({
+
+            $position: $position,
+            $stage: this.$stage
+        });
     }
 
     /**

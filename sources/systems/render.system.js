@@ -1,4 +1,4 @@
-import {AABB, EVENT_TYPES, SHADER_PARAMETER_TYPES, Shader, Sprite, Stage, System, Vector2, Vector3} from '../index.js';
+import {AABB, Actor, EVENT_TYPES, SHADER_PARAMETER_TYPES, Shader, Sprite, Stage, System, Vector2, Vector3} from '../index.js';
 
 /**
  * Creates render systems.
@@ -334,6 +334,57 @@ class SystemRender extends System {
         this.$context.texImage2D(this.$context.TEXTURE_2D, 0, this.$context.RGBA, 1, 1, 0, this.$context.RGBA, this.$context.UNSIGNED_BYTE, new Uint8Array([$color.x, $color.y, $color.z, 255]));
 
         return texture;
+    }
+
+    /**
+     * Gets all the visible actors within the given boundaries (from bottom to top).
+     * @param {object} $parameters The given parameters.
+     * @param {AABB} $parameters.$boundaries The boundaries to check.
+     * @param {Stage} $parameters.$stage The stage.
+     * @returns {Array<Actor>}
+     * @public
+     */
+    $getActorsVisible({$boundaries, $stage}) {
+
+        const actors = $stage.actors.filter(($actor) => {
+
+            if ($actor.hasSprite() === false) {
+
+                return false;
+            }
+
+            if ($actor.visible === false) {
+
+                return false;
+            }
+
+            const boundariesSprite = AABB
+            .fromSize($actor.sprite.sizeTarget)
+            .translate($actor.translation);
+
+            const overlapX = AABB.overlapX($boundaries, boundariesSprite);
+
+            if (overlapX <= 0) {
+
+                return false;
+            }
+
+            const overlapY = AABB.overlapY($boundaries, boundariesSprite);
+
+            if (overlapY <= 0) {
+
+                return false;
+            }
+
+            return true;
+        });
+
+        actors.sort(($a, $b) => {
+
+            return $a.zIndex - $b.zIndex;
+        });
+
+        return actors;
     }
 
     /**
@@ -813,42 +864,10 @@ class SystemRender extends System {
         .fromSize(new Vector2(this.$canvas.width, this.$canvas.height))
         .translate($stage.pointOfView.translation);
 
-        const actors = $stage.actors.filter(($actor) => {
+        const actors = this.$getActorsVisible({
 
-            if ($actor.hasSprite() === false) {
-
-                return false;
-            }
-
-            if ($actor.visible === false) {
-
-                return false;
-            }
-
-            const boundariesSprite = AABB
-            .fromSize($actor.sprite.sizeTarget)
-            .translate($actor.translation);
-
-            const overlapX = AABB.overlapX(boundariesViewport, boundariesSprite);
-
-            if (overlapX <= 0) {
-
-                return false;
-            }
-
-            const overlapY = AABB.overlapY(boundariesViewport, boundariesSprite);
-
-            if (overlapY <= 0) {
-
-                return false;
-            }
-
-            return true;
-        });
-
-        actors.sort(($a, $b) => {
-
-            return $a.zIndex - $b.zIndex;
+            $boundaries: boundariesViewport,
+            $stage: $stage
         });
 
         actors.forEach(($actor) => {
@@ -876,6 +895,29 @@ class SystemRender extends System {
         });
 
         this.$resized = false;
+    }
+
+    /**
+     * Gets all the visible actors at the given position (from top to bottom).
+     * @param {object} $parameters The given parameters.
+     * @param {Vector2} $parameters.$position The position to use.
+     * @param {Stage} $parameters.$stage The stage.
+     * @returns {Array<Actor>}
+     * @public
+     */
+    raycast({$position, $stage}) {
+
+        const boundariesRay = AABB
+        .fromSize(new Vector2(0, 0))
+        .translate($position);
+
+        const actors = this.$getActorsVisible({
+
+            $boundaries: boundariesRay,
+            $stage: $stage
+        });
+
+        return actors.reverse();
     }
 
     /**
