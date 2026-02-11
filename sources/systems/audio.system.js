@@ -299,7 +299,14 @@ class SystemAudio extends System {
                 const audio = this.$context.createBufferSource();
                 audio.buffer = bufferAudio;
                 audio.connect(this.$context.destination);
-                audio.start(0);
+
+                const timestamp = performance.now();
+
+                UTILS.ready().then(() => {
+
+                    const offset = performance.now() - timestamp;
+                    audio.start(0, offset / 1000);
+                });
 
                 const gain = this.$context.createGain();
                 gain.gain.value = $sound.volume - 1;
