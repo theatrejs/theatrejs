@@ -144,12 +144,22 @@ class Stage extends Preloadable {
      */
     $removeActor($actor) {
 
+        if (this.$actors.indexOf($actor) === -1) {
+
+            return;
+        }
+
         $actor.onBeforeRemove();
 
         if (this.$pointOfView === $actor) {
 
             this.$pointOfView = this.$origin;
         }
+
+        $actor.mimics.keys().forEach(($mimic) => {
+
+            this.$removeActor($mimic);
+        });
 
         const index = this.$actors.indexOf($actor);
         this.$actors.splice(index, 1);
@@ -232,11 +242,6 @@ class Stage extends Preloadable {
      * @public
      */
     removeActor($actor) {
-
-        if (this.$actors.indexOf($actor) === -1) {
-
-            return;
-        }
 
         this.$removeActor($actor);
     }

@@ -32,6 +32,15 @@ class Actor extends Preloadable {
      */
 
     /**
+     * @typedef {object} TypeMimicDeltas A list of relative delta properties.
+     * @property {Vector2} $deltaTranslation The delta translation.
+     * @property {number} $deltaZIndex The delta z-index.
+     * @protected
+     *
+     * @memberof Actor
+     */
+
+    /**
      * Stores the collider.
      * @type {Collider}
      * @private
@@ -79,6 +88,13 @@ class Actor extends Preloadable {
      * @private
      */
     $listenersStates;
+
+    /**
+     * Stores the mimics.
+     * @type {Map<Actor, TypeMimicDeltas>}
+     * @private
+     */
+    $mimics;
 
     /**
      * Stores the sounds.
@@ -163,6 +179,14 @@ class Actor extends Preloadable {
      */
     get followers() {
 
+        this.$followers.keys().forEach(($follower) => {
+
+            if (this.stage.hasActor($follower) === false) {
+
+                this.$followers.delete($follower);
+            }
+        });
+
         return this.$followers;
     }
 
@@ -184,6 +208,24 @@ class Actor extends Preloadable {
     get label() {
 
         return this.$label;
+    }
+
+    /**
+     * Gets the mimics.
+     * @type {Map<Actor, TypeMimicDeltas>}
+     * @public
+     */
+    get mimics() {
+
+        this.$mimics.keys().forEach(($mimic) => {
+
+            if (this.stage.hasActor($mimic) === false) {
+
+                this.$mimics.delete($mimic);
+            }
+        });
+
+        return this.$mimics;
     }
 
     /**
@@ -280,6 +322,7 @@ class Actor extends Preloadable {
         this.$followers = new Map();
         this.$listenerActions = {};
         this.$listenersStates = {};
+        this.$mimics = new Map();
         this.$sounds = [];
         this.$translation = new Vector2(0, 0);
         this.$uuid = UTILS.uuid();
@@ -304,6 +347,26 @@ class Actor extends Preloadable {
     }
 
     /**
+     * Adds a mimic actor.
+     * @param {Actor} $actor The mimic actor to add.
+     * @private
+     */
+    $addMimic($actor) {
+
+        if (this.$mimics.has($actor) === false) {
+
+            const deltaTranslation = $actor.translation.clone().subtract(this.$translation);
+            const deltaZIndex = $actor.zIndex - this.zIndex;
+
+            this.$mimics.set($actor, {
+
+                $deltaTranslation: deltaTranslation,
+                $deltaZIndex: deltaZIndex
+            });
+        }
+    }
+
+    /**
      * Removes a following actor.
      * @param {Actor} $actor The following actor to remove.
      * @private
@@ -313,6 +376,19 @@ class Actor extends Preloadable {
         if (this.$followers.has($actor) === true) {
 
             this.$followers.delete($actor);
+        }
+    }
+
+    /**
+     * Removes a mimic actor.
+     * @param {Actor} $actor The mimic actor to remove.
+     * @private
+     */
+    $removeMimic($actor) {
+
+        if (this.$mimics.has($actor) === true) {
+
+            this.$mimics.delete($actor);
         }
     }
 
@@ -349,6 +425,18 @@ class Actor extends Preloadable {
             }
 
             $follower.translateTo(this.$translation.clone().add($delta));
+        });
+
+        Array.from(this.$mimics.entries()).forEach(([$mimic, {$deltaTranslation}]) => {
+
+            if (this.stage.hasActor($mimic) === false) {
+
+                this.$mimics.delete($mimic);
+
+                return;
+            }
+
+            $mimic.translateTo(this.$translation.clone().add($deltaTranslation));
         });
 
         this.onTranslate($vector);
@@ -473,6 +561,19 @@ class Actor extends Preloadable {
     hasSprite() {
 
         return this.$sprite instanceof Sprite;
+    }
+
+    /**
+     * Mimics the properties of the given actor.
+     * @param {Actor} $actor The actor to mimic the properties.
+     * @returns {this}
+     * @public
+     */
+    mimic($actor) {
+
+        $actor.$addMimic(this);
+
+        return this;
     }
 
     /**
@@ -754,6 +855,18 @@ class Actor extends Preloadable {
 
         this.$visible = $visible;
 
+        this.$mimics.keys().forEach(($mimic) => {
+
+            if (this.stage.hasActor($mimic) === false) {
+
+                this.$mimics.delete($mimic);
+
+                return;
+            }
+
+            $mimic.setVisible(this.$visible);
+        });
+
         this.onSetVisible($visible);
 
         return this;
@@ -768,6 +881,18 @@ class Actor extends Preloadable {
     setZIndex($zIndex) {
 
         this.$zIndex = $zIndex;
+
+        Array.from(this.$mimics.entries()).forEach(([$mimic, {$deltaZIndex}]) => {
+
+            if (this.stage.hasActor($mimic) === false) {
+
+                this.$mimics.delete($mimic);
+
+                return;
+            }
+
+            $mimic.setZIndex(this.$zIndex + $deltaZIndex);
+        });
 
         this.onSetZIndex($zIndex);
 
@@ -861,6 +986,19 @@ class Actor extends Preloadable {
     unfollow($actor) {
 
         $actor.$removeFollower(this);
+
+        return this;
+    }
+
+    /**
+     * Unmimics the properties of the given actor.
+     * @param {Actor} $actor The actor to unmimic the properties.
+     * @returns {this}
+     * @public
+     */
+    unmimic($actor) {
+
+        $actor.$removeMimic(this);
 
         return this;
     }
