@@ -29,6 +29,24 @@ class Shader {
      */
 
     /**
+     * Stores the 'attributePosition' attribute name.
+     * @type {'attributePosition'}
+     * @public
+     * @readonly
+     * @static
+     */
+    static ATTRIBUTE_POSITION = 'attributePosition';
+
+    /**
+     * Stores the 'attributeUvmapping' attribute name.
+     * @type {'attributeUvmapping'}
+     * @public
+     * @readonly
+     * @static
+     */
+    static ATTRIBUTE_UVMAPPING = 'attributeUvmapping';
+
+    /**
      * Stores the attributes needed by the shader program.
      * @type {Object<string, TypeTypeAttribute>}
      * @public
@@ -37,8 +55,8 @@ class Shader {
      */
     static attributes = {
 
-        'attributePosition': SHADER_PARAMETER_TYPES.VECTOR_2,
-        'attributeUvmapping': SHADER_PARAMETER_TYPES.VECTOR_2
+        [Shader.ATTRIBUTE_POSITION]: SHADER_PARAMETER_TYPES.VECTOR_2,
+        [Shader.ATTRIBUTE_UVMAPPING]: SHADER_PARAMETER_TYPES.VECTOR_2
     };
 
     /**
@@ -93,6 +111,51 @@ class Shader {
     );
 
     /**
+     * Stores the 'uniformAspect' uniform name.
+     * @type {'uniformAspect'}
+     * @public
+     * @readonly
+     * @static
+     */
+    static UNIFORM_ASPECT = 'uniformAspect';
+
+    /**
+     * Stores the 'uniformSize' uniform name.
+     * @type {'uniformSize'}
+     * @public
+     * @readonly
+     * @static
+     */
+    static UNIFORM_SIZE = 'uniformSize';
+
+    /**
+     * Stores the 'uniformTexture' uniform name.
+     * @type {'uniformTexture'}
+     * @public
+     * @readonly
+     * @static
+     */
+    static UNIFORM_TEXTURE = 'uniformTexture';
+
+    /**
+     * Stores the 'uniformTranslation' uniform name.
+     * @type {'uniformTranslation'}
+     * @public
+     * @readonly
+     * @static
+     */
+    static UNIFORM_TRANSLATION = 'uniformTranslation';
+
+    /**
+     * Stores the 'uniformTranslationPointOfView' uniform name.
+     * @type {'uniformTranslationPointOfView'}
+     * @public
+     * @readonly
+     * @static
+     */
+    static UNIFORM_TRANSLATION_POINT_OF_VIEW = 'uniformTranslationPointOfView';
+
+    /**
      * Stores the uniforms needed by the shader program.
      * @type {Object<string, TypeTypeUniform>}
      * @public
@@ -101,11 +164,11 @@ class Shader {
      */
     static uniforms = {
 
-        'uniformAspect': SHADER_PARAMETER_TYPES.VECTOR_2,
-        'uniformSize': SHADER_PARAMETER_TYPES.VECTOR_2,
-        'uniformTexture': SHADER_PARAMETER_TYPES.SAMPLER_2D,
-        'uniformTranslation': SHADER_PARAMETER_TYPES.VECTOR_2,
-        'uniformTranslationPointOfView': SHADER_PARAMETER_TYPES.VECTOR_2
+        [Shader.UNIFORM_ASPECT]: SHADER_PARAMETER_TYPES.VECTOR_2,
+        [Shader.UNIFORM_SIZE]: SHADER_PARAMETER_TYPES.VECTOR_2,
+        [Shader.UNIFORM_TEXTURE]: SHADER_PARAMETER_TYPES.SAMPLER_2D,
+        [Shader.UNIFORM_TRANSLATION]: SHADER_PARAMETER_TYPES.VECTOR_2,
+        [Shader.UNIFORM_TRANSLATION_POINT_OF_VIEW]: SHADER_PARAMETER_TYPES.VECTOR_2
     };
 }
 

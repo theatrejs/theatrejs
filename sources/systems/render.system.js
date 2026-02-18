@@ -1,4 +1,4 @@
-import {AABB, Actor, EVENT_TYPES, SHADER_PARAMETER_TYPES, Shader, Sprite, Stage, System, Vector2, Vector3} from '../index.js';
+import {AABB, Actor, CONTEXT_TYPE, EVENT_TYPES, SHADER_PARAMETER_TYPES, Shader, Sprite, Stage, System, Vector2, Vector3} from '../index.js';
 
 /**
  * Creates render systems.
@@ -413,7 +413,7 @@ class SystemRender extends System {
      */
     $initiateContext() {
 
-        this.$context = this.$canvas.getContext('webgl2', {
+        this.$context = this.$canvas.getContext(CONTEXT_TYPE.WEBGL2, {
 
             'antialias': false
         });
@@ -855,10 +855,10 @@ class SystemRender extends System {
 
         this.$resetCanvas(this.$canvas.width, this.$canvas.height);
 
-        this.$sendUniform(Shader, 'uniformAspect', [this.$canvas.width, this.$canvas.height]);
-        this.$sendUniform(Shader, 'uniformTranslationPointOfView', [Math.floor($stage.pointOfView.translation.x), Math.floor($stage.pointOfView.translation.y)]);
+        this.$sendUniform(Shader, Shader.UNIFORM_ASPECT, [this.$canvas.width, this.$canvas.height]);
+        this.$sendUniform(Shader, Shader.UNIFORM_TRANSLATION_POINT_OF_VIEW, [Math.floor($stage.pointOfView.translation.x), Math.floor($stage.pointOfView.translation.y)]);
 
-        this.$sendAttribute(Shader, 'attributePosition', this.$bufferPosition);
+        this.$sendAttribute(Shader, Shader.ATTRIBUTE_POSITION, this.$bufferPosition);
 
         const boundariesViewport = AABB
         .fromSize(new Vector2(this.$canvas.width, this.$canvas.height))
@@ -883,13 +883,13 @@ class SystemRender extends System {
 
             this.$context.activeTexture(this.$context.TEXTURE0 + SystemRender.UNIT_TEXTURE_1);
             this.$context.bindTexture(this.$context.TEXTURE_2D, texture);
-            this.$sendUniform(Shader, 'uniformTexture', SystemRender.UNIT_TEXTURE_1);
+            this.$sendUniform(Shader, Shader.UNIFORM_TEXTURE, SystemRender.UNIT_TEXTURE_1);
 
-            this.$sendUniform(Shader, 'uniformSize', [$actor.sprite.sizeTarget.x, $actor.sprite.sizeTarget.y]);
-            this.$sendUniform(Shader, 'uniformTranslation', [Math.floor($actor.translation.x), Math.floor($actor.translation.y)]);
+            this.$sendUniform(Shader, Shader.UNIFORM_SIZE, [$actor.sprite.sizeTarget.x, $actor.sprite.sizeTarget.y]);
+            this.$sendUniform(Shader, Shader.UNIFORM_TRANSLATION, [Math.floor($actor.translation.x), Math.floor($actor.translation.y)]);
 
             this.$createBufferUvsOnce($actor.sprite);
-            this.$sendAttribute(Shader, 'attributeUvmapping', this.$mappingBuffersUv[$actor.sprite.frameSourceSerialized]);
+            this.$sendAttribute(Shader, Shader.ATTRIBUTE_UVMAPPING, this.$mappingBuffersUv[$actor.sprite.frameSourceSerialized]);
 
             this.$context.drawElements(this.$context.TRIANGLE_FAN, this.$indices, this.$context.UNSIGNED_INT, 0);
         });

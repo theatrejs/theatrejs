@@ -102,6 +102,7 @@ class Grid {
     /**
      * Iterates through the grid applying the given handler.
      * @param {TypeHandlerTraverse} $handler The handler to apply to each cell in the sector.
+     * @returns {this}
      * @public
      */
     iterate($handler) {
@@ -135,6 +136,8 @@ class Grid {
                 break;
             }
         }
+
+        return this;
     }
 
     /**
@@ -155,6 +158,7 @@ class Grid {
      * Traverses the given sector applying the given handler.
      * @param {AABB} $aabb The sector to traverse (with integer boundaries).
      * @param {TypeHandlerTraverse} $handler The handler to apply to each cell in the sector.
+     * @returns {this}
      * @public
      */
     traverse($aabb, $handler) {
@@ -199,6 +203,8 @@ class Grid {
                 break;
             }
         }
+
+        return this;
     }
 }
 

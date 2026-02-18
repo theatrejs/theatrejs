@@ -1,5 +1,6 @@
 export * as COLLIDER_TYPES from './constants/collider-types.js';
 export * as CONTENT_TYPES from './constants/content-types.js';
+export * as CONTEXT_TYPE from './constants/context-type.js';
 export * as EVENT_CODES from './constants/event-codes.js';
 export * as EVENT_TYPES from './constants/event-types.js';
 export * as MEDIA_TYPES from './constants/media-types.js';
