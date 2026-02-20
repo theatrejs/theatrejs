@@ -263,7 +263,7 @@ class SystemCollision extends System {
             });
         });
 
-        this.$previous.filter(([$dynamicPrevious, $inertPrevious]) => {
+        this.$previous.forEach(([$dynamicPrevious, $inertPrevious]) => {
 
             const result = this.$current.find(([$dynamic, $inert]) => {
 
@@ -271,13 +271,11 @@ class SystemCollision extends System {
                 && $inert === $inertPrevious;
             });
 
-            return typeof result === 'undefined';
-        });
+            if (typeof result === 'undefined') {
 
-        this.$previous.forEach(([$dynamicPrevious, $inertPrevious]) => {
-
-            $dynamicPrevious.onCollideLeave($inertPrevious);
-            $inertPrevious.onCollideLeave($dynamicPrevious);
+                $dynamicPrevious.onCollideLeave($inertPrevious);
+                $inertPrevious.onCollideLeave($dynamicPrevious);
+            }
         });
 
         this.$previous = [...this.$current];
