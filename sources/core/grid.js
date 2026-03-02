@@ -17,6 +17,19 @@ import {AABB, Vector2} from '../index.js';
 class Grid {
 
     /**
+     * @template {any} TypeGenericMapped The generic type of the mapped data stored.
+     * @callback TypeHandlerMap A handler to execute when mapping this grid.
+     * @param {object} $parameters The given parameters.
+     * @param {TypeGeneric} $parameters.$data The data of the cell.
+     * @param {Grid<TypeGenericMapped>} $parameters.$grid The reference grid.
+     * @param {Vector2} $parameters.$position The position of the cell.
+     * @returns {TypeGenericMapped}
+     * @protected
+     *
+     * @memberof Grid
+     */
+
+    /**
      * @callback TypeHandlerTraverseTerminate A handler to execute when terminating the traversal of the grid.
      * @returns {void}
      * @protected
@@ -53,6 +66,19 @@ class Grid {
     }
 
     /**
+     * Creates a new grid from the given grid.
+     * @template {any} TypeGeneric The generic type of the data stored.
+     * @param {Grid<TypeGeneric>} $grid The given grid.
+     * @returns {Grid<TypeGeneric>}
+     * @public
+     * @static
+     */
+    static from($grid) {
+
+        return $grid.clone();
+    }
+
+    /**
      * Clears the grid.
      * @returns {this}
      * @public
@@ -62,6 +88,26 @@ class Grid {
         this.$grid.clear();
 
         return this;
+    }
+
+    /**
+     * Clones the grid.
+     * @returns {Grid<TypeGeneric>}
+     * @public
+     */
+    clone() {
+
+        /**
+         * @type {Grid<TypeGeneric>}
+         */
+        const grid = new Grid();
+
+        this.iterate(({$data, $position}) => {
+
+            grid.set($position, $data);
+        });
+
+        return grid;
     }
 
     /**
@@ -138,6 +184,33 @@ class Grid {
         }
 
         return this;
+    }
+
+    /**
+     * Maps this grid data stored to other data (a new grid is created).
+     * @template {any} TypeGenericMapped The generic type of the mapped data stored.
+     * @param {TypeHandlerMap<TypeGenericMapped>} $handler The handler to execute when mapping this grid.
+     * @returns {Grid<TypeGenericMapped>}
+     * @public
+     */
+    map($handler) {
+
+        /**
+         * @type {Grid<TypeGenericMapped>}
+         */
+        const grid = new Grid();
+
+        this.iterate(({$data, $position}) => {
+
+            grid.set($position, $handler({
+
+                $data: $data,
+                $grid: grid,
+                $position: $position
+            }));
+        });
+
+        return grid;
     }
 
     /**
