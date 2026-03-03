@@ -12,6 +12,11 @@ export {Actor} from './core/actor.js';
 export {Stage} from './core/stage.js';
 
 export {AABB} from './core/aabb.js';
+export {BehaviorTree} from './core/behavior-tree.js';
+export {BehaviorTreeNode} from './core/behavior-tree-node.js';
+export {BehaviorTreeNodeAction} from './core/behavior-tree-node-action.js';
+export {BehaviorTreeNodeSelector} from './core/behavior-tree-node-selector.js';
+export {BehaviorTreeNodeSequencer} from './core/behavior-tree-node-sequencer.js';
 export {Collider} from './core/collider.js';
 export {Curve} from './core/curve.js';
 export * as CURVES from './core/curves.js';
