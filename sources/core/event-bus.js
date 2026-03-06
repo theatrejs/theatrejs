@@ -7,11 +7,11 @@
  *
  * @example
  *
- * const events = new EventBus();
+ * const eventbus = new EventBus();
  *
- * events.trigger(EVENT);
+ * eventbus.trigger(EVENT);
  *
- * events.listen(EVENT, handler);
+ * eventbus.listen(EVENT, handler);
  */
 class EventBus {
 
