@@ -21,6 +21,7 @@ export {Collider} from './core/collider.js';
 export {Curve} from './core/curve.js';
 export * as CURVES from './core/curves.js';
 export {Engine} from './core/engine.js';
+export {EventBus} from './core/event-bus.js';
 export * as FACTORIES from './core/factories.js';
 export {FiniteStateMachine} from './core/finite-state-machine.js';
 export {Grid} from './core/grid.js';

@@ -2,7 +2,7 @@
 /* global TypeGenericAction */
 /* global TypeGenericState */
 
-import {Collider, Engine, Preloadable, Sound, Sprite, Stage, UTILS, Vector2, Vibration} from '../index.js';
+import {Collider, Engine, EventBus, Preloadable, Sound, Sprite, Stage, UTILS, Vector2, Vibration} from '../index.js';
 
 /**
  * Abstract actors.
@@ -41,6 +41,13 @@ class Actor extends Preloadable {
      */
 
     /**
+     * Stores the actions event bus.
+     * @type {EventBus<TypeGenericAction>}
+     * @private
+     */
+    $actions;
+
+    /**
      * Stores the collider.
      * @type {Collider}
      * @private
@@ -76,20 +83,6 @@ class Actor extends Preloadable {
     $label;
 
     /**
-     * Stores the action listeners.
-     * @type {Object<string, TypeListenerAction>}
-     * @private
-     */
-    $listenerActions;
-
-    /**
-     * Stores the state listeners.
-     * @type {Object<string, Array<TypeListenerState>>}
-     * @private
-     */
-    $listenersStates;
-
-    /**
      * Stores the mimics.
      * @type {Map<Actor, TypeMimicDeltas>}
      * @private
@@ -116,6 +109,13 @@ class Actor extends Preloadable {
      * @private
      */
     $stage;
+
+    /**
+     * Stores the states event bus.
+     * @type {EventBus<TypeGenericState>}
+     * @private
+     */
+    $states;
 
     /**
      * Stores the position.
@@ -318,12 +318,12 @@ class Actor extends Preloadable {
 
         this.$stage = $stage;
 
+        this.$actions = new EventBus();
         this.$components = {};
         this.$followers = new Map();
-        this.$listenerActions = {};
-        this.$listenersStates = {};
         this.$mimics = new Map();
         this.$sounds = [];
+        this.$states = new EventBus();
         this.$translation = new Vector2(0, 0);
         this.$uuid = UTILS.uuid();
         this.$vibrations = [];
@@ -393,20 +393,6 @@ class Actor extends Preloadable {
     }
 
     /**
-     * Sets an action listener.
-     * @param {TypeGenericAction} $action The action to listen.
-     * @param {TypeListenerAction} $handler The listener to set.
-     * @returns {this}
-     * @protected
-     */
-    $setListener($action, $handler) {
-
-        this.$listenerActions[$action] = $handler;
-
-        return this;
-    }
-
-    /**
      * Translates the actor in the world space.
      * @param {Vector2} $vector The translation to apply.
      * @private
@@ -440,46 +426,6 @@ class Actor extends Preloadable {
         });
 
         this.onTranslate($vector);
-    }
-
-    /**
-     * Triggers a changing state on listeners.
-     * @param {TypeGenericState} $state The changing state to trigger.
-     * @returns {this}
-     * @protected
-     */
-    $trigger($state) {
-
-        if (Object.hasOwn(this.$listenersStates, $state) === false) {
-
-            return this;
-        }
-
-        this.$listenersStates[$state].forEach(($handler) => {
-
-            $handler($state);
-        });
-
-        return this;
-    }
-
-    /**
-     * Adds a state listener.
-     * @param {TypeGenericState} $state The state to listen.
-     * @param {TypeListenerState} $handler The listener to add.
-     * @returns {this}
-     * @public
-     */
-    addListener($state, $handler) {
-
-        if (Object.hasOwn(this.$listenersStates, $state) === false) {
-
-            this.$listenersStates[$state] = [];
-        }
-
-        this.$listenersStates[$state].push($handler);
-
-        return this;
     }
 
     /**
@@ -561,6 +507,34 @@ class Actor extends Preloadable {
     hasSprite() {
 
         return this.$sprite instanceof Sprite;
+    }
+
+    /**
+     * Listens to an event.
+     * @param {TypeGenericAction} $action The action to listen.
+     * @param {TypeListenerAction} $handler The listener to set.
+     * @returns {this}
+     * @public
+     */
+    listenAction($action, $handler) {
+
+        this.$actions.listen($action, $handler);
+
+        return this;
+    }
+
+    /**
+     * Listens to a changing state.
+     * @param {TypeGenericState} $state The changing state to listen.
+     * @param {TypeListenerState} $handler The listener to set.
+     * @returns {this}
+     * @public
+     */
+    listenState($state, $handler) {
+
+        this.$states.listen($state, $handler);
+
+        return this;
     }
 
     /**
@@ -965,14 +939,22 @@ class Actor extends Preloadable {
      * @returns {this}
      * @public
      */
-    trigger($action) {
+    triggerAction($action) {
 
-        if (Object.hasOwn(this.$listenerActions, $action) === false) {
+        this.$actions.trigger($action);
 
-            return this;
-        }
+        return this;
+    }
 
-        this.$listenerActions[$action]($action);
+    /**
+     * Triggers a changing state.
+     * @param {TypeGenericState} $state The changing state to trigger.
+     * @returns {this}
+     * @public
+     */
+    triggerState($state) {
+
+        this.$states.trigger($state);
 
         return this;
     }
