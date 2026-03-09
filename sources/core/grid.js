@@ -51,6 +51,19 @@ class Grid {
      */
 
     /**
+     * @callback TypeWatcherCell A cell changing handler.
+     * @param {object} $parameters The given parameters.
+     * @param {TypeGeneric} $parameters.$current The current data of the cell.
+     * @param {Grid<TypeGeneric>} $parameters.$grid The reference grid.
+     * @param {Vector2} $parameters.$position The position of the cell.
+     * @param {TypeGeneric} $parameters.$previous The previous data of the cell.
+     * @returns {void}
+     * @protected
+     *
+     * @memberof Grid
+     */
+
+    /**
      * Stores the grid structure.
      * @type {Map<string, TypeGeneric>}
      * @private
@@ -58,11 +71,19 @@ class Grid {
     $grid;
 
     /**
+     * Stores the cell changing handlers.
+     * @type {Map<string, Array<TypeWatcherCell>>}
+     * @private
+     */
+    $watchers;
+
+    /**
      * Creates a new two-dimensional grid.
      */
     constructor() {
 
         this.$grid = new Map();
+        this.$watchers = new Map();
     }
 
     /**
@@ -84,6 +105,11 @@ class Grid {
      * @public
      */
     clear() {
+
+        this.iterate(({$position}) => {
+
+            this.delete($position);
+        });
 
         this.$grid.clear();
 
@@ -118,7 +144,24 @@ class Grid {
      */
     delete($position) {
 
-        this.$grid.delete(Vector2.serialize($position));
+        const position = Vector2.serialize($position);
+        const previous = this.$grid.get(position);
+
+        this.$grid.delete(position);
+
+        if (this.$watchers.has(position) === true) {
+
+            this.$watchers.get(position).forEach(($handler) => {
+
+                $handler({
+
+                    $current: undefined,
+                    $grid: this,
+                    $position: $position.clone(),
+                    $previous: previous
+                });
+            });
+        }
 
         return this;
     }
@@ -222,7 +265,24 @@ class Grid {
      */
     set($position, $data) {
 
+        const position = Vector2.serialize($position);
+        const previous = this.$grid.get(position);
+
         this.$grid.set(Vector2.serialize($position), $data);
+
+        if (this.$watchers.has(position) === true) {
+
+            this.$watchers.get(position).forEach(($handler) => {
+
+                $handler({
+
+                    $current: $data,
+                    $grid: this,
+                    $position: $position.clone(),
+                    $previous: previous
+                });
+            });
+        }
 
         return this;
     }
@@ -276,6 +336,65 @@ class Grid {
                 break;
             }
         }
+
+        return this;
+    }
+
+    /**
+     * Removes a watcher of the given cell.
+     * @param {TypeWatcherCell} $handler The cell changing handler to detach.
+     * @param {Vector2} $position The position of the cell to unwatch.
+     * @returns {this}
+     * @public
+     */
+    unwatch($position, $handler) {
+
+        const position = Vector2.serialize($position);
+
+        if (this.$watchers.has(position) === false) {
+
+            return this;
+        }
+
+        const watchers = this.$watchers.get(position);
+
+        while (watchers.indexOf($handler) !== -1) {
+
+            watchers.splice(watchers.indexOf($handler), 1);
+        }
+
+        return this;
+    }
+
+    /**
+     * Removes all watchers of the cells.
+     * @returns {this}
+     * @public
+     */
+    unwatchAll() {
+
+        this.$watchers.clear();
+
+        return this;
+    }
+
+    /**
+     * Adds a watcher for the given cell.
+     * @param {TypeWatcherCell} $handler The cell changing handler to attach.
+     * @param {Vector2} $position The position of the cell to watch.
+     * @returns {this}
+     * @public
+     */
+    watch($position, $handler) {
+
+        const position = Vector2.serialize($position);
+
+        if (this.$watchers.has(position) === false) {
+
+            this.$watchers.set(position, ([]));
+        }
+
+        this.$watchers.get(position).push($handler);
 
         return this;
     }
