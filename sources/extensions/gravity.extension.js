@@ -143,6 +143,7 @@ class ExtensionGravity {
 
                 this.$stateGravity[directionMinimum] = true;
                 window.dispatchEvent(new EventGravityDigital(EVENT_TYPES.GRAVITY.GRAVITY_DOWN, directionMinimum));
+                window.dispatchEvent(new EventGravityAnalog(EVENT_TYPES.GRAVITY.GRAVITY_ANALOG, directionMinimum, - gravityAnalog[$index]));
             }
 
             else if ($direction > 0) {
@@ -155,6 +156,7 @@ class ExtensionGravity {
 
                 this.$stateGravity[directionMaximum] = true;
                 window.dispatchEvent(new EventGravityDigital(EVENT_TYPES.GRAVITY.GRAVITY_DOWN, directionMaximum));
+                window.dispatchEvent(new EventGravityAnalog(EVENT_TYPES.GRAVITY.GRAVITY_ANALOG, directionMaximum, gravityAnalog[$index]));
             }
 
             else {
@@ -169,11 +171,9 @@ class ExtensionGravity {
 
                     this.$stateGravity[directionMaximum] = false;
                     window.dispatchEvent(new EventGravityDigital(EVENT_TYPES.GRAVITY.GRAVITY_UP, directionMaximum));
+                    window.dispatchEvent(new EventGravityAnalog(EVENT_TYPES.GRAVITY.GRAVITY_ANALOG, directionMaximum, gravityAnalog[$index]));
                 }
             }
-
-            window.dispatchEvent(new EventGravityAnalog(EVENT_TYPES.GRAVITY.GRAVITY_ANALOG, directionMinimum, - gravityAnalog[$index]));
-            window.dispatchEvent(new EventGravityAnalog(EVENT_TYPES.GRAVITY.GRAVITY_ANALOG, directionMaximum, gravityAnalog[$index]));
         });
     }
 

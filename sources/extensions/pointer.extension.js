@@ -45,6 +45,7 @@ class ExtensionPointer {
         window.addEventListener(EVENT_TYPES.NATIVE.BLUR, this.$onBlur.bind(this));
 
         this.$container.addEventListener(EVENT_TYPES.POINTER.POINTER_DOWN, this.$onPointerDown.bind(this));
+        this.$container.addEventListener(EVENT_TYPES.POINTER.POINTER_ENTER, this.$onPointerEnter.bind(this));
         this.$container.addEventListener(EVENT_TYPES.POINTER.POINTER_LEAVE, this.$onPointerLeave.bind(this));
         this.$container.addEventListener(EVENT_TYPES.POINTER.POINTER_MOVE, this.$onPointerMove.bind(this));
         this.$container.addEventListener(EVENT_TYPES.POINTER.POINTER_UP, this.$onPointerUp.bind(this));
@@ -74,32 +75,40 @@ class ExtensionPointer {
      */
     $onBlur() {
 
-        if (this.$statePointer === false) {
+        if (this.$statePointer === true) {
 
-            return;
+            window.dispatchEvent(new EventPointerDigital(EVENT_TYPES.POINTER.POINTER_UP, EVENT_CODES.POINTER.POINT));
+
+            this.$statePointer = false;
         }
 
-        this.$statePointer = false;
-
-        window.dispatchEvent(new EventPointerDigital(EVENT_TYPES.POINTER.POINTER_UP, EVENT_CODES.POINTER.POINT));
-        window.dispatchEvent(new EventPointerDigital(EVENT_TYPES.POINTER.POINTER_UP, EVENT_CODES.POINTER.POSITION));
+        window.dispatchEvent(new EventPointerDigital(EVENT_TYPES.POINTER.POINTER_UP, EVENT_CODES.POINTER.POSITION_X));
+        window.dispatchEvent(new EventPointerDigital(EVENT_TYPES.POINTER.POINTER_UP, EVENT_CODES.POINTER.POSITION_Y));
     }
 
     /**
      * Called when the pointer is down.
-     * @param {PointerEvent} $event The native pointer down event.
      * @private
      */
-    $onPointerDown($event) {
+    $onPointerDown() {
 
-        if (this.$statePointer === true) {
+        if (this.$statePointer === false) {
 
-            return;
+            window.dispatchEvent(new EventPointerDigital(EVENT_TYPES.POINTER.POINTER_DOWN, EVENT_CODES.POINTER.POINT));
+
+            this.$statePointer = true;
         }
+    }
 
-        this.$statePointer = true;
+    /**
+     * Called when the pointer has entered.
+     * @param {PointerEvent} $event The native pointer up event.
+     * @private
+     */
+    $onPointerEnter($event) {
 
-        window.dispatchEvent(new EventPointerDigital(EVENT_TYPES.POINTER.POINTER_DOWN, EVENT_CODES.POINTER.POINT));
+        window.dispatchEvent(new EventPointerDigital(EVENT_TYPES.POINTER.POINTER_DOWN, EVENT_CODES.POINTER.POSITION_X));
+        window.dispatchEvent(new EventPointerDigital(EVENT_TYPES.POINTER.POINTER_DOWN, EVENT_CODES.POINTER.POSITION_Y));
         window.dispatchEvent(new EventPointerAnalog(EVENT_TYPES.POINTER.POINTER_ANALOG, EVENT_CODES.POINTER.POSITION_X, 2 * ($event.offsetX / this.$container.clientWidth) - 1));
         window.dispatchEvent(new EventPointerAnalog(EVENT_TYPES.POINTER.POINTER_ANALOG, EVENT_CODES.POINTER.POSITION_Y, 2 * ($event.offsetY / this.$container.clientHeight) - 1));
     }
@@ -111,15 +120,15 @@ class ExtensionPointer {
      */
     $onPointerLeave($event) {
 
-        if (this.$statePointer === false) {
+        if (this.$statePointer === true) {
 
-            return;
+            window.dispatchEvent(new EventPointerDigital(EVENT_TYPES.POINTER.POINTER_UP, EVENT_CODES.POINTER.POINT));
+
+            this.$statePointer = false;
         }
 
-        this.$statePointer = false;
-
-        window.dispatchEvent(new EventPointerDigital(EVENT_TYPES.POINTER.POINTER_UP, EVENT_CODES.POINTER.POINT));
-        window.dispatchEvent(new EventPointerDigital(EVENT_TYPES.POINTER.POINTER_UP, EVENT_CODES.POINTER.POSITION));
+        window.dispatchEvent(new EventPointerDigital(EVENT_TYPES.POINTER.POINTER_UP, EVENT_CODES.POINTER.POSITION_X));
+        window.dispatchEvent(new EventPointerDigital(EVENT_TYPES.POINTER.POINTER_UP, EVENT_CODES.POINTER.POSITION_Y));
         window.dispatchEvent(new EventPointerAnalog(EVENT_TYPES.POINTER.POINTER_ANALOG, EVENT_CODES.POINTER.POSITION_X, 2 * ($event.offsetX / this.$container.clientWidth) - 1));
         window.dispatchEvent(new EventPointerAnalog(EVENT_TYPES.POINTER.POINTER_ANALOG, EVENT_CODES.POINTER.POSITION_Y, 2 * ($event.offsetY / this.$container.clientHeight) - 1));
     }
@@ -131,28 +140,24 @@ class ExtensionPointer {
      */
     $onPointerMove($event) {
 
-        window.dispatchEvent(new EventPointerDigital(EVENT_TYPES.POINTER.POINTER_DOWN, EVENT_CODES.POINTER.POSITION));
+        window.dispatchEvent(new EventPointerDigital(EVENT_TYPES.POINTER.POINTER_DOWN, EVENT_CODES.POINTER.POSITION_X));
+        window.dispatchEvent(new EventPointerDigital(EVENT_TYPES.POINTER.POINTER_DOWN, EVENT_CODES.POINTER.POSITION_Y));
         window.dispatchEvent(new EventPointerAnalog(EVENT_TYPES.POINTER.POINTER_ANALOG, EVENT_CODES.POINTER.POSITION_X, 2 * ($event.offsetX / this.$container.clientWidth) - 1));
         window.dispatchEvent(new EventPointerAnalog(EVENT_TYPES.POINTER.POINTER_ANALOG, EVENT_CODES.POINTER.POSITION_Y, 2 * ($event.offsetY / this.$container.clientHeight) - 1));
     }
 
     /**
      * Called when the pointer is up.
-     * @param {PointerEvent} $event The native pointer up event.
      * @private
      */
-    $onPointerUp($event) {
+    $onPointerUp() {
 
-        if (this.$statePointer === false) {
+        if (this.$statePointer === true) {
 
-            return;
+            window.dispatchEvent(new EventPointerDigital(EVENT_TYPES.POINTER.POINTER_UP, EVENT_CODES.POINTER.POINT));
+
+            this.$statePointer = false;
         }
-
-        this.$statePointer = false;
-
-        window.dispatchEvent(new EventPointerDigital(EVENT_TYPES.POINTER.POINTER_UP, EVENT_CODES.POINTER.POINT));
-        window.dispatchEvent(new EventPointerAnalog(EVENT_TYPES.POINTER.POINTER_ANALOG, EVENT_CODES.POINTER.POSITION_X, 2 * ($event.offsetX / this.$container.clientWidth) - 1));
-        window.dispatchEvent(new EventPointerAnalog(EVENT_TYPES.POINTER.POINTER_ANALOG, EVENT_CODES.POINTER.POSITION_Y, 2 * ($event.offsetY / this.$container.clientHeight) - 1));
     }
 }
 

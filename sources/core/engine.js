@@ -231,8 +231,8 @@ class Engine {
     }
 
     /**
-     * Gets the current input state value of the given digital input.
-     * @param {string} $input The event code of the given digital input.
+     * Gets the persisted status of the given input.
+     * @param {string} $input The event code of the input.
      * @returns {boolean}
      * @public
      */
@@ -242,14 +242,36 @@ class Engine {
     }
 
     /**
-     * Gets the current input state value of the given analog input.
-     * @param {string} $input The event code of the given analog input.
+     * Gets the analog value of the given input.
+     * @param {string} $input The event code of the input.
      * @returns {number}
      * @public
      */
     getInputAnalog($input) {
 
         return this.$systemInput.getInputAnalog($input);
+    }
+
+    /**
+     * Gets the initiated status of the given input.
+     * @param {string} $input The event code of the input.
+     * @returns {boolean}
+     * @public
+     */
+    getInputDown($input) {
+
+        return this.$systemInput.getInputDown($input);
+    }
+
+    /**
+     * Gets the terminated status of the given input.
+     * @param {string} $input The event code of the input.
+     * @returns {boolean}
+     * @public
+     */
+    getInputUp($input) {
+
+        return this.$systemInput.getInputUp($input);
     }
 
     /**

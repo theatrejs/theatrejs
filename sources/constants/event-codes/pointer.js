@@ -12,15 +12,6 @@
 const POINT = 'Point';
 
 /**
- * The pointer 'POSITION' event code.
- * @type {'Position'}
- * @constant
- *
- * @memberof module:EVENT_CODES/POINTER
- */
-const POSITION = 'Position';
-
-/**
  * The pointer 'POSITION_X' event code.
  * @type {'PositionX'}
  * @constant
@@ -41,7 +32,6 @@ const POSITION_Y = 'PositionY';
 export {
 
     POINT,
-    POSITION,
     POSITION_X,
     POSITION_Y
 };

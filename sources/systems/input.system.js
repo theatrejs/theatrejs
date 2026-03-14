@@ -12,6 +12,17 @@ import {EVENT_CODES, EVENT_TYPES, EventGamepadAnalog, EventGamepadDigital, Event
 class SystemInput extends System {
 
     /**
+     * @typedef {object} TypeStateInput Statuses of an accepted input.
+     * @property {number} $analog The analog value of the input.
+     * @property {boolean} $initiate The initiated status of the input.
+     * @property {boolean} $persist The persisted status of the input.
+     * @property {boolean} $terminate The terminated status of the input.
+     * @private
+     *
+     * @memberof SystemInput
+     */
+
+    /**
      * Stores the container.
      * @type {HTMLElement}
      * @private
@@ -26,18 +37,11 @@ class SystemInput extends System {
     $events;
 
     /**
-     * Stores the state of the accepted inputs.
-     * @type {Object<string, boolean>}
+     * Stores the statuses of the accepted inputs.
+     * @type {Map<string, TypeStateInput>}
      * @private
      */
     $inputs;
-
-    /**
-     * Stores the state of the accepted analog inputs.
-     * @type {Object<string, number>}
-     * @private
-     */
-    $inputsAnalog;
 
     /**
      * Creates a new input system.
@@ -49,6 +53,61 @@ class SystemInput extends System {
         super();
 
         this.$container = $container;
+    }
+
+    /**
+     * Handles an input being initiated.
+     * @param {string} $input The event code of the input.
+     * @private
+     */
+    $handleInputDown($input) {
+
+        const initiate = this.$inputs.has($input) === false;
+
+        /**
+         * @type {TypeStateInput}
+         */
+        const state = {
+
+            $analog: 0,
+            $initiate: initiate,
+            $persist: true,
+            $terminate: false
+        };
+
+        this.$inputs.set($input, state);
+    }
+
+    /**
+     * Handles an input being terminated.
+     * @param {string} $input The event code of the input.
+     * @private
+     */
+    $handleInputUp($input) {
+
+        /**
+         * @type {TypeStateInput}
+         */
+        const state = {
+
+            $analog: 0,
+            $initiate: false,
+            $persist: false,
+            $terminate: true
+        };
+
+        this.$inputs.set($input, state);
+    }
+
+    /**
+     * Sets the analog value of the given input.
+     * @param {string} $input The event code of the input.
+     * @param {number} $value The analog value of the input to set.
+     * @private
+     */
+    $setInputAnalog($input, $value) {
+
+        this.$inputs.get($input).$analog = $value;
     }
 
     /**
@@ -64,39 +123,67 @@ class SystemInput extends System {
     }
 
     /**
-     * Gets the current input state value of the given digital input.
-     * @param {string} $input The event code of the given digital input.
+     * Gets the persisted status of the given input.
+     * @param {string} $input The event code of the input.
      * @returns {boolean}
      * @public
      */
     getInput($input) {
 
-        const input = this.$inputs[$input];
-
-        if (typeof input === 'undefined') {
+        if (this.$inputs.has($input) === false) {
 
             return false;
         }
 
-        return input;
+        return this.$inputs.get($input).$persist;
     }
 
     /**
-     * Gets the current input state value of the given analog input.
-     * @param {string} $input The event code of the given analog input.
+     * Gets the analog value of the given input.
+     * @param {string} $input The event code of the input.
      * @returns {number}
      * @public
      */
     getInputAnalog($input) {
 
-        const input = this.$inputsAnalog[$input];
-
-        if (typeof input === 'undefined') {
+        if (this.$inputs.has($input) === false) {
 
             return 0;
         }
 
-        return input;
+        return this.$inputs.get($input).$analog;
+    }
+
+    /**
+     * Gets the initiated status of the given input.
+     * @param {string} $input The event code of the input.
+     * @returns {boolean}
+     * @public
+     */
+    getInputDown($input) {
+
+        if (this.$inputs.has($input) === false) {
+
+            return false;
+        }
+
+        return this.$inputs.get($input).$initiate;
+    }
+
+    /**
+     * Gets the terminated status of the given input.
+     * @param {string} $input The event code of the input.
+     * @returns {boolean}
+     * @public
+     */
+    getInputUp($input) {
+
+        if (this.$inputs.has($input) === false) {
+
+            return false;
+        }
+
+        return this.$inputs.get($input).$terminate;
     }
 
     /**
@@ -106,8 +193,7 @@ class SystemInput extends System {
     onInitiate() {
 
         this.$events = [];
-        this.$inputs = {};
-        this.$inputsAnalog = {};
+        this.$inputs = new Map();
 
         window.addEventListener(EVENT_TYPES.NATIVE.BLUR, this.$stack.bind(this));
         window.addEventListener(EVENT_TYPES.NATIVE.CONTEXT_MENU, this.$stack.bind(this));
@@ -178,15 +264,33 @@ class SystemInput extends System {
         void $stage;
         void $timetick;
 
-        if (typeof this.$inputs[EVENT_CODES.GAMEPAD_STANDARD.CONNECTED] !== 'undefined') {
+        Array.from(this.$inputs.entries()).forEach(([$code, $state]) => {
 
-            delete this.$inputs[EVENT_CODES.GAMEPAD_STANDARD.CONNECTED];
-        }
+            if ($state.$terminate === true) {
 
-        if (typeof this.$inputs[EVENT_CODES.GAMEPAD_STANDARD.DISCONNECTED] !== 'undefined') {
+                this.$inputs.delete($code);
 
-            delete this.$inputs[EVENT_CODES.GAMEPAD_STANDARD.DISCONNECTED];
-        }
+                return;
+            }
+
+            if ($code === EVENT_CODES.GAMEPAD_STANDARD.CONNECTED
+            || $code === EVENT_CODES.GAMEPAD_STANDARD.DISCONNECTED) {
+
+                $state.$analog = 0;
+                $state.$initiate = false;
+                $state.$persist = false;
+                $state.$terminate = true;
+
+                return;
+            }
+
+            if ($state.$initiate === true) {
+
+                $state.$initiate = false;
+
+                return;
+            }
+        });
 
         while (this.$events.length > 0) {
 
@@ -194,128 +298,103 @@ class SystemInput extends System {
 
             if ($event.type === EVENT_TYPES.NATIVE.BLUR) {
 
-                this.$inputs = {};
-                this.$inputsAnalog = {};
-            }
+                this.$inputs.values().forEach(($state) => {
 
-            else if ($event instanceof EventGamepadAnalog
-            && $event.type === EVENT_TYPES.GAMEPAD.GAMEPAD_ANALOG) {
-
-                this.$inputsAnalog[$event.code] = $event.value;
+                    $state.$analog = 0;
+                    $state.$initiate = false;
+                    $state.$persist = false;
+                    $state.$terminate = true;
+                });
             }
 
             else if ($event instanceof EventGamepadDigital
             && $event.type === EVENT_TYPES.GAMEPAD.GAMEPAD_CONNECT) {
 
-                this.$inputs[$event.code] = true;
+                this.$handleInputDown($event.code);
             }
 
             else if ($event instanceof EventGamepadDigital
             && $event.type === EVENT_TYPES.GAMEPAD.GAMEPAD_DOWN) {
 
-                if (typeof this.$inputs[$event.code] === 'undefined') {
-
-                    this.$inputs[$event.code] = true;
-                }
+                this.$handleInputDown($event.code);
             }
 
             else if ($event instanceof EventGamepadDigital
             && $event.type === EVENT_TYPES.GAMEPAD.GAMEPAD_UP) {
 
-                if (typeof this.$inputs[$event.code] !== 'undefined') {
-
-                    delete this.$inputs[$event.code];
-                }
+                this.$handleInputUp($event.code);
             }
 
-            else if ($event instanceof EventGravityAnalog
-            && $event.type === EVENT_TYPES.GRAVITY.GRAVITY_ANALOG) {
+            else if ($event instanceof EventGamepadAnalog
+            && $event.type === EVENT_TYPES.GAMEPAD.GAMEPAD_ANALOG) {
 
-                this.$inputsAnalog[$event.code] = $event.value;
+                this.$setInputAnalog($event.code, $event.value);
             }
 
             else if ($event instanceof EventGravityDigital
             && $event.type === EVENT_TYPES.GRAVITY.GRAVITY_DOWN) {
 
-                if (typeof this.$inputs[$event.code] === 'undefined') {
-
-                    this.$inputs[$event.code] = true;
-                }
+                this.$handleInputDown($event.code);
             }
 
             else if ($event instanceof EventGravityDigital
             && $event.type === EVENT_TYPES.GRAVITY.GRAVITY_UP) {
 
-                if (typeof this.$inputs[$event.code] !== 'undefined') {
-
-                    delete this.$inputs[$event.code];
-                }
+                this.$handleInputUp($event.code);
             }
 
-            else if ($event instanceof EventGyroscopeAnalog
-            && $event.type === EVENT_TYPES.GYROSCOPE.GYROSCOPE_ANALOG) {
+            else if ($event instanceof EventGravityAnalog
+            && $event.type === EVENT_TYPES.GRAVITY.GRAVITY_ANALOG) {
 
-                this.$inputsAnalog[$event.code] = $event.value;
+                this.$setInputAnalog($event.code, $event.value);
             }
 
             else if ($event instanceof EventGyroscopeDigital
             && $event.type === EVENT_TYPES.GYROSCOPE.GYROSCOPE_DOWN) {
 
-                if (typeof this.$inputs[$event.code] === 'undefined') {
-
-                    this.$inputs[$event.code] = true;
-                }
+                this.$handleInputDown($event.code);
             }
 
             else if ($event instanceof EventGyroscopeDigital
             && $event.type === EVENT_TYPES.GYROSCOPE.GYROSCOPE_UP) {
 
-                if (typeof this.$inputs[$event.code] !== 'undefined') {
+                this.$handleInputUp($event.code);
+            }
 
-                    delete this.$inputs[$event.code];
-                }
+            else if ($event instanceof EventGyroscopeAnalog
+            && $event.type === EVENT_TYPES.GYROSCOPE.GYROSCOPE_ANALOG) {
+
+                this.$setInputAnalog($event.code, $event.value);
             }
 
             else if ($event instanceof KeyboardEvent
             && $event.type === EVENT_TYPES.KEYBOARD.KEY_DOWN) {
 
-                if (typeof this.$inputs[$event.code] === 'undefined') {
-
-                    this.$inputs[$event.code] = true;
-                }
+                this.$handleInputDown($event.code);
             }
 
             else if ($event instanceof KeyboardEvent
             && $event.type === EVENT_TYPES.KEYBOARD.KEY_UP) {
 
-                if (typeof this.$inputs[$event.code] !== 'undefined') {
-
-                    delete this.$inputs[$event.code];
-                }
-            }
-
-            else if ($event instanceof EventPointerAnalog
-            && $event.type === EVENT_TYPES.POINTER.POINTER_ANALOG) {
-
-                this.$inputsAnalog[$event.code] = $event.value;
+                this.$handleInputUp($event.code);
             }
 
             else if ($event instanceof EventPointerDigital
             && $event.type === EVENT_TYPES.POINTER.POINTER_DOWN) {
 
-                if (typeof this.$inputs[$event.code] === 'undefined') {
-
-                    this.$inputs[$event.code] = true;
-                }
+                this.$handleInputDown($event.code);
             }
 
             else if ($event instanceof EventPointerDigital
             && $event.type === EVENT_TYPES.POINTER.POINTER_UP) {
 
-                if (typeof this.$inputs[$event.code] !== 'undefined') {
+                this.$handleInputUp($event.code);
+            }
 
-                    delete this.$inputs[$event.code];
-                }
+            else if ($event instanceof EventPointerAnalog
+            && $event.type === EVENT_TYPES.POINTER.POINTER_ANALOG) {
+
+                this.$setInputAnalog($event.code, $event.value);
             }
         }
     }

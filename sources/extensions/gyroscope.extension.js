@@ -124,6 +124,11 @@ class ExtensionGyroscope {
 
                 this.$stateGyroscope[rotationMinimum] = true;
                 window.dispatchEvent(new EventGyroscopeDigital(EVENT_TYPES.GYROSCOPE.GYROSCOPE_DOWN, rotationMinimum));
+
+                if (Math.abs($rotation) >= $THRESHOLD_GYROSCOPE_VELOCITY_ANGULAR) {
+
+                    window.dispatchEvent(new EventGyroscopeAnalog(EVENT_TYPES.GYROSCOPE.GYROSCOPE_ANALOG, rotationMinimum, - $rotation));
+                }
             }
 
             else if ($rotation >= $THRESHOLD_GYROSCOPE_VELOCITY_ANGULAR) {
@@ -136,6 +141,11 @@ class ExtensionGyroscope {
 
                 this.$stateGyroscope[rotationMaximum] = true;
                 window.dispatchEvent(new EventGyroscopeDigital(EVENT_TYPES.GYROSCOPE.GYROSCOPE_DOWN, rotationMaximum));
+
+                if (Math.abs($rotation) >= $THRESHOLD_GYROSCOPE_VELOCITY_ANGULAR) {
+
+                    window.dispatchEvent(new EventGyroscopeAnalog(EVENT_TYPES.GYROSCOPE.GYROSCOPE_ANALOG, rotationMaximum, $rotation));
+                }
             }
 
             else {
@@ -151,12 +161,6 @@ class ExtensionGyroscope {
                     this.$stateGyroscope[rotationMaximum] = false;
                     window.dispatchEvent(new EventGyroscopeDigital(EVENT_TYPES.GYROSCOPE.GYROSCOPE_UP, rotationMaximum));
                 }
-            }
-
-            if (Math.abs($rotation) >= $THRESHOLD_GYROSCOPE_VELOCITY_ANGULAR) {
-
-                window.dispatchEvent(new EventGyroscopeAnalog(EVENT_TYPES.GYROSCOPE.GYROSCOPE_ANALOG, rotationMinimum, - $rotation));
-                window.dispatchEvent(new EventGyroscopeAnalog(EVENT_TYPES.GYROSCOPE.GYROSCOPE_ANALOG, rotationMaximum, $rotation));
             }
         });
     }

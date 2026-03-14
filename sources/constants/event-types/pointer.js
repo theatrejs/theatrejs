@@ -21,6 +21,15 @@ const POINTER_ANALOG = 'pointeranalog';
 const POINTER_DOWN = 'pointerdown';
 
 /**
+ * The pointer 'POINTER_ENTER' event type.
+ * @type {'pointerenter'}
+ * @constant
+ *
+ * @memberof module:EVENT_TYPES/POINTER
+ */
+const POINTER_ENTER = 'pointerenter';
+
+/**
  * The pointer 'POINTER_LEAVE' event type.
  * @type {'pointerleave'}
  * @constant
@@ -51,6 +60,7 @@ export {
 
     POINTER_ANALOG,
     POINTER_DOWN,
+    POINTER_ENTER,
     POINTER_LEAVE,
     POINTER_MOVE,
     POINTER_UP
