@@ -206,7 +206,7 @@ class Grid {
             terminated = true;
         };
 
-        const entries = [...this.$grid.entries()];
+        const entries = Array.from(this.$grid.entries());
 
         for (const [$serialized, $data] of entries) {
 
@@ -342,8 +342,8 @@ class Grid {
 
     /**
      * Removes a watcher of the given cell.
-     * @param {TypeWatcherCell} $handler The cell changing handler to detach.
      * @param {Vector2} $position The position of the cell to unwatch.
+     * @param {TypeWatcherCell} $handler The cell changing handler to detach.
      * @returns {this}
      * @public
      */
@@ -380,8 +380,8 @@ class Grid {
 
     /**
      * Adds a watcher for the given cell.
-     * @param {TypeWatcherCell} $handler The cell changing handler to attach.
      * @param {Vector2} $position The position of the cell to watch.
+     * @param {TypeWatcherCell} $handler The cell changing handler to attach.
      * @returns {this}
      * @public
      */
