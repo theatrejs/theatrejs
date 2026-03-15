@@ -391,7 +391,7 @@ class Grid {
 
         if (this.$watchers.has(position) === false) {
 
-            this.$watchers.set(position, ([]));
+            this.$watchers.set(position, []);
         }
 
         this.$watchers.get(position).push($handler);
