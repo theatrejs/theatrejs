@@ -276,10 +276,7 @@ class SystemInput extends System {
             if ($code === EVENT_CODES.GAMEPAD_STANDARD.CONNECTED
             || $code === EVENT_CODES.GAMEPAD_STANDARD.DISCONNECTED) {
 
-                $state.$analog = 0;
-                $state.$initiate = false;
-                $state.$persist = false;
-                $state.$terminate = true;
+                this.$handleInputUp($code);
 
                 return;
             }
@@ -298,12 +295,9 @@ class SystemInput extends System {
 
             if ($event.type === EVENT_TYPES.NATIVE.BLUR) {
 
-                this.$inputs.values().forEach(($state) => {
+                Array.from(this.$inputs.keys()).forEach(($code) => {
 
-                    $state.$analog = 0;
-                    $state.$initiate = false;
-                    $state.$persist = false;
-                    $state.$terminate = true;
+                    this.$handleInputUp($code);
                 });
             }
 
