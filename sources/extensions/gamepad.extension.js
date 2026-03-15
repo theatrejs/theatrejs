@@ -1,4 +1,4 @@
-import {EVENT_CODES, EVENT_TYPES, EventGamepad, EventGamepadAnalog, EventGamepadDigital} from '../index.js';
+import {EVENT_CODES, EVENT_TYPES, EventGamepad, EventGamepadAnalog, EventGamepadDigital, UTILS} from '../index.js';
 
 /**
  * The ordered list of the axes event codes of the gamepad.
@@ -149,7 +149,8 @@ class ExtensionGamepad {
             return;
         }
 
-        gamepad.vibrationActuator.reset();
+        gamepad.vibrationActuator.reset()
+        .catch(UTILS.noop);
     }
 
     /**
@@ -234,7 +235,8 @@ class ExtensionGamepad {
         if ($event instanceof EventGamepadDigital
         && $event.code === EVENT_CODES.GAMEPAD_STANDARD.VIBRATE_END) {
 
-            gamepad.vibrationActuator.reset();
+            gamepad.vibrationActuator.reset()
+            .catch(UTILS.noop);
 
             return;
         }
@@ -248,7 +250,8 @@ class ExtensionGamepad {
                 startDelay: 0,
                 strongMagnitude: $event.vibration.intensityFrequencyLow,
                 weakMagnitude: $event.vibration.intensityFrequencyHigh
-            });
+            })
+            .catch(UTILS.noop);
 
             return;
         }

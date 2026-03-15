@@ -126,6 +126,13 @@ function frame() {
 }
 
 /**
+ * Gets a no-operation behavior.
+ *
+ * @memberof module:UTILS
+ */
+function noop() {}
+
+/**
  * Resolves when the user has interacted at least once since page load.
  * @returns {Promise<void>}
  *
@@ -220,6 +227,7 @@ export {
     deduplicate,
     extract,
     frame,
+    noop,
     ready,
     shuffle,
     sleep,
