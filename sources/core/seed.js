@@ -63,9 +63,8 @@ class Seed {
      */
     constructor($seed) {
 
+        this.$current = $seed;
         this.$origin = $seed;
-
-        this.$current = this.$origin;
 
         this.$generator = this.$mulberry32(this.$current);
     }
