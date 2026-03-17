@@ -9,21 +9,6 @@
 class Seed {
 
     /**
-     * @callback TypeGenerator A pseudo-random number generator.
-     * @returns {number}
-     * @protected
-     *
-     * @memberof Seed
-     */
-
-    /**
-     * Stores the pseudo-random number generator.
-     * @type {TypeGenerator}
-     * @private
-     */
-    $generator;
-
-    /**
      * Stores the current seed.
      * @type {number}
      * @private
@@ -65,45 +50,23 @@ class Seed {
 
         this.$current = $seed;
         this.$origin = $seed;
-
-        this.$generator = this.$mulberry32(this.$current);
     }
 
     /**
-     * Creates a 'Mulberry32' pseudo-random number generator.
-     * @param {number} $seed The seed.
-     * @returns {TypeGenerator}
-     * @private
-     */
-    $mulberry32($seed) {
-
-        let seed = $seed >>> 0;
-
-        /**
-         * @type {TypeGenerator}
-         */
-        const generator = () => {
-
-            seed += 0x6D2B79F5;
-            seed = Math.imul(seed ^ (seed >>> 15), seed | 1);
-            seed ^= seed + Math.imul(seed ^ (seed >>> 7), seed | 61);
-
-            this.$current = seed;
-
-            return ((seed ^ (seed >>> 14)) >>> 0) / 2 ** 32;
-        };
-
-        return generator;
-    }
-
-    /**
-     * Gets a pseudo-random number (in [0, 1[ range).
+     * Gets a pseudo-random number (in [0, 1[ range) ("Mulberry32").
      * @returns {number}
      * @public
      */
     random() {
 
-        return this.$generator();
+        this.$current = (this.$current + 0x6D2B79F5) >>> 0;
+
+        let result = this.$current;
+        result = Math.imul(result ^ (result >>> 15), result | 1) >>> 0;
+        result = (result + Math.imul(result ^ (result >>> 7), result | 61)) >>> 0;
+        result = (result ^ (result >>> 14)) >>> 0;
+
+        return result / 0x100000000;
     }
 
     /**
