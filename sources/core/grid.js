@@ -296,10 +296,10 @@ class Grid {
      */
     traverse($aabb, $handler) {
 
-        const minimumX = $aabb.minimum.x;
-        const minimumY = $aabb.minimum.y;
-        const maximumX = $aabb.maximum.x;
-        const maximumY = $aabb.maximum.y;
+        const xMinimum = $aabb.minimum.x;
+        const xMaximum = $aabb.maximum.x;
+        const yMinimum = $aabb.minimum.y;
+        const yMaximum = $aabb.maximum.y;
 
         let terminated = Boolean(false);
 
@@ -311,11 +311,11 @@ class Grid {
             terminated = true;
         };
 
-        for (let x = minimumX; x <= maximumX; x += 1) {
+        for (let $x = xMinimum; $x <= xMaximum; $x += 1) {
 
-            for (let y = minimumY; y <= maximumY; y += 1) {
+            for (let $y = yMinimum; $y <= yMaximum; $y += 1) {
 
-                const position = new Vector2(x, y);
+                const position = new Vector2($x, $y);
 
                 $handler({
 
