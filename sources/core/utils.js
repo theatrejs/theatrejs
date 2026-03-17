@@ -126,6 +126,26 @@ function frame() {
 }
 
 /**
+ * Transforms the given text to a number (32-bit signed integer).
+ * @param {string} $text The text to transform.
+ * @returns {number}
+ *
+ * @memberof module:UTILS
+ */
+function hash($text) {
+
+    let hash = 0;
+
+    for (const $character of $text) {
+
+        hash = (hash << 5) - hash + $character.charCodeAt(0);
+        hash |= 0;
+    }
+
+    return hash;
+}
+
+/**
  * Gets a no-operation behavior.
  *
  * @memberof module:UTILS
@@ -227,6 +247,7 @@ export {
     deduplicate,
     extract,
     frame,
+    hash,
     noop,
     ready,
     shuffle,

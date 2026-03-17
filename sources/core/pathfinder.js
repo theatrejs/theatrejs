@@ -24,6 +24,7 @@ import {Grid, Heap, UTILS, Vector2} from '../index.js';
  *     $access: accessor,
  *     $finish: new Vector2(2, 0),
  *     $grid: grid,
+ *     $shuffle: UTILS.shuffle,
  *     $start: new Vector2(-2, 0)
  * });
  */
@@ -34,6 +35,15 @@ class Pathfinder {
      * @callback TypeAccessor An accessor to the cost of a cell.
      * @param {TypeGeneric} $item The item.
      * @returns {number}
+     * @protected
+     *
+     * @memberof Pathfinder
+     */
+
+    /**
+     * @callback TypeShuffle A shuffle handler to randomize neighbor positions.
+     * @param {Array<Vector2>} $array The array to shuffle.
+     * @returns {Array<Vector2>}
      * @protected
      *
      * @memberof Pathfinder
@@ -83,11 +93,12 @@ class Pathfinder {
      * @param {TypeAccessor<TypeGeneric>} $parameters.$access The accessor to the cost of a cell.
      * @param {Vector2} $parameters.$finish The position of the 'finish' cell.
      * @param {Grid<TypeGeneric>} $parameters.$grid The weighted grid.
+     * @param {TypeShuffle} [$parameters.$shuffle] The shuffle handler to randomize neighbor positions.
      * @param {Vector2} $parameters.$start The position of the 'start' cell.
      * @returns {Array<Vector2>}
      * @public
      */
-    find({$access, $finish, $grid, $start}) {
+    find({$access, $finish, $grid, $shuffle = UTILS.shuffle, $start}) {
 
         if ($grid.has($start) === false) {
 
@@ -161,7 +172,7 @@ class Pathfinder {
 
             visited.set(key, current.$cost);
 
-            const neighbors = UTILS.shuffle([
+            const neighbors = $shuffle([
 
                 new Vector2(-1, 0),
                 new Vector2(1, 0),

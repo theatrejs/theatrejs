@@ -31,6 +31,7 @@ export * as MATHEMATICS from './core/mathematics.js';
 export {Pathfinder} from './core/pathfinder.js';
 export {Quaternion} from './core/quaternion.js';
 export {Queue} from './core/queue.js';
+export {Seed} from './core/seed.js';
 export {Shader} from './core/shader.js';
 export {Sound} from './core/sound.js';
 export {Sprite} from './core/sprite.js';
