@@ -70,6 +70,18 @@ class Seed {
     }
 
     /**
+     * Gets a pseudo-random number within the given range.
+     * @param {number} $minimum The minimum value of the range.
+     * @param {number} $maximum The maximum value of the range.
+     * @returns {number}
+     * @public
+     */
+    range($minimum, $maximum) {
+
+        return Math.floor(this.random() * ($maximum - $minimum + 1)) + $minimum;
+    }
+
+    /**
      * Shuffles the given array ("Fisher–Yates").
      * @template {any} TypeGeneric The generic type of the values of the array.
      * @param {Array<TypeGeneric>} $array The array to shuffle.
