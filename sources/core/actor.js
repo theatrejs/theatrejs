@@ -179,7 +179,7 @@ class Actor extends Preloadable {
      */
     get followers() {
 
-        this.$followers.keys().forEach(($follower) => {
+        Array.from(this.$followers.keys()).forEach(($follower) => {
 
             if (this.stage.hasActor($follower) === false) {
 
@@ -217,7 +217,7 @@ class Actor extends Preloadable {
      */
     get mimics() {
 
-        this.$mimics.keys().forEach(($mimic) => {
+        Array.from(this.$mimics.keys()).forEach(($mimic) => {
 
             if (this.stage.hasActor($mimic) === false) {
 
@@ -829,7 +829,7 @@ class Actor extends Preloadable {
 
         this.$visible = $visible;
 
-        this.$mimics.keys().forEach(($mimic) => {
+        Array.from(this.$mimics.keys()).forEach(($mimic) => {
 
             if (this.stage.hasActor($mimic) === false) {
 

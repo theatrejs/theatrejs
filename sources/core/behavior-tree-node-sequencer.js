@@ -42,9 +42,9 @@ class BehaviorTreeNodeSequencer extends BehaviorTreeNode {
      */
     tick($timetick) {
 
-        for (const node of this.$nodes) {
+        for (const $node of this.$nodes) {
 
-            if (node.tick($timetick) === false) {
+            if ($node.tick($timetick) === false) {
 
                 return false;
             }

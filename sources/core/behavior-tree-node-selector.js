@@ -42,9 +42,9 @@ class BehaviorTreeNodeSelector extends BehaviorTreeNode {
      */
     tick($timetick) {
 
-        for (const node of this.$nodes) {
+        for (const $node of this.$nodes) {
 
-            if (node.tick($timetick) === true) {
+            if ($node.tick($timetick) === true) {
 
                 return true;
             }

@@ -136,11 +136,11 @@ function hash($text) {
 
     let hash = 0;
 
-    for (const $character of $text) {
+    Array.from($text).forEach(($character) => {
 
         hash = (hash << 5) - hash + $character.charCodeAt(0);
         hash |= 0;
-    }
+    });
 
     return hash;
 }

@@ -156,10 +156,10 @@ class Stage extends Preloadable {
             this.$pointOfView = this.$origin;
         }
 
-        for (const $mimic of $actor.mimics.keys()) {
+        Array.from($actor.mimics.keys()).forEach(($mimic) => {
 
             this.$removeActor($mimic);
-        }
+        });
 
         const index = this.$actors.indexOf($actor);
         this.$actors.splice(index, 1);

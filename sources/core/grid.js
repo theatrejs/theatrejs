@@ -206,9 +206,7 @@ class Grid {
             terminated = true;
         };
 
-        const entries = Array.from(this.$grid.entries());
-
-        for (const [$serialized, $data] of entries) {
+        for (const [$serialized, $data] of Array.from(this.$grid.entries())) {
 
             const position = Vector2.deserialize($serialized);
 
