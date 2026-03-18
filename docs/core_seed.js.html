@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>events/gravity-analog.js - Documentation</title>
+    <title>core/seed.js - Documentation</title>
     
     
     <script src="scripts/prettify/prettify.js"></script>
@@ -37,7 +37,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">events/gravity-analog.js</h1>
+    <h1 class="page-title">core/seed.js</h1>
     
 
     
@@ -47,72 +47,128 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import {EVENT_TYPES} from '../index.js';
-
-/**
- * Creates gravity analog events.
+            <pre class="prettyprint source linenums"><code>/**
+ * Creates seeded pseudo-random number generators.
  *
  * @example
  *
- * const event = new EventGravityAnalog(type, code, value);
+ * const seed = new Seed(seed);
+ * const random = seed.random();
  */
-class EventGravityAnalog extends Event {
+class Seed {
 
     /**
-     * Stores the event code.
-     * @type {string}
-     * @private
-     */
-    $code;
-
-    /**
-     * Stores the analog value.
+     * Stores the current seed.
      * @type {number}
      * @private
      */
-    $value;
+    $current;
 
     /**
-     * Gets the event code.
-     * @type {string}
-     * @public
+     * Stores the seed of origin.
+     * @type {number}
+     * @private
      */
-    get code() {
-
-        return this.$code;
-    }
+    $origin;
 
     /**
-     * Gets the analog value.
+     * Gets the current seed.
      * @type {number}
      * @public
      */
-    get value() {
+    get current() {
 
-        return this.$value;
+        return this.$current;
     }
 
     /**
-     * Creates a new gravity analog event.
-     * @param {(EVENT_TYPES.GRAVITY.GRAVITY_ANALOG)} $type The event type.
-     * @param {string} $code The event code.
-     * @param {number} $value The analog value.
+     * Gets the seed of origin.
+     * @type {number}
+     * @public
      */
-    constructor($type, $code, $value) {
+    get origin() {
 
-        super($type);
+        return this.$origin;
+    }
 
-        this.$code = $code;
-        this.$value = $value;
+    /**
+     * Creates a new seeded pseudo-random number generator.
+     * @param {number} $seed The seed.
+     */
+    constructor($seed) {
+
+        this.$current = $seed;
+        this.$origin = $seed;
+    }
+
+    /**
+     * Gets a pseudo-random number (in [0, 1[ range) ("Mulberry32").
+     * @returns {number}
+     * @public
+     */
+    random() {
+
+        this.$current = (this.$current + 0x6D2B79F5) >>> 0;
+
+        let result = this.$current;
+        result = Math.imul(result ^ (result >>> 15), result | 1) >>> 0;
+        result = (result + Math.imul(result ^ (result >>> 7), result | 61)) >>> 0;
+        result = (result ^ (result >>> 14)) >>> 0;
+
+        return result / 0x100000000;
+    }
+
+    /**
+     * Gets a pseudo-random number within the given range.
+     * @param {number} $minimum The minimum value of the range.
+     * @param {number} $maximum The maximum value of the range.
+     * @returns {number}
+     * @public
+     */
+    range($minimum, $maximum) {
+
+        return Math.floor(this.random() * ($maximum - $minimum + 1)) + $minimum;
+    }
+
+    /**
+     * Shuffles the given array ("Fisher–Yates").
+     * @template {any} TypeGeneric The generic type of the values of the array.
+     * @param {Array&lt;TypeGeneric>} $array The array to shuffle.
+     * @returns {Array&lt;TypeGeneric>}
+     * @public
+     */
+    shuffle($array) {
+
+        for (let $iterator = $array.length - 1; $iterator > 0; $iterator -= 1) {
+
+            const index = Math.floor(this.random() * ($iterator + 1));
+
+            [$array[$iterator], $array[index]] = [$array[index], $array[$iterator]];
+        }
+
+        return $array;
+    }
+
+    /**
+     * Performs a success roll based on the given probability (in [0, 1] range).
+     * @param {number} $probability The probability to succeed.
+     * @returns {boolean}
+     * @public
+     */
+    success($probability) {
+
+        const success = (this.random() &lt; $probability);
+
+        return success === true;
     }
 }
 
 export {
 
-    EventGravityAnalog
+    Seed
 };
 
-export default EventGravityAnalog;
+export default Seed;
 </code></pre>
         </article>
     </section>
