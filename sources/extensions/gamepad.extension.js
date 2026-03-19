@@ -47,7 +47,7 @@ const $GAMEPAD_BUTTONS = [
  * @constant
  * @private
  */
-const $THRESHOLD_GAMEPAD_AXES = 0.5;
+const $THRESHOLD_GAMEPAD_AXES = 1 / 8;
 
 /**
  * Creates gamepad extensions.
@@ -307,7 +307,7 @@ class ExtensionGamepad {
 
                     this.$stateGamepad[axeMinimum] = true;
                     window.dispatchEvent(new EventGamepadDigital(EVENT_TYPES.GAMEPAD.GAMEPAD_DOWN, axeMinimum));
-                    window.dispatchEvent(new EventGamepadAnalog(EVENT_TYPES.GAMEPAD.GAMEPAD_ANALOG, axeMinimum, ($direction - (Math.sign($direction) * $THRESHOLD_GAMEPAD_AXES)) / (1 - $THRESHOLD_GAMEPAD_AXES)));
+                    window.dispatchEvent(new EventGamepadAnalog(EVENT_TYPES.GAMEPAD.GAMEPAD_ANALOG, axeMinimum, (Math.abs($direction) - $THRESHOLD_GAMEPAD_AXES) / (1 - $THRESHOLD_GAMEPAD_AXES)));
                 }
 
                 else if ($direction >= $THRESHOLD_GAMEPAD_AXES) {
@@ -320,7 +320,7 @@ class ExtensionGamepad {
 
                     this.$stateGamepad[axeMaximum] = true;
                     window.dispatchEvent(new EventGamepadDigital(EVENT_TYPES.GAMEPAD.GAMEPAD_DOWN, axeMaximum));
-                    window.dispatchEvent(new EventGamepadAnalog(EVENT_TYPES.GAMEPAD.GAMEPAD_ANALOG, axeMaximum, ($direction - (Math.sign($direction) * $THRESHOLD_GAMEPAD_AXES)) / (1 - $THRESHOLD_GAMEPAD_AXES)));
+                    window.dispatchEvent(new EventGamepadAnalog(EVENT_TYPES.GAMEPAD.GAMEPAD_ANALOG, axeMaximum, (Math.abs($direction) - $THRESHOLD_GAMEPAD_AXES) / (1 - $THRESHOLD_GAMEPAD_AXES)));
                 }
 
                 else {
