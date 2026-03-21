@@ -1,6 +1,3 @@
-// 'ESLint' configuration
-/* global TypeGeneric */
-
 /**
  * Creates heaps.
  * @template {any} TypeGeneric The generic type of the items.

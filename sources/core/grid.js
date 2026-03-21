@@ -1,6 +1,3 @@
-// 'ESLint' configuration
-/* global TypeGeneric */
-
 import {AABB, Vector2} from '../index.js';
 
 /**

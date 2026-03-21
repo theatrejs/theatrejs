@@ -1,6 +1,3 @@
-// 'ESLint' configuration
-/* global TypeGeneric */
-
 /**
  * Creates stacks.
  * @template {any} TypeGeneric The generic type of the items.

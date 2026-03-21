@@ -1,7 +1,3 @@
-// 'ESLint' configuration
-/* global TypeGenericAction */
-/* global TypeGenericState */
-
 import {Actor, Engine, Preloadable, UTILS} from '../index.js';
 
 /**

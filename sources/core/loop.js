@@ -9,8 +9,16 @@
 class Loop {
 
     /**
+     * @callback TypeHandler A handler to execute with the update loop.
+     * @param {number} $timetick The tick duration (in ms).
+     * @protected
+     *
+     * @memberof Loop
+     */
+
+    /**
      * Stores the handler to execute with the update loop.
-     * @type {Function}
+     * @type {TypeHandler}
      * @private
      */
     $handler;
@@ -38,7 +46,7 @@ class Loop {
 
     /**
      * Creates a new update loop.
-     * @param {Function} $handler The handler to execute with the update loop.
+     * @param {TypeHandler} $handler The handler to execute with the update loop.
      * @param {Window} [$scope] The global scope to use.
      */
     constructor($handler, $scope = window) {

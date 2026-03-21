@@ -1,6 +1,3 @@
-// 'ESLint' configuration
-/* global TypeGeneric */
-
 /**
  * Creates Event Buses.
  * @template {string} [TypeGeneric=string] The generic type of the events.
@@ -20,7 +17,7 @@ class EventBus {
      * @param {TypeGeneric} $event The event to listen.
      * @protected
      *
-     * @memberof Actor
+     * @memberof EventBus
      */
 
     /**

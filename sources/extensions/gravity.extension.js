@@ -1,6 +1,3 @@
-// 'ESLint' configuration
-/* global GravitySensor */
-
 import {EVENT_CODES, EVENT_TYPES, EventGravityAnalog, EventGravityDigital, Vector3} from '../index.js';
 
 /**

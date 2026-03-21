@@ -1,5 +1,7 @@
 import {Timeline} from '../index.js';
 
+void Timeline;
+
 /**
  * Creates timeline keyframes.
  *

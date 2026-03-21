@@ -1,7 +1,3 @@
-// 'ESLint' configuration
-/* global TypeGenericAction */
-/* global TypeGenericState */
-
 import {Collider, Engine, EventBus, Preloadable, Sound, Sprite, Stage, UTILS, Vector2, Vibration} from '../index.js';
 
 /**

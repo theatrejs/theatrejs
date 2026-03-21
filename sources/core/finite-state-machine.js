@@ -1,6 +1,3 @@
-// 'ESLint' configuration
-/* global TypeGeneric */
-
 /**
  * Creates finite state machines.
  * @template {string} TypeGeneric The generic type of the names of a state.

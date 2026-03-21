@@ -1,5 +1,7 @@
 import {AABB, COLLIDER_TYPES} from '../index.js';
 
+void COLLIDER_TYPES;
+
 /**
  * Creates colliders.
  *
