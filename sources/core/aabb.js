@@ -246,7 +246,7 @@ class AABB {
     }
 
     /**
-     * Gets the delta penetration between the two given AABBs strictly overlaping with each other on the x-axis (the common area).
+     * Gets the delta penetration between the two given AABBs strictly overlapping with each other on the x-axis (the common area).
      * @param {AABB} $a The first AABB to compare.
      * @param {AABB} $b The second AABB to compare.
      * @returns {number}
@@ -262,7 +262,7 @@ class AABB {
     }
 
     /**
-     * Gets the delta penetration between the two given AABBs strictly overlaping with each other on the y-axis (the common area).
+     * Gets the delta penetration between the two given AABBs strictly overlapping with each other on the y-axis (the common area).
      * @param {AABB} $a The first AABB to compare.
      * @param {AABB} $b The second AABB to compare.
      * @returns {number}

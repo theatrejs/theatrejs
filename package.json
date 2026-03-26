@@ -3,12 +3,14 @@
     "description": "🎮 A JavaScript 2D Game Engine focused on creating pixel art games.",
     "devDependencies": {
 
+        "@cspell/eslint-plugin": "9.7.0",
         "@eslint/js": "10.0.1",
         "@playwright/test": "1.58.2",
         "@stylistic/eslint-plugin": "5.10.0",
         "docdash": "2.0.2",
         "eslint": "10.1.0",
         "eslint-plugin-jsdoc": "62.8.0",
+        "eslint-plugin-playwright": "2.10.1",
         "globals": "17.4.0",
         "html-webpack-plugin": "5.6.6",
         "jsdoc": "4.0.5",

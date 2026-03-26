@@ -42,7 +42,7 @@ const $GAMEPAD_BUTTONS = [
 ];
 
 /**
- * The threshold of the gampead axes.
+ * The threshold of the gamepad axes.
  * @type {number}
  * @constant
  * @private

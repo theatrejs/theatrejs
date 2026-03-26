@@ -78,7 +78,7 @@ function deduplicate($array) {
 }
 
 /**
- * Extracts all occurences of the given item from the given array.
+ * Extracts all occurrences of the given item from the given array.
  * @template {any} TypeGeneric The generic type of the values of the array.
  * @param {TypeGeneric} $item The item to remove.
  * @param {Array<TypeGeneric>} $array The array.
