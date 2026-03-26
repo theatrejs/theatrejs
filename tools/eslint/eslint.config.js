@@ -36,6 +36,7 @@ const config = [
             'max-lines-per-function': 'off',
             'max-params': 'off',
             'max-statements': 'off',
+            'new-cap': 'off',
             'no-bitwise': 'off',
             'no-continue': 'off',
             'no-empty-function': 'off',

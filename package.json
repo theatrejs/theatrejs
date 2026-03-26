@@ -4,12 +4,19 @@
     "devDependencies": {
 
         "@eslint/js": "10.0.1",
+        "@playwright/test": "1.58.2",
         "@stylistic/eslint-plugin": "5.10.0",
         "docdash": "2.0.2",
         "eslint": "10.1.0",
         "eslint-plugin-jsdoc": "62.8.0",
         "globals": "17.4.0",
-        "jsdoc": "4.0.5"
+        "html-webpack-plugin": "5.6.6",
+        "jsdoc": "4.0.5",
+        "playwright": "1.58.2",
+        "webpack": "5.105.4",
+        "webpack-cli": "5.1.4",
+        "webpack-dev-server": "5.2.3",
+        "webpack-merge": "5.0.0"
     },
     "engines": {
 
@@ -49,8 +56,18 @@
         "github-pages": "npm run github-pages:clean && npm run github-pages:generate ",
         "github-pages:clean": "rm -rf ./docs/",
         "github-pages:generate": "jsdoc ./tools/jsdoc/HOME.md ./sources/ --recurse --destination ./docs/ --template ./node_modules/docdash --configure ./tools/jsdoc/jsdoc.config.json",
-        "lint": "eslint ./sources/ --config ./tools/eslint/eslint.config.js",
-        "postversion": "node ./tools/custom/postversion.cjs"
+        "lint": "npm run lint:all",
+        "lint:all": "eslint ./sources/ ./tests/ ./tools/playwright/sandboxes/sources/ --config ./tools/eslint/eslint.config.js",
+        "lint:sources": "eslint ./sources/ --config ./tools/eslint/eslint.config.js",
+        "lint:tests": "eslint ./tests/ ./tools/playwright/sandboxes/sources/ --config ./tools/eslint/eslint.config.js",
+        "postversion": "node ./tools/custom/postversion.cjs",
+        "test": "npm run test:behavior",
+        "test:behavior": "playwright test --config ./tools/playwright/playwright.config.cjs",
+        "test:behavior:clean": "npm run test:behavior:clean:results && npm run test:behavior:clean:screenshots",
+        "test:behavior:clean:results": "rm -rf ./tools/playwright/results/",
+        "test:behavior:clean:screenshots": "rm -rf ./tools/playwright/screenshots/",
+        "test:behavior:debugger": "npm run test:behavior -- --ui",
+        "test:behavior:update": "npm run test:behavior:clean:screenshots && npm run test:behavior -- --update-snapshots"
     },
     "type": "module",
     "version": "1.33.0"

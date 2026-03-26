@@ -1,0 +1,33 @@
+{
+    "compilerOptions": {
+
+        "allowJs": true,
+        "baseUrl": "../../",
+        "checkJs": true,
+        "esModuleInterop": true,
+        "module": "esnext",
+        "moduleResolution": "node",
+        "noEmit": true,
+        "outDir": "tools/playwright/types",
+        "paths": {
+
+            "@theatrejs/theatrejs": ["sources/index.js"]
+        },
+        "resolveJsonModule": true,
+        "strict": true,
+        "strictNullChecks": false,
+        "target": "esnext"
+    },
+    "exclude": [
+
+        "sandboxes/distribution"
+    ],
+    "include": [
+
+        "sources/**/*.js",
+
+        "sandboxes/sources/**/*.js",
+        "types/**/*.d.ts",
+        "types/**/*.jsdoc.js"
+    ]
+}
