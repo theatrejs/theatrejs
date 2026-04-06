@@ -1,7 +1,7 @@
 interface GyroscopeOptions {
 
     frequency?: number;
-    referenceFrame?: 'device' | 'screen';
+    referenceFrame?: ('device' | 'screen');
 }
 
 declare class Gyroscope extends Sensor {

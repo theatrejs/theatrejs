@@ -16,7 +16,7 @@ declare class Sensor extends EventTarget {
     readonly hasReading: boolean;
     readonly timestamp?: number;
 
-    addEventListener(type: 'activate' | 'reading', listener: (this: this, event: Event) => any, useCapture?: boolean): void;
+    addEventListener(type: ('activate' | 'reading'), listener: (this: this, event: Event) => any, useCapture?: boolean): void;
     addEventListener(type: 'error', listener: (this: this, event: SensorErrorEvent) => any, useCapture?: boolean): void;
 
     onactivate?: (this: this, event: Event) => any;

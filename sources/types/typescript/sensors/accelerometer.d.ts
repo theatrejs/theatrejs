@@ -1,7 +1,7 @@
 interface AccelerometerOptions {
 
     frequency?: number;
-    referenceFrame?: 'device' | 'screen';
+    referenceFrame?: ('device' | 'screen');
 }
 
 declare class Accelerometer extends Sensor {

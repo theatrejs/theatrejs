@@ -137,7 +137,7 @@ class Heap {
 
     /**
      * Pops an item.
-     * @returns {(TypeGeneric | undefined)}
+     * @returns {(undefined | TypeGeneric)}
      * @public
      */
     pop() {

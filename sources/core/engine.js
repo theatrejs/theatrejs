@@ -331,13 +331,13 @@ class Engine {
     /**
      * Preloads the assets of the given stage.
      * @param {typeof Stage} $stage The stage to preload the assets from.
-     * @returns {Promise<Array<undefined | AudioBuffer | WebGLTexture>>}
+     * @returns {Promise<Array<(undefined | AudioBuffer | WebGLTexture)>>}
      * @public
      */
     preloadStage($stage) {
 
         /**
-         * @type {Array<Promise<undefined | AudioBuffer | WebGLTexture>>}
+         * @type {Array<Promise<(undefined | AudioBuffer | WebGLTexture)>>}
          */
         const promises = [];
 
@@ -361,7 +361,7 @@ class Engine {
             }
 
             /**
-             * @type {Promise<undefined | AudioBuffer | WebGLTexture>}
+             * @type {Promise<(undefined | AudioBuffer | WebGLTexture)>}
              */
             const promise = new Promise(($resolve) => {
 
