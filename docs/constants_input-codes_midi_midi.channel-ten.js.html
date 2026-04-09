@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>constants/input-codes/midi/midi.channel-ten.js - Documentation</title>
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <script src="scripts/nav.js" defer></script>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav >
+    
+    <input type="text" id="nav-search" placeholder="Search" />
+    
+    
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="AABB.html">AABB</a><ul class='methods'><li data-type='method'><a href="AABB.html#clone">clone</a></li><li data-type='method'><a href="AABB.html#equal">equal</a></li><li data-type='method'><a href="AABB.html#translate">translate</a></li><li data-type='method'><a href="AABB.html#translateX">translateX</a></li><li data-type='method'><a href="AABB.html#translateY">translateY</a></li><li data-type='method'><a href="AABB.html#.distanceManhattan">distanceManhattan</a></li><li data-type='method'><a href="AABB.html#.distanceX">distanceX</a></li><li data-type='method'><a href="AABB.html#.distanceY">distanceY</a></li><li data-type='method'><a href="AABB.html#.from">from</a></li><li data-type='method'><a href="AABB.html#.fromSize">fromSize</a></li><li data-type='method'><a href="AABB.html#.overlapX">overlapX</a></li><li data-type='method'><a href="AABB.html#.overlapY">overlapY</a></li></ul></li><li><a href="Actor.html">Actor</a><ul class='methods'><li data-type='method'><a href="Actor.html#addMidi">addMidi</a></li><li data-type='method'><a href="Actor.html#addSound">addSound</a></li><li data-type='method'><a href="Actor.html#addVibration">addVibration</a></li><li data-type='method'><a href="Actor.html#follow">follow</a></li><li data-type='method'><a href="Actor.html#getComponent">getComponent</a></li><li data-type='method'><a href="Actor.html#hasCollider">hasCollider</a></li><li data-type='method'><a href="Actor.html#hasComponent">hasComponent</a></li><li data-type='method'><a href="Actor.html#hasSprite">hasSprite</a></li><li data-type='method'><a href="Actor.html#listenAction">listenAction</a></li><li data-type='method'><a href="Actor.html#listenState">listenState</a></li><li data-type='method'><a href="Actor.html#mimic">mimic</a></li><li data-type='method'><a href="Actor.html#onAfterRemove">onAfterRemove</a></li><li data-type='method'><a href="Actor.html#onBeforeRemove">onBeforeRemove</a></li><li data-type='method'><a href="Actor.html#onCollide">onCollide</a></li><li data-type='method'><a href="Actor.html#onCollideEnter">onCollideEnter</a></li><li data-type='method'><a href="Actor.html#onCollideLeave">onCollideLeave</a></li><li data-type='method'><a href="Actor.html#onCreate">onCreate</a></li><li data-type='method'><a href="Actor.html#onSetVisible">onSetVisible</a></li><li data-type='method'><a href="Actor.html#onSetZIndex">onSetZIndex</a></li><li data-type='method'><a href="Actor.html#onSoundFinish">onSoundFinish</a></li><li data-type='method'><a href="Actor.html#onTick">onTick</a></li><li data-type='method'><a href="Actor.html#onTranslate">onTranslate</a></li><li data-type='method'><a href="Actor.html#removeCollider">removeCollider</a></li><li data-type='method'><a href="Actor.html#removeComponent">removeComponent</a></li><li data-type='method'><a href="Actor.html#removeMidi">removeMidi</a></li><li data-type='method'><a href="Actor.html#removeMidis">removeMidis</a></li><li data-type='method'><a href="Actor.html#removeSound">removeSound</a></li><li data-type='method'><a href="Actor.html#removeSounds">removeSounds</a></li><li data-type='method'><a href="Actor.html#removeSprite">removeSprite</a></li><li data-type='method'><a href="Actor.html#removeVibration">removeVibration</a></li><li data-type='method'><a href="Actor.html#removeVibrations">removeVibrations</a></li><li data-type='method'><a href="Actor.html#setCollider">setCollider</a></li><li data-type='method'><a href="Actor.html#setComponent">setComponent</a></li><li data-type='method'><a href="Actor.html#setIdentifier">setIdentifier</a></li><li data-type='method'><a href="Actor.html#setLabel">setLabel</a></li><li data-type='method'><a href="Actor.html#setSprite">setSprite</a></li><li data-type='method'><a href="Actor.html#setVisible">setVisible</a></li><li data-type='method'><a href="Actor.html#setZIndex">setZIndex</a></li><li data-type='method'><a href="Actor.html#translate">translate</a></li><li data-type='method'><a href="Actor.html#translateTo">translateTo</a></li><li data-type='method'><a href="Actor.html#translateX">translateX</a></li><li data-type='method'><a href="Actor.html#translateY">translateY</a></li><li data-type='method'><a href="Actor.html#triggerAction">triggerAction</a></li><li data-type='method'><a href="Actor.html#triggerState">triggerState</a></li><li data-type='method'><a href="Actor.html#unfollow">unfollow</a></li><li data-type='method'><a href="Actor.html#unmimic">unmimic</a></li></ul></li><li><a href="BehaviorTree.html">BehaviorTree</a><ul class='methods'><li data-type='method'><a href="BehaviorTree.html#tick">tick</a></li></ul></li><li><a href="BehaviorTreeNode.html">BehaviorTreeNode</a><ul class='methods'><li data-type='method'><a href="BehaviorTreeNode.html#tick">tick</a></li></ul></li><li><a href="BehaviorTreeNodeAction.html">BehaviorTreeNodeAction</a><ul class='methods'><li data-type='method'><a href="BehaviorTreeNodeAction.html#tick">tick</a></li></ul></li><li><a href="BehaviorTreeNodeSelector.html">BehaviorTreeNodeSelector</a><ul class='methods'><li data-type='method'><a href="BehaviorTreeNodeSelector.html#tick">tick</a></li></ul></li><li><a href="BehaviorTreeNodeSequencer.html">BehaviorTreeNodeSequencer</a><ul class='methods'><li data-type='method'><a href="BehaviorTreeNodeSequencer.html#tick">tick</a></li></ul></li><li><a href="Collider.html">Collider</a></li><li><a href="Curve.html">Curve</a><ul class='methods'><li data-type='method'><a href="Curve.html#getProgress">getProgress</a></li><li data-type='method'><a href="Curve.html#getValues">getValues</a></li><li data-type='method'><a href="Curve.html#setDuration">setDuration</a></li></ul></li><li><a href="Engine.html">Engine</a><ul class='methods'><li data-type='method'><a href="Engine.html#checkResized">checkResized</a></li><li data-type='method'><a href="Engine.html#createStage">createStage</a></li><li data-type='method'><a href="Engine.html#getBoundariesFromFraming">getBoundariesFromFraming</a></li><li data-type='method'><a href="Engine.html#getBoundariesFromScreen">getBoundariesFromScreen</a></li><li data-type='method'><a href="Engine.html#getInput">getInput</a></li><li data-type='method'><a href="Engine.html#getInputAnalog">getInputAnalog</a></li><li data-type='method'><a href="Engine.html#getInputDown">getInputDown</a></li><li data-type='method'><a href="Engine.html#getInputUp">getInputUp</a></li><li data-type='method'><a href="Engine.html#getTranslationFromScreen">getTranslationFromScreen</a></li><li data-type='method'><a href="Engine.html#getTranslationFromViewportPointer">getTranslationFromViewportPointer</a></li><li data-type='method'><a href="Engine.html#hasAssetLoaded">hasAssetLoaded</a></li><li data-type='method'><a href="Engine.html#initiate">initiate</a></li><li data-type='method'><a href="Engine.html#preloadStage">preloadStage</a></li><li data-type='method'><a href="Engine.html#raycast">raycast</a></li><li data-type='method'><a href="Engine.html#removePointerNative">removePointerNative</a></li><li data-type='method'><a href="Engine.html#setColor">setColor</a></li><li data-type='method'><a href="Engine.html#setFraming">setFraming</a></li><li data-type='method'><a href="Engine.html#terminate">terminate</a></li><li data-type='method'><a href="Engine.html#tick">tick</a></li></ul></li><li><a href="EventBus.html">EventBus</a><ul class='methods'><li data-type='method'><a href="EventBus.html#listen">listen</a></li><li data-type='method'><a href="EventBus.html#trigger">trigger</a></li></ul></li><li><a href="EventGamepad.html">EventGamepad</a></li><li><a href="EventGamepadAnalog.html">EventGamepadAnalog</a></li><li><a href="EventGamepadDigital.html">EventGamepadDigital</a></li><li><a href="EventGravityAnalog.html">EventGravityAnalog</a></li><li><a href="EventGravityDigital.html">EventGravityDigital</a></li><li><a href="EventGyroscopeAnalog.html">EventGyroscopeAnalog</a></li><li><a href="EventGyroscopeDigital.html">EventGyroscopeDigital</a></li><li><a href="EventMidi.html">EventMidi</a></li><li><a href="EventMidiAnalog.html">EventMidiAnalog</a></li><li><a href="EventMidiDigital.html">EventMidiDigital</a></li><li><a href="EventPointerAnalog.html">EventPointerAnalog</a></li><li><a href="EventPointerDigital.html">EventPointerDigital</a></li><li><a href="ExtensionGamepad.html">ExtensionGamepad</a><ul class='methods'><li data-type='method'><a href="ExtensionGamepad.html#.activate">activate</a></li></ul></li><li><a href="ExtensionGravity.html">ExtensionGravity</a><ul class='methods'><li data-type='method'><a href="ExtensionGravity.html#.activate">activate</a></li></ul></li><li><a href="ExtensionGyroscope.html">ExtensionGyroscope</a><ul class='methods'><li data-type='method'><a href="ExtensionGyroscope.html#.activate">activate</a></li></ul></li><li><a href="ExtensionMidi.html">ExtensionMidi</a><ul class='methods'><li data-type='method'><a href="ExtensionMidi.html#.activate">activate</a></li></ul></li><li><a href="ExtensionPointer.html">ExtensionPointer</a><ul class='methods'><li data-type='method'><a href="ExtensionPointer.html#.activate">activate</a></li></ul></li><li><a href="FiniteStateMachine.html">FiniteStateMachine</a><ul class='methods'><li data-type='method'><a href="FiniteStateMachine.html#initiate">initiate</a></li><li data-type='method'><a href="FiniteStateMachine.html#tick">tick</a></li></ul></li><li><a href="Grid.html">Grid</a><ul class='methods'><li data-type='method'><a href="Grid.html#clear">clear</a></li><li data-type='method'><a href="Grid.html#clone">clone</a></li><li data-type='method'><a href="Grid.html#delete">delete</a></li><li data-type='method'><a href="Grid.html#get">get</a></li><li data-type='method'><a href="Grid.html#has">has</a></li><li data-type='method'><a href="Grid.html#iterate">iterate</a></li><li data-type='method'><a href="Grid.html#map">map</a></li><li data-type='method'><a href="Grid.html#set">set</a></li><li data-type='method'><a href="Grid.html#traverse">traverse</a></li><li data-type='method'><a href="Grid.html#unwatch">unwatch</a></li><li data-type='method'><a href="Grid.html#unwatchAll">unwatchAll</a></li><li data-type='method'><a href="Grid.html#watch">watch</a></li><li data-type='method'><a href="Grid.html#.from">from</a></li></ul></li><li><a href="Heap.html">Heap</a><ul class='methods'><li data-type='method'><a href="Heap.html#pop">pop</a></li><li data-type='method'><a href="Heap.html#push">push</a></li></ul></li><li><a href="Loop.html">Loop</a><ul class='methods'><li data-type='method'><a href="Loop.html#initiate">initiate</a></li><li data-type='method'><a href="Loop.html#terminate">terminate</a></li></ul></li><li><a href="Midi.html">Midi</a></li><li><a href="Pathfinder.html">Pathfinder</a><ul class='methods'><li data-type='method'><a href="Pathfinder.html#find">find</a></li></ul></li><li><a href="Preloadable.html">Preloadable</a></li><li><a href="Quaternion.html">Quaternion</a></li><li><a href="Queue.html">Queue</a><ul class='methods'><li data-type='method'><a href="Queue.html#clear">clear</a></li><li data-type='method'><a href="Queue.html#pop">pop</a></li><li data-type='method'><a href="Queue.html#push">push</a></li></ul></li><li><a href="Seed.html">Seed</a><ul class='methods'><li data-type='method'><a href="Seed.html#random">random</a></li><li data-type='method'><a href="Seed.html#range">range</a></li><li data-type='method'><a href="Seed.html#shuffle">shuffle</a></li><li data-type='method'><a href="Seed.html#success">success</a></li></ul></li><li><a href="Shader.html">Shader</a></li><li><a href="Sound.html">Sound</a></li><li><a href="Sprite.html">Sprite</a></li><li><a href="Stack.html">Stack</a><ul class='methods'><li data-type='method'><a href="Stack.html#clear">clear</a></li><li data-type='method'><a href="Stack.html#pop">pop</a></li><li data-type='method'><a href="Stack.html#push">push</a></li></ul></li><li><a href="Stage.html">Stage</a><ul class='methods'><li data-type='method'><a href="Stage.html#createActor">createActor</a></li><li data-type='method'><a href="Stage.html#getActorWithLabel">getActorWithLabel</a></li><li data-type='method'><a href="Stage.html#getActorsWithLabel">getActorsWithLabel</a></li><li data-type='method'><a href="Stage.html#hasActor">hasActor</a></li><li data-type='method'><a href="Stage.html#hasActorWithLabel">hasActorWithLabel</a></li><li data-type='method'><a href="Stage.html#onCreate">onCreate</a></li><li data-type='method'><a href="Stage.html#removeActor">removeActor</a></li><li data-type='method'><a href="Stage.html#removeActorWithLabel">removeActorWithLabel</a></li><li data-type='method'><a href="Stage.html#removeActors">removeActors</a></li><li data-type='method'><a href="Stage.html#removeActorsWithLabel">removeActorsWithLabel</a></li><li data-type='method'><a href="Stage.html#setPointOfView">setPointOfView</a></li></ul></li><li><a href="State.html">State</a><ul class='methods'><li data-type='method'><a href="State.html#getState">getState</a></li><li data-type='method'><a href="State.html#setState">setState</a></li><li data-type='method'><a href="State.html#unwatchAll">unwatchAll</a></li><li data-type='method'><a href="State.html#unwatchState">unwatchState</a></li><li data-type='method'><a href="State.html#watchState">watchState</a></li></ul></li><li><a href="System.html">System</a><ul class='methods'><li data-type='method'><a href="System.html#initiate">initiate</a></li><li data-type='method'><a href="System.html#onInitiate">onInitiate</a></li><li data-type='method'><a href="System.html#onTerminate">onTerminate</a></li><li data-type='method'><a href="System.html#onTick">onTick</a></li><li data-type='method'><a href="System.html#terminate">terminate</a></li><li data-type='method'><a href="System.html#tick">tick</a></li></ul></li><li><a href="SystemActor.html">SystemActor</a><ul class='methods'><li data-type='method'><a href="SystemActor.html#onTick">onTick</a></li></ul></li><li><a href="SystemAudio.html">SystemAudio</a><ul class='methods'><li data-type='method'><a href="SystemAudio.html#hasAssetLoaded">hasAssetLoaded</a></li><li data-type='method'><a href="SystemAudio.html#loadAudio">loadAudio</a></li><li data-type='method'><a href="SystemAudio.html#onInitiate">onInitiate</a></li><li data-type='method'><a href="SystemAudio.html#onTerminate">onTerminate</a></li><li data-type='method'><a href="SystemAudio.html#onTick">onTick</a></li></ul></li><li><a href="SystemCollision.html">SystemCollision</a><ul class='methods'><li data-type='method'><a href="SystemCollision.html#onInitiate">onInitiate</a></li><li data-type='method'><a href="SystemCollision.html#onTick">onTick</a></li></ul></li><li><a href="SystemInput.html">SystemInput</a><ul class='methods'><li data-type='method'><a href="SystemInput.html#getInput">getInput</a></li><li data-type='method'><a href="SystemInput.html#getInputAnalog">getInputAnalog</a></li><li data-type='method'><a href="SystemInput.html#getInputDown">getInputDown</a></li><li data-type='method'><a href="SystemInput.html#getInputUp">getInputUp</a></li><li data-type='method'><a href="SystemInput.html#onInitiate">onInitiate</a></li><li data-type='method'><a href="SystemInput.html#onTerminate">onTerminate</a></li><li data-type='method'><a href="SystemInput.html#onTick">onTick</a></li></ul></li><li><a href="SystemMidi.html">SystemMidi</a><ul class='methods'><li data-type='method'><a href="SystemMidi.html#onTick">onTick</a></li></ul></li><li><a href="SystemRender.html">SystemRender</a><ul class='methods'><li data-type='method'><a href="SystemRender.html#$getActorsVisible">$getActorsVisible</a></li><li data-type='method'><a href="SystemRender.html#checkResized">checkResized</a></li><li data-type='method'><a href="SystemRender.html#getBoundariesFromFraming">getBoundariesFromFraming</a></li><li data-type='method'><a href="SystemRender.html#getBoundariesFromScreen">getBoundariesFromScreen</a></li><li data-type='method'><a href="SystemRender.html#getTranslationFromScreen">getTranslationFromScreen</a></li><li data-type='method'><a href="SystemRender.html#hasAssetLoaded">hasAssetLoaded</a></li><li data-type='method'><a href="SystemRender.html#loadTexture">loadTexture</a></li><li data-type='method'><a href="SystemRender.html#onInitiate">onInitiate</a></li><li data-type='method'><a href="SystemRender.html#onTerminate">onTerminate</a></li><li data-type='method'><a href="SystemRender.html#onTick">onTick</a></li><li data-type='method'><a href="SystemRender.html#raycast">raycast</a></li><li data-type='method'><a href="SystemRender.html#removePointerNative">removePointerNative</a></li><li data-type='method'><a href="SystemRender.html#setColor">setColor</a></li><li data-type='method'><a href="SystemRender.html#setFraming">setFraming</a></li></ul></li><li><a href="SystemVibration.html">SystemVibration</a><ul class='methods'><li data-type='method'><a href="SystemVibration.html#onInitiate">onInitiate</a></li><li data-type='method'><a href="SystemVibration.html#onTerminate">onTerminate</a></li><li data-type='method'><a href="SystemVibration.html#onTick">onTick</a></li></ul></li><li><a href="Timeline.html">Timeline</a><ul class='methods'><li data-type='method'><a href="Timeline.html#addTimeline">addTimeline</a></li><li data-type='method'><a href="Timeline.html#clone">clone</a></li><li data-type='method'><a href="Timeline.html#offset">offset</a></li><li data-type='method'><a href="Timeline.html#seekName">seekName</a></li><li data-type='method'><a href="Timeline.html#seekTimecode">seekTimecode</a></li><li data-type='method'><a href="Timeline.html#tick">tick</a></li></ul></li><li><a href="TimelineKeyframe.html">TimelineKeyframe</a><ul class='methods'><li data-type='method'><a href="TimelineKeyframe.html#clone">clone</a></li><li data-type='method'><a href="TimelineKeyframe.html#offset">offset</a></li></ul></li><li><a href="Vector2.html">Vector2</a><ul class='methods'><li data-type='method'><a href="Vector2.html#add">add</a></li><li data-type='method'><a href="Vector2.html#ceil">ceil</a></li><li data-type='method'><a href="Vector2.html#clone">clone</a></li><li data-type='method'><a href="Vector2.html#equal">equal</a></li><li data-type='method'><a href="Vector2.html#floor">floor</a></li><li data-type='method'><a href="Vector2.html#length">length</a></li><li data-type='method'><a href="Vector2.html#multiply">multiply</a></li><li data-type='method'><a href="Vector2.html#negate">negate</a></li><li data-type='method'><a href="Vector2.html#normalize">normalize</a></li><li data-type='method'><a href="Vector2.html#rotate">rotate</a></li><li data-type='method'><a href="Vector2.html#round">round</a></li><li data-type='method'><a href="Vector2.html#scale">scale</a></li><li data-type='method'><a href="Vector2.html#subtract">subtract</a></li><li data-type='method'><a href="Vector2.html#.deserialize">deserialize</a></li><li data-type='method'><a href="Vector2.html#.distanceDiagonal">distanceDiagonal</a></li><li data-type='method'><a href="Vector2.html#.distanceEuclidean">distanceEuclidean</a></li><li data-type='method'><a href="Vector2.html#.distanceManhattan">distanceManhattan</a></li><li data-type='method'><a href="Vector2.html#.from">from</a></li><li data-type='method'><a href="Vector2.html#.serialize">serialize</a></li></ul></li><li><a href="Vector3.html">Vector3</a><ul class='methods'><li data-type='method'><a href="Vector3.html#add">add</a></li><li data-type='method'><a href="Vector3.html#ceil">ceil</a></li><li data-type='method'><a href="Vector3.html#clone">clone</a></li><li data-type='method'><a href="Vector3.html#equal">equal</a></li><li data-type='method'><a href="Vector3.html#floor">floor</a></li><li data-type='method'><a href="Vector3.html#length">length</a></li><li data-type='method'><a href="Vector3.html#multiply">multiply</a></li><li data-type='method'><a href="Vector3.html#negate">negate</a></li><li data-type='method'><a href="Vector3.html#normalize">normalize</a></li><li data-type='method'><a href="Vector3.html#rotate">rotate</a></li><li data-type='method'><a href="Vector3.html#round">round</a></li><li data-type='method'><a href="Vector3.html#scale">scale</a></li><li data-type='method'><a href="Vector3.html#subtract">subtract</a></li><li data-type='method'><a href="Vector3.html#.deserialize">deserialize</a></li><li data-type='method'><a href="Vector3.html#.from">from</a></li><li data-type='method'><a href="Vector3.html#.serialize">serialize</a></li></ul></li><li><a href="Vibration.html">Vibration</a></li></ul><h3>Modules</h3><ul><li><a href="module-COLLIDER_TYPES.html">COLLIDER_TYPES</a></li><li><a href="module-CONTENT_TYPES.html">CONTENT_TYPES</a></li><li><a href="module-CONTEXT_TYPE.html">CONTEXT_TYPE</a></li><li><a href="module-CURVES.html">CURVES</a><ul class='methods'><li data-type='method'><a href="module-CURVES.html#.cosine">cosine</a></li><li data-type='method'><a href="module-CURVES.html#.double">double</a></li><li data-type='method'><a href="module-CURVES.html#.easeIn">easeIn</a></li><li data-type='method'><a href="module-CURVES.html#.easeInOut">easeInOut</a></li><li data-type='method'><a href="module-CURVES.html#.easeOut">easeOut</a></li><li data-type='method'><a href="module-CURVES.html#.half">half</a></li><li data-type='method'><a href="module-CURVES.html#.invert">invert</a></li><li data-type='method'><a href="module-CURVES.html#.linear">linear</a></li><li data-type='method'><a href="module-CURVES.html#.multiply">multiply</a></li><li data-type='method'><a href="module-CURVES.html#.negate">negate</a></li><li data-type='method'><a href="module-CURVES.html#.reverse">reverse</a></li><li data-type='method'><a href="module-CURVES.html#.sine">sine</a></li></ul></li><li><a href="module-EVENT_CODES_GAMEPADS_PLAYSTATION.html">EVENT_CODES/GAMEPADS/PLAYSTATION</a></li><li><a href="module-EVENT_CODES_GAMEPADS_STANDARD.html">EVENT_CODES/GAMEPADS/STANDARD</a></li><li><a href="module-EVENT_CODES_GAMEPADS_XBOX.html">EVENT_CODES/GAMEPADS/XBOX</a></li><li><a href="module-EVENT_CODES_MIDI.html">EVENT_CODES/MIDI</a></li><li><a href="module-EVENT_TYPES_GAMEPAD.html">EVENT_TYPES/GAMEPAD</a></li><li><a href="module-EVENT_TYPES_GRAVITY.html">EVENT_TYPES/GRAVITY</a></li><li><a href="module-EVENT_TYPES_GYROSCOPE.html">EVENT_TYPES/GYROSCOPE</a></li><li><a href="module-EVENT_TYPES_KEYBOARD.html">EVENT_TYPES/KEYBOARD</a></li><li><a href="module-EVENT_TYPES_MIDI.html">EVENT_TYPES/MIDI</a></li><li><a href="module-EVENT_TYPES_NATIVE.html">EVENT_TYPES/NATIVE</a></li><li><a href="module-EVENT_TYPES_POINTER.html">EVENT_TYPES/POINTER</a></li><li><a href="module-FACTORIES.html">FACTORIES</a><ul class='methods'><li data-type='method'><a href="module-FACTORIES.html#.ActorWithPreloadables">ActorWithPreloadables</a></li><li data-type='method'><a href="module-FACTORIES.html#.PreloadableSound">PreloadableSound</a></li><li data-type='method'><a href="module-FACTORIES.html#.PreloadableTexture">PreloadableTexture</a></li><li data-type='method'><a href="module-FACTORIES.html#.StageWithPreloadables">StageWithPreloadables</a></li></ul></li><li><a href="module-INPUT_CODES_GAMEPADS_PLAYSTATION.html">INPUT_CODES/GAMEPADS/PLAYSTATION</a></li><li><a href="module-INPUT_CODES_GAMEPADS_STANDARD.html">INPUT_CODES/GAMEPADS/STANDARD</a></li><li><a href="module-INPUT_CODES_GAMEPADS_XBOX.html">INPUT_CODES/GAMEPADS/XBOX</a></li><li><a href="module-INPUT_CODES_GRAVITY.html">INPUT_CODES/GRAVITY</a></li><li><a href="module-INPUT_CODES_GYROSCOPE.html">INPUT_CODES/GYROSCOPE</a></li><li><a href="module-INPUT_CODES_KEYBOARDS_AZERTY.html">INPUT_CODES/KEYBOARDS/AZERTY</a></li><li><a href="module-INPUT_CODES_KEYBOARDS_QWERTY.html">INPUT_CODES/KEYBOARDS/QWERTY</a></li><li><a href="module-INPUT_CODES_KEYBOARDS_STANDARD.html">INPUT_CODES/KEYBOARDS/STANDARD</a></li><li><a href="module-INPUT_CODES_MIDI.html">INPUT_CODES/MIDI</a></li><li><a href="module-INPUT_CODES_MIDI_CHANNEL_EIGHT.html">INPUT_CODES/MIDI/CHANNEL_EIGHT</a></li><li><a href="module-INPUT_CODES_MIDI_CHANNEL_ELEVEN.html">INPUT_CODES/MIDI/CHANNEL_ELEVEN</a></li><li><a href="module-INPUT_CODES_MIDI_CHANNEL_FIFTEEN.html">INPUT_CODES/MIDI/CHANNEL_FIFTEEN</a></li><li><a href="module-INPUT_CODES_MIDI_CHANNEL_FIVE.html">INPUT_CODES/MIDI/CHANNEL_FIVE</a></li><li><a href="module-INPUT_CODES_MIDI_CHANNEL_FOUR.html">INPUT_CODES/MIDI/CHANNEL_FOUR</a></li><li><a href="module-INPUT_CODES_MIDI_CHANNEL_FOURTEEN.html">INPUT_CODES/MIDI/CHANNEL_FOURTEEN</a></li><li><a href="module-INPUT_CODES_MIDI_CHANNEL_NINE.html">INPUT_CODES/MIDI/CHANNEL_NINE</a></li><li><a href="module-INPUT_CODES_MIDI_CHANNEL_ONE.html">INPUT_CODES/MIDI/CHANNEL_ONE</a></li><li><a href="module-INPUT_CODES_MIDI_CHANNEL_SEVEN.html">INPUT_CODES/MIDI/CHANNEL_SEVEN</a></li><li><a href="module-INPUT_CODES_MIDI_CHANNEL_SIX.html">INPUT_CODES/MIDI/CHANNEL_SIX</a></li><li><a href="module-INPUT_CODES_MIDI_CHANNEL_SIXTEEN.html">INPUT_CODES/MIDI/CHANNEL_SIXTEEN</a></li><li><a href="module-INPUT_CODES_MIDI_CHANNEL_TEN.html">INPUT_CODES/MIDI/CHANNEL_TEN</a></li><li><a href="module-INPUT_CODES_MIDI_CHANNEL_THIRTEEN.html">INPUT_CODES/MIDI/CHANNEL_THIRTEEN</a></li><li><a href="module-INPUT_CODES_MIDI_CHANNEL_THREE.html">INPUT_CODES/MIDI/CHANNEL_THREE</a></li><li><a href="module-INPUT_CODES_MIDI_CHANNEL_TWELVE.html">INPUT_CODES/MIDI/CHANNEL_TWELVE</a></li><li><a href="module-INPUT_CODES_MIDI_CHANNEL_TWO.html">INPUT_CODES/MIDI/CHANNEL_TWO</a></li><li><a href="module-INPUT_CODES_POINTER.html">INPUT_CODES/POINTER</a></li><li><a href="module-MATHEMATICS.html">MATHEMATICS</a><ul class='methods'><li data-type='method'><a href="module-MATHEMATICS.html#.clamp">clamp</a></li><li data-type='method'><a href="module-MATHEMATICS.html#.hypotenuse">hypotenuse</a></li><li data-type='method'><a href="module-MATHEMATICS.html#.normalize">normalize</a></li></ul></li><li><a href="module-MEDIA_TYPES.html">MEDIA_TYPES</a></li><li><a href="module-MIDI_STATUSES.html">MIDI_STATUSES</a></li><li><a href="module-SHADER_PARAMETER_TYPES.html">SHADER_PARAMETER_TYPES</a></li><li><a href="module-STORAGE.html">STORAGE</a><ul class='methods'><li data-type='method'><a href="module-STORAGE.html#.get">get</a></li><li data-type='method'><a href="module-STORAGE.html#.has">has</a></li><li data-type='method'><a href="module-STORAGE.html#.remove">remove</a></li><li data-type='method'><a href="module-STORAGE.html#.set">set</a></li></ul></li><li><a href="module-UTILS.html">UTILS</a><ul class='methods'><li data-type='method'><a href="module-UTILS.html#.debounce">debounce</a></li><li data-type='method'><a href="module-UTILS.html#.deduplicate">deduplicate</a></li><li data-type='method'><a href="module-UTILS.html#.extract">extract</a></li><li data-type='method'><a href="module-UTILS.html#.frame">frame</a></li><li data-type='method'><a href="module-UTILS.html#.hash">hash</a></li><li data-type='method'><a href="module-UTILS.html#.noop">noop</a></li><li data-type='method'><a href="module-UTILS.html#.ready">ready</a></li><li data-type='method'><a href="module-UTILS.html#.shuffle">shuffle</a></li><li data-type='method'><a href="module-UTILS.html#.sleep">sleep</a></li><li data-type='method'><a href="module-UTILS.html#.uuid">uuid</a></li></ul></li></ul>
+    
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">constants/input-codes/midi/midi.channel-ten.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>// 'ESLint' configuration
+/* eslint-disable sort-imports */
+
+import {NOTE_0, NOTE_1, NOTE_2, NOTE_3, NOTE_4, NOTE_5, NOTE_6, NOTE_7, NOTE_8, NOTE_9, NOTE_10, NOTE_11, NOTE_12, NOTE_13, NOTE_14, NOTE_15, NOTE_16, NOTE_17, NOTE_18, NOTE_19, NOTE_20, NOTE_21, NOTE_22, NOTE_23, NOTE_24, NOTE_25, NOTE_26, NOTE_27, NOTE_28, NOTE_29, NOTE_30, NOTE_31, NOTE_32, NOTE_33, NOTE_34, NOTE_35, NOTE_36, NOTE_37, NOTE_38, NOTE_39, NOTE_40, NOTE_41, NOTE_42, NOTE_43, NOTE_44, NOTE_45, NOTE_46, NOTE_47, NOTE_48, NOTE_49, NOTE_50, NOTE_51, NOTE_52, NOTE_53, NOTE_54, NOTE_55, NOTE_56, NOTE_57, NOTE_58, NOTE_59, NOTE_60, NOTE_61, NOTE_62, NOTE_63, NOTE_64, NOTE_65, NOTE_66, NOTE_67, NOTE_68, NOTE_69, NOTE_70, NOTE_71, NOTE_72, NOTE_73, NOTE_74, NOTE_75, NOTE_76, NOTE_77, NOTE_78, NOTE_79, NOTE_80, NOTE_81, NOTE_82, NOTE_83, NOTE_84, NOTE_85, NOTE_86, NOTE_87, NOTE_88, NOTE_89, NOTE_90, NOTE_91, NOTE_92, NOTE_93, NOTE_94, NOTE_95, NOTE_96, NOTE_97, NOTE_98, NOTE_99, NOTE_100, NOTE_101, NOTE_102, NOTE_103, NOTE_104, NOTE_105, NOTE_106, NOTE_107, NOTE_108, NOTE_109, NOTE_110, NOTE_111, NOTE_112, NOTE_113, NOTE_114, NOTE_115, NOTE_116, NOTE_117, NOTE_118, NOTE_119, NOTE_120, NOTE_121, NOTE_122, NOTE_123, NOTE_124, NOTE_125, NOTE_126, NOTE_127} from './midi.channel-ten-notes.js';
+import {CONTROL_0, CONTROL_1, CONTROL_2, CONTROL_3, CONTROL_4, CONTROL_5, CONTROL_6, CONTROL_7, CONTROL_8, CONTROL_9, CONTROL_10, CONTROL_11, CONTROL_12, CONTROL_13, CONTROL_14, CONTROL_15, CONTROL_16, CONTROL_17, CONTROL_18, CONTROL_19, CONTROL_20, CONTROL_21, CONTROL_22, CONTROL_23, CONTROL_24, CONTROL_25, CONTROL_26, CONTROL_27, CONTROL_28, CONTROL_29, CONTROL_30, CONTROL_31, CONTROL_32, CONTROL_33, CONTROL_34, CONTROL_35, CONTROL_36, CONTROL_37, CONTROL_38, CONTROL_39, CONTROL_40, CONTROL_41, CONTROL_42, CONTROL_43, CONTROL_44, CONTROL_45, CONTROL_46, CONTROL_47, CONTROL_48, CONTROL_49, CONTROL_50, CONTROL_51, CONTROL_52, CONTROL_53, CONTROL_54, CONTROL_55, CONTROL_56, CONTROL_57, CONTROL_58, CONTROL_59, CONTROL_60, CONTROL_61, CONTROL_62, CONTROL_63, CONTROL_64, CONTROL_65, CONTROL_66, CONTROL_67, CONTROL_68, CONTROL_69, CONTROL_70, CONTROL_71, CONTROL_72, CONTROL_73, CONTROL_74, CONTROL_75, CONTROL_76, CONTROL_77, CONTROL_78, CONTROL_79, CONTROL_80, CONTROL_81, CONTROL_82, CONTROL_83, CONTROL_84, CONTROL_85, CONTROL_86, CONTROL_87, CONTROL_88, CONTROL_89, CONTROL_90, CONTROL_91, CONTROL_92, CONTROL_93, CONTROL_94, CONTROL_95, CONTROL_96, CONTROL_97, CONTROL_98, CONTROL_99, CONTROL_100, CONTROL_101, CONTROL_102, CONTROL_103, CONTROL_104, CONTROL_105, CONTROL_106, CONTROL_107, CONTROL_108, CONTROL_109, CONTROL_110, CONTROL_111, CONTROL_112, CONTROL_113, CONTROL_114, CONTROL_115, CONTROL_116, CONTROL_117, CONTROL_118, CONTROL_119} from './midi.channel-ten-controls.js';
+import {PROGRAM_0, PROGRAM_1, PROGRAM_2, PROGRAM_3, PROGRAM_4, PROGRAM_5, PROGRAM_6, PROGRAM_7, PROGRAM_8, PROGRAM_9, PROGRAM_10, PROGRAM_11, PROGRAM_12, PROGRAM_13, PROGRAM_14, PROGRAM_15, PROGRAM_16, PROGRAM_17, PROGRAM_18, PROGRAM_19, PROGRAM_20, PROGRAM_21, PROGRAM_22, PROGRAM_23, PROGRAM_24, PROGRAM_25, PROGRAM_26, PROGRAM_27, PROGRAM_28, PROGRAM_29, PROGRAM_30, PROGRAM_31, PROGRAM_32, PROGRAM_33, PROGRAM_34, PROGRAM_35, PROGRAM_36, PROGRAM_37, PROGRAM_38, PROGRAM_39, PROGRAM_40, PROGRAM_41, PROGRAM_42, PROGRAM_43, PROGRAM_44, PROGRAM_45, PROGRAM_46, PROGRAM_47, PROGRAM_48, PROGRAM_49, PROGRAM_50, PROGRAM_51, PROGRAM_52, PROGRAM_53, PROGRAM_54, PROGRAM_55, PROGRAM_56, PROGRAM_57, PROGRAM_58, PROGRAM_59, PROGRAM_60, PROGRAM_61, PROGRAM_62, PROGRAM_63, PROGRAM_64, PROGRAM_65, PROGRAM_66, PROGRAM_67, PROGRAM_68, PROGRAM_69, PROGRAM_70, PROGRAM_71, PROGRAM_72, PROGRAM_73, PROGRAM_74, PROGRAM_75, PROGRAM_76, PROGRAM_77, PROGRAM_78, PROGRAM_79, PROGRAM_80, PROGRAM_81, PROGRAM_82, PROGRAM_83, PROGRAM_84, PROGRAM_85, PROGRAM_86, PROGRAM_87, PROGRAM_88, PROGRAM_89, PROGRAM_90, PROGRAM_91, PROGRAM_92, PROGRAM_93, PROGRAM_94, PROGRAM_95, PROGRAM_96, PROGRAM_97, PROGRAM_98, PROGRAM_99, PROGRAM_100, PROGRAM_101, PROGRAM_102, PROGRAM_103, PROGRAM_104, PROGRAM_105, PROGRAM_106, PROGRAM_107, PROGRAM_108, PROGRAM_109, PROGRAM_110, PROGRAM_111, PROGRAM_112, PROGRAM_113, PROGRAM_114, PROGRAM_115, PROGRAM_116, PROGRAM_117, PROGRAM_118, PROGRAM_119, PROGRAM_120, PROGRAM_121, PROGRAM_122, PROGRAM_123, PROGRAM_124, PROGRAM_125, PROGRAM_126, PROGRAM_127} from './midi.channel-ten-programs.js';
+
+/**
+ * @module INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+
+export {
+
+    NOTE_0,
+    NOTE_1,
+    NOTE_2,
+    NOTE_3,
+    NOTE_4,
+    NOTE_5,
+    NOTE_6,
+    NOTE_7,
+    NOTE_8,
+    NOTE_9,
+    NOTE_10,
+    NOTE_11,
+    NOTE_12,
+    NOTE_13,
+    NOTE_14,
+    NOTE_15,
+    NOTE_16,
+    NOTE_17,
+    NOTE_18,
+    NOTE_19,
+    NOTE_20,
+    NOTE_21,
+    NOTE_22,
+    NOTE_23,
+    NOTE_24,
+    NOTE_25,
+    NOTE_26,
+    NOTE_27,
+    NOTE_28,
+    NOTE_29,
+    NOTE_30,
+    NOTE_31,
+    NOTE_32,
+    NOTE_33,
+    NOTE_34,
+    NOTE_35,
+    NOTE_36,
+    NOTE_37,
+    NOTE_38,
+    NOTE_39,
+    NOTE_40,
+    NOTE_41,
+    NOTE_42,
+    NOTE_43,
+    NOTE_44,
+    NOTE_45,
+    NOTE_46,
+    NOTE_47,
+    NOTE_48,
+    NOTE_49,
+    NOTE_50,
+    NOTE_51,
+    NOTE_52,
+    NOTE_53,
+    NOTE_54,
+    NOTE_55,
+    NOTE_56,
+    NOTE_57,
+    NOTE_58,
+    NOTE_59,
+    NOTE_60,
+    NOTE_61,
+    NOTE_62,
+    NOTE_63,
+    NOTE_64,
+    NOTE_65,
+    NOTE_66,
+    NOTE_67,
+    NOTE_68,
+    NOTE_69,
+    NOTE_70,
+    NOTE_71,
+    NOTE_72,
+    NOTE_73,
+    NOTE_74,
+    NOTE_75,
+    NOTE_76,
+    NOTE_77,
+    NOTE_78,
+    NOTE_79,
+    NOTE_80,
+    NOTE_81,
+    NOTE_82,
+    NOTE_83,
+    NOTE_84,
+    NOTE_85,
+    NOTE_86,
+    NOTE_87,
+    NOTE_88,
+    NOTE_89,
+    NOTE_90,
+    NOTE_91,
+    NOTE_92,
+    NOTE_93,
+    NOTE_94,
+    NOTE_95,
+    NOTE_96,
+    NOTE_97,
+    NOTE_98,
+    NOTE_99,
+    NOTE_100,
+    NOTE_101,
+    NOTE_102,
+    NOTE_103,
+    NOTE_104,
+    NOTE_105,
+    NOTE_106,
+    NOTE_107,
+    NOTE_108,
+    NOTE_109,
+    NOTE_110,
+    NOTE_111,
+    NOTE_112,
+    NOTE_113,
+    NOTE_114,
+    NOTE_115,
+    NOTE_116,
+    NOTE_117,
+    NOTE_118,
+    NOTE_119,
+    NOTE_120,
+    NOTE_121,
+    NOTE_122,
+    NOTE_123,
+    NOTE_124,
+    NOTE_125,
+    NOTE_126,
+    NOTE_127,
+
+    CONTROL_0,
+    CONTROL_1,
+    CONTROL_2,
+    CONTROL_3,
+    CONTROL_4,
+    CONTROL_5,
+    CONTROL_6,
+    CONTROL_7,
+    CONTROL_8,
+    CONTROL_9,
+    CONTROL_10,
+    CONTROL_11,
+    CONTROL_12,
+    CONTROL_13,
+    CONTROL_14,
+    CONTROL_15,
+    CONTROL_16,
+    CONTROL_17,
+    CONTROL_18,
+    CONTROL_19,
+    CONTROL_20,
+    CONTROL_21,
+    CONTROL_22,
+    CONTROL_23,
+    CONTROL_24,
+    CONTROL_25,
+    CONTROL_26,
+    CONTROL_27,
+    CONTROL_28,
+    CONTROL_29,
+    CONTROL_30,
+    CONTROL_31,
+    CONTROL_32,
+    CONTROL_33,
+    CONTROL_34,
+    CONTROL_35,
+    CONTROL_36,
+    CONTROL_37,
+    CONTROL_38,
+    CONTROL_39,
+    CONTROL_40,
+    CONTROL_41,
+    CONTROL_42,
+    CONTROL_43,
+    CONTROL_44,
+    CONTROL_45,
+    CONTROL_46,
+    CONTROL_47,
+    CONTROL_48,
+    CONTROL_49,
+    CONTROL_50,
+    CONTROL_51,
+    CONTROL_52,
+    CONTROL_53,
+    CONTROL_54,
+    CONTROL_55,
+    CONTROL_56,
+    CONTROL_57,
+    CONTROL_58,
+    CONTROL_59,
+    CONTROL_60,
+    CONTROL_61,
+    CONTROL_62,
+    CONTROL_63,
+    CONTROL_64,
+    CONTROL_65,
+    CONTROL_66,
+    CONTROL_67,
+    CONTROL_68,
+    CONTROL_69,
+    CONTROL_70,
+    CONTROL_71,
+    CONTROL_72,
+    CONTROL_73,
+    CONTROL_74,
+    CONTROL_75,
+    CONTROL_76,
+    CONTROL_77,
+    CONTROL_78,
+    CONTROL_79,
+    CONTROL_80,
+    CONTROL_81,
+    CONTROL_82,
+    CONTROL_83,
+    CONTROL_84,
+    CONTROL_85,
+    CONTROL_86,
+    CONTROL_87,
+    CONTROL_88,
+    CONTROL_89,
+    CONTROL_90,
+    CONTROL_91,
+    CONTROL_92,
+    CONTROL_93,
+    CONTROL_94,
+    CONTROL_95,
+    CONTROL_96,
+    CONTROL_97,
+    CONTROL_98,
+    CONTROL_99,
+    CONTROL_100,
+    CONTROL_101,
+    CONTROL_102,
+    CONTROL_103,
+    CONTROL_104,
+    CONTROL_105,
+    CONTROL_106,
+    CONTROL_107,
+    CONTROL_108,
+    CONTROL_109,
+    CONTROL_110,
+    CONTROL_111,
+    CONTROL_112,
+    CONTROL_113,
+    CONTROL_114,
+    CONTROL_115,
+    CONTROL_116,
+    CONTROL_117,
+    CONTROL_118,
+    CONTROL_119,
+
+    PROGRAM_0,
+    PROGRAM_1,
+    PROGRAM_2,
+    PROGRAM_3,
+    PROGRAM_4,
+    PROGRAM_5,
+    PROGRAM_6,
+    PROGRAM_7,
+    PROGRAM_8,
+    PROGRAM_9,
+    PROGRAM_10,
+    PROGRAM_11,
+    PROGRAM_12,
+    PROGRAM_13,
+    PROGRAM_14,
+    PROGRAM_15,
+    PROGRAM_16,
+    PROGRAM_17,
+    PROGRAM_18,
+    PROGRAM_19,
+    PROGRAM_20,
+    PROGRAM_21,
+    PROGRAM_22,
+    PROGRAM_23,
+    PROGRAM_24,
+    PROGRAM_25,
+    PROGRAM_26,
+    PROGRAM_27,
+    PROGRAM_28,
+    PROGRAM_29,
+    PROGRAM_30,
+    PROGRAM_31,
+    PROGRAM_32,
+    PROGRAM_33,
+    PROGRAM_34,
+    PROGRAM_35,
+    PROGRAM_36,
+    PROGRAM_37,
+    PROGRAM_38,
+    PROGRAM_39,
+    PROGRAM_40,
+    PROGRAM_41,
+    PROGRAM_42,
+    PROGRAM_43,
+    PROGRAM_44,
+    PROGRAM_45,
+    PROGRAM_46,
+    PROGRAM_47,
+    PROGRAM_48,
+    PROGRAM_49,
+    PROGRAM_50,
+    PROGRAM_51,
+    PROGRAM_52,
+    PROGRAM_53,
+    PROGRAM_54,
+    PROGRAM_55,
+    PROGRAM_56,
+    PROGRAM_57,
+    PROGRAM_58,
+    PROGRAM_59,
+    PROGRAM_60,
+    PROGRAM_61,
+    PROGRAM_62,
+    PROGRAM_63,
+    PROGRAM_64,
+    PROGRAM_65,
+    PROGRAM_66,
+    PROGRAM_67,
+    PROGRAM_68,
+    PROGRAM_69,
+    PROGRAM_70,
+    PROGRAM_71,
+    PROGRAM_72,
+    PROGRAM_73,
+    PROGRAM_74,
+    PROGRAM_75,
+    PROGRAM_76,
+    PROGRAM_77,
+    PROGRAM_78,
+    PROGRAM_79,
+    PROGRAM_80,
+    PROGRAM_81,
+    PROGRAM_82,
+    PROGRAM_83,
+    PROGRAM_84,
+    PROGRAM_85,
+    PROGRAM_86,
+    PROGRAM_87,
+    PROGRAM_88,
+    PROGRAM_89,
+    PROGRAM_90,
+    PROGRAM_91,
+    PROGRAM_92,
+    PROGRAM_93,
+    PROGRAM_94,
+    PROGRAM_95,
+    PROGRAM_96,
+    PROGRAM_97,
+    PROGRAM_98,
+    PROGRAM_99,
+    PROGRAM_100,
+    PROGRAM_101,
+    PROGRAM_102,
+    PROGRAM_103,
+    PROGRAM_104,
+    PROGRAM_105,
+    PROGRAM_106,
+    PROGRAM_107,
+    PROGRAM_108,
+    PROGRAM_109,
+    PROGRAM_110,
+    PROGRAM_111,
+    PROGRAM_112,
+    PROGRAM_113,
+    PROGRAM_114,
+    PROGRAM_115,
+    PROGRAM_116,
+    PROGRAM_117,
+    PROGRAM_118,
+    PROGRAM_119,
+    PROGRAM_120,
+    PROGRAM_121,
+    PROGRAM_122,
+    PROGRAM_123,
+    PROGRAM_124,
+    PROGRAM_125,
+    PROGRAM_126,
+    PROGRAM_127
+};
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.5</a> on Thu Apr 09 2026 15:37:27 GMT+0000 (Coordinated Universal Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+<script src="scripts/search.js" defer></script>
+
+
+
+</body>
+</html>

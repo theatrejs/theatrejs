@@ -1,0 +1,5186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>INPUT_CODES/KEYBOARDS/AZERTY - Documentation</title>
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <script src="scripts/nav.js" defer></script>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav >
+    
+    <input type="text" id="nav-search" placeholder="Search" />
+    
+    
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="AABB.html">AABB</a><ul class='methods'><li data-type='method'><a href="AABB.html#clone">clone</a></li><li data-type='method'><a href="AABB.html#equal">equal</a></li><li data-type='method'><a href="AABB.html#translate">translate</a></li><li data-type='method'><a href="AABB.html#translateX">translateX</a></li><li data-type='method'><a href="AABB.html#translateY">translateY</a></li><li data-type='method'><a href="AABB.html#.distanceManhattan">distanceManhattan</a></li><li data-type='method'><a href="AABB.html#.distanceX">distanceX</a></li><li data-type='method'><a href="AABB.html#.distanceY">distanceY</a></li><li data-type='method'><a href="AABB.html#.from">from</a></li><li data-type='method'><a href="AABB.html#.fromSize">fromSize</a></li><li data-type='method'><a href="AABB.html#.overlapX">overlapX</a></li><li data-type='method'><a href="AABB.html#.overlapY">overlapY</a></li></ul></li><li><a href="Actor.html">Actor</a><ul class='methods'><li data-type='method'><a href="Actor.html#addMidi">addMidi</a></li><li data-type='method'><a href="Actor.html#addSound">addSound</a></li><li data-type='method'><a href="Actor.html#addVibration">addVibration</a></li><li data-type='method'><a href="Actor.html#follow">follow</a></li><li data-type='method'><a href="Actor.html#getComponent">getComponent</a></li><li data-type='method'><a href="Actor.html#hasCollider">hasCollider</a></li><li data-type='method'><a href="Actor.html#hasComponent">hasComponent</a></li><li data-type='method'><a href="Actor.html#hasSprite">hasSprite</a></li><li data-type='method'><a href="Actor.html#listenAction">listenAction</a></li><li data-type='method'><a href="Actor.html#listenState">listenState</a></li><li data-type='method'><a href="Actor.html#mimic">mimic</a></li><li data-type='method'><a href="Actor.html#onAfterRemove">onAfterRemove</a></li><li data-type='method'><a href="Actor.html#onBeforeRemove">onBeforeRemove</a></li><li data-type='method'><a href="Actor.html#onCollide">onCollide</a></li><li data-type='method'><a href="Actor.html#onCollideEnter">onCollideEnter</a></li><li data-type='method'><a href="Actor.html#onCollideLeave">onCollideLeave</a></li><li data-type='method'><a href="Actor.html#onCreate">onCreate</a></li><li data-type='method'><a href="Actor.html#onSetVisible">onSetVisible</a></li><li data-type='method'><a href="Actor.html#onSetZIndex">onSetZIndex</a></li><li data-type='method'><a href="Actor.html#onSoundFinish">onSoundFinish</a></li><li data-type='method'><a href="Actor.html#onTick">onTick</a></li><li data-type='method'><a href="Actor.html#onTranslate">onTranslate</a></li><li data-type='method'><a href="Actor.html#removeCollider">removeCollider</a></li><li data-type='method'><a href="Actor.html#removeComponent">removeComponent</a></li><li data-type='method'><a href="Actor.html#removeMidi">removeMidi</a></li><li data-type='method'><a href="Actor.html#removeMidis">removeMidis</a></li><li data-type='method'><a href="Actor.html#removeSound">removeSound</a></li><li data-type='method'><a href="Actor.html#removeSounds">removeSounds</a></li><li data-type='method'><a href="Actor.html#removeSprite">removeSprite</a></li><li data-type='method'><a href="Actor.html#removeVibration">removeVibration</a></li><li data-type='method'><a href="Actor.html#removeVibrations">removeVibrations</a></li><li data-type='method'><a href="Actor.html#setCollider">setCollider</a></li><li data-type='method'><a href="Actor.html#setComponent">setComponent</a></li><li data-type='method'><a href="Actor.html#setIdentifier">setIdentifier</a></li><li data-type='method'><a href="Actor.html#setLabel">setLabel</a></li><li data-type='method'><a href="Actor.html#setSprite">setSprite</a></li><li data-type='method'><a href="Actor.html#setVisible">setVisible</a></li><li data-type='method'><a href="Actor.html#setZIndex">setZIndex</a></li><li data-type='method'><a href="Actor.html#translate">translate</a></li><li data-type='method'><a href="Actor.html#translateTo">translateTo</a></li><li data-type='method'><a href="Actor.html#translateX">translateX</a></li><li data-type='method'><a href="Actor.html#translateY">translateY</a></li><li data-type='method'><a href="Actor.html#triggerAction">triggerAction</a></li><li data-type='method'><a href="Actor.html#triggerState">triggerState</a></li><li data-type='method'><a href="Actor.html#unfollow">unfollow</a></li><li data-type='method'><a href="Actor.html#unmimic">unmimic</a></li></ul></li><li><a href="BehaviorTree.html">BehaviorTree</a><ul class='methods'><li data-type='method'><a href="BehaviorTree.html#tick">tick</a></li></ul></li><li><a href="BehaviorTreeNode.html">BehaviorTreeNode</a><ul class='methods'><li data-type='method'><a href="BehaviorTreeNode.html#tick">tick</a></li></ul></li><li><a href="BehaviorTreeNodeAction.html">BehaviorTreeNodeAction</a><ul class='methods'><li data-type='method'><a href="BehaviorTreeNodeAction.html#tick">tick</a></li></ul></li><li><a href="BehaviorTreeNodeSelector.html">BehaviorTreeNodeSelector</a><ul class='methods'><li data-type='method'><a href="BehaviorTreeNodeSelector.html#tick">tick</a></li></ul></li><li><a href="BehaviorTreeNodeSequencer.html">BehaviorTreeNodeSequencer</a><ul class='methods'><li data-type='method'><a href="BehaviorTreeNodeSequencer.html#tick">tick</a></li></ul></li><li><a href="Collider.html">Collider</a></li><li><a href="Curve.html">Curve</a><ul class='methods'><li data-type='method'><a href="Curve.html#getProgress">getProgress</a></li><li data-type='method'><a href="Curve.html#getValues">getValues</a></li><li data-type='method'><a href="Curve.html#setDuration">setDuration</a></li></ul></li><li><a href="Engine.html">Engine</a><ul class='methods'><li data-type='method'><a href="Engine.html#checkResized">checkResized</a></li><li data-type='method'><a href="Engine.html#createStage">createStage</a></li><li data-type='method'><a href="Engine.html#getBoundariesFromFraming">getBoundariesFromFraming</a></li><li data-type='method'><a href="Engine.html#getBoundariesFromScreen">getBoundariesFromScreen</a></li><li data-type='method'><a href="Engine.html#getInput">getInput</a></li><li data-type='method'><a href="Engine.html#getInputAnalog">getInputAnalog</a></li><li data-type='method'><a href="Engine.html#getInputDown">getInputDown</a></li><li data-type='method'><a href="Engine.html#getInputUp">getInputUp</a></li><li data-type='method'><a href="Engine.html#getTranslationFromScreen">getTranslationFromScreen</a></li><li data-type='method'><a href="Engine.html#getTranslationFromViewportPointer">getTranslationFromViewportPointer</a></li><li data-type='method'><a href="Engine.html#hasAssetLoaded">hasAssetLoaded</a></li><li data-type='method'><a href="Engine.html#initiate">initiate</a></li><li data-type='method'><a href="Engine.html#preloadStage">preloadStage</a></li><li data-type='method'><a href="Engine.html#raycast">raycast</a></li><li data-type='method'><a href="Engine.html#removePointerNative">removePointerNative</a></li><li data-type='method'><a href="Engine.html#setColor">setColor</a></li><li data-type='method'><a href="Engine.html#setFraming">setFraming</a></li><li data-type='method'><a href="Engine.html#terminate">terminate</a></li><li data-type='method'><a href="Engine.html#tick">tick</a></li></ul></li><li><a href="EventBus.html">EventBus</a><ul class='methods'><li data-type='method'><a href="EventBus.html#listen">listen</a></li><li data-type='method'><a href="EventBus.html#trigger">trigger</a></li></ul></li><li><a href="EventGamepad.html">EventGamepad</a></li><li><a href="EventGamepadAnalog.html">EventGamepadAnalog</a></li><li><a href="EventGamepadDigital.html">EventGamepadDigital</a></li><li><a href="EventGravityAnalog.html">EventGravityAnalog</a></li><li><a href="EventGravityDigital.html">EventGravityDigital</a></li><li><a href="EventGyroscopeAnalog.html">EventGyroscopeAnalog</a></li><li><a href="EventGyroscopeDigital.html">EventGyroscopeDigital</a></li><li><a href="EventMidi.html">EventMidi</a></li><li><a href="EventMidiAnalog.html">EventMidiAnalog</a></li><li><a href="EventMidiDigital.html">EventMidiDigital</a></li><li><a href="EventPointerAnalog.html">EventPointerAnalog</a></li><li><a href="EventPointerDigital.html">EventPointerDigital</a></li><li><a href="ExtensionGamepad.html">ExtensionGamepad</a><ul class='methods'><li data-type='method'><a href="ExtensionGamepad.html#.activate">activate</a></li></ul></li><li><a href="ExtensionGravity.html">ExtensionGravity</a><ul class='methods'><li data-type='method'><a href="ExtensionGravity.html#.activate">activate</a></li></ul></li><li><a href="ExtensionGyroscope.html">ExtensionGyroscope</a><ul class='methods'><li data-type='method'><a href="ExtensionGyroscope.html#.activate">activate</a></li></ul></li><li><a href="ExtensionMidi.html">ExtensionMidi</a><ul class='methods'><li data-type='method'><a href="ExtensionMidi.html#.activate">activate</a></li></ul></li><li><a href="ExtensionPointer.html">ExtensionPointer</a><ul class='methods'><li data-type='method'><a href="ExtensionPointer.html#.activate">activate</a></li></ul></li><li><a href="FiniteStateMachine.html">FiniteStateMachine</a><ul class='methods'><li data-type='method'><a href="FiniteStateMachine.html#initiate">initiate</a></li><li data-type='method'><a href="FiniteStateMachine.html#tick">tick</a></li></ul></li><li><a href="Grid.html">Grid</a><ul class='methods'><li data-type='method'><a href="Grid.html#clear">clear</a></li><li data-type='method'><a href="Grid.html#clone">clone</a></li><li data-type='method'><a href="Grid.html#delete">delete</a></li><li data-type='method'><a href="Grid.html#get">get</a></li><li data-type='method'><a href="Grid.html#has">has</a></li><li data-type='method'><a href="Grid.html#iterate">iterate</a></li><li data-type='method'><a href="Grid.html#map">map</a></li><li data-type='method'><a href="Grid.html#set">set</a></li><li data-type='method'><a href="Grid.html#traverse">traverse</a></li><li data-type='method'><a href="Grid.html#unwatch">unwatch</a></li><li data-type='method'><a href="Grid.html#unwatchAll">unwatchAll</a></li><li data-type='method'><a href="Grid.html#watch">watch</a></li><li data-type='method'><a href="Grid.html#.from">from</a></li></ul></li><li><a href="Heap.html">Heap</a><ul class='methods'><li data-type='method'><a href="Heap.html#pop">pop</a></li><li data-type='method'><a href="Heap.html#push">push</a></li></ul></li><li><a href="Loop.html">Loop</a><ul class='methods'><li data-type='method'><a href="Loop.html#initiate">initiate</a></li><li data-type='method'><a href="Loop.html#terminate">terminate</a></li></ul></li><li><a href="Midi.html">Midi</a></li><li><a href="Pathfinder.html">Pathfinder</a><ul class='methods'><li data-type='method'><a href="Pathfinder.html#find">find</a></li></ul></li><li><a href="Preloadable.html">Preloadable</a></li><li><a href="Quaternion.html">Quaternion</a></li><li><a href="Queue.html">Queue</a><ul class='methods'><li data-type='method'><a href="Queue.html#clear">clear</a></li><li data-type='method'><a href="Queue.html#pop">pop</a></li><li data-type='method'><a href="Queue.html#push">push</a></li></ul></li><li><a href="Seed.html">Seed</a><ul class='methods'><li data-type='method'><a href="Seed.html#random">random</a></li><li data-type='method'><a href="Seed.html#range">range</a></li><li data-type='method'><a href="Seed.html#shuffle">shuffle</a></li><li data-type='method'><a href="Seed.html#success">success</a></li></ul></li><li><a href="Shader.html">Shader</a></li><li><a href="Sound.html">Sound</a></li><li><a href="Sprite.html">Sprite</a></li><li><a href="Stack.html">Stack</a><ul class='methods'><li data-type='method'><a href="Stack.html#clear">clear</a></li><li data-type='method'><a href="Stack.html#pop">pop</a></li><li data-type='method'><a href="Stack.html#push">push</a></li></ul></li><li><a href="Stage.html">Stage</a><ul class='methods'><li data-type='method'><a href="Stage.html#createActor">createActor</a></li><li data-type='method'><a href="Stage.html#getActorWithLabel">getActorWithLabel</a></li><li data-type='method'><a href="Stage.html#getActorsWithLabel">getActorsWithLabel</a></li><li data-type='method'><a href="Stage.html#hasActor">hasActor</a></li><li data-type='method'><a href="Stage.html#hasActorWithLabel">hasActorWithLabel</a></li><li data-type='method'><a href="Stage.html#onCreate">onCreate</a></li><li data-type='method'><a href="Stage.html#removeActor">removeActor</a></li><li data-type='method'><a href="Stage.html#removeActorWithLabel">removeActorWithLabel</a></li><li data-type='method'><a href="Stage.html#removeActors">removeActors</a></li><li data-type='method'><a href="Stage.html#removeActorsWithLabel">removeActorsWithLabel</a></li><li data-type='method'><a href="Stage.html#setPointOfView">setPointOfView</a></li></ul></li><li><a href="State.html">State</a><ul class='methods'><li data-type='method'><a href="State.html#getState">getState</a></li><li data-type='method'><a href="State.html#setState">setState</a></li><li data-type='method'><a href="State.html#unwatchAll">unwatchAll</a></li><li data-type='method'><a href="State.html#unwatchState">unwatchState</a></li><li data-type='method'><a href="State.html#watchState">watchState</a></li></ul></li><li><a href="System.html">System</a><ul class='methods'><li data-type='method'><a href="System.html#initiate">initiate</a></li><li data-type='method'><a href="System.html#onInitiate">onInitiate</a></li><li data-type='method'><a href="System.html#onTerminate">onTerminate</a></li><li data-type='method'><a href="System.html#onTick">onTick</a></li><li data-type='method'><a href="System.html#terminate">terminate</a></li><li data-type='method'><a href="System.html#tick">tick</a></li></ul></li><li><a href="SystemActor.html">SystemActor</a><ul class='methods'><li data-type='method'><a href="SystemActor.html#onTick">onTick</a></li></ul></li><li><a href="SystemAudio.html">SystemAudio</a><ul class='methods'><li data-type='method'><a href="SystemAudio.html#hasAssetLoaded">hasAssetLoaded</a></li><li data-type='method'><a href="SystemAudio.html#loadAudio">loadAudio</a></li><li data-type='method'><a href="SystemAudio.html#onInitiate">onInitiate</a></li><li data-type='method'><a href="SystemAudio.html#onTerminate">onTerminate</a></li><li data-type='method'><a href="SystemAudio.html#onTick">onTick</a></li></ul></li><li><a href="SystemCollision.html">SystemCollision</a><ul class='methods'><li data-type='method'><a href="SystemCollision.html#onInitiate">onInitiate</a></li><li data-type='method'><a href="SystemCollision.html#onTick">onTick</a></li></ul></li><li><a href="SystemInput.html">SystemInput</a><ul class='methods'><li data-type='method'><a href="SystemInput.html#getInput">getInput</a></li><li data-type='method'><a href="SystemInput.html#getInputAnalog">getInputAnalog</a></li><li data-type='method'><a href="SystemInput.html#getInputDown">getInputDown</a></li><li data-type='method'><a href="SystemInput.html#getInputUp">getInputUp</a></li><li data-type='method'><a href="SystemInput.html#onInitiate">onInitiate</a></li><li data-type='method'><a href="SystemInput.html#onTerminate">onTerminate</a></li><li data-type='method'><a href="SystemInput.html#onTick">onTick</a></li></ul></li><li><a href="SystemMidi.html">SystemMidi</a><ul class='methods'><li data-type='method'><a href="SystemMidi.html#onTick">onTick</a></li></ul></li><li><a href="SystemRender.html">SystemRender</a><ul class='methods'><li data-type='method'><a href="SystemRender.html#$getActorsVisible">$getActorsVisible</a></li><li data-type='method'><a href="SystemRender.html#checkResized">checkResized</a></li><li data-type='method'><a href="SystemRender.html#getBoundariesFromFraming">getBoundariesFromFraming</a></li><li data-type='method'><a href="SystemRender.html#getBoundariesFromScreen">getBoundariesFromScreen</a></li><li data-type='method'><a href="SystemRender.html#getTranslationFromScreen">getTranslationFromScreen</a></li><li data-type='method'><a href="SystemRender.html#hasAssetLoaded">hasAssetLoaded</a></li><li data-type='method'><a href="SystemRender.html#loadTexture">loadTexture</a></li><li data-type='method'><a href="SystemRender.html#onInitiate">onInitiate</a></li><li data-type='method'><a href="SystemRender.html#onTerminate">onTerminate</a></li><li data-type='method'><a href="SystemRender.html#onTick">onTick</a></li><li data-type='method'><a href="SystemRender.html#raycast">raycast</a></li><li data-type='method'><a href="SystemRender.html#removePointerNative">removePointerNative</a></li><li data-type='method'><a href="SystemRender.html#setColor">setColor</a></li><li data-type='method'><a href="SystemRender.html#setFraming">setFraming</a></li></ul></li><li><a href="SystemVibration.html">SystemVibration</a><ul class='methods'><li data-type='method'><a href="SystemVibration.html#onInitiate">onInitiate</a></li><li data-type='method'><a href="SystemVibration.html#onTerminate">onTerminate</a></li><li data-type='method'><a href="SystemVibration.html#onTick">onTick</a></li></ul></li><li><a href="Timeline.html">Timeline</a><ul class='methods'><li data-type='method'><a href="Timeline.html#addTimeline">addTimeline</a></li><li data-type='method'><a href="Timeline.html#clone">clone</a></li><li data-type='method'><a href="Timeline.html#offset">offset</a></li><li data-type='method'><a href="Timeline.html#seekName">seekName</a></li><li data-type='method'><a href="Timeline.html#seekTimecode">seekTimecode</a></li><li data-type='method'><a href="Timeline.html#tick">tick</a></li></ul></li><li><a href="TimelineKeyframe.html">TimelineKeyframe</a><ul class='methods'><li data-type='method'><a href="TimelineKeyframe.html#clone">clone</a></li><li data-type='method'><a href="TimelineKeyframe.html#offset">offset</a></li></ul></li><li><a href="Vector2.html">Vector2</a><ul class='methods'><li data-type='method'><a href="Vector2.html#add">add</a></li><li data-type='method'><a href="Vector2.html#ceil">ceil</a></li><li data-type='method'><a href="Vector2.html#clone">clone</a></li><li data-type='method'><a href="Vector2.html#equal">equal</a></li><li data-type='method'><a href="Vector2.html#floor">floor</a></li><li data-type='method'><a href="Vector2.html#length">length</a></li><li data-type='method'><a href="Vector2.html#multiply">multiply</a></li><li data-type='method'><a href="Vector2.html#negate">negate</a></li><li data-type='method'><a href="Vector2.html#normalize">normalize</a></li><li data-type='method'><a href="Vector2.html#rotate">rotate</a></li><li data-type='method'><a href="Vector2.html#round">round</a></li><li data-type='method'><a href="Vector2.html#scale">scale</a></li><li data-type='method'><a href="Vector2.html#subtract">subtract</a></li><li data-type='method'><a href="Vector2.html#.deserialize">deserialize</a></li><li data-type='method'><a href="Vector2.html#.distanceDiagonal">distanceDiagonal</a></li><li data-type='method'><a href="Vector2.html#.distanceEuclidean">distanceEuclidean</a></li><li data-type='method'><a href="Vector2.html#.distanceManhattan">distanceManhattan</a></li><li data-type='method'><a href="Vector2.html#.from">from</a></li><li data-type='method'><a href="Vector2.html#.serialize">serialize</a></li></ul></li><li><a href="Vector3.html">Vector3</a><ul class='methods'><li data-type='method'><a href="Vector3.html#add">add</a></li><li data-type='method'><a href="Vector3.html#ceil">ceil</a></li><li data-type='method'><a href="Vector3.html#clone">clone</a></li><li data-type='method'><a href="Vector3.html#equal">equal</a></li><li data-type='method'><a href="Vector3.html#floor">floor</a></li><li data-type='method'><a href="Vector3.html#length">length</a></li><li data-type='method'><a href="Vector3.html#multiply">multiply</a></li><li data-type='method'><a href="Vector3.html#negate">negate</a></li><li data-type='method'><a href="Vector3.html#normalize">normalize</a></li><li data-type='method'><a href="Vector3.html#rotate">rotate</a></li><li data-type='method'><a href="Vector3.html#round">round</a></li><li data-type='method'><a href="Vector3.html#scale">scale</a></li><li data-type='method'><a href="Vector3.html#subtract">subtract</a></li><li data-type='method'><a href="Vector3.html#.deserialize">deserialize</a></li><li data-type='method'><a href="Vector3.html#.from">from</a></li><li data-type='method'><a href="Vector3.html#.serialize">serialize</a></li></ul></li><li><a href="Vibration.html">Vibration</a></li></ul><h3>Modules</h3><ul><li><a href="module-COLLIDER_TYPES.html">COLLIDER_TYPES</a></li><li><a href="module-CONTENT_TYPES.html">CONTENT_TYPES</a></li><li><a href="module-CONTEXT_TYPE.html">CONTEXT_TYPE</a></li><li><a href="module-CURVES.html">CURVES</a><ul class='methods'><li data-type='method'><a href="module-CURVES.html#.cosine">cosine</a></li><li data-type='method'><a href="module-CURVES.html#.double">double</a></li><li data-type='method'><a href="module-CURVES.html#.easeIn">easeIn</a></li><li data-type='method'><a href="module-CURVES.html#.easeInOut">easeInOut</a></li><li data-type='method'><a href="module-CURVES.html#.easeOut">easeOut</a></li><li data-type='method'><a href="module-CURVES.html#.half">half</a></li><li data-type='method'><a href="module-CURVES.html#.invert">invert</a></li><li data-type='method'><a href="module-CURVES.html#.linear">linear</a></li><li data-type='method'><a href="module-CURVES.html#.multiply">multiply</a></li><li data-type='method'><a href="module-CURVES.html#.negate">negate</a></li><li data-type='method'><a href="module-CURVES.html#.reverse">reverse</a></li><li data-type='method'><a href="module-CURVES.html#.sine">sine</a></li></ul></li><li><a href="module-EVENT_CODES_GAMEPADS_PLAYSTATION.html">EVENT_CODES/GAMEPADS/PLAYSTATION</a></li><li><a href="module-EVENT_CODES_GAMEPADS_STANDARD.html">EVENT_CODES/GAMEPADS/STANDARD</a></li><li><a href="module-EVENT_CODES_GAMEPADS_XBOX.html">EVENT_CODES/GAMEPADS/XBOX</a></li><li><a href="module-EVENT_CODES_MIDI.html">EVENT_CODES/MIDI</a></li><li><a href="module-EVENT_TYPES_GAMEPAD.html">EVENT_TYPES/GAMEPAD</a></li><li><a href="module-EVENT_TYPES_GRAVITY.html">EVENT_TYPES/GRAVITY</a></li><li><a href="module-EVENT_TYPES_GYROSCOPE.html">EVENT_TYPES/GYROSCOPE</a></li><li><a href="module-EVENT_TYPES_KEYBOARD.html">EVENT_TYPES/KEYBOARD</a></li><li><a href="module-EVENT_TYPES_MIDI.html">EVENT_TYPES/MIDI</a></li><li><a href="module-EVENT_TYPES_NATIVE.html">EVENT_TYPES/NATIVE</a></li><li><a href="module-EVENT_TYPES_POINTER.html">EVENT_TYPES/POINTER</a></li><li><a href="module-FACTORIES.html">FACTORIES</a><ul class='methods'><li data-type='method'><a href="module-FACTORIES.html#.ActorWithPreloadables">ActorWithPreloadables</a></li><li data-type='method'><a href="module-FACTORIES.html#.PreloadableSound">PreloadableSound</a></li><li data-type='method'><a href="module-FACTORIES.html#.PreloadableTexture">PreloadableTexture</a></li><li data-type='method'><a href="module-FACTORIES.html#.StageWithPreloadables">StageWithPreloadables</a></li></ul></li><li><a href="module-INPUT_CODES_GAMEPADS_PLAYSTATION.html">INPUT_CODES/GAMEPADS/PLAYSTATION</a></li><li><a href="module-INPUT_CODES_GAMEPADS_STANDARD.html">INPUT_CODES/GAMEPADS/STANDARD</a></li><li><a href="module-INPUT_CODES_GAMEPADS_XBOX.html">INPUT_CODES/GAMEPADS/XBOX</a></li><li><a href="module-INPUT_CODES_GRAVITY.html">INPUT_CODES/GRAVITY</a></li><li><a href="module-INPUT_CODES_GYROSCOPE.html">INPUT_CODES/GYROSCOPE</a></li><li><a href="module-INPUT_CODES_KEYBOARDS_AZERTY.html">INPUT_CODES/KEYBOARDS/AZERTY</a></li><li><a href="module-INPUT_CODES_KEYBOARDS_QWERTY.html">INPUT_CODES/KEYBOARDS/QWERTY</a></li><li><a href="module-INPUT_CODES_KEYBOARDS_STANDARD.html">INPUT_CODES/KEYBOARDS/STANDARD</a></li><li><a href="module-INPUT_CODES_MIDI.html">INPUT_CODES/MIDI</a></li><li><a href="module-INPUT_CODES_MIDI_CHANNEL_EIGHT.html">INPUT_CODES/MIDI/CHANNEL_EIGHT</a></li><li><a href="module-INPUT_CODES_MIDI_CHANNEL_ELEVEN.html">INPUT_CODES/MIDI/CHANNEL_ELEVEN</a></li><li><a href="module-INPUT_CODES_MIDI_CHANNEL_FIFTEEN.html">INPUT_CODES/MIDI/CHANNEL_FIFTEEN</a></li><li><a href="module-INPUT_CODES_MIDI_CHANNEL_FIVE.html">INPUT_CODES/MIDI/CHANNEL_FIVE</a></li><li><a href="module-INPUT_CODES_MIDI_CHANNEL_FOUR.html">INPUT_CODES/MIDI/CHANNEL_FOUR</a></li><li><a href="module-INPUT_CODES_MIDI_CHANNEL_FOURTEEN.html">INPUT_CODES/MIDI/CHANNEL_FOURTEEN</a></li><li><a href="module-INPUT_CODES_MIDI_CHANNEL_NINE.html">INPUT_CODES/MIDI/CHANNEL_NINE</a></li><li><a href="module-INPUT_CODES_MIDI_CHANNEL_ONE.html">INPUT_CODES/MIDI/CHANNEL_ONE</a></li><li><a href="module-INPUT_CODES_MIDI_CHANNEL_SEVEN.html">INPUT_CODES/MIDI/CHANNEL_SEVEN</a></li><li><a href="module-INPUT_CODES_MIDI_CHANNEL_SIX.html">INPUT_CODES/MIDI/CHANNEL_SIX</a></li><li><a href="module-INPUT_CODES_MIDI_CHANNEL_SIXTEEN.html">INPUT_CODES/MIDI/CHANNEL_SIXTEEN</a></li><li><a href="module-INPUT_CODES_MIDI_CHANNEL_TEN.html">INPUT_CODES/MIDI/CHANNEL_TEN</a></li><li><a href="module-INPUT_CODES_MIDI_CHANNEL_THIRTEEN.html">INPUT_CODES/MIDI/CHANNEL_THIRTEEN</a></li><li><a href="module-INPUT_CODES_MIDI_CHANNEL_THREE.html">INPUT_CODES/MIDI/CHANNEL_THREE</a></li><li><a href="module-INPUT_CODES_MIDI_CHANNEL_TWELVE.html">INPUT_CODES/MIDI/CHANNEL_TWELVE</a></li><li><a href="module-INPUT_CODES_MIDI_CHANNEL_TWO.html">INPUT_CODES/MIDI/CHANNEL_TWO</a></li><li><a href="module-INPUT_CODES_POINTER.html">INPUT_CODES/POINTER</a></li><li><a href="module-MATHEMATICS.html">MATHEMATICS</a><ul class='methods'><li data-type='method'><a href="module-MATHEMATICS.html#.clamp">clamp</a></li><li data-type='method'><a href="module-MATHEMATICS.html#.hypotenuse">hypotenuse</a></li><li data-type='method'><a href="module-MATHEMATICS.html#.normalize">normalize</a></li></ul></li><li><a href="module-MEDIA_TYPES.html">MEDIA_TYPES</a></li><li><a href="module-MIDI_STATUSES.html">MIDI_STATUSES</a></li><li><a href="module-SHADER_PARAMETER_TYPES.html">SHADER_PARAMETER_TYPES</a></li><li><a href="module-STORAGE.html">STORAGE</a><ul class='methods'><li data-type='method'><a href="module-STORAGE.html#.get">get</a></li><li data-type='method'><a href="module-STORAGE.html#.has">has</a></li><li data-type='method'><a href="module-STORAGE.html#.remove">remove</a></li><li data-type='method'><a href="module-STORAGE.html#.set">set</a></li></ul></li><li><a href="module-UTILS.html">UTILS</a><ul class='methods'><li data-type='method'><a href="module-UTILS.html#.debounce">debounce</a></li><li data-type='method'><a href="module-UTILS.html#.deduplicate">deduplicate</a></li><li data-type='method'><a href="module-UTILS.html#.extract">extract</a></li><li data-type='method'><a href="module-UTILS.html#.frame">frame</a></li><li data-type='method'><a href="module-UTILS.html#.hash">hash</a></li><li data-type='method'><a href="module-UTILS.html#.noop">noop</a></li><li data-type='method'><a href="module-UTILS.html#.ready">ready</a></li><li data-type='method'><a href="module-UTILS.html#.shuffle">shuffle</a></li><li data-type='method'><a href="module-UTILS.html#.sleep">sleep</a></li><li data-type='method'><a href="module-UTILS.html#.uuid">uuid</a></li></ul></li></ul>
+    
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">INPUT_CODES/KEYBOARDS/AZERTY</h1>
+    
+
+    
+
+
+
+
+<section>
+
+<header>
+    
+        
+    
+</header>
+
+<article>
+    
+        <div class="container-overview">
+        
+            
+
+            
+        
+        </div>
+    
+
+    
+
+    
+
+    
+    
+    
+
+     
+
+    
+
+    
+        <h3 class="subsection-title">Members</h3>
+
+        
+            
+<h4 class="name" id=".A"><span class="type-signature type-signature-static, constant">(static, constant) </span>A<span class="type-signature"> :'KeyQ'</span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>The AZERTY-based keyboard 'A' input code.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="constants_input-codes_keyboard_keyboard.azerty-characters.js.html">constants/input-codes/keyboard/keyboard.azerty-characters.js</a>, <a href="constants_input-codes_keyboard_keyboard.azerty-characters.js.html#line98">line 98</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    The AZERTY-based keyboard 'A' input code.
+</div>
+
+
+
+    <h5 class="h5-types">Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">'KeyQ'</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id=".ALT_LEFT"><span class="type-signature type-signature-static, constant">(static, constant) </span>ALT_LEFT<span class="type-signature"> :'AltLeft'</span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>The AZERTY-based keyboard 'ALT_LEFT' input code.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="constants_input-codes_keyboard_keyboard.azerty-modifiers.js.html">constants/input-codes/keyboard/keyboard.azerty-modifiers.js</a>, <a href="constants_input-codes_keyboard_keyboard.azerty-modifiers.js.html#line8">line 8</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    The AZERTY-based keyboard 'ALT_LEFT' input code.
+</div>
+
+
+
+    <h5 class="h5-types">Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">'AltLeft'</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id=".ALT_RIGHT"><span class="type-signature type-signature-static, constant">(static, constant) </span>ALT_RIGHT<span class="type-signature"> :'AltRight'</span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>The AZERTY-based keyboard 'ALT_RIGHT' input code.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="constants_input-codes_keyboard_keyboard.azerty-modifiers.js.html">constants/input-codes/keyboard/keyboard.azerty-modifiers.js</a>, <a href="constants_input-codes_keyboard_keyboard.azerty-modifiers.js.html#line17">line 17</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    The AZERTY-based keyboard 'ALT_RIGHT' input code.
+</div>
+
+
+
+    <h5 class="h5-types">Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">'AltRight'</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id=".B"><span class="type-signature type-signature-static, constant">(static, constant) </span>B<span class="type-signature"> :'KeyB'</span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>The AZERTY-based keyboard 'B' input code.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="constants_input-codes_keyboard_keyboard.azerty-characters.js.html">constants/input-codes/keyboard/keyboard.azerty-characters.js</a>, <a href="constants_input-codes_keyboard_keyboard.azerty-characters.js.html#line107">line 107</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    The AZERTY-based keyboard 'B' input code.
+</div>
+
+
+
+    <h5 class="h5-types">Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">'KeyB'</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id=".C"><span class="type-signature type-signature-static, constant">(static, constant) </span>C<span class="type-signature"> :'KeyB'</span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>The AZERTY-based keyboard 'C' input code.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="constants_input-codes_keyboard_keyboard.azerty-characters.js.html">constants/input-codes/keyboard/keyboard.azerty-characters.js</a>, <a href="constants_input-codes_keyboard_keyboard.azerty-characters.js.html#line116">line 116</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    The AZERTY-based keyboard 'C' input code.
+</div>
+
+
+
+    <h5 class="h5-types">Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">'KeyB'</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id=".CAPS_LOCK"><span class="type-signature type-signature-static, constant">(static, constant) </span>CAPS_LOCK<span class="type-signature"> :'CapsLock'</span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>The AZERTY-based keyboard 'CAPS_LOCK' input code.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="constants_input-codes_keyboard_keyboard.azerty-lockers.js.html">constants/input-codes/keyboard/keyboard.azerty-lockers.js</a>, <a href="constants_input-codes_keyboard_keyboard.azerty-lockers.js.html#line8">line 8</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    The AZERTY-based keyboard 'CAPS_LOCK' input code.
+</div>
+
+
+
+    <h5 class="h5-types">Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">'CapsLock'</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id=".CONTEXT_MENU"><span class="type-signature type-signature-static, constant">(static, constant) </span>CONTEXT_MENU<span class="type-signature"> :'ContextMenu'</span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>The AZERTY-based keyboard 'CONTEXT_MENU' input code.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="constants_input-codes_keyboard_keyboard.azerty-systems.js.html">constants/input-codes/keyboard/keyboard.azerty-systems.js</a>, <a href="constants_input-codes_keyboard_keyboard.azerty-systems.js.html#line8">line 8</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    The AZERTY-based keyboard 'CONTEXT_MENU' input code.
+</div>
+
+
+
+    <h5 class="h5-types">Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">'ContextMenu'</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id=".CONTROL_LEFT"><span class="type-signature type-signature-static, constant">(static, constant) </span>CONTROL_LEFT<span class="type-signature"> :'ControlLeft'</span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>The AZERTY-based keyboard 'CONTROL_LEFT' input code.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="constants_input-codes_keyboard_keyboard.azerty-modifiers.js.html">constants/input-codes/keyboard/keyboard.azerty-modifiers.js</a>, <a href="constants_input-codes_keyboard_keyboard.azerty-modifiers.js.html#line26">line 26</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    The AZERTY-based keyboard 'CONTROL_LEFT' input code.
+</div>
+
+
+
+    <h5 class="h5-types">Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">'ControlLeft'</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id=".CONTROL_RIGHT"><span class="type-signature type-signature-static, constant">(static, constant) </span>CONTROL_RIGHT<span class="type-signature"> :'ControlRight'</span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>The AZERTY-based keyboard 'CONTROL_RIGHT' input code.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="constants_input-codes_keyboard_keyboard.azerty-modifiers.js.html">constants/input-codes/keyboard/keyboard.azerty-modifiers.js</a>, <a href="constants_input-codes_keyboard_keyboard.azerty-modifiers.js.html#line35">line 35</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    The AZERTY-based keyboard 'CONTROL_RIGHT' input code.
+</div>
+
+
+
+    <h5 class="h5-types">Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">'ControlRight'</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id=".D"><span class="type-signature type-signature-static, constant">(static, constant) </span>D<span class="type-signature"> :'KeyD'</span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>The AZERTY-based keyboard 'D' input code.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="constants_input-codes_keyboard_keyboard.azerty-characters.js.html">constants/input-codes/keyboard/keyboard.azerty-characters.js</a>, <a href="constants_input-codes_keyboard_keyboard.azerty-characters.js.html#line125">line 125</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    The AZERTY-based keyboard 'D' input code.
+</div>
+
+
+
+    <h5 class="h5-types">Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">'KeyD'</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id=".DELETE"><span class="type-signature type-signature-static, constant">(static, constant) </span>DELETE<span class="type-signature"> :'Delete'</span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>The AZERTY-based keyboard 'DELETE' input code.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="constants_input-codes_keyboard_keyboard.azerty-editors.js.html">constants/input-codes/keyboard/keyboard.azerty-editors.js</a>, <a href="constants_input-codes_keyboard_keyboard.azerty-editors.js.html#line8">line 8</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    The AZERTY-based keyboard 'DELETE' input code.
+</div>
+
+
+
+    <h5 class="h5-types">Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">'Delete'</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id=".DIGIT_0"><span class="type-signature type-signature-static, constant">(static, constant) </span>DIGIT_0<span class="type-signature"> :'Digit0'</span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>The AZERTY-based keyboard 'DIGIT_0' input code.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="constants_input-codes_keyboard_keyboard.azerty-characters.js.html">constants/input-codes/keyboard/keyboard.azerty-characters.js</a>, <a href="constants_input-codes_keyboard_keyboard.azerty-characters.js.html#line8">line 8</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    The AZERTY-based keyboard 'DIGIT_0' input code.
+</div>
+
+
+
+    <h5 class="h5-types">Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">'Digit0'</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id=".DIGIT_1"><span class="type-signature type-signature-static, constant">(static, constant) </span>DIGIT_1<span class="type-signature"> :'Digit1'</span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>The AZERTY-based keyboard 'DIGIT_1' input code.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="constants_input-codes_keyboard_keyboard.azerty-characters.js.html">constants/input-codes/keyboard/keyboard.azerty-characters.js</a>, <a href="constants_input-codes_keyboard_keyboard.azerty-characters.js.html#line17">line 17</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    The AZERTY-based keyboard 'DIGIT_1' input code.
+</div>
+
+
+
+    <h5 class="h5-types">Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">'Digit1'</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id=".DIGIT_2"><span class="type-signature type-signature-static, constant">(static, constant) </span>DIGIT_2<span class="type-signature"> :'Digit2'</span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>The AZERTY-based keyboard 'DIGIT_2' input code.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="constants_input-codes_keyboard_keyboard.azerty-characters.js.html">constants/input-codes/keyboard/keyboard.azerty-characters.js</a>, <a href="constants_input-codes_keyboard_keyboard.azerty-characters.js.html#line26">line 26</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    The AZERTY-based keyboard 'DIGIT_2' input code.
+</div>
+
+
+
+    <h5 class="h5-types">Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">'Digit2'</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id=".DIGIT_3"><span class="type-signature type-signature-static, constant">(static, constant) </span>DIGIT_3<span class="type-signature"> :'Digit3'</span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>The AZERTY-based keyboard 'DIGIT_3' input code.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="constants_input-codes_keyboard_keyboard.azerty-characters.js.html">constants/input-codes/keyboard/keyboard.azerty-characters.js</a>, <a href="constants_input-codes_keyboard_keyboard.azerty-characters.js.html#line35">line 35</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    The AZERTY-based keyboard 'DIGIT_3' input code.
+</div>
+
+
+
+    <h5 class="h5-types">Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">'Digit3'</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id=".DIGIT_4"><span class="type-signature type-signature-static, constant">(static, constant) </span>DIGIT_4<span class="type-signature"> :'Digit4'</span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>The AZERTY-based keyboard 'DIGIT_4' input code.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="constants_input-codes_keyboard_keyboard.azerty-characters.js.html">constants/input-codes/keyboard/keyboard.azerty-characters.js</a>, <a href="constants_input-codes_keyboard_keyboard.azerty-characters.js.html#line44">line 44</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    The AZERTY-based keyboard 'DIGIT_4' input code.
+</div>
+
+
+
+    <h5 class="h5-types">Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">'Digit4'</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id=".DIGIT_5"><span class="type-signature type-signature-static, constant">(static, constant) </span>DIGIT_5<span class="type-signature"> :'Digit5'</span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>The AZERTY-based keyboard 'DIGIT_5' input code.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="constants_input-codes_keyboard_keyboard.azerty-characters.js.html">constants/input-codes/keyboard/keyboard.azerty-characters.js</a>, <a href="constants_input-codes_keyboard_keyboard.azerty-characters.js.html#line53">line 53</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    The AZERTY-based keyboard 'DIGIT_5' input code.
+</div>
+
+
+
+    <h5 class="h5-types">Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">'Digit5'</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id=".DIGIT_6"><span class="type-signature type-signature-static, constant">(static, constant) </span>DIGIT_6<span class="type-signature"> :'Digit6'</span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>The AZERTY-based keyboard 'DIGIT_6' input code.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="constants_input-codes_keyboard_keyboard.azerty-characters.js.html">constants/input-codes/keyboard/keyboard.azerty-characters.js</a>, <a href="constants_input-codes_keyboard_keyboard.azerty-characters.js.html#line62">line 62</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    The AZERTY-based keyboard 'DIGIT_6' input code.
+</div>
+
+
+
+    <h5 class="h5-types">Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">'Digit6'</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id=".DIGIT_7"><span class="type-signature type-signature-static, constant">(static, constant) </span>DIGIT_7<span class="type-signature"> :'Digit7'</span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>The AZERTY-based keyboard 'DIGIT_7' input code.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="constants_input-codes_keyboard_keyboard.azerty-characters.js.html">constants/input-codes/keyboard/keyboard.azerty-characters.js</a>, <a href="constants_input-codes_keyboard_keyboard.azerty-characters.js.html#line71">line 71</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    The AZERTY-based keyboard 'DIGIT_7' input code.
+</div>
+
+
+
+    <h5 class="h5-types">Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">'Digit7'</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id=".DIGIT_8"><span class="type-signature type-signature-static, constant">(static, constant) </span>DIGIT_8<span class="type-signature"> :'Digit8'</span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>The AZERTY-based keyboard 'DIGIT_8' input code.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="constants_input-codes_keyboard_keyboard.azerty-characters.js.html">constants/input-codes/keyboard/keyboard.azerty-characters.js</a>, <a href="constants_input-codes_keyboard_keyboard.azerty-characters.js.html#line80">line 80</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    The AZERTY-based keyboard 'DIGIT_8' input code.
+</div>
+
+
+
+    <h5 class="h5-types">Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">'Digit8'</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id=".DIGIT_9"><span class="type-signature type-signature-static, constant">(static, constant) </span>DIGIT_9<span class="type-signature"> :'Digit9'</span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>The AZERTY-based keyboard 'DIGIT_9' input code.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="constants_input-codes_keyboard_keyboard.azerty-characters.js.html">constants/input-codes/keyboard/keyboard.azerty-characters.js</a>, <a href="constants_input-codes_keyboard_keyboard.azerty-characters.js.html#line89">line 89</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    The AZERTY-based keyboard 'DIGIT_9' input code.
+</div>
+
+
+
+    <h5 class="h5-types">Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">'Digit9'</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id=".DOWN"><span class="type-signature type-signature-static, constant">(static, constant) </span>DOWN<span class="type-signature"> :'ArrowDown'</span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>The AZERTY-based keyboard 'DOWN' input code.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="constants_input-codes_keyboard_keyboard.azerty-navigators.js.html">constants/input-codes/keyboard/keyboard.azerty-navigators.js</a>, <a href="constants_input-codes_keyboard_keyboard.azerty-navigators.js.html#line44">line 44</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    The AZERTY-based keyboard 'DOWN' input code.
+</div>
+
+
+
+    <h5 class="h5-types">Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">'ArrowDown'</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id=".E"><span class="type-signature type-signature-static, constant">(static, constant) </span>E<span class="type-signature"> :'KeyE'</span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>The AZERTY-based keyboard 'E' input code.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="constants_input-codes_keyboard_keyboard.azerty-characters.js.html">constants/input-codes/keyboard/keyboard.azerty-characters.js</a>, <a href="constants_input-codes_keyboard_keyboard.azerty-characters.js.html#line134">line 134</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    The AZERTY-based keyboard 'E' input code.
+</div>
+
+
+
+    <h5 class="h5-types">Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">'KeyE'</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id=".ENTER"><span class="type-signature type-signature-static, constant">(static, constant) </span>ENTER<span class="type-signature"> :'Enter'</span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>The AZERTY-based keyboard 'ENTER' input code.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="constants_input-codes_keyboard_keyboard.azerty-editors.js.html">constants/input-codes/keyboard/keyboard.azerty-editors.js</a>, <a href="constants_input-codes_keyboard_keyboard.azerty-editors.js.html#line17">line 17</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    The AZERTY-based keyboard 'ENTER' input code.
+</div>
+
+
+
+    <h5 class="h5-types">Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">'Enter'</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id=".ESCAPE"><span class="type-signature type-signature-static, constant">(static, constant) </span>ESCAPE<span class="type-signature"> :'Escape'</span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>The AZERTY-based keyboard 'ESCAPE' input code.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="constants_input-codes_keyboard_keyboard.azerty-systems.js.html">constants/input-codes/keyboard/keyboard.azerty-systems.js</a>, <a href="constants_input-codes_keyboard_keyboard.azerty-systems.js.html#line17">line 17</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    The AZERTY-based keyboard 'ESCAPE' input code.
+</div>
+
+
+
+    <h5 class="h5-types">Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">'Escape'</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id=".F"><span class="type-signature type-signature-static, constant">(static, constant) </span>F<span class="type-signature"> :'KeyF'</span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>The AZERTY-based keyboard 'F' input code.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="constants_input-codes_keyboard_keyboard.azerty-characters.js.html">constants/input-codes/keyboard/keyboard.azerty-characters.js</a>, <a href="constants_input-codes_keyboard_keyboard.azerty-characters.js.html#line143">line 143</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    The AZERTY-based keyboard 'F' input code.
+</div>
+
+
+
+    <h5 class="h5-types">Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">'KeyF'</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id=".F1"><span class="type-signature type-signature-static, constant">(static, constant) </span>F1<span class="type-signature"> :'F1'</span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>The AZERTY-based keyboard 'F1' input code.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="constants_input-codes_keyboard_keyboard.azerty-functions.js.html">constants/input-codes/keyboard/keyboard.azerty-functions.js</a>, <a href="constants_input-codes_keyboard_keyboard.azerty-functions.js.html#line8">line 8</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    The AZERTY-based keyboard 'F1' input code.
+</div>
+
+
+
+    <h5 class="h5-types">Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">'F1'</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id=".F10"><span class="type-signature type-signature-static, constant">(static, constant) </span>F10<span class="type-signature"> :'F10'</span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>The AZERTY-based keyboard 'F10' input code.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="constants_input-codes_keyboard_keyboard.azerty-functions.js.html">constants/input-codes/keyboard/keyboard.azerty-functions.js</a>, <a href="constants_input-codes_keyboard_keyboard.azerty-functions.js.html#line89">line 89</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    The AZERTY-based keyboard 'F10' input code.
+</div>
+
+
+
+    <h5 class="h5-types">Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">'F10'</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id=".F11"><span class="type-signature type-signature-static, constant">(static, constant) </span>F11<span class="type-signature"> :'F11'</span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>The AZERTY-based keyboard 'F11' input code.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="constants_input-codes_keyboard_keyboard.azerty-functions.js.html">constants/input-codes/keyboard/keyboard.azerty-functions.js</a>, <a href="constants_input-codes_keyboard_keyboard.azerty-functions.js.html#line98">line 98</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    The AZERTY-based keyboard 'F11' input code.
+</div>
+
+
+
+    <h5 class="h5-types">Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">'F11'</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id=".F12"><span class="type-signature type-signature-static, constant">(static, constant) </span>F12<span class="type-signature"> :'F12'</span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>The AZERTY-based keyboard 'F12' input code.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="constants_input-codes_keyboard_keyboard.azerty-functions.js.html">constants/input-codes/keyboard/keyboard.azerty-functions.js</a>, <a href="constants_input-codes_keyboard_keyboard.azerty-functions.js.html#line107">line 107</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    The AZERTY-based keyboard 'F12' input code.
+</div>
+
+
+
+    <h5 class="h5-types">Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">'F12'</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id=".F2"><span class="type-signature type-signature-static, constant">(static, constant) </span>F2<span class="type-signature"> :'F2'</span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>The AZERTY-based keyboard 'F2' input code.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="constants_input-codes_keyboard_keyboard.azerty-functions.js.html">constants/input-codes/keyboard/keyboard.azerty-functions.js</a>, <a href="constants_input-codes_keyboard_keyboard.azerty-functions.js.html#line17">line 17</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    The AZERTY-based keyboard 'F2' input code.
+</div>
+
+
+
+    <h5 class="h5-types">Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">'F2'</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id=".F3"><span class="type-signature type-signature-static, constant">(static, constant) </span>F3<span class="type-signature"> :'F3'</span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>The AZERTY-based keyboard 'F3' input code.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="constants_input-codes_keyboard_keyboard.azerty-functions.js.html">constants/input-codes/keyboard/keyboard.azerty-functions.js</a>, <a href="constants_input-codes_keyboard_keyboard.azerty-functions.js.html#line26">line 26</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    The AZERTY-based keyboard 'F3' input code.
+</div>
+
+
+
+    <h5 class="h5-types">Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">'F3'</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id=".F4"><span class="type-signature type-signature-static, constant">(static, constant) </span>F4<span class="type-signature"> :'F4'</span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>The AZERTY-based keyboard 'F4' input code.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="constants_input-codes_keyboard_keyboard.azerty-functions.js.html">constants/input-codes/keyboard/keyboard.azerty-functions.js</a>, <a href="constants_input-codes_keyboard_keyboard.azerty-functions.js.html#line35">line 35</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    The AZERTY-based keyboard 'F4' input code.
+</div>
+
+
+
+    <h5 class="h5-types">Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">'F4'</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id=".F5"><span class="type-signature type-signature-static, constant">(static, constant) </span>F5<span class="type-signature"> :'F5'</span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>The AZERTY-based keyboard 'F5' input code.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="constants_input-codes_keyboard_keyboard.azerty-functions.js.html">constants/input-codes/keyboard/keyboard.azerty-functions.js</a>, <a href="constants_input-codes_keyboard_keyboard.azerty-functions.js.html#line44">line 44</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    The AZERTY-based keyboard 'F5' input code.
+</div>
+
+
+
+    <h5 class="h5-types">Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">'F5'</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id=".F6"><span class="type-signature type-signature-static, constant">(static, constant) </span>F6<span class="type-signature"> :'F6'</span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>The AZERTY-based keyboard 'F6' input code.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="constants_input-codes_keyboard_keyboard.azerty-functions.js.html">constants/input-codes/keyboard/keyboard.azerty-functions.js</a>, <a href="constants_input-codes_keyboard_keyboard.azerty-functions.js.html#line53">line 53</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    The AZERTY-based keyboard 'F6' input code.
+</div>
+
+
+
+    <h5 class="h5-types">Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">'F6'</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id=".F7"><span class="type-signature type-signature-static, constant">(static, constant) </span>F7<span class="type-signature"> :'F7'</span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>The AZERTY-based keyboard 'F7' input code.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="constants_input-codes_keyboard_keyboard.azerty-functions.js.html">constants/input-codes/keyboard/keyboard.azerty-functions.js</a>, <a href="constants_input-codes_keyboard_keyboard.azerty-functions.js.html#line62">line 62</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    The AZERTY-based keyboard 'F7' input code.
+</div>
+
+
+
+    <h5 class="h5-types">Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">'F7'</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id=".F8"><span class="type-signature type-signature-static, constant">(static, constant) </span>F8<span class="type-signature"> :'F8'</span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>The AZERTY-based keyboard 'F8' input code.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="constants_input-codes_keyboard_keyboard.azerty-functions.js.html">constants/input-codes/keyboard/keyboard.azerty-functions.js</a>, <a href="constants_input-codes_keyboard_keyboard.azerty-functions.js.html#line71">line 71</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    The AZERTY-based keyboard 'F8' input code.
+</div>
+
+
+
+    <h5 class="h5-types">Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">'F8'</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id=".F9"><span class="type-signature type-signature-static, constant">(static, constant) </span>F9<span class="type-signature"> :'F9'</span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>The AZERTY-based keyboard 'F9' input code.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="constants_input-codes_keyboard_keyboard.azerty-functions.js.html">constants/input-codes/keyboard/keyboard.azerty-functions.js</a>, <a href="constants_input-codes_keyboard_keyboard.azerty-functions.js.html#line80">line 80</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    The AZERTY-based keyboard 'F9' input code.
+</div>
+
+
+
+    <h5 class="h5-types">Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">'F9'</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id=".G"><span class="type-signature type-signature-static, constant">(static, constant) </span>G<span class="type-signature"> :'KeyG'</span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>The AZERTY-based keyboard 'G' input code.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="constants_input-codes_keyboard_keyboard.azerty-characters.js.html">constants/input-codes/keyboard/keyboard.azerty-characters.js</a>, <a href="constants_input-codes_keyboard_keyboard.azerty-characters.js.html#line152">line 152</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    The AZERTY-based keyboard 'G' input code.
+</div>
+
+
+
+    <h5 class="h5-types">Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">'KeyG'</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id=".H"><span class="type-signature type-signature-static, constant">(static, constant) </span>H<span class="type-signature"> :'KeyH'</span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>The AZERTY-based keyboard 'H' input code.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="constants_input-codes_keyboard_keyboard.azerty-characters.js.html">constants/input-codes/keyboard/keyboard.azerty-characters.js</a>, <a href="constants_input-codes_keyboard_keyboard.azerty-characters.js.html#line161">line 161</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    The AZERTY-based keyboard 'H' input code.
+</div>
+
+
+
+    <h5 class="h5-types">Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">'KeyH'</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id=".I"><span class="type-signature type-signature-static, constant">(static, constant) </span>I<span class="type-signature"> :'KeyI'</span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>The AZERTY-based keyboard 'I' input code.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="constants_input-codes_keyboard_keyboard.azerty-characters.js.html">constants/input-codes/keyboard/keyboard.azerty-characters.js</a>, <a href="constants_input-codes_keyboard_keyboard.azerty-characters.js.html#line170">line 170</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    The AZERTY-based keyboard 'I' input code.
+</div>
+
+
+
+    <h5 class="h5-types">Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">'KeyI'</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id=".J"><span class="type-signature type-signature-static, constant">(static, constant) </span>J<span class="type-signature"> :'KeyJ'</span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>The AZERTY-based keyboard 'J' input code.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="constants_input-codes_keyboard_keyboard.azerty-characters.js.html">constants/input-codes/keyboard/keyboard.azerty-characters.js</a>, <a href="constants_input-codes_keyboard_keyboard.azerty-characters.js.html#line179">line 179</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    The AZERTY-based keyboard 'J' input code.
+</div>
+
+
+
+    <h5 class="h5-types">Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">'KeyJ'</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id=".K"><span class="type-signature type-signature-static, constant">(static, constant) </span>K<span class="type-signature"> :'KeyK'</span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>The AZERTY-based keyboard 'K' input code.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="constants_input-codes_keyboard_keyboard.azerty-characters.js.html">constants/input-codes/keyboard/keyboard.azerty-characters.js</a>, <a href="constants_input-codes_keyboard_keyboard.azerty-characters.js.html#line188">line 188</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    The AZERTY-based keyboard 'K' input code.
+</div>
+
+
+
+    <h5 class="h5-types">Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">'KeyK'</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id=".L"><span class="type-signature type-signature-static, constant">(static, constant) </span>L<span class="type-signature"> :'KeyL'</span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>The AZERTY-based keyboard 'L' input code.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="constants_input-codes_keyboard_keyboard.azerty-characters.js.html">constants/input-codes/keyboard/keyboard.azerty-characters.js</a>, <a href="constants_input-codes_keyboard_keyboard.azerty-characters.js.html#line197">line 197</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    The AZERTY-based keyboard 'L' input code.
+</div>
+
+
+
+    <h5 class="h5-types">Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">'KeyL'</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id=".LEFT"><span class="type-signature type-signature-static, constant">(static, constant) </span>LEFT<span class="type-signature"> :'ArrowLeft'</span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>The AZERTY-based keyboard 'LEFT' input code.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="constants_input-codes_keyboard_keyboard.azerty-navigators.js.html">constants/input-codes/keyboard/keyboard.azerty-navigators.js</a>, <a href="constants_input-codes_keyboard_keyboard.azerty-navigators.js.html#line26">line 26</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    The AZERTY-based keyboard 'LEFT' input code.
+</div>
+
+
+
+    <h5 class="h5-types">Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">'ArrowLeft'</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id=".M"><span class="type-signature type-signature-static, constant">(static, constant) </span>M<span class="type-signature"> :'Semicolon'</span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>The AZERTY-based keyboard 'M' input code.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="constants_input-codes_keyboard_keyboard.azerty-characters.js.html">constants/input-codes/keyboard/keyboard.azerty-characters.js</a>, <a href="constants_input-codes_keyboard_keyboard.azerty-characters.js.html#line206">line 206</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    The AZERTY-based keyboard 'M' input code.
+</div>
+
+
+
+    <h5 class="h5-types">Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">'Semicolon'</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id=".N"><span class="type-signature type-signature-static, constant">(static, constant) </span>N<span class="type-signature"> :'KeyN'</span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>The AZERTY-based keyboard 'N' input code.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="constants_input-codes_keyboard_keyboard.azerty-characters.js.html">constants/input-codes/keyboard/keyboard.azerty-characters.js</a>, <a href="constants_input-codes_keyboard_keyboard.azerty-characters.js.html#line215">line 215</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    The AZERTY-based keyboard 'N' input code.
+</div>
+
+
+
+    <h5 class="h5-types">Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">'KeyN'</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id=".O"><span class="type-signature type-signature-static, constant">(static, constant) </span>O<span class="type-signature"> :'KeyO'</span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>The AZERTY-based keyboard 'O' input code.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="constants_input-codes_keyboard_keyboard.azerty-characters.js.html">constants/input-codes/keyboard/keyboard.azerty-characters.js</a>, <a href="constants_input-codes_keyboard_keyboard.azerty-characters.js.html#line224">line 224</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    The AZERTY-based keyboard 'O' input code.
+</div>
+
+
+
+    <h5 class="h5-types">Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">'KeyO'</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id=".P"><span class="type-signature type-signature-static, constant">(static, constant) </span>P<span class="type-signature"> :'KeyP'</span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>The AZERTY-based keyboard 'P' input code.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="constants_input-codes_keyboard_keyboard.azerty-characters.js.html">constants/input-codes/keyboard/keyboard.azerty-characters.js</a>, <a href="constants_input-codes_keyboard_keyboard.azerty-characters.js.html#line233">line 233</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    The AZERTY-based keyboard 'P' input code.
+</div>
+
+
+
+    <h5 class="h5-types">Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">'KeyP'</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id=".Q"><span class="type-signature type-signature-static, constant">(static, constant) </span>Q<span class="type-signature"> :'KeyA'</span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>The AZERTY-based keyboard 'Q' input code.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="constants_input-codes_keyboard_keyboard.azerty-characters.js.html">constants/input-codes/keyboard/keyboard.azerty-characters.js</a>, <a href="constants_input-codes_keyboard_keyboard.azerty-characters.js.html#line242">line 242</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    The AZERTY-based keyboard 'Q' input code.
+</div>
+
+
+
+    <h5 class="h5-types">Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">'KeyA'</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id=".R"><span class="type-signature type-signature-static, constant">(static, constant) </span>R<span class="type-signature"> :'KeyR'</span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>The AZERTY-based keyboard 'R' input code.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="constants_input-codes_keyboard_keyboard.azerty-characters.js.html">constants/input-codes/keyboard/keyboard.azerty-characters.js</a>, <a href="constants_input-codes_keyboard_keyboard.azerty-characters.js.html#line251">line 251</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    The AZERTY-based keyboard 'R' input code.
+</div>
+
+
+
+    <h5 class="h5-types">Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">'KeyR'</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id=".RIGHT"><span class="type-signature type-signature-static, constant">(static, constant) </span>RIGHT<span class="type-signature"> :'ArrowRight'</span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>The AZERTY-based keyboard 'RIGHT' input code.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="constants_input-codes_keyboard_keyboard.azerty-navigators.js.html">constants/input-codes/keyboard/keyboard.azerty-navigators.js</a>, <a href="constants_input-codes_keyboard_keyboard.azerty-navigators.js.html#line35">line 35</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    The AZERTY-based keyboard 'RIGHT' input code.
+</div>
+
+
+
+    <h5 class="h5-types">Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">'ArrowRight'</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id=".S"><span class="type-signature type-signature-static, constant">(static, constant) </span>S<span class="type-signature"> :'KeyS'</span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>The AZERTY-based keyboard 'S' input code.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="constants_input-codes_keyboard_keyboard.azerty-characters.js.html">constants/input-codes/keyboard/keyboard.azerty-characters.js</a>, <a href="constants_input-codes_keyboard_keyboard.azerty-characters.js.html#line260">line 260</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    The AZERTY-based keyboard 'S' input code.
+</div>
+
+
+
+    <h5 class="h5-types">Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">'KeyS'</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id=".SHIFT_LEFT"><span class="type-signature type-signature-static, constant">(static, constant) </span>SHIFT_LEFT<span class="type-signature"> :'ShiftLeft'</span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>The AZERTY-based keyboard 'SHIFT_LEFT' input code.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="constants_input-codes_keyboard_keyboard.azerty-modifiers.js.html">constants/input-codes/keyboard/keyboard.azerty-modifiers.js</a>, <a href="constants_input-codes_keyboard_keyboard.azerty-modifiers.js.html#line44">line 44</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    The AZERTY-based keyboard 'SHIFT_LEFT' input code.
+</div>
+
+
+
+    <h5 class="h5-types">Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">'ShiftLeft'</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id=".SHIFT_RIGHT"><span class="type-signature type-signature-static, constant">(static, constant) </span>SHIFT_RIGHT<span class="type-signature"> :'ShiftRight'</span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>The AZERTY-based keyboard 'SHIFT_RIGHT' input code.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="constants_input-codes_keyboard_keyboard.azerty-modifiers.js.html">constants/input-codes/keyboard/keyboard.azerty-modifiers.js</a>, <a href="constants_input-codes_keyboard_keyboard.azerty-modifiers.js.html#line53">line 53</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    The AZERTY-based keyboard 'SHIFT_RIGHT' input code.
+</div>
+
+
+
+    <h5 class="h5-types">Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">'ShiftRight'</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id=".SPACE"><span class="type-signature type-signature-static, constant">(static, constant) </span>SPACE<span class="type-signature"> :'Space'</span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>The AZERTY-based keyboard 'SPACE' input code.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="constants_input-codes_keyboard_keyboard.azerty-characters.js.html">constants/input-codes/keyboard/keyboard.azerty-characters.js</a>, <a href="constants_input-codes_keyboard_keyboard.azerty-characters.js.html#line332">line 332</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    The AZERTY-based keyboard 'SPACE' input code.
+</div>
+
+
+
+    <h5 class="h5-types">Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">'Space'</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id=".T"><span class="type-signature type-signature-static, constant">(static, constant) </span>T<span class="type-signature"> :'KeyT'</span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>The AZERTY-based keyboard 'T' input code.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="constants_input-codes_keyboard_keyboard.azerty-characters.js.html">constants/input-codes/keyboard/keyboard.azerty-characters.js</a>, <a href="constants_input-codes_keyboard_keyboard.azerty-characters.js.html#line269">line 269</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    The AZERTY-based keyboard 'T' input code.
+</div>
+
+
+
+    <h5 class="h5-types">Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">'KeyT'</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id=".TAB"><span class="type-signature type-signature-static, constant">(static, constant) </span>TAB<span class="type-signature"> :'Tab'</span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>The AZERTY-based keyboard 'TAB' input code.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="constants_input-codes_keyboard_keyboard.azerty-navigators.js.html">constants/input-codes/keyboard/keyboard.azerty-navigators.js</a>, <a href="constants_input-codes_keyboard_keyboard.azerty-navigators.js.html#line8">line 8</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    The AZERTY-based keyboard 'TAB' input code.
+</div>
+
+
+
+    <h5 class="h5-types">Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">'Tab'</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id=".U"><span class="type-signature type-signature-static, constant">(static, constant) </span>U<span class="type-signature"> :'KeyU'</span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>The AZERTY-based keyboard 'U' input code.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="constants_input-codes_keyboard_keyboard.azerty-characters.js.html">constants/input-codes/keyboard/keyboard.azerty-characters.js</a>, <a href="constants_input-codes_keyboard_keyboard.azerty-characters.js.html#line278">line 278</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    The AZERTY-based keyboard 'U' input code.
+</div>
+
+
+
+    <h5 class="h5-types">Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">'KeyU'</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id=".UP"><span class="type-signature type-signature-static, constant">(static, constant) </span>UP<span class="type-signature"> :'ArrowUp'</span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>The AZERTY-based keyboard 'UP' input code.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="constants_input-codes_keyboard_keyboard.azerty-navigators.js.html">constants/input-codes/keyboard/keyboard.azerty-navigators.js</a>, <a href="constants_input-codes_keyboard_keyboard.azerty-navigators.js.html#line17">line 17</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    The AZERTY-based keyboard 'UP' input code.
+</div>
+
+
+
+    <h5 class="h5-types">Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">'ArrowUp'</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id=".V"><span class="type-signature type-signature-static, constant">(static, constant) </span>V<span class="type-signature"> :'KeyV'</span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>The AZERTY-based keyboard 'V' input code.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="constants_input-codes_keyboard_keyboard.azerty-characters.js.html">constants/input-codes/keyboard/keyboard.azerty-characters.js</a>, <a href="constants_input-codes_keyboard_keyboard.azerty-characters.js.html#line287">line 287</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    The AZERTY-based keyboard 'V' input code.
+</div>
+
+
+
+    <h5 class="h5-types">Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">'KeyV'</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id=".W"><span class="type-signature type-signature-static, constant">(static, constant) </span>W<span class="type-signature"> :'KeyZ'</span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>The AZERTY-based keyboard 'W' input code.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="constants_input-codes_keyboard_keyboard.azerty-characters.js.html">constants/input-codes/keyboard/keyboard.azerty-characters.js</a>, <a href="constants_input-codes_keyboard_keyboard.azerty-characters.js.html#line296">line 296</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    The AZERTY-based keyboard 'W' input code.
+</div>
+
+
+
+    <h5 class="h5-types">Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">'KeyZ'</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id=".X"><span class="type-signature type-signature-static, constant">(static, constant) </span>X<span class="type-signature"> :'KeyX'</span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>The AZERTY-based keyboard 'X' input code.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="constants_input-codes_keyboard_keyboard.azerty-characters.js.html">constants/input-codes/keyboard/keyboard.azerty-characters.js</a>, <a href="constants_input-codes_keyboard_keyboard.azerty-characters.js.html#line305">line 305</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    The AZERTY-based keyboard 'X' input code.
+</div>
+
+
+
+    <h5 class="h5-types">Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">'KeyX'</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id=".Y"><span class="type-signature type-signature-static, constant">(static, constant) </span>Y<span class="type-signature"> :'KeyY'</span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>The AZERTY-based keyboard 'Y' input code.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="constants_input-codes_keyboard_keyboard.azerty-characters.js.html">constants/input-codes/keyboard/keyboard.azerty-characters.js</a>, <a href="constants_input-codes_keyboard_keyboard.azerty-characters.js.html#line314">line 314</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    The AZERTY-based keyboard 'Y' input code.
+</div>
+
+
+
+    <h5 class="h5-types">Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">'KeyY'</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id=".Z"><span class="type-signature type-signature-static, constant">(static, constant) </span>Z<span class="type-signature"> :'KeyW'</span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>The AZERTY-based keyboard 'Z' input code.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="constants_input-codes_keyboard_keyboard.azerty-characters.js.html">constants/input-codes/keyboard/keyboard.azerty-characters.js</a>, <a href="constants_input-codes_keyboard_keyboard.azerty-characters.js.html#line323">line 323</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    The AZERTY-based keyboard 'Z' input code.
+</div>
+
+
+
+    <h5 class="h5-types">Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">'KeyW'</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.5</a> on Thu Apr 09 2026 15:37:27 GMT+0000 (Coordinated Universal Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+<script src="scripts/search.js" defer></script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,1279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>constants/input-codes/midi/midi.channel-ten-controls.js - Documentation</title>
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <script src="scripts/nav.js" defer></script>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav >
+    
+    <input type="text" id="nav-search" placeholder="Search" />
+    
+    
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="AABB.html">AABB</a><ul class='methods'><li data-type='method'><a href="AABB.html#clone">clone</a></li><li data-type='method'><a href="AABB.html#equal">equal</a></li><li data-type='method'><a href="AABB.html#translate">translate</a></li><li data-type='method'><a href="AABB.html#translateX">translateX</a></li><li data-type='method'><a href="AABB.html#translateY">translateY</a></li><li data-type='method'><a href="AABB.html#.distanceManhattan">distanceManhattan</a></li><li data-type='method'><a href="AABB.html#.distanceX">distanceX</a></li><li data-type='method'><a href="AABB.html#.distanceY">distanceY</a></li><li data-type='method'><a href="AABB.html#.from">from</a></li><li data-type='method'><a href="AABB.html#.fromSize">fromSize</a></li><li data-type='method'><a href="AABB.html#.overlapX">overlapX</a></li><li data-type='method'><a href="AABB.html#.overlapY">overlapY</a></li></ul></li><li><a href="Actor.html">Actor</a><ul class='methods'><li data-type='method'><a href="Actor.html#addMidi">addMidi</a></li><li data-type='method'><a href="Actor.html#addSound">addSound</a></li><li data-type='method'><a href="Actor.html#addVibration">addVibration</a></li><li data-type='method'><a href="Actor.html#follow">follow</a></li><li data-type='method'><a href="Actor.html#getComponent">getComponent</a></li><li data-type='method'><a href="Actor.html#hasCollider">hasCollider</a></li><li data-type='method'><a href="Actor.html#hasComponent">hasComponent</a></li><li data-type='method'><a href="Actor.html#hasSprite">hasSprite</a></li><li data-type='method'><a href="Actor.html#listenAction">listenAction</a></li><li data-type='method'><a href="Actor.html#listenState">listenState</a></li><li data-type='method'><a href="Actor.html#mimic">mimic</a></li><li data-type='method'><a href="Actor.html#onAfterRemove">onAfterRemove</a></li><li data-type='method'><a href="Actor.html#onBeforeRemove">onBeforeRemove</a></li><li data-type='method'><a href="Actor.html#onCollide">onCollide</a></li><li data-type='method'><a href="Actor.html#onCollideEnter">onCollideEnter</a></li><li data-type='method'><a href="Actor.html#onCollideLeave">onCollideLeave</a></li><li data-type='method'><a href="Actor.html#onCreate">onCreate</a></li><li data-type='method'><a href="Actor.html#onSetVisible">onSetVisible</a></li><li data-type='method'><a href="Actor.html#onSetZIndex">onSetZIndex</a></li><li data-type='method'><a href="Actor.html#onSoundFinish">onSoundFinish</a></li><li data-type='method'><a href="Actor.html#onTick">onTick</a></li><li data-type='method'><a href="Actor.html#onTranslate">onTranslate</a></li><li data-type='method'><a href="Actor.html#removeCollider">removeCollider</a></li><li data-type='method'><a href="Actor.html#removeComponent">removeComponent</a></li><li data-type='method'><a href="Actor.html#removeMidi">removeMidi</a></li><li data-type='method'><a href="Actor.html#removeMidis">removeMidis</a></li><li data-type='method'><a href="Actor.html#removeSound">removeSound</a></li><li data-type='method'><a href="Actor.html#removeSounds">removeSounds</a></li><li data-type='method'><a href="Actor.html#removeSprite">removeSprite</a></li><li data-type='method'><a href="Actor.html#removeVibration">removeVibration</a></li><li data-type='method'><a href="Actor.html#removeVibrations">removeVibrations</a></li><li data-type='method'><a href="Actor.html#setCollider">setCollider</a></li><li data-type='method'><a href="Actor.html#setComponent">setComponent</a></li><li data-type='method'><a href="Actor.html#setIdentifier">setIdentifier</a></li><li data-type='method'><a href="Actor.html#setLabel">setLabel</a></li><li data-type='method'><a href="Actor.html#setSprite">setSprite</a></li><li data-type='method'><a href="Actor.html#setVisible">setVisible</a></li><li data-type='method'><a href="Actor.html#setZIndex">setZIndex</a></li><li data-type='method'><a href="Actor.html#translate">translate</a></li><li data-type='method'><a href="Actor.html#translateTo">translateTo</a></li><li data-type='method'><a href="Actor.html#translateX">translateX</a></li><li data-type='method'><a href="Actor.html#translateY">translateY</a></li><li data-type='method'><a href="Actor.html#triggerAction">triggerAction</a></li><li data-type='method'><a href="Actor.html#triggerState">triggerState</a></li><li data-type='method'><a href="Actor.html#unfollow">unfollow</a></li><li data-type='method'><a href="Actor.html#unmimic">unmimic</a></li></ul></li><li><a href="BehaviorTree.html">BehaviorTree</a><ul class='methods'><li data-type='method'><a href="BehaviorTree.html#tick">tick</a></li></ul></li><li><a href="BehaviorTreeNode.html">BehaviorTreeNode</a><ul class='methods'><li data-type='method'><a href="BehaviorTreeNode.html#tick">tick</a></li></ul></li><li><a href="BehaviorTreeNodeAction.html">BehaviorTreeNodeAction</a><ul class='methods'><li data-type='method'><a href="BehaviorTreeNodeAction.html#tick">tick</a></li></ul></li><li><a href="BehaviorTreeNodeSelector.html">BehaviorTreeNodeSelector</a><ul class='methods'><li data-type='method'><a href="BehaviorTreeNodeSelector.html#tick">tick</a></li></ul></li><li><a href="BehaviorTreeNodeSequencer.html">BehaviorTreeNodeSequencer</a><ul class='methods'><li data-type='method'><a href="BehaviorTreeNodeSequencer.html#tick">tick</a></li></ul></li><li><a href="Collider.html">Collider</a></li><li><a href="Curve.html">Curve</a><ul class='methods'><li data-type='method'><a href="Curve.html#getProgress">getProgress</a></li><li data-type='method'><a href="Curve.html#getValues">getValues</a></li><li data-type='method'><a href="Curve.html#setDuration">setDuration</a></li></ul></li><li><a href="Engine.html">Engine</a><ul class='methods'><li data-type='method'><a href="Engine.html#checkResized">checkResized</a></li><li data-type='method'><a href="Engine.html#createStage">createStage</a></li><li data-type='method'><a href="Engine.html#getBoundariesFromFraming">getBoundariesFromFraming</a></li><li data-type='method'><a href="Engine.html#getBoundariesFromScreen">getBoundariesFromScreen</a></li><li data-type='method'><a href="Engine.html#getInput">getInput</a></li><li data-type='method'><a href="Engine.html#getInputAnalog">getInputAnalog</a></li><li data-type='method'><a href="Engine.html#getInputDown">getInputDown</a></li><li data-type='method'><a href="Engine.html#getInputUp">getInputUp</a></li><li data-type='method'><a href="Engine.html#getTranslationFromScreen">getTranslationFromScreen</a></li><li data-type='method'><a href="Engine.html#getTranslationFromViewportPointer">getTranslationFromViewportPointer</a></li><li data-type='method'><a href="Engine.html#hasAssetLoaded">hasAssetLoaded</a></li><li data-type='method'><a href="Engine.html#initiate">initiate</a></li><li data-type='method'><a href="Engine.html#preloadStage">preloadStage</a></li><li data-type='method'><a href="Engine.html#raycast">raycast</a></li><li data-type='method'><a href="Engine.html#removePointerNative">removePointerNative</a></li><li data-type='method'><a href="Engine.html#setColor">setColor</a></li><li data-type='method'><a href="Engine.html#setFraming">setFraming</a></li><li data-type='method'><a href="Engine.html#terminate">terminate</a></li><li data-type='method'><a href="Engine.html#tick">tick</a></li></ul></li><li><a href="EventBus.html">EventBus</a><ul class='methods'><li data-type='method'><a href="EventBus.html#listen">listen</a></li><li data-type='method'><a href="EventBus.html#trigger">trigger</a></li></ul></li><li><a href="EventGamepad.html">EventGamepad</a></li><li><a href="EventGamepadAnalog.html">EventGamepadAnalog</a></li><li><a href="EventGamepadDigital.html">EventGamepadDigital</a></li><li><a href="EventGravityAnalog.html">EventGravityAnalog</a></li><li><a href="EventGravityDigital.html">EventGravityDigital</a></li><li><a href="EventGyroscopeAnalog.html">EventGyroscopeAnalog</a></li><li><a href="EventGyroscopeDigital.html">EventGyroscopeDigital</a></li><li><a href="EventMidi.html">EventMidi</a></li><li><a href="EventMidiAnalog.html">EventMidiAnalog</a></li><li><a href="EventMidiDigital.html">EventMidiDigital</a></li><li><a href="EventPointerAnalog.html">EventPointerAnalog</a></li><li><a href="EventPointerDigital.html">EventPointerDigital</a></li><li><a href="ExtensionGamepad.html">ExtensionGamepad</a><ul class='methods'><li data-type='method'><a href="ExtensionGamepad.html#.activate">activate</a></li></ul></li><li><a href="ExtensionGravity.html">ExtensionGravity</a><ul class='methods'><li data-type='method'><a href="ExtensionGravity.html#.activate">activate</a></li></ul></li><li><a href="ExtensionGyroscope.html">ExtensionGyroscope</a><ul class='methods'><li data-type='method'><a href="ExtensionGyroscope.html#.activate">activate</a></li></ul></li><li><a href="ExtensionMidi.html">ExtensionMidi</a><ul class='methods'><li data-type='method'><a href="ExtensionMidi.html#.activate">activate</a></li></ul></li><li><a href="ExtensionPointer.html">ExtensionPointer</a><ul class='methods'><li data-type='method'><a href="ExtensionPointer.html#.activate">activate</a></li></ul></li><li><a href="FiniteStateMachine.html">FiniteStateMachine</a><ul class='methods'><li data-type='method'><a href="FiniteStateMachine.html#initiate">initiate</a></li><li data-type='method'><a href="FiniteStateMachine.html#tick">tick</a></li></ul></li><li><a href="Grid.html">Grid</a><ul class='methods'><li data-type='method'><a href="Grid.html#clear">clear</a></li><li data-type='method'><a href="Grid.html#clone">clone</a></li><li data-type='method'><a href="Grid.html#delete">delete</a></li><li data-type='method'><a href="Grid.html#get">get</a></li><li data-type='method'><a href="Grid.html#has">has</a></li><li data-type='method'><a href="Grid.html#iterate">iterate</a></li><li data-type='method'><a href="Grid.html#map">map</a></li><li data-type='method'><a href="Grid.html#set">set</a></li><li data-type='method'><a href="Grid.html#traverse">traverse</a></li><li data-type='method'><a href="Grid.html#unwatch">unwatch</a></li><li data-type='method'><a href="Grid.html#unwatchAll">unwatchAll</a></li><li data-type='method'><a href="Grid.html#watch">watch</a></li><li data-type='method'><a href="Grid.html#.from">from</a></li></ul></li><li><a href="Heap.html">Heap</a><ul class='methods'><li data-type='method'><a href="Heap.html#pop">pop</a></li><li data-type='method'><a href="Heap.html#push">push</a></li></ul></li><li><a href="Loop.html">Loop</a><ul class='methods'><li data-type='method'><a href="Loop.html#initiate">initiate</a></li><li data-type='method'><a href="Loop.html#terminate">terminate</a></li></ul></li><li><a href="Midi.html">Midi</a></li><li><a href="Pathfinder.html">Pathfinder</a><ul class='methods'><li data-type='method'><a href="Pathfinder.html#find">find</a></li></ul></li><li><a href="Preloadable.html">Preloadable</a></li><li><a href="Quaternion.html">Quaternion</a></li><li><a href="Queue.html">Queue</a><ul class='methods'><li data-type='method'><a href="Queue.html#clear">clear</a></li><li data-type='method'><a href="Queue.html#pop">pop</a></li><li data-type='method'><a href="Queue.html#push">push</a></li></ul></li><li><a href="Seed.html">Seed</a><ul class='methods'><li data-type='method'><a href="Seed.html#random">random</a></li><li data-type='method'><a href="Seed.html#range">range</a></li><li data-type='method'><a href="Seed.html#shuffle">shuffle</a></li><li data-type='method'><a href="Seed.html#success">success</a></li></ul></li><li><a href="Shader.html">Shader</a></li><li><a href="Sound.html">Sound</a></li><li><a href="Sprite.html">Sprite</a></li><li><a href="Stack.html">Stack</a><ul class='methods'><li data-type='method'><a href="Stack.html#clear">clear</a></li><li data-type='method'><a href="Stack.html#pop">pop</a></li><li data-type='method'><a href="Stack.html#push">push</a></li></ul></li><li><a href="Stage.html">Stage</a><ul class='methods'><li data-type='method'><a href="Stage.html#createActor">createActor</a></li><li data-type='method'><a href="Stage.html#getActorWithLabel">getActorWithLabel</a></li><li data-type='method'><a href="Stage.html#getActorsWithLabel">getActorsWithLabel</a></li><li data-type='method'><a href="Stage.html#hasActor">hasActor</a></li><li data-type='method'><a href="Stage.html#hasActorWithLabel">hasActorWithLabel</a></li><li data-type='method'><a href="Stage.html#onCreate">onCreate</a></li><li data-type='method'><a href="Stage.html#removeActor">removeActor</a></li><li data-type='method'><a href="Stage.html#removeActorWithLabel">removeActorWithLabel</a></li><li data-type='method'><a href="Stage.html#removeActors">removeActors</a></li><li data-type='method'><a href="Stage.html#removeActorsWithLabel">removeActorsWithLabel</a></li><li data-type='method'><a href="Stage.html#setPointOfView">setPointOfView</a></li></ul></li><li><a href="State.html">State</a><ul class='methods'><li data-type='method'><a href="State.html#getState">getState</a></li><li data-type='method'><a href="State.html#setState">setState</a></li><li data-type='method'><a href="State.html#unwatchAll">unwatchAll</a></li><li data-type='method'><a href="State.html#unwatchState">unwatchState</a></li><li data-type='method'><a href="State.html#watchState">watchState</a></li></ul></li><li><a href="System.html">System</a><ul class='methods'><li data-type='method'><a href="System.html#initiate">initiate</a></li><li data-type='method'><a href="System.html#onInitiate">onInitiate</a></li><li data-type='method'><a href="System.html#onTerminate">onTerminate</a></li><li data-type='method'><a href="System.html#onTick">onTick</a></li><li data-type='method'><a href="System.html#terminate">terminate</a></li><li data-type='method'><a href="System.html#tick">tick</a></li></ul></li><li><a href="SystemActor.html">SystemActor</a><ul class='methods'><li data-type='method'><a href="SystemActor.html#onTick">onTick</a></li></ul></li><li><a href="SystemAudio.html">SystemAudio</a><ul class='methods'><li data-type='method'><a href="SystemAudio.html#hasAssetLoaded">hasAssetLoaded</a></li><li data-type='method'><a href="SystemAudio.html#loadAudio">loadAudio</a></li><li data-type='method'><a href="SystemAudio.html#onInitiate">onInitiate</a></li><li data-type='method'><a href="SystemAudio.html#onTerminate">onTerminate</a></li><li data-type='method'><a href="SystemAudio.html#onTick">onTick</a></li></ul></li><li><a href="SystemCollision.html">SystemCollision</a><ul class='methods'><li data-type='method'><a href="SystemCollision.html#onInitiate">onInitiate</a></li><li data-type='method'><a href="SystemCollision.html#onTick">onTick</a></li></ul></li><li><a href="SystemInput.html">SystemInput</a><ul class='methods'><li data-type='method'><a href="SystemInput.html#getInput">getInput</a></li><li data-type='method'><a href="SystemInput.html#getInputAnalog">getInputAnalog</a></li><li data-type='method'><a href="SystemInput.html#getInputDown">getInputDown</a></li><li data-type='method'><a href="SystemInput.html#getInputUp">getInputUp</a></li><li data-type='method'><a href="SystemInput.html#onInitiate">onInitiate</a></li><li data-type='method'><a href="SystemInput.html#onTerminate">onTerminate</a></li><li data-type='method'><a href="SystemInput.html#onTick">onTick</a></li></ul></li><li><a href="SystemMidi.html">SystemMidi</a><ul class='methods'><li data-type='method'><a href="SystemMidi.html#onTick">onTick</a></li></ul></li><li><a href="SystemRender.html">SystemRender</a><ul class='methods'><li data-type='method'><a href="SystemRender.html#$getActorsVisible">$getActorsVisible</a></li><li data-type='method'><a href="SystemRender.html#checkResized">checkResized</a></li><li data-type='method'><a href="SystemRender.html#getBoundariesFromFraming">getBoundariesFromFraming</a></li><li data-type='method'><a href="SystemRender.html#getBoundariesFromScreen">getBoundariesFromScreen</a></li><li data-type='method'><a href="SystemRender.html#getTranslationFromScreen">getTranslationFromScreen</a></li><li data-type='method'><a href="SystemRender.html#hasAssetLoaded">hasAssetLoaded</a></li><li data-type='method'><a href="SystemRender.html#loadTexture">loadTexture</a></li><li data-type='method'><a href="SystemRender.html#onInitiate">onInitiate</a></li><li data-type='method'><a href="SystemRender.html#onTerminate">onTerminate</a></li><li data-type='method'><a href="SystemRender.html#onTick">onTick</a></li><li data-type='method'><a href="SystemRender.html#raycast">raycast</a></li><li data-type='method'><a href="SystemRender.html#removePointerNative">removePointerNative</a></li><li data-type='method'><a href="SystemRender.html#setColor">setColor</a></li><li data-type='method'><a href="SystemRender.html#setFraming">setFraming</a></li></ul></li><li><a href="SystemVibration.html">SystemVibration</a><ul class='methods'><li data-type='method'><a href="SystemVibration.html#onInitiate">onInitiate</a></li><li data-type='method'><a href="SystemVibration.html#onTerminate">onTerminate</a></li><li data-type='method'><a href="SystemVibration.html#onTick">onTick</a></li></ul></li><li><a href="Timeline.html">Timeline</a><ul class='methods'><li data-type='method'><a href="Timeline.html#addTimeline">addTimeline</a></li><li data-type='method'><a href="Timeline.html#clone">clone</a></li><li data-type='method'><a href="Timeline.html#offset">offset</a></li><li data-type='method'><a href="Timeline.html#seekName">seekName</a></li><li data-type='method'><a href="Timeline.html#seekTimecode">seekTimecode</a></li><li data-type='method'><a href="Timeline.html#tick">tick</a></li></ul></li><li><a href="TimelineKeyframe.html">TimelineKeyframe</a><ul class='methods'><li data-type='method'><a href="TimelineKeyframe.html#clone">clone</a></li><li data-type='method'><a href="TimelineKeyframe.html#offset">offset</a></li></ul></li><li><a href="Vector2.html">Vector2</a><ul class='methods'><li data-type='method'><a href="Vector2.html#add">add</a></li><li data-type='method'><a href="Vector2.html#ceil">ceil</a></li><li data-type='method'><a href="Vector2.html#clone">clone</a></li><li data-type='method'><a href="Vector2.html#equal">equal</a></li><li data-type='method'><a href="Vector2.html#floor">floor</a></li><li data-type='method'><a href="Vector2.html#length">length</a></li><li data-type='method'><a href="Vector2.html#multiply">multiply</a></li><li data-type='method'><a href="Vector2.html#negate">negate</a></li><li data-type='method'><a href="Vector2.html#normalize">normalize</a></li><li data-type='method'><a href="Vector2.html#rotate">rotate</a></li><li data-type='method'><a href="Vector2.html#round">round</a></li><li data-type='method'><a href="Vector2.html#scale">scale</a></li><li data-type='method'><a href="Vector2.html#subtract">subtract</a></li><li data-type='method'><a href="Vector2.html#.deserialize">deserialize</a></li><li data-type='method'><a href="Vector2.html#.distanceDiagonal">distanceDiagonal</a></li><li data-type='method'><a href="Vector2.html#.distanceEuclidean">distanceEuclidean</a></li><li data-type='method'><a href="Vector2.html#.distanceManhattan">distanceManhattan</a></li><li data-type='method'><a href="Vector2.html#.from">from</a></li><li data-type='method'><a href="Vector2.html#.serialize">serialize</a></li></ul></li><li><a href="Vector3.html">Vector3</a><ul class='methods'><li data-type='method'><a href="Vector3.html#add">add</a></li><li data-type='method'><a href="Vector3.html#ceil">ceil</a></li><li data-type='method'><a href="Vector3.html#clone">clone</a></li><li data-type='method'><a href="Vector3.html#equal">equal</a></li><li data-type='method'><a href="Vector3.html#floor">floor</a></li><li data-type='method'><a href="Vector3.html#length">length</a></li><li data-type='method'><a href="Vector3.html#multiply">multiply</a></li><li data-type='method'><a href="Vector3.html#negate">negate</a></li><li data-type='method'><a href="Vector3.html#normalize">normalize</a></li><li data-type='method'><a href="Vector3.html#rotate">rotate</a></li><li data-type='method'><a href="Vector3.html#round">round</a></li><li data-type='method'><a href="Vector3.html#scale">scale</a></li><li data-type='method'><a href="Vector3.html#subtract">subtract</a></li><li data-type='method'><a href="Vector3.html#.deserialize">deserialize</a></li><li data-type='method'><a href="Vector3.html#.from">from</a></li><li data-type='method'><a href="Vector3.html#.serialize">serialize</a></li></ul></li><li><a href="Vibration.html">Vibration</a></li></ul><h3>Modules</h3><ul><li><a href="module-COLLIDER_TYPES.html">COLLIDER_TYPES</a></li><li><a href="module-CONTENT_TYPES.html">CONTENT_TYPES</a></li><li><a href="module-CONTEXT_TYPE.html">CONTEXT_TYPE</a></li><li><a href="module-CURVES.html">CURVES</a><ul class='methods'><li data-type='method'><a href="module-CURVES.html#.cosine">cosine</a></li><li data-type='method'><a href="module-CURVES.html#.double">double</a></li><li data-type='method'><a href="module-CURVES.html#.easeIn">easeIn</a></li><li data-type='method'><a href="module-CURVES.html#.easeInOut">easeInOut</a></li><li data-type='method'><a href="module-CURVES.html#.easeOut">easeOut</a></li><li data-type='method'><a href="module-CURVES.html#.half">half</a></li><li data-type='method'><a href="module-CURVES.html#.invert">invert</a></li><li data-type='method'><a href="module-CURVES.html#.linear">linear</a></li><li data-type='method'><a href="module-CURVES.html#.multiply">multiply</a></li><li data-type='method'><a href="module-CURVES.html#.negate">negate</a></li><li data-type='method'><a href="module-CURVES.html#.reverse">reverse</a></li><li data-type='method'><a href="module-CURVES.html#.sine">sine</a></li></ul></li><li><a href="module-EVENT_CODES_GAMEPADS_PLAYSTATION.html">EVENT_CODES/GAMEPADS/PLAYSTATION</a></li><li><a href="module-EVENT_CODES_GAMEPADS_STANDARD.html">EVENT_CODES/GAMEPADS/STANDARD</a></li><li><a href="module-EVENT_CODES_GAMEPADS_XBOX.html">EVENT_CODES/GAMEPADS/XBOX</a></li><li><a href="module-EVENT_CODES_MIDI.html">EVENT_CODES/MIDI</a></li><li><a href="module-EVENT_TYPES_GAMEPAD.html">EVENT_TYPES/GAMEPAD</a></li><li><a href="module-EVENT_TYPES_GRAVITY.html">EVENT_TYPES/GRAVITY</a></li><li><a href="module-EVENT_TYPES_GYROSCOPE.html">EVENT_TYPES/GYROSCOPE</a></li><li><a href="module-EVENT_TYPES_KEYBOARD.html">EVENT_TYPES/KEYBOARD</a></li><li><a href="module-EVENT_TYPES_MIDI.html">EVENT_TYPES/MIDI</a></li><li><a href="module-EVENT_TYPES_NATIVE.html">EVENT_TYPES/NATIVE</a></li><li><a href="module-EVENT_TYPES_POINTER.html">EVENT_TYPES/POINTER</a></li><li><a href="module-FACTORIES.html">FACTORIES</a><ul class='methods'><li data-type='method'><a href="module-FACTORIES.html#.ActorWithPreloadables">ActorWithPreloadables</a></li><li data-type='method'><a href="module-FACTORIES.html#.PreloadableSound">PreloadableSound</a></li><li data-type='method'><a href="module-FACTORIES.html#.PreloadableTexture">PreloadableTexture</a></li><li data-type='method'><a href="module-FACTORIES.html#.StageWithPreloadables">StageWithPreloadables</a></li></ul></li><li><a href="module-INPUT_CODES_GAMEPADS_PLAYSTATION.html">INPUT_CODES/GAMEPADS/PLAYSTATION</a></li><li><a href="module-INPUT_CODES_GAMEPADS_STANDARD.html">INPUT_CODES/GAMEPADS/STANDARD</a></li><li><a href="module-INPUT_CODES_GAMEPADS_XBOX.html">INPUT_CODES/GAMEPADS/XBOX</a></li><li><a href="module-INPUT_CODES_GRAVITY.html">INPUT_CODES/GRAVITY</a></li><li><a href="module-INPUT_CODES_GYROSCOPE.html">INPUT_CODES/GYROSCOPE</a></li><li><a href="module-INPUT_CODES_KEYBOARDS_AZERTY.html">INPUT_CODES/KEYBOARDS/AZERTY</a></li><li><a href="module-INPUT_CODES_KEYBOARDS_QWERTY.html">INPUT_CODES/KEYBOARDS/QWERTY</a></li><li><a href="module-INPUT_CODES_KEYBOARDS_STANDARD.html">INPUT_CODES/KEYBOARDS/STANDARD</a></li><li><a href="module-INPUT_CODES_MIDI.html">INPUT_CODES/MIDI</a></li><li><a href="module-INPUT_CODES_MIDI_CHANNEL_EIGHT.html">INPUT_CODES/MIDI/CHANNEL_EIGHT</a></li><li><a href="module-INPUT_CODES_MIDI_CHANNEL_ELEVEN.html">INPUT_CODES/MIDI/CHANNEL_ELEVEN</a></li><li><a href="module-INPUT_CODES_MIDI_CHANNEL_FIFTEEN.html">INPUT_CODES/MIDI/CHANNEL_FIFTEEN</a></li><li><a href="module-INPUT_CODES_MIDI_CHANNEL_FIVE.html">INPUT_CODES/MIDI/CHANNEL_FIVE</a></li><li><a href="module-INPUT_CODES_MIDI_CHANNEL_FOUR.html">INPUT_CODES/MIDI/CHANNEL_FOUR</a></li><li><a href="module-INPUT_CODES_MIDI_CHANNEL_FOURTEEN.html">INPUT_CODES/MIDI/CHANNEL_FOURTEEN</a></li><li><a href="module-INPUT_CODES_MIDI_CHANNEL_NINE.html">INPUT_CODES/MIDI/CHANNEL_NINE</a></li><li><a href="module-INPUT_CODES_MIDI_CHANNEL_ONE.html">INPUT_CODES/MIDI/CHANNEL_ONE</a></li><li><a href="module-INPUT_CODES_MIDI_CHANNEL_SEVEN.html">INPUT_CODES/MIDI/CHANNEL_SEVEN</a></li><li><a href="module-INPUT_CODES_MIDI_CHANNEL_SIX.html">INPUT_CODES/MIDI/CHANNEL_SIX</a></li><li><a href="module-INPUT_CODES_MIDI_CHANNEL_SIXTEEN.html">INPUT_CODES/MIDI/CHANNEL_SIXTEEN</a></li><li><a href="module-INPUT_CODES_MIDI_CHANNEL_TEN.html">INPUT_CODES/MIDI/CHANNEL_TEN</a></li><li><a href="module-INPUT_CODES_MIDI_CHANNEL_THIRTEEN.html">INPUT_CODES/MIDI/CHANNEL_THIRTEEN</a></li><li><a href="module-INPUT_CODES_MIDI_CHANNEL_THREE.html">INPUT_CODES/MIDI/CHANNEL_THREE</a></li><li><a href="module-INPUT_CODES_MIDI_CHANNEL_TWELVE.html">INPUT_CODES/MIDI/CHANNEL_TWELVE</a></li><li><a href="module-INPUT_CODES_MIDI_CHANNEL_TWO.html">INPUT_CODES/MIDI/CHANNEL_TWO</a></li><li><a href="module-INPUT_CODES_POINTER.html">INPUT_CODES/POINTER</a></li><li><a href="module-MATHEMATICS.html">MATHEMATICS</a><ul class='methods'><li data-type='method'><a href="module-MATHEMATICS.html#.clamp">clamp</a></li><li data-type='method'><a href="module-MATHEMATICS.html#.hypotenuse">hypotenuse</a></li><li data-type='method'><a href="module-MATHEMATICS.html#.normalize">normalize</a></li></ul></li><li><a href="module-MEDIA_TYPES.html">MEDIA_TYPES</a></li><li><a href="module-MIDI_STATUSES.html">MIDI_STATUSES</a></li><li><a href="module-SHADER_PARAMETER_TYPES.html">SHADER_PARAMETER_TYPES</a></li><li><a href="module-STORAGE.html">STORAGE</a><ul class='methods'><li data-type='method'><a href="module-STORAGE.html#.get">get</a></li><li data-type='method'><a href="module-STORAGE.html#.has">has</a></li><li data-type='method'><a href="module-STORAGE.html#.remove">remove</a></li><li data-type='method'><a href="module-STORAGE.html#.set">set</a></li></ul></li><li><a href="module-UTILS.html">UTILS</a><ul class='methods'><li data-type='method'><a href="module-UTILS.html#.debounce">debounce</a></li><li data-type='method'><a href="module-UTILS.html#.deduplicate">deduplicate</a></li><li data-type='method'><a href="module-UTILS.html#.extract">extract</a></li><li data-type='method'><a href="module-UTILS.html#.frame">frame</a></li><li data-type='method'><a href="module-UTILS.html#.hash">hash</a></li><li data-type='method'><a href="module-UTILS.html#.noop">noop</a></li><li data-type='method'><a href="module-UTILS.html#.ready">ready</a></li><li data-type='method'><a href="module-UTILS.html#.shuffle">shuffle</a></li><li data-type='method'><a href="module-UTILS.html#.sleep">sleep</a></li><li data-type='method'><a href="module-UTILS.html#.uuid">uuid</a></li></ul></li></ul>
+    
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">constants/input-codes/midi/midi.channel-ten-controls.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * The MIDI 'CONTROL_0' input code on channel ten.
+ * @type {'Control10X0'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_0 = 'Control10X0';
+
+/**
+ * The MIDI 'CONTROL_1' input code on channel ten.
+ * @type {'Control10X1'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_1 = 'Control10X1';
+
+/**
+ * The MIDI 'CONTROL_2' input code on channel ten.
+ * @type {'Control10X2'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_2 = 'Control10X2';
+
+/**
+ * The MIDI 'CONTROL_3' input code on channel ten.
+ * @type {'Control10X3'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_3 = 'Control10X3';
+
+/**
+ * The MIDI 'CONTROL_4' input code on channel ten.
+ * @type {'Control10X4'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_4 = 'Control10X4';
+
+/**
+ * The MIDI 'CONTROL_5' input code on channel ten.
+ * @type {'Control10X5'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_5 = 'Control10X5';
+
+/**
+ * The MIDI 'CONTROL_6' input code on channel ten.
+ * @type {'Control10X6'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_6 = 'Control10X6';
+
+/**
+ * The MIDI 'CONTROL_7' input code on channel ten.
+ * @type {'Control10X7'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_7 = 'Control10X7';
+
+/**
+ * The MIDI 'CONTROL_8' input code on channel ten.
+ * @type {'Control10X8'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_8 = 'Control10X8';
+
+/**
+ * The MIDI 'CONTROL_9' input code on channel ten.
+ * @type {'Control10X9'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_9 = 'Control10X9';
+
+/**
+ * The MIDI 'CONTROL_10' input code on channel ten.
+ * @type {'Control10X10'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_10 = 'Control10X10';
+
+/**
+ * The MIDI 'CONTROL_11' input code on channel ten.
+ * @type {'Control10X11'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_11 = 'Control10X11';
+
+/**
+ * The MIDI 'CONTROL_12' input code on channel ten.
+ * @type {'Control10X12'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_12 = 'Control10X12';
+
+/**
+ * The MIDI 'CONTROL_13' input code on channel ten.
+ * @type {'Control10X13'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_13 = 'Control10X13';
+
+/**
+ * The MIDI 'CONTROL_14' input code on channel ten.
+ * @type {'Control10X14'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_14 = 'Control10X14';
+
+/**
+ * The MIDI 'CONTROL_15' input code on channel ten.
+ * @type {'Control10X15'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_15 = 'Control10X15';
+
+/**
+ * The MIDI 'CONTROL_16' input code on channel ten.
+ * @type {'Control10X16'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_16 = 'Control10X16';
+
+/**
+ * The MIDI 'CONTROL_17' input code on channel ten.
+ * @type {'Control10X17'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_17 = 'Control10X17';
+
+/**
+ * The MIDI 'CONTROL_18' input code on channel ten.
+ * @type {'Control10X18'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_18 = 'Control10X18';
+
+/**
+ * The MIDI 'CONTROL_19' input code on channel ten.
+ * @type {'Control10X19'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_19 = 'Control10X19';
+
+/**
+ * The MIDI 'CONTROL_20' input code on channel ten.
+ * @type {'Control10X20'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_20 = 'Control10X20';
+
+/**
+ * The MIDI 'CONTROL_21' input code on channel ten.
+ * @type {'Control10X21'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_21 = 'Control10X21';
+
+/**
+ * The MIDI 'CONTROL_22' input code on channel ten.
+ * @type {'Control10X22'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_22 = 'Control10X22';
+
+/**
+ * The MIDI 'CONTROL_23' input code on channel ten.
+ * @type {'Control10X23'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_23 = 'Control10X23';
+
+/**
+ * The MIDI 'CONTROL_24' input code on channel ten.
+ * @type {'Control10X24'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_24 = 'Control10X24';
+
+/**
+ * The MIDI 'CONTROL_25' input code on channel ten.
+ * @type {'Control10X25'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_25 = 'Control10X25';
+
+/**
+ * The MIDI 'CONTROL_26' input code on channel ten.
+ * @type {'Control10X26'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_26 = 'Control10X26';
+
+/**
+ * The MIDI 'CONTROL_27' input code on channel ten.
+ * @type {'Control10X27'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_27 = 'Control10X27';
+
+/**
+ * The MIDI 'CONTROL_28' input code on channel ten.
+ * @type {'Control10X28'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_28 = 'Control10X28';
+
+/**
+ * The MIDI 'CONTROL_29' input code on channel ten.
+ * @type {'Control10X29'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_29 = 'Control10X29';
+
+/**
+ * The MIDI 'CONTROL_30' input code on channel ten.
+ * @type {'Control10X30'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_30 = 'Control10X30';
+
+/**
+ * The MIDI 'CONTROL_31' input code on channel ten.
+ * @type {'Control10X31'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_31 = 'Control10X31';
+
+/**
+ * The MIDI 'CONTROL_32' input code on channel ten.
+ * @type {'Control10X32'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_32 = 'Control10X32';
+
+/**
+ * The MIDI 'CONTROL_33' input code on channel ten.
+ * @type {'Control10X33'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_33 = 'Control10X33';
+
+/**
+ * The MIDI 'CONTROL_34' input code on channel ten.
+ * @type {'Control10X34'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_34 = 'Control10X34';
+
+/**
+ * The MIDI 'CONTROL_35' input code on channel ten.
+ * @type {'Control10X35'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_35 = 'Control10X35';
+
+/**
+ * The MIDI 'CONTROL_36' input code on channel ten.
+ * @type {'Control10X36'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_36 = 'Control10X36';
+
+/**
+ * The MIDI 'CONTROL_37' input code on channel ten.
+ * @type {'Control10X37'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_37 = 'Control10X37';
+
+/**
+ * The MIDI 'CONTROL_38' input code on channel ten.
+ * @type {'Control10X38'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_38 = 'Control10X38';
+
+/**
+ * The MIDI 'CONTROL_39' input code on channel ten.
+ * @type {'Control10X39'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_39 = 'Control10X39';
+
+/**
+ * The MIDI 'CONTROL_40' input code on channel ten.
+ * @type {'Control10X40'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_40 = 'Control10X40';
+
+/**
+ * The MIDI 'CONTROL_41' input code on channel ten.
+ * @type {'Control10X41'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_41 = 'Control10X41';
+
+/**
+ * The MIDI 'CONTROL_42' input code on channel ten.
+ * @type {'Control10X42'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_42 = 'Control10X42';
+
+/**
+ * The MIDI 'CONTROL_43' input code on channel ten.
+ * @type {'Control10X43'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_43 = 'Control10X43';
+
+/**
+ * The MIDI 'CONTROL_44' input code on channel ten.
+ * @type {'Control10X44'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_44 = 'Control10X44';
+
+/**
+ * The MIDI 'CONTROL_45' input code on channel ten.
+ * @type {'Control10X45'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_45 = 'Control10X45';
+
+/**
+ * The MIDI 'CONTROL_46' input code on channel ten.
+ * @type {'Control10X46'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_46 = 'Control10X46';
+
+/**
+ * The MIDI 'CONTROL_47' input code on channel ten.
+ * @type {'Control10X47'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_47 = 'Control10X47';
+
+/**
+ * The MIDI 'CONTROL_48' input code on channel ten.
+ * @type {'Control10X48'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_48 = 'Control10X48';
+
+/**
+ * The MIDI 'CONTROL_49' input code on channel ten.
+ * @type {'Control10X49'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_49 = 'Control10X49';
+
+/**
+ * The MIDI 'CONTROL_50' input code on channel ten.
+ * @type {'Control10X50'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_50 = 'Control10X50';
+
+/**
+ * The MIDI 'CONTROL_51' input code on channel ten.
+ * @type {'Control10X51'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_51 = 'Control10X51';
+
+/**
+ * The MIDI 'CONTROL_52' input code on channel ten.
+ * @type {'Control10X52'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_52 = 'Control10X52';
+
+/**
+ * The MIDI 'CONTROL_53' input code on channel ten.
+ * @type {'Control10X53'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_53 = 'Control10X53';
+
+/**
+ * The MIDI 'CONTROL_54' input code on channel ten.
+ * @type {'Control10X54'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_54 = 'Control10X54';
+
+/**
+ * The MIDI 'CONTROL_55' input code on channel ten.
+ * @type {'Control10X55'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_55 = 'Control10X55';
+
+/**
+ * The MIDI 'CONTROL_56' input code on channel ten.
+ * @type {'Control10X56'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_56 = 'Control10X56';
+
+/**
+ * The MIDI 'CONTROL_57' input code on channel ten.
+ * @type {'Control10X57'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_57 = 'Control10X57';
+
+/**
+ * The MIDI 'CONTROL_58' input code on channel ten.
+ * @type {'Control10X58'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_58 = 'Control10X58';
+
+/**
+ * The MIDI 'CONTROL_59' input code on channel ten.
+ * @type {'Control10X59'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_59 = 'Control10X59';
+
+/**
+ * The MIDI 'CONTROL_60' input code on channel ten.
+ * @type {'Control10X60'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_60 = 'Control10X60';
+
+/**
+ * The MIDI 'CONTROL_61' input code on channel ten.
+ * @type {'Control10X61'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_61 = 'Control10X61';
+
+/**
+ * The MIDI 'CONTROL_62' input code on channel ten.
+ * @type {'Control10X62'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_62 = 'Control10X62';
+
+/**
+ * The MIDI 'CONTROL_63' input code on channel ten.
+ * @type {'Control10X63'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_63 = 'Control10X63';
+
+/**
+ * The MIDI 'CONTROL_64' input code on channel ten.
+ * @type {'Control10X64'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_64 = 'Control10X64';
+
+/**
+ * The MIDI 'CONTROL_65' input code on channel ten.
+ * @type {'Control10X65'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_65 = 'Control10X65';
+
+/**
+ * The MIDI 'CONTROL_66' input code on channel ten.
+ * @type {'Control10X66'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_66 = 'Control10X66';
+
+/**
+ * The MIDI 'CONTROL_67' input code on channel ten.
+ * @type {'Control10X67'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_67 = 'Control10X67';
+
+/**
+ * The MIDI 'CONTROL_68' input code on channel ten.
+ * @type {'Control10X68'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_68 = 'Control10X68';
+
+/**
+ * The MIDI 'CONTROL_69' input code on channel ten.
+ * @type {'Control10X69'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_69 = 'Control10X69';
+
+/**
+ * The MIDI 'CONTROL_70' input code on channel ten.
+ * @type {'Control10X70'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_70 = 'Control10X70';
+
+/**
+ * The MIDI 'CONTROL_71' input code on channel ten.
+ * @type {'Control10X71'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_71 = 'Control10X71';
+
+/**
+ * The MIDI 'CONTROL_72' input code on channel ten.
+ * @type {'Control10X72'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_72 = 'Control10X72';
+
+/**
+ * The MIDI 'CONTROL_73' input code on channel ten.
+ * @type {'Control10X73'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_73 = 'Control10X73';
+
+/**
+ * The MIDI 'CONTROL_74' input code on channel ten.
+ * @type {'Control10X74'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_74 = 'Control10X74';
+
+/**
+ * The MIDI 'CONTROL_75' input code on channel ten.
+ * @type {'Control10X75'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_75 = 'Control10X75';
+
+/**
+ * The MIDI 'CONTROL_76' input code on channel ten.
+ * @type {'Control10X76'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_76 = 'Control10X76';
+
+/**
+ * The MIDI 'CONTROL_77' input code on channel ten.
+ * @type {'Control10X77'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_77 = 'Control10X77';
+
+/**
+ * The MIDI 'CONTROL_78' input code on channel ten.
+ * @type {'Control10X78'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_78 = 'Control10X78';
+
+/**
+ * The MIDI 'CONTROL_79' input code on channel ten.
+ * @type {'Control10X79'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_79 = 'Control10X79';
+
+/**
+ * The MIDI 'CONTROL_80' input code on channel ten.
+ * @type {'Control10X80'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_80 = 'Control10X80';
+
+/**
+ * The MIDI 'CONTROL_81' input code on channel ten.
+ * @type {'Control10X81'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_81 = 'Control10X81';
+
+/**
+ * The MIDI 'CONTROL_82' input code on channel ten.
+ * @type {'Control10X82'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_82 = 'Control10X82';
+
+/**
+ * The MIDI 'CONTROL_83' input code on channel ten.
+ * @type {'Control10X83'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_83 = 'Control10X83';
+
+/**
+ * The MIDI 'CONTROL_84' input code on channel ten.
+ * @type {'Control10X84'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_84 = 'Control10X84';
+
+/**
+ * The MIDI 'CONTROL_85' input code on channel ten.
+ * @type {'Control10X85'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_85 = 'Control10X85';
+
+/**
+ * The MIDI 'CONTROL_86' input code on channel ten.
+ * @type {'Control10X86'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_86 = 'Control10X86';
+
+/**
+ * The MIDI 'CONTROL_87' input code on channel ten.
+ * @type {'Control10X87'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_87 = 'Control10X87';
+
+/**
+ * The MIDI 'CONTROL_88' input code on channel ten.
+ * @type {'Control10X88'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_88 = 'Control10X88';
+
+/**
+ * The MIDI 'CONTROL_89' input code on channel ten.
+ * @type {'Control10X89'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_89 = 'Control10X89';
+
+/**
+ * The MIDI 'CONTROL_90' input code on channel ten.
+ * @type {'Control10X90'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_90 = 'Control10X90';
+
+/**
+ * The MIDI 'CONTROL_91' input code on channel ten.
+ * @type {'Control10X91'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_91 = 'Control10X91';
+
+/**
+ * The MIDI 'CONTROL_92' input code on channel ten.
+ * @type {'Control10X92'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_92 = 'Control10X92';
+
+/**
+ * The MIDI 'CONTROL_93' input code on channel ten.
+ * @type {'Control10X93'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_93 = 'Control10X93';
+
+/**
+ * The MIDI 'CONTROL_94' input code on channel ten.
+ * @type {'Control10X94'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_94 = 'Control10X94';
+
+/**
+ * The MIDI 'CONTROL_95' input code on channel ten.
+ * @type {'Control10X95'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_95 = 'Control10X95';
+
+/**
+ * The MIDI 'CONTROL_96' input code on channel ten.
+ * @type {'Control10X96'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_96 = 'Control10X96';
+
+/**
+ * The MIDI 'CONTROL_97' input code on channel ten.
+ * @type {'Control10X97'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_97 = 'Control10X97';
+
+/**
+ * The MIDI 'CONTROL_98' input code on channel ten.
+ * @type {'Control10X98'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_98 = 'Control10X98';
+
+/**
+ * The MIDI 'CONTROL_99' input code on channel ten.
+ * @type {'Control10X99'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_99 = 'Control10X99';
+
+/**
+ * The MIDI 'CONTROL_100' input code on channel ten.
+ * @type {'Control10X100'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_100 = 'Control10X100';
+
+/**
+ * The MIDI 'CONTROL_101' input code on channel ten.
+ * @type {'Control10X101'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_101 = 'Control10X101';
+
+/**
+ * The MIDI 'CONTROL_102' input code on channel ten.
+ * @type {'Control10X102'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_102 = 'Control10X102';
+
+/**
+ * The MIDI 'CONTROL_103' input code on channel ten.
+ * @type {'Control10X103'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_103 = 'Control10X103';
+
+/**
+ * The MIDI 'CONTROL_104' input code on channel ten.
+ * @type {'Control10X104'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_104 = 'Control10X104';
+
+/**
+ * The MIDI 'CONTROL_105' input code on channel ten.
+ * @type {'Control10X105'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_105 = 'Control10X105';
+
+/**
+ * The MIDI 'CONTROL_106' input code on channel ten.
+ * @type {'Control10X106'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_106 = 'Control10X106';
+
+/**
+ * The MIDI 'CONTROL_107' input code on channel ten.
+ * @type {'Control10X107'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_107 = 'Control10X107';
+
+/**
+ * The MIDI 'CONTROL_108' input code on channel ten.
+ * @type {'Control10X108'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_108 = 'Control10X108';
+
+/**
+ * The MIDI 'CONTROL_109' input code on channel ten.
+ * @type {'Control10X109'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_109 = 'Control10X109';
+
+/**
+ * The MIDI 'CONTROL_110' input code on channel ten.
+ * @type {'Control10X110'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_110 = 'Control10X110';
+
+/**
+ * The MIDI 'CONTROL_111' input code on channel ten.
+ * @type {'Control10X111'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_111 = 'Control10X111';
+
+/**
+ * The MIDI 'CONTROL_112' input code on channel ten.
+ * @type {'Control10X112'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_112 = 'Control10X112';
+
+/**
+ * The MIDI 'CONTROL_113' input code on channel ten.
+ * @type {'Control10X113'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_113 = 'Control10X113';
+
+/**
+ * The MIDI 'CONTROL_114' input code on channel ten.
+ * @type {'Control10X114'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_114 = 'Control10X114';
+
+/**
+ * The MIDI 'CONTROL_115' input code on channel ten.
+ * @type {'Control10X115'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_115 = 'Control10X115';
+
+/**
+ * The MIDI 'CONTROL_116' input code on channel ten.
+ * @type {'Control10X116'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_116 = 'Control10X116';
+
+/**
+ * The MIDI 'CONTROL_117' input code on channel ten.
+ * @type {'Control10X117'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_117 = 'Control10X117';
+
+/**
+ * The MIDI 'CONTROL_118' input code on channel ten.
+ * @type {'Control10X118'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_118 = 'Control10X118';
+
+/**
+ * The MIDI 'CONTROL_119' input code on channel ten.
+ * @type {'Control10X119'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI/CHANNEL_TEN
+ */
+const CONTROL_119 = 'Control10X119';
+
+export {
+
+    CONTROL_0,
+    CONTROL_1,
+    CONTROL_2,
+    CONTROL_3,
+    CONTROL_4,
+    CONTROL_5,
+    CONTROL_6,
+    CONTROL_7,
+    CONTROL_8,
+    CONTROL_9,
+    CONTROL_10,
+    CONTROL_11,
+    CONTROL_12,
+    CONTROL_13,
+    CONTROL_14,
+    CONTROL_15,
+    CONTROL_16,
+    CONTROL_17,
+    CONTROL_18,
+    CONTROL_19,
+    CONTROL_20,
+    CONTROL_21,
+    CONTROL_22,
+    CONTROL_23,
+    CONTROL_24,
+    CONTROL_25,
+    CONTROL_26,
+    CONTROL_27,
+    CONTROL_28,
+    CONTROL_29,
+    CONTROL_30,
+    CONTROL_31,
+    CONTROL_32,
+    CONTROL_33,
+    CONTROL_34,
+    CONTROL_35,
+    CONTROL_36,
+    CONTROL_37,
+    CONTROL_38,
+    CONTROL_39,
+    CONTROL_40,
+    CONTROL_41,
+    CONTROL_42,
+    CONTROL_43,
+    CONTROL_44,
+    CONTROL_45,
+    CONTROL_46,
+    CONTROL_47,
+    CONTROL_48,
+    CONTROL_49,
+    CONTROL_50,
+    CONTROL_51,
+    CONTROL_52,
+    CONTROL_53,
+    CONTROL_54,
+    CONTROL_55,
+    CONTROL_56,
+    CONTROL_57,
+    CONTROL_58,
+    CONTROL_59,
+    CONTROL_60,
+    CONTROL_61,
+    CONTROL_62,
+    CONTROL_63,
+    CONTROL_64,
+    CONTROL_65,
+    CONTROL_66,
+    CONTROL_67,
+    CONTROL_68,
+    CONTROL_69,
+    CONTROL_70,
+    CONTROL_71,
+    CONTROL_72,
+    CONTROL_73,
+    CONTROL_74,
+    CONTROL_75,
+    CONTROL_76,
+    CONTROL_77,
+    CONTROL_78,
+    CONTROL_79,
+    CONTROL_80,
+    CONTROL_81,
+    CONTROL_82,
+    CONTROL_83,
+    CONTROL_84,
+    CONTROL_85,
+    CONTROL_86,
+    CONTROL_87,
+    CONTROL_88,
+    CONTROL_89,
+    CONTROL_90,
+    CONTROL_91,
+    CONTROL_92,
+    CONTROL_93,
+    CONTROL_94,
+    CONTROL_95,
+    CONTROL_96,
+    CONTROL_97,
+    CONTROL_98,
+    CONTROL_99,
+    CONTROL_100,
+    CONTROL_101,
+    CONTROL_102,
+    CONTROL_103,
+    CONTROL_104,
+    CONTROL_105,
+    CONTROL_106,
+    CONTROL_107,
+    CONTROL_108,
+    CONTROL_109,
+    CONTROL_110,
+    CONTROL_111,
+    CONTROL_112,
+    CONTROL_113,
+    CONTROL_114,
+    CONTROL_115,
+    CONTROL_116,
+    CONTROL_117,
+    CONTROL_118,
+    CONTROL_119
+};
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.5</a> on Thu Apr 09 2026 15:37:27 GMT+0000 (Coordinated Universal Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+<script src="scripts/search.js" defer></script>
+
+
+
+</body>
+</html>
