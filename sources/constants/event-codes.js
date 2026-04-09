@@ -6,6 +6,7 @@ import * as GYROSCOPE from './event-codes/gyroscope.js';
 import * as KEYBOARD_AZERTY from './event-codes/keyboard.azerty.js';
 import * as KEYBOARD_QWERTY from './event-codes/keyboard.qwerty.js';
 import * as KEYBOARD_STANDARD from './event-codes/keyboard.standard.js';
+import * as MIDI from './event-codes/midi.js';
 import * as POINTER from './event-codes/pointer.js';
 
 export {
@@ -18,5 +19,6 @@ export {
     KEYBOARD_AZERTY,
     KEYBOARD_QWERTY,
     KEYBOARD_STANDARD,
+    MIDI,
     POINTER
 };

@@ -1,4 +1,4 @@
-import {Collider, Engine, EventBus, Preloadable, Sound, Sprite, Stage, UTILS, Vector2, Vibration} from '../index.js';
+import {Collider, Engine, EventBus, Midi, Preloadable, Sound, Sprite, Stage, UTILS, Vector2, Vibration} from '../index.js';
 
 /**
  * Abstract actors.
@@ -77,6 +77,13 @@ class Actor extends Preloadable {
      * @private
      */
     $label;
+
+    /**
+     * Stores the MIDI messages.
+     * @type {Array<Midi>}
+     * @private
+     */
+    $midis;
 
     /**
      * Stores the mimics.
@@ -207,6 +214,16 @@ class Actor extends Preloadable {
     }
 
     /**
+     * Gets the MIDI messages.
+     * @type {Array<Midi>}
+     * @public
+     */
+    get midis() {
+
+        return this.$midis;
+    }
+
+    /**
      * Gets the mimics.
      * @type {Map<Actor, TypeMimicDeltas>}
      * @public
@@ -317,6 +334,7 @@ class Actor extends Preloadable {
         this.$actions = new EventBus();
         this.$components = {};
         this.$followers = new Map();
+        this.$midis = [];
         this.$mimics = new Map();
         this.$sounds = [];
         this.$states = new EventBus();
@@ -422,6 +440,19 @@ class Actor extends Preloadable {
         });
 
         this.onTranslate($vector);
+    }
+
+    /**
+     * Adds the given MIDI message.
+     * @param {Midi} $midi The MIDI message to add.
+     * @returns {this}
+     * @public
+     */
+    addMidi($midi) {
+
+        this.$midis.push($midi);
+
+        return this;
     }
 
     /**
@@ -683,6 +714,31 @@ class Actor extends Preloadable {
     removeComponent($name) {
 
         this.$components[$name] = undefined;
+
+        return this;
+    }
+
+    /**
+     * Removes the given MIDI message.
+     * @param {Midi} $midi The MIDI message to remove.
+     * @returns {this}
+     * @public
+     */
+    removeMidi($midi) {
+
+        UTILS.extract($midi, this.$midis);
+
+        return this;
+    }
+
+    /**
+     * Removes all MIDI message.
+     * @returns {this}
+     * @public
+     */
+    removeMidis() {
+
+        this.$midis = [];
 
         return this;
     }

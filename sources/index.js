@@ -4,6 +4,7 @@ export * as CONTEXT_TYPE from './constants/context-type.js';
 export * as EVENT_CODES from './constants/event-codes.js';
 export * as EVENT_TYPES from './constants/event-types.js';
 export * as MEDIA_TYPES from './constants/media-types.js';
+export * as MIDI_STATUSES from './constants/midi-statuses.js';
 export * as SHADER_PARAMETER_TYPES from './constants/shader-parameter-types.js';
 
 export {Preloadable} from './core/preloadable.js';
@@ -28,6 +29,7 @@ export {Grid} from './core/grid.js';
 export {Heap} from './core/heap.js';
 export {Loop} from './core/loop.js';
 export * as MATHEMATICS from './core/mathematics.js';
+export {Midi} from './core/midi.js';
 export {Pathfinder} from './core/pathfinder.js';
 export {Quaternion} from './core/quaternion.js';
 export {Queue} from './core/queue.js';
@@ -53,17 +55,22 @@ export {EventGravityAnalog} from './events/gravity-analog.js';
 export {EventGravityDigital} from './events/gravity-digital.js';
 export {EventGyroscopeAnalog} from './events/gyroscope-analog.js';
 export {EventGyroscopeDigital} from './events/gyroscope-digital.js';
+export {EventMidi} from './events/midi.js';
+export {EventMidiAnalog} from './events/midi-analog.js';
+export {EventMidiDigital} from './events/midi-digital.js';
 export {EventPointerAnalog} from './events/pointer-analog.js';
 export {EventPointerDigital} from './events/pointer-digital.js';
 
 export {ExtensionGamepad} from './extensions/gamepad.extension.js';
 export {ExtensionGravity} from './extensions/gravity.extension.js';
 export {ExtensionGyroscope} from './extensions/gyroscope.extension.js';
+export {ExtensionMidi} from './extensions/midi.extension.js';
 export {ExtensionPointer} from './extensions/pointer.extension.js';
 
 export {SystemActor} from './systems/actor.system.js';
 export {SystemAudio} from './systems/audio.system.js';
 export {SystemCollision} from './systems/collision.system.js';
 export {SystemInput} from './systems/input.system.js';
+export {SystemMidi} from './systems/midi.system.js';
 export {SystemRender} from './systems/render.system.js';
 export {SystemVibration} from './systems/vibration.system.js';

@@ -1,4 +1,4 @@
-import {AABB, Actor, Loop, MEDIA_TYPES, Stage, SystemActor, SystemAudio, SystemCollision, SystemInput, SystemRender, SystemVibration, UTILS, Vector2, Vector3} from '../index.js';
+import {AABB, Actor, Loop, MEDIA_TYPES, Stage, SystemActor, SystemAudio, SystemCollision, SystemInput, SystemMidi, SystemRender, SystemVibration, UTILS, Vector2, Vector3} from '../index.js';
 
 /**
  * Creates game engines.
@@ -103,6 +103,13 @@ class Engine {
     $systemInput;
 
     /**
+     * Stores the current MIDI messages system.
+     * @type {SystemMidi}
+     * @private
+     */
+    $systemMidi;
+
+    /**
      * Stores the current render system.
      * @type {SystemRender}
      * @private
@@ -175,6 +182,7 @@ class Engine {
         this.$systemAudio = new SystemAudio();
         this.$systemCollision = new SystemCollision();
         this.$systemInput = new SystemInput({$container: this.$container});
+        this.$systemMidi = new SystemMidi();
         this.$systemRender = new SystemRender({$color: this.$color, $container: this.$container, $framing: this.$framing});
         this.$systemVibration = new SystemVibration();
     }
@@ -324,6 +332,7 @@ class Engine {
         this.$systemRender.initiate();
         this.$systemAudio.initiate();
         this.$systemVibration.initiate();
+        this.$systemMidi.initiate();
 
         this.$loop.initiate($tickrateMinimum);
     }
@@ -470,6 +479,7 @@ class Engine {
         this.$systemRender.terminate();
         this.$systemAudio.terminate();
         this.$systemVibration.terminate();
+        this.$systemMidi.terminate();
 
         this.$preloaded = new Set();
         this.$resized = false;
@@ -527,6 +537,12 @@ class Engine {
         });
 
         this.$systemVibration.tick({
+
+            $stage: this.$stage,
+            $timetick: $timetick
+        });
+
+        this.$systemMidi.tick({
 
             $stage: this.$stage,
             $timetick: $timetick

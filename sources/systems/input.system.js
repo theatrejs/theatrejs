@@ -1,4 +1,4 @@
-import {EVENT_CODES, EVENT_TYPES, EventGamepadAnalog, EventGamepadDigital, EventGravityAnalog, EventGravityDigital, EventGyroscopeAnalog, EventGyroscopeDigital, EventPointerAnalog, EventPointerDigital, Stage, System} from '../index.js';
+import {EVENT_CODES, EVENT_TYPES, EventGamepadAnalog, EventGamepadDigital, EventGravityAnalog, EventGravityDigital, EventGyroscopeAnalog, EventGyroscopeDigital, EventMidiAnalog, EventMidiDigital, EventPointerAnalog, EventPointerDigital, Stage, System} from '../index.js';
 
 /**
  * Creates input systems.
@@ -211,6 +211,10 @@ class SystemInput extends System {
         window.addEventListener(EVENT_TYPES.GYROSCOPE.GYROSCOPE_DOWN, this.$stack.bind(this));
         window.addEventListener(EVENT_TYPES.GYROSCOPE.GYROSCOPE_UP, this.$stack.bind(this));
 
+        window.addEventListener(EVENT_TYPES.MIDI.MIDI_INPUT_ANALOG, this.$stack.bind(this));
+        window.addEventListener(EVENT_TYPES.MIDI.MIDI_INPUT_DOWN, this.$stack.bind(this));
+        window.addEventListener(EVENT_TYPES.MIDI.MIDI_INPUT_UP, this.$stack.bind(this));
+
         window.addEventListener(EVENT_TYPES.POINTER.POINTER_ANALOG, this.$stack.bind(this));
         window.addEventListener(EVENT_TYPES.POINTER.POINTER_DOWN, this.$stack.bind(this));
         window.addEventListener(EVENT_TYPES.POINTER.POINTER_UP, this.$stack.bind(this));
@@ -241,6 +245,10 @@ class SystemInput extends System {
         window.removeEventListener(EVENT_TYPES.GYROSCOPE.GYROSCOPE_ANALOG, this.$stack.bind(this));
         window.removeEventListener(EVENT_TYPES.GYROSCOPE.GYROSCOPE_DOWN, this.$stack.bind(this));
         window.removeEventListener(EVENT_TYPES.GYROSCOPE.GYROSCOPE_UP, this.$stack.bind(this));
+
+        window.removeEventListener(EVENT_TYPES.MIDI.MIDI_INPUT_ANALOG, this.$stack.bind(this));
+        window.removeEventListener(EVENT_TYPES.MIDI.MIDI_INPUT_DOWN, this.$stack.bind(this));
+        window.removeEventListener(EVENT_TYPES.MIDI.MIDI_INPUT_UP, this.$stack.bind(this));
 
         window.removeEventListener(EVENT_TYPES.POINTER.POINTER_ANALOG, this.$stack.bind(this));
         window.removeEventListener(EVENT_TYPES.POINTER.POINTER_DOWN, this.$stack.bind(this));
@@ -371,6 +379,24 @@ class SystemInput extends System {
             && $event.type === EVENT_TYPES.KEYBOARD.KEY_UP) {
 
                 this.$handleInputUp($event.code);
+            }
+
+            else if ($event instanceof EventMidiDigital
+            && $event.type === EVENT_TYPES.MIDI.MIDI_INPUT_DOWN) {
+
+                this.$handleInputDown($event.code);
+            }
+
+            else if ($event instanceof EventMidiDigital
+            && $event.type === EVENT_TYPES.MIDI.MIDI_INPUT_UP) {
+
+                this.$handleInputUp($event.code);
+            }
+
+            else if ($event instanceof EventMidiAnalog
+            && $event.type === EVENT_TYPES.MIDI.MIDI_INPUT_ANALOG) {
+
+                this.$setInputAnalog($event.code, $event.value);
             }
 
             else if ($event instanceof EventPointerDigital
