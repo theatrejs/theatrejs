@@ -240,7 +240,7 @@ class Engine {
 
     /**
      * Gets the persisted status of the given input.
-     * @param {string} $input The event code of the input.
+     * @param {string} $input The code of the input.
      * @returns {boolean}
      * @public
      */
@@ -251,7 +251,7 @@ class Engine {
 
     /**
      * Gets the analog value of the given input.
-     * @param {string} $input The event code of the input.
+     * @param {string} $input The code of the input.
      * @returns {number}
      * @public
      */
@@ -262,7 +262,7 @@ class Engine {
 
     /**
      * Gets the initiated status of the given input.
-     * @param {string} $input The event code of the input.
+     * @param {string} $input The code of the input.
      * @returns {boolean}
      * @public
      */
@@ -273,7 +273,7 @@ class Engine {
 
     /**
      * Gets the terminated status of the given input.
-     * @param {string} $input The event code of the input.
+     * @param {string} $input The code of the input.
      * @returns {boolean}
      * @public
      */

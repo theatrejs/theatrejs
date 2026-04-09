@@ -1,4 +1,4 @@
-import {EVENT_CODES, EVENT_TYPES, EventPointerAnalog, EventPointerDigital} from '../index.js';
+import {EVENT_TYPES, EventPointerAnalog, EventPointerDigital, INPUT_CODES} from '../index.js';
 
 /**
  * Creates pointer extensions.
@@ -77,13 +77,13 @@ class ExtensionPointer {
 
         if (this.$statePointer === true) {
 
-            window.dispatchEvent(new EventPointerDigital(EVENT_TYPES.POINTER.POINTER_UP, EVENT_CODES.POINTER.POINT));
+            window.dispatchEvent(new EventPointerDigital(EVENT_TYPES.POINTER.POINTER_UP, INPUT_CODES.POINTER.POINT));
 
             this.$statePointer = false;
         }
 
-        window.dispatchEvent(new EventPointerDigital(EVENT_TYPES.POINTER.POINTER_UP, EVENT_CODES.POINTER.POSITION_X));
-        window.dispatchEvent(new EventPointerDigital(EVENT_TYPES.POINTER.POINTER_UP, EVENT_CODES.POINTER.POSITION_Y));
+        window.dispatchEvent(new EventPointerDigital(EVENT_TYPES.POINTER.POINTER_UP, INPUT_CODES.POINTER.POSITION_X));
+        window.dispatchEvent(new EventPointerDigital(EVENT_TYPES.POINTER.POINTER_UP, INPUT_CODES.POINTER.POSITION_Y));
     }
 
     /**
@@ -94,7 +94,7 @@ class ExtensionPointer {
 
         if (this.$statePointer === false) {
 
-            window.dispatchEvent(new EventPointerDigital(EVENT_TYPES.POINTER.POINTER_DOWN, EVENT_CODES.POINTER.POINT));
+            window.dispatchEvent(new EventPointerDigital(EVENT_TYPES.POINTER.POINTER_DOWN, INPUT_CODES.POINTER.POINT));
 
             this.$statePointer = true;
         }
@@ -107,10 +107,10 @@ class ExtensionPointer {
      */
     $onPointerEnter($event) {
 
-        window.dispatchEvent(new EventPointerDigital(EVENT_TYPES.POINTER.POINTER_DOWN, EVENT_CODES.POINTER.POSITION_X));
-        window.dispatchEvent(new EventPointerDigital(EVENT_TYPES.POINTER.POINTER_DOWN, EVENT_CODES.POINTER.POSITION_Y));
-        window.dispatchEvent(new EventPointerAnalog(EVENT_TYPES.POINTER.POINTER_ANALOG, EVENT_CODES.POINTER.POSITION_X, 2 * ($event.offsetX / this.$container.clientWidth) - 1));
-        window.dispatchEvent(new EventPointerAnalog(EVENT_TYPES.POINTER.POINTER_ANALOG, EVENT_CODES.POINTER.POSITION_Y, 2 * ($event.offsetY / this.$container.clientHeight) - 1));
+        window.dispatchEvent(new EventPointerDigital(EVENT_TYPES.POINTER.POINTER_DOWN, INPUT_CODES.POINTER.POSITION_X));
+        window.dispatchEvent(new EventPointerDigital(EVENT_TYPES.POINTER.POINTER_DOWN, INPUT_CODES.POINTER.POSITION_Y));
+        window.dispatchEvent(new EventPointerAnalog(EVENT_TYPES.POINTER.POINTER_ANALOG, INPUT_CODES.POINTER.POSITION_X, 2 * ($event.offsetX / this.$container.clientWidth) - 1));
+        window.dispatchEvent(new EventPointerAnalog(EVENT_TYPES.POINTER.POINTER_ANALOG, INPUT_CODES.POINTER.POSITION_Y, 2 * ($event.offsetY / this.$container.clientHeight) - 1));
     }
 
     /**
@@ -122,15 +122,15 @@ class ExtensionPointer {
 
         if (this.$statePointer === true) {
 
-            window.dispatchEvent(new EventPointerDigital(EVENT_TYPES.POINTER.POINTER_UP, EVENT_CODES.POINTER.POINT));
+            window.dispatchEvent(new EventPointerDigital(EVENT_TYPES.POINTER.POINTER_UP, INPUT_CODES.POINTER.POINT));
 
             this.$statePointer = false;
         }
 
-        window.dispatchEvent(new EventPointerDigital(EVENT_TYPES.POINTER.POINTER_UP, EVENT_CODES.POINTER.POSITION_X));
-        window.dispatchEvent(new EventPointerDigital(EVENT_TYPES.POINTER.POINTER_UP, EVENT_CODES.POINTER.POSITION_Y));
-        window.dispatchEvent(new EventPointerAnalog(EVENT_TYPES.POINTER.POINTER_ANALOG, EVENT_CODES.POINTER.POSITION_X, 2 * ($event.offsetX / this.$container.clientWidth) - 1));
-        window.dispatchEvent(new EventPointerAnalog(EVENT_TYPES.POINTER.POINTER_ANALOG, EVENT_CODES.POINTER.POSITION_Y, 2 * ($event.offsetY / this.$container.clientHeight) - 1));
+        window.dispatchEvent(new EventPointerDigital(EVENT_TYPES.POINTER.POINTER_UP, INPUT_CODES.POINTER.POSITION_X));
+        window.dispatchEvent(new EventPointerDigital(EVENT_TYPES.POINTER.POINTER_UP, INPUT_CODES.POINTER.POSITION_Y));
+        window.dispatchEvent(new EventPointerAnalog(EVENT_TYPES.POINTER.POINTER_ANALOG, INPUT_CODES.POINTER.POSITION_X, 2 * ($event.offsetX / this.$container.clientWidth) - 1));
+        window.dispatchEvent(new EventPointerAnalog(EVENT_TYPES.POINTER.POINTER_ANALOG, INPUT_CODES.POINTER.POSITION_Y, 2 * ($event.offsetY / this.$container.clientHeight) - 1));
     }
 
     /**
@@ -140,10 +140,10 @@ class ExtensionPointer {
      */
     $onPointerMove($event) {
 
-        window.dispatchEvent(new EventPointerDigital(EVENT_TYPES.POINTER.POINTER_DOWN, EVENT_CODES.POINTER.POSITION_X));
-        window.dispatchEvent(new EventPointerDigital(EVENT_TYPES.POINTER.POINTER_DOWN, EVENT_CODES.POINTER.POSITION_Y));
-        window.dispatchEvent(new EventPointerAnalog(EVENT_TYPES.POINTER.POINTER_ANALOG, EVENT_CODES.POINTER.POSITION_X, 2 * ($event.offsetX / this.$container.clientWidth) - 1));
-        window.dispatchEvent(new EventPointerAnalog(EVENT_TYPES.POINTER.POINTER_ANALOG, EVENT_CODES.POINTER.POSITION_Y, 2 * ($event.offsetY / this.$container.clientHeight) - 1));
+        window.dispatchEvent(new EventPointerDigital(EVENT_TYPES.POINTER.POINTER_DOWN, INPUT_CODES.POINTER.POSITION_X));
+        window.dispatchEvent(new EventPointerDigital(EVENT_TYPES.POINTER.POINTER_DOWN, INPUT_CODES.POINTER.POSITION_Y));
+        window.dispatchEvent(new EventPointerAnalog(EVENT_TYPES.POINTER.POINTER_ANALOG, INPUT_CODES.POINTER.POSITION_X, 2 * ($event.offsetX / this.$container.clientWidth) - 1));
+        window.dispatchEvent(new EventPointerAnalog(EVENT_TYPES.POINTER.POINTER_ANALOG, INPUT_CODES.POINTER.POSITION_Y, 2 * ($event.offsetY / this.$container.clientHeight) - 1));
     }
 
     /**
@@ -154,7 +154,7 @@ class ExtensionPointer {
 
         if (this.$statePointer === true) {
 
-            window.dispatchEvent(new EventPointerDigital(EVENT_TYPES.POINTER.POINTER_UP, EVENT_CODES.POINTER.POINT));
+            window.dispatchEvent(new EventPointerDigital(EVENT_TYPES.POINTER.POINTER_UP, INPUT_CODES.POINTER.POINT));
 
             this.$statePointer = false;
         }

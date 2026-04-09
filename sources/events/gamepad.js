@@ -47,7 +47,7 @@ class EventGamepad extends Event {
      * Creates a new gamepad event.
      * @param {(EVENT_TYPES.GAMEPAD.GAMEPAD_VIBRATE)} $type The event type.
      * @param {string} $code The event code.
-     * @param {Vibration} $vibration The vibration.
+     * @param {Vibration} [$vibration] The vibration.
      */
     constructor($type, $code, $vibration) {
 

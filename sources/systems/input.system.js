@@ -1,4 +1,4 @@
-import {EVENT_CODES, EVENT_TYPES, EventGamepadAnalog, EventGamepadDigital, EventGravityAnalog, EventGravityDigital, EventGyroscopeAnalog, EventGyroscopeDigital, EventMidiAnalog, EventMidiDigital, EventPointerAnalog, EventPointerDigital, Stage, System} from '../index.js';
+import {EVENT_TYPES, EventGamepadAnalog, EventGamepadDigital, EventGravityAnalog, EventGravityDigital, EventGyroscopeAnalog, EventGyroscopeDigital, EventMidiAnalog, EventMidiDigital, EventPointerAnalog, EventPointerDigital, INPUT_CODES, Stage, System} from '../index.js';
 
 /**
  * The MIDI 'Control Change' input codes format.
@@ -6,7 +6,7 @@ import {EVENT_CODES, EVENT_TYPES, EventGamepadAnalog, EventGamepadDigital, Event
  * @constant
  * @private
  */
-const $REGEX_EVENT_CODE_MIDI_CONTROL = /^Control(\d{1,2})X(\d{1,3})$/;
+const $REGEX_INPUT_CODES_MIDI_CONTROL = /^Control(\d{1,2})X(\d{1,3})$/;
 
 /**
  * The MIDI 'Program Change' input codes format.
@@ -14,7 +14,7 @@ const $REGEX_EVENT_CODE_MIDI_CONTROL = /^Control(\d{1,2})X(\d{1,3})$/;
  * @constant
  * @private
  */
-const $REGEX_EVENT_CODE_MIDI_PROGRAM = /^Program(\d{1,2})X(\d{1,3})$/;
+const $REGEX_INPUT_CODES_MIDI_PROGRAM = /^Program(\d{1,2})X(\d{1,3})$/;
 
 /**
  * Creates input systems.
@@ -73,7 +73,7 @@ class SystemInput extends System {
 
     /**
      * Handles an input being initiated.
-     * @param {string} $input The event code of the input.
+     * @param {string} $input The code of the input.
      * @private
      */
     $handleInputDown($input) {
@@ -96,7 +96,7 @@ class SystemInput extends System {
 
     /**
      * Handles an input being terminated.
-     * @param {string} $input The event code of the input.
+     * @param {string} $input The code of the input.
      * @private
      */
     $handleInputUp($input) {
@@ -117,7 +117,7 @@ class SystemInput extends System {
 
     /**
      * Sets the analog value of the given input.
-     * @param {string} $input The event code of the input.
+     * @param {string} $input The code of the input.
      * @param {number} $value The analog value of the input to set.
      * @private
      */
@@ -140,7 +140,7 @@ class SystemInput extends System {
 
     /**
      * Gets the persisted status of the given input.
-     * @param {string} $input The event code of the input.
+     * @param {string} $input The code of the input.
      * @returns {boolean}
      * @public
      */
@@ -156,7 +156,7 @@ class SystemInput extends System {
 
     /**
      * Gets the analog value of the given input.
-     * @param {string} $input The event code of the input.
+     * @param {string} $input The code of the input.
      * @returns {number}
      * @public
      */
@@ -172,7 +172,7 @@ class SystemInput extends System {
 
     /**
      * Gets the initiated status of the given input.
-     * @param {string} $input The event code of the input.
+     * @param {string} $input The code of the input.
      * @returns {boolean}
      * @public
      */
@@ -188,7 +188,7 @@ class SystemInput extends System {
 
     /**
      * Gets the terminated status of the given input.
-     * @param {string} $input The event code of the input.
+     * @param {string} $input The code of the input.
      * @returns {boolean}
      * @public
      */
@@ -297,10 +297,10 @@ class SystemInput extends System {
                 return;
             }
 
-            if ($code === EVENT_CODES.GAMEPAD_STANDARD.CONNECTED
-            || $code === EVENT_CODES.GAMEPAD_STANDARD.DISCONNECTED
-            || $REGEX_EVENT_CODE_MIDI_CONTROL.test($code) === true
-            || $REGEX_EVENT_CODE_MIDI_PROGRAM.test($code) === true) {
+            if ($code === INPUT_CODES.GAMEPAD_STANDARD.CONNECTED
+            || $code === INPUT_CODES.GAMEPAD_STANDARD.DISCONNECTED
+            || $REGEX_INPUT_CODES_MIDI_CONTROL.test($code) === true
+            || $REGEX_INPUT_CODES_MIDI_PROGRAM.test($code) === true) {
 
                 this.$handleInputUp($code);
 

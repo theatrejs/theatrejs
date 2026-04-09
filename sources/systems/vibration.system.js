@@ -49,7 +49,7 @@ class SystemVibration extends System {
      */
     onTerminate() {
 
-        window.dispatchEvent(new EventGamepadDigital(EVENT_TYPES.GAMEPAD.GAMEPAD_VIBRATE, EVENT_CODES.GAMEPAD_STANDARD.VIBRATE_END));
+        window.dispatchEvent(new EventGamepad(EVENT_TYPES.GAMEPAD.GAMEPAD_VIBRATE, EVENT_CODES.GAMEPAD_STANDARD.VIBRATE_END));
 
         return undefined;
     }

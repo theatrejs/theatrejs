@@ -28,7 +28,7 @@ class EventGamepadDigital extends Event {
 
     /**
      * Creates a new gamepad digital event.
-     * @param {(EVENT_TYPES.GAMEPAD.GAMEPAD_CONNECT | EVENT_TYPES.GAMEPAD.GAMEPAD_DOWN | EVENT_TYPES.GAMEPAD.GAMEPAD_UP | EVENT_TYPES.GAMEPAD.GAMEPAD_VIBRATE)} $type The event type.
+     * @param {(EVENT_TYPES.GAMEPAD.GAMEPAD_CONNECT | EVENT_TYPES.GAMEPAD.GAMEPAD_DOWN | EVENT_TYPES.GAMEPAD.GAMEPAD_UP)} $type The event type.
      * @param {string} $code The event code.
      */
     constructor($type, $code) {
