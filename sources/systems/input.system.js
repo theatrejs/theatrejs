@@ -1,6 +1,22 @@
 import {EVENT_CODES, EVENT_TYPES, EventGamepadAnalog, EventGamepadDigital, EventGravityAnalog, EventGravityDigital, EventGyroscopeAnalog, EventGyroscopeDigital, EventMidiAnalog, EventMidiDigital, EventPointerAnalog, EventPointerDigital, Stage, System} from '../index.js';
 
 /**
+ * The MIDI 'Control Change' input codes format.
+ * @type {RegExp}
+ * @constant
+ * @private
+ */
+const $REGEX_EVENT_CODE_MIDI_CONTROL = /^Control(\d{1,2})X(\d{1,3})$/;
+
+/**
+ * The MIDI 'Program Change' input codes format.
+ * @type {RegExp}
+ * @constant
+ * @private
+ */
+const $REGEX_EVENT_CODE_MIDI_PROGRAM = /^Program(\d{1,2})X(\d{1,3})$/;
+
+/**
  * Creates input systems.
  *
  * @example
@@ -135,7 +151,7 @@ class SystemInput extends System {
             return false;
         }
 
-        return this.$inputs.get($input).$persist;
+        return this.$inputs.get($input).$persist === true;
     }
 
     /**
@@ -167,7 +183,7 @@ class SystemInput extends System {
             return false;
         }
 
-        return this.$inputs.get($input).$initiate;
+        return this.$inputs.get($input).$initiate === true;
     }
 
     /**
@@ -282,7 +298,9 @@ class SystemInput extends System {
             }
 
             if ($code === EVENT_CODES.GAMEPAD_STANDARD.CONNECTED
-            || $code === EVENT_CODES.GAMEPAD_STANDARD.DISCONNECTED) {
+            || $code === EVENT_CODES.GAMEPAD_STANDARD.DISCONNECTED
+            || $REGEX_EVENT_CODE_MIDI_CONTROL.test($code) === true
+            || $REGEX_EVENT_CODE_MIDI_PROGRAM.test($code) === true) {
 
                 this.$handleInputUp($code);
 

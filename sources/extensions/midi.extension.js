@@ -60,6 +60,16 @@ class ExtensionMidi {
             this.$mappingHandlers.set($iterator, this.$onMidiMessageNoteOn.bind(this));
         }
 
+        for (let $iterator = MIDI_STATUSES.CONTROL_CHANGE_CHANNEL_ONE; $iterator <= MIDI_STATUSES.CONTROL_CHANGE_CHANNEL_SIXTEEN; $iterator += 1) {
+
+            this.$mappingHandlers.set($iterator, this.$onMidiMessageControlChange.bind(this));
+        }
+
+        for (let $iterator = MIDI_STATUSES.PROGRAM_CHANGE_CHANNEL_ONE; $iterator <= MIDI_STATUSES.PROGRAM_CHANGE_CHANNEL_SIXTEEN; $iterator += 1) {
+
+            this.$mappingHandlers.set($iterator, this.$onMidiMessageProgramChange.bind(this));
+        }
+
         navigator.requestMIDIAccess()
         .then(($midi) => {
 
@@ -106,9 +116,23 @@ class ExtensionMidi {
         if ($event instanceof EventMidi
         && $event.code === EVENT_CODES.MIDI.MESSAGE) {
 
+            const {parameter, status, value} = $event.midi;
+
+            const data = [status];
+
+            if (typeof parameter !== 'undefined') {
+
+                data.push(parameter);
+
+                if (typeof value !== 'undefined') {
+
+                    data.push(value);
+                }
+            }
+
             this.$stateMidi.outputs.values().forEach(($device) => {
 
-                $device.send([$event.midi.status, $event.midi.parameter, $event.midi.value]);
+                $device.send([...data]);
             });
 
             return;
@@ -137,6 +161,24 @@ class ExtensionMidi {
             $status: $status,
             $value: $value
         });
+    }
+
+    /**
+     * Called to send MIDI 'Control Change' messages to MIDI devices.
+     * @param {object} $parameters The given parameters.
+     * @param {number} $parameters.$parameter The parameter code.
+     * @param {number} $parameters.$status The status code.
+     * @param {number} $parameters.$value The value.
+     * @private
+     */
+    $onMidiMessageControlChange({$status, $parameter, $value}) {
+
+        const channel = ($status & 0x0F) + 1;
+        const control = $parameter;
+        const value = $value;
+
+        window.dispatchEvent(new EventMidiDigital(EVENT_TYPES.MIDI.MIDI_INPUT_DOWN, 'Control' + channel + 'X' + control));
+        window.dispatchEvent(new EventMidiAnalog(EVENT_TYPES.MIDI.MIDI_INPUT_ANALOG, 'Control' + channel + 'X' + control, value));
     }
 
     /**
@@ -173,6 +215,23 @@ class ExtensionMidi {
 
         window.dispatchEvent(new EventMidiDigital(EVENT_TYPES.MIDI.MIDI_INPUT_DOWN, 'Note' + channel + 'X' + note));
         window.dispatchEvent(new EventMidiAnalog(EVENT_TYPES.MIDI.MIDI_INPUT_ANALOG, 'Note' + channel + 'X' + note, velocity));
+    }
+
+    /**
+     * Called to send MIDI 'Program Change' messages to MIDI devices.
+     * @param {object} $parameters The given parameters.
+     * @param {number} $parameters.$parameter The parameter code.
+     * @param {number} $parameters.$status The status code.
+     * @param {number} $parameters.$value The value.
+     * @private
+     */
+    $onMidiMessageProgramChange({$status, $parameter}) {
+
+        const channel = ($status & 0x0F) + 1;
+        const program = $parameter;
+
+        window.dispatchEvent(new EventMidiDigital(EVENT_TYPES.MIDI.MIDI_INPUT_DOWN, 'Program' + channel + 'X' + program));
+        window.dispatchEvent(new EventMidiAnalog(EVENT_TYPES.MIDI.MIDI_INPUT_ANALOG, 'Program' + channel + 'X' + program, 1));
     }
 }
 

@@ -3,6 +3,16 @@
  *
  * @example
  *
+ * // minimal
+ * const midi = new MIDI({
+ *
+ *     $status: MIDI_STATUSES.PROGRAM_CHANGE_CHANNEL_ONE,
+ *     $parameter: program
+ * });
+ *
+ * @example
+ *
+ * // full
  * const midi = new MIDI({
  *
  *     $status: MIDI_STATUSES.NOTE_ON_CHANNEL_ONE,
@@ -68,9 +78,9 @@ class Midi {
     /**
      * Creates a new MIDI message.
      * @param {object} $parameters The given parameters.
-     * @param {number} $parameters.$parameter The parameter code.
+     * @param {number} [$parameters.$parameter] The parameter code.
      * @param {number} $parameters.$status The status code.
-     * @param {number} $parameters.$value The value.
+     * @param {number} [$parameters.$value] The value.
      * @see {@link https://midi.org/summary-of-midi-1-0-messages | MIDI 1.0 Specification Message Summary}
      */
     constructor({$parameter, $status, $value}) {
