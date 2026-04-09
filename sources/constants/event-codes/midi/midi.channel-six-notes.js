@@ -1,8 +1,4 @@
 /**
- * @module EVENT_CODES/MIDI/CHANNEL_SIX
- */
-
-/**
  * The MIDI 'NOTE_0' event code on channel six.
  * @type {'Note6X0'}
  * @constant
