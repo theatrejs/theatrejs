@@ -6,8 +6,7 @@
  * // minimal
  * const midi = new MIDI({
  *
- *     $status: MIDI_STATUSES.PROGRAM_CHANGE_CHANNEL_ONE,
- *     $parameter: program
+ *     $status: MIDI_STATUSES.START
  * });
  *
  * @example

@@ -299,6 +299,9 @@ class SystemInput extends System {
 
             if ($code === INPUT_CODES.GAMEPAD_STANDARD.CONNECTED
             || $code === INPUT_CODES.GAMEPAD_STANDARD.DISCONNECTED
+            || $code === INPUT_CODES.MIDI.CONTINUE
+            || $code === INPUT_CODES.MIDI.START
+            || $code === INPUT_CODES.MIDI.STOP
             || $REGEX_INPUT_CODES_MIDI_CONTROL.test($code) === true
             || $REGEX_INPUT_CODES_MIDI_PROGRAM.test($code) === true) {
 

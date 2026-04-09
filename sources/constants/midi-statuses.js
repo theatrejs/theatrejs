@@ -578,6 +578,33 @@ const PROGRAM_CHANGE_CHANNEL_FIFTEEN = 206;
  */
 const PROGRAM_CHANGE_CHANNEL_SIXTEEN = 207;
 
+/**
+ * The MIDI 'Start' status.
+ * @type {250}
+ * @constant
+ *
+ * @memberof module:MIDI_STATUSES
+ */
+const START = 250;
+
+/**
+ * The MIDI 'Continue' status.
+ * @type {251}
+ * @constant
+ *
+ * @memberof module:MIDI_STATUSES
+ */
+const CONTINUE = 251;
+
+/**
+ * The MIDI 'Stop' status.
+ * @type {252}
+ * @constant
+ *
+ * @memberof module:MIDI_STATUSES
+ */
+const STOP = 252;
+
 export {
 
     NOTE_OFF_CHANNEL_ONE,
@@ -646,5 +673,9 @@ export {
     PROGRAM_CHANGE_CHANNEL_THIRTEEN,
     PROGRAM_CHANGE_CHANNEL_FOURTEEN,
     PROGRAM_CHANGE_CHANNEL_FIFTEEN,
-    PROGRAM_CHANGE_CHANNEL_SIXTEEN
+    PROGRAM_CHANGE_CHANNEL_SIXTEEN,
+
+    START,
+    CONTINUE,
+    STOP
 };

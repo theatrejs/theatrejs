@@ -22,6 +22,33 @@ import * as CHANNEL_SIXTEEN from './midi.channel-sixteen.js';
  * @module INPUT_CODES/MIDI
  */
 
+/**
+ * The MIDI 'CONTINUE' input code.
+ * @type {'ContinueSequence'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI
+ */
+const CONTINUE = 'ContinueSequence';
+
+/**
+ * The MIDI 'START' input code.
+ * @type {'StartSequence'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI
+ */
+const START = 'StartSequence';
+
+/**
+ * The MIDI 'STOP' input code.
+ * @type {'StopSequence'}
+ * @constant
+ *
+ * @memberof module:INPUT_CODES/MIDI
+ */
+const STOP = 'StopSequence';
+
 export {
 
     CHANNEL_ONE,
@@ -39,5 +66,9 @@ export {
     CHANNEL_THIRTEEN,
     CHANNEL_FOURTEEN,
     CHANNEL_FIFTEEN,
-    CHANNEL_SIXTEEN
+    CHANNEL_SIXTEEN,
+
+    CONTINUE,
+    START,
+    STOP
 };
