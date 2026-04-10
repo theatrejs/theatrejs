@@ -22,6 +22,7 @@ const configuration = {
 
                     'aabb',
                     'azerty',
+                    'deadzone',
                     'debouncer',
                     'eventbus',
                     'gamepadanalog',

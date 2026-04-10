@@ -1,4 +1,4 @@
-import {EVENT_CODES, EVENT_TYPES, EventGamepad, EventGamepadAnalog, EventGamepadDigital, INPUT_CODES, UTILS} from '../index.js';
+import {EVENT_CODES, EVENT_TYPES, EventGamepad, EventGamepadAnalog, EventGamepadDigital, INPUT_CODES, MATHEMATICS, UTILS} from '../index.js';
 
 /**
  * The ordered list of the axes event codes of the gamepad.
@@ -42,21 +42,28 @@ const $GAMEPAD_BUTTONS = [
 ];
 
 /**
- * The threshold of the gamepad axes.
- * @type {number}
- * @constant
- * @private
- */
-const $THRESHOLD_GAMEPAD_AXES = 1 / 8;
-
-/**
  * Creates gamepad extensions.
  *
  * @example
  *
+ * // minimal
  * ExtensionGamepad.activate();
+ *
+ * @example
+ *
+ * // full
+ * ExtensionGamepad.activate(deadzone);
  */
 class ExtensionGamepad {
+
+    /**
+     * Stores the deadzone of the gamepad axes (in [0, 1] range).
+     * @type {number}
+     * @public
+     * @readonly
+     * @static
+     */
+    static DEADZONE_GAMEPAD_AXES = 1 / 8;
 
     /**
      * Stores the activated status.
@@ -65,6 +72,13 @@ class ExtensionGamepad {
      * @static
      */
     static $activated = false;
+
+    /**
+     * Stores deadzone of the gamepad axes.
+     * @type {number}
+     * @private
+     */
+    $deadzone;
 
     /**
      * Stores the index of the last connected gamepad.
@@ -89,9 +103,12 @@ class ExtensionGamepad {
 
     /**
      * Creates a new gamepad extension.
+     * @param {number} [$deadzone] The deadzone of the gamepad axes (in [0, 1] range).
      * @protected
      */
-    constructor() {
+    constructor($deadzone = ExtensionGamepad.DEADZONE_GAMEPAD_AXES) {
+
+        this.$deadzone = $deadzone;
 
         this.$stateGamepad = {};
         this.$unloaded = false;
@@ -113,17 +130,18 @@ class ExtensionGamepad {
 
     /**
      * Activates the extension.
+     * @param {number} [$deadzone] The deadzone of the gamepad axes (in [0, 1] range).
      * @public
      * @static
      */
-    static activate() {
+    static activate($deadzone = ExtensionGamepad.DEADZONE_GAMEPAD_AXES) {
 
         if (ExtensionGamepad.$activated === true) {
 
             return;
         }
 
-        new ExtensionGamepad();
+        new ExtensionGamepad($deadzone);
 
         ExtensionGamepad.$activated = true;
     }
@@ -293,11 +311,44 @@ class ExtensionGamepad {
                 }
             });
 
-            gamepad.axes.forEach(($direction, $index) => {
+            const [stickLeftX, stickLeftY, stickRightX, stickRightY] = gamepad.axes;
+
+            const axes = [
+
+                [stickLeftX, stickLeftY],
+                [stickRightX, stickRightY]
+            ]
+            .map(([$x, $y]) => {
+
+                const magnitude = MATHEMATICS.hypotenuse($x, $y);
+
+                if (magnitude === 0) {
+
+                    return [0, 0];
+                }
+
+                const value = MATHEMATICS.clamp(magnitude);
+
+                if (value < this.$deadzone) {
+
+                    return [0, 0];
+                }
+
+                const zone = (value - this.$deadzone) / (1 - this.$deadzone);
+
+                return [
+
+                    ($x / magnitude) * zone,
+                    ($y / magnitude) * zone
+                ];
+            })
+            .flat();
+
+            axes.forEach(($direction, $index) => {
 
                 const [axeMinimum, axeMaximum] = $GAMEPAD_AXES[$index];
 
-                if ($direction <= - $THRESHOLD_GAMEPAD_AXES) {
+                if ($direction < 0) {
 
                     if (this.$stateGamepad[axeMaximum] === true) {
 
@@ -307,10 +358,10 @@ class ExtensionGamepad {
 
                     this.$stateGamepad[axeMinimum] = true;
                     window.dispatchEvent(new EventGamepadDigital(EVENT_TYPES.GAMEPAD.GAMEPAD_DOWN, axeMinimum));
-                    window.dispatchEvent(new EventGamepadAnalog(EVENT_TYPES.GAMEPAD.GAMEPAD_ANALOG, axeMinimum, (Math.abs($direction) - $THRESHOLD_GAMEPAD_AXES) / (1 - $THRESHOLD_GAMEPAD_AXES)));
+                    window.dispatchEvent(new EventGamepadAnalog(EVENT_TYPES.GAMEPAD.GAMEPAD_ANALOG, axeMinimum, Math.abs($direction)));
                 }
 
-                else if ($direction >= $THRESHOLD_GAMEPAD_AXES) {
+                else if ($direction > 0) {
 
                     if (this.$stateGamepad[axeMinimum] === true) {
 
@@ -320,7 +371,7 @@ class ExtensionGamepad {
 
                     this.$stateGamepad[axeMaximum] = true;
                     window.dispatchEvent(new EventGamepadDigital(EVENT_TYPES.GAMEPAD.GAMEPAD_DOWN, axeMaximum));
-                    window.dispatchEvent(new EventGamepadAnalog(EVENT_TYPES.GAMEPAD.GAMEPAD_ANALOG, axeMaximum, (Math.abs($direction) - $THRESHOLD_GAMEPAD_AXES) / (1 - $THRESHOLD_GAMEPAD_AXES)));
+                    window.dispatchEvent(new EventGamepadAnalog(EVENT_TYPES.GAMEPAD.GAMEPAD_ANALOG, axeMaximum, Math.abs($direction)));
                 }
 
                 else {
