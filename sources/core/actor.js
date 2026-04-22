@@ -537,9 +537,9 @@ class Actor extends Preloadable {
     }
 
     /**
-     * Listens to an event.
+     * Listens to an action.
      * @param {TypeGenericAction} $action The action to listen.
-     * @param {TypeListenerAction} $handler The listener to set.
+     * @param {TypeListenerAction} $handler The listener to add.
      * @returns {this}
      * @public
      */
@@ -553,7 +553,7 @@ class Actor extends Preloadable {
     /**
      * Listens to a changing state.
      * @param {TypeGenericState} $state The changing state to listen.
-     * @param {TypeListenerState} $handler The listener to set.
+     * @param {TypeListenerState} $handler The listener to add.
      * @returns {this}
      * @public
      */
@@ -1020,6 +1020,34 @@ class Actor extends Preloadable {
     unfollow($actor) {
 
         $actor.$removeFollower(this);
+
+        return this;
+    }
+
+    /**
+     * Unlistens the given action.
+     * @param {TypeGenericAction} $action The action to unlisten.
+     * @param {TypeListenerAction} $handler The listener to remove.
+     * @returns {this}
+     * @public
+     */
+    unlistenAction($action, $handler) {
+
+        this.$actions.unlisten($action, $handler);
+
+        return this;
+    }
+
+    /**
+     * Unlistens the given changing state.
+     * @param {TypeGenericState} $state The changing state to unlisten.
+     * @param {TypeListenerState} $handler The listener to remove.
+     * @returns {this}
+     * @public
+     */
+    unlistenState($state, $handler) {
+
+        this.$states.unlisten($state, $handler);
 
         return this;
     }

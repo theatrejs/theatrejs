@@ -1,3 +1,5 @@
+import {UTILS} from '../index.js';
+
 /**
  * Creates Event Buses.
  * @template {string} [TypeGeneric=string] The generic type of the events.
@@ -36,6 +38,18 @@ class EventBus {
     }
 
     /**
+     * Clears the event bus.
+     * @returns {this}
+     * @public
+     */
+    clear() {
+
+        this.$listeners = {};
+
+        return this;
+    }
+
+    /**
      * Listens an event.
      * @param {TypeGeneric} $event The event to listen.
      * @param {TypeListener} $handler The listener to add.
@@ -71,6 +85,25 @@ class EventBus {
 
             $handler($event);
         });
+
+        return this;
+    }
+
+    /**
+     * Unlistens to an event.
+     * @param {TypeGeneric} $event The event to unlisten.
+     * @param {TypeListener} $handler The listener to remove.
+     * @returns {this}
+     * @public
+     */
+    unlisten($event, $handler) {
+
+        if (Object.hasOwn(this.$listeners, $event) === false) {
+
+            return this;
+        }
+
+        UTILS.extract($handler, this.$listeners[$event]);
 
         return this;
     }

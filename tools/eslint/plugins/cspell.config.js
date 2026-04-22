@@ -50,6 +50,8 @@ const configuration = {
                     'preloadables',
                     'timecode',
                     'timetick',
+                    'unlisten',
+                    'unlistens',
                     'unmimic',
                     'unmimics',
                     'uvmapping',
