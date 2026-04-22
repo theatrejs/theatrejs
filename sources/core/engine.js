@@ -194,6 +194,11 @@ class Engine {
      */
     $createStage($stage) {
 
+        if (this.$stage instanceof Stage) {
+
+            this.$stage.onRemove();
+        }
+
         this.$stage = new $stage(this);
         this.$stage.onCreate();
     }

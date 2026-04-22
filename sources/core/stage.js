@@ -233,6 +233,12 @@ class Stage extends Preloadable {
     onCreate() {}
 
     /**
+     * Called when the stage is being removed.
+     * @public
+     */
+    onRemove() {}
+
+    /**
      * Removes the given actor.
      * @param {Actor} $actor The actor to remove.
      * @public
