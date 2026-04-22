@@ -68,6 +68,8 @@ class SystemInput extends System {
 
         super();
 
+        this.$stack = this.$stack.bind(this);
+
         this.$container = $container;
     }
 
@@ -211,32 +213,32 @@ class SystemInput extends System {
         this.$events = [];
         this.$inputs = new Map();
 
-        window.addEventListener(EVENT_TYPES.NATIVE.BLUR, this.$stack.bind(this));
-        window.addEventListener(EVENT_TYPES.NATIVE.CONTEXT_MENU, this.$stack.bind(this));
+        window.addEventListener(EVENT_TYPES.NATIVE.BLUR, this.$stack);
+        window.addEventListener(EVENT_TYPES.NATIVE.CONTEXT_MENU, this.$stack);
 
-        window.addEventListener(EVENT_TYPES.GAMEPAD.GAMEPAD_ANALOG, this.$stack.bind(this));
-        window.addEventListener(EVENT_TYPES.GAMEPAD.GAMEPAD_CONNECT, this.$stack.bind(this));
-        window.addEventListener(EVENT_TYPES.GAMEPAD.GAMEPAD_DOWN, this.$stack.bind(this));
-        window.addEventListener(EVENT_TYPES.GAMEPAD.GAMEPAD_UP, this.$stack.bind(this));
+        window.addEventListener(EVENT_TYPES.GAMEPAD.GAMEPAD_ANALOG, this.$stack);
+        window.addEventListener(EVENT_TYPES.GAMEPAD.GAMEPAD_CONNECT, this.$stack);
+        window.addEventListener(EVENT_TYPES.GAMEPAD.GAMEPAD_DOWN, this.$stack);
+        window.addEventListener(EVENT_TYPES.GAMEPAD.GAMEPAD_UP, this.$stack);
 
-        window.addEventListener(EVENT_TYPES.GRAVITY.GRAVITY_ANALOG, this.$stack.bind(this));
-        window.addEventListener(EVENT_TYPES.GRAVITY.GRAVITY_DOWN, this.$stack.bind(this));
-        window.addEventListener(EVENT_TYPES.GRAVITY.GRAVITY_UP, this.$stack.bind(this));
+        window.addEventListener(EVENT_TYPES.GRAVITY.GRAVITY_ANALOG, this.$stack);
+        window.addEventListener(EVENT_TYPES.GRAVITY.GRAVITY_DOWN, this.$stack);
+        window.addEventListener(EVENT_TYPES.GRAVITY.GRAVITY_UP, this.$stack);
 
-        window.addEventListener(EVENT_TYPES.GYROSCOPE.GYROSCOPE_ANALOG, this.$stack.bind(this));
-        window.addEventListener(EVENT_TYPES.GYROSCOPE.GYROSCOPE_DOWN, this.$stack.bind(this));
-        window.addEventListener(EVENT_TYPES.GYROSCOPE.GYROSCOPE_UP, this.$stack.bind(this));
+        window.addEventListener(EVENT_TYPES.GYROSCOPE.GYROSCOPE_ANALOG, this.$stack);
+        window.addEventListener(EVENT_TYPES.GYROSCOPE.GYROSCOPE_DOWN, this.$stack);
+        window.addEventListener(EVENT_TYPES.GYROSCOPE.GYROSCOPE_UP, this.$stack);
 
-        window.addEventListener(EVENT_TYPES.MIDI.MIDI_INPUT_ANALOG, this.$stack.bind(this));
-        window.addEventListener(EVENT_TYPES.MIDI.MIDI_INPUT_DOWN, this.$stack.bind(this));
-        window.addEventListener(EVENT_TYPES.MIDI.MIDI_INPUT_UP, this.$stack.bind(this));
+        window.addEventListener(EVENT_TYPES.MIDI.MIDI_INPUT_ANALOG, this.$stack);
+        window.addEventListener(EVENT_TYPES.MIDI.MIDI_INPUT_DOWN, this.$stack);
+        window.addEventListener(EVENT_TYPES.MIDI.MIDI_INPUT_UP, this.$stack);
 
-        window.addEventListener(EVENT_TYPES.POINTER.POINTER_ANALOG, this.$stack.bind(this));
-        window.addEventListener(EVENT_TYPES.POINTER.POINTER_DOWN, this.$stack.bind(this));
-        window.addEventListener(EVENT_TYPES.POINTER.POINTER_UP, this.$stack.bind(this));
+        window.addEventListener(EVENT_TYPES.POINTER.POINTER_ANALOG, this.$stack);
+        window.addEventListener(EVENT_TYPES.POINTER.POINTER_DOWN, this.$stack);
+        window.addEventListener(EVENT_TYPES.POINTER.POINTER_UP, this.$stack);
 
-        this.$container.addEventListener(EVENT_TYPES.KEYBOARD.KEY_DOWN, this.$stack.bind(this));
-        this.$container.addEventListener(EVENT_TYPES.KEYBOARD.KEY_UP, this.$stack.bind(this));
+        this.$container.addEventListener(EVENT_TYPES.KEYBOARD.KEY_DOWN, this.$stack);
+        this.$container.addEventListener(EVENT_TYPES.KEYBOARD.KEY_UP, this.$stack);
     }
 
     /**
@@ -246,32 +248,32 @@ class SystemInput extends System {
      */
     onTerminate() {
 
-        window.removeEventListener(EVENT_TYPES.NATIVE.BLUR, this.$stack.bind(this));
-        window.removeEventListener(EVENT_TYPES.NATIVE.CONTEXT_MENU, this.$stack.bind(this));
+        window.removeEventListener(EVENT_TYPES.NATIVE.BLUR, this.$stack);
+        window.removeEventListener(EVENT_TYPES.NATIVE.CONTEXT_MENU, this.$stack);
 
-        window.removeEventListener(EVENT_TYPES.GAMEPAD.GAMEPAD_ANALOG, this.$stack.bind(this));
-        window.removeEventListener(EVENT_TYPES.GAMEPAD.GAMEPAD_CONNECT, this.$stack.bind(this));
-        window.removeEventListener(EVENT_TYPES.GAMEPAD.GAMEPAD_DOWN, this.$stack.bind(this));
-        window.removeEventListener(EVENT_TYPES.GAMEPAD.GAMEPAD_UP, this.$stack.bind(this));
+        window.removeEventListener(EVENT_TYPES.GAMEPAD.GAMEPAD_ANALOG, this.$stack);
+        window.removeEventListener(EVENT_TYPES.GAMEPAD.GAMEPAD_CONNECT, this.$stack);
+        window.removeEventListener(EVENT_TYPES.GAMEPAD.GAMEPAD_DOWN, this.$stack);
+        window.removeEventListener(EVENT_TYPES.GAMEPAD.GAMEPAD_UP, this.$stack);
 
-        window.removeEventListener(EVENT_TYPES.GRAVITY.GRAVITY_ANALOG, this.$stack.bind(this));
-        window.removeEventListener(EVENT_TYPES.GRAVITY.GRAVITY_DOWN, this.$stack.bind(this));
-        window.removeEventListener(EVENT_TYPES.GRAVITY.GRAVITY_UP, this.$stack.bind(this));
+        window.removeEventListener(EVENT_TYPES.GRAVITY.GRAVITY_ANALOG, this.$stack);
+        window.removeEventListener(EVENT_TYPES.GRAVITY.GRAVITY_DOWN, this.$stack);
+        window.removeEventListener(EVENT_TYPES.GRAVITY.GRAVITY_UP, this.$stack);
 
-        window.removeEventListener(EVENT_TYPES.GYROSCOPE.GYROSCOPE_ANALOG, this.$stack.bind(this));
-        window.removeEventListener(EVENT_TYPES.GYROSCOPE.GYROSCOPE_DOWN, this.$stack.bind(this));
-        window.removeEventListener(EVENT_TYPES.GYROSCOPE.GYROSCOPE_UP, this.$stack.bind(this));
+        window.removeEventListener(EVENT_TYPES.GYROSCOPE.GYROSCOPE_ANALOG, this.$stack);
+        window.removeEventListener(EVENT_TYPES.GYROSCOPE.GYROSCOPE_DOWN, this.$stack);
+        window.removeEventListener(EVENT_TYPES.GYROSCOPE.GYROSCOPE_UP, this.$stack);
 
-        window.removeEventListener(EVENT_TYPES.MIDI.MIDI_INPUT_ANALOG, this.$stack.bind(this));
-        window.removeEventListener(EVENT_TYPES.MIDI.MIDI_INPUT_DOWN, this.$stack.bind(this));
-        window.removeEventListener(EVENT_TYPES.MIDI.MIDI_INPUT_UP, this.$stack.bind(this));
+        window.removeEventListener(EVENT_TYPES.MIDI.MIDI_INPUT_ANALOG, this.$stack);
+        window.removeEventListener(EVENT_TYPES.MIDI.MIDI_INPUT_DOWN, this.$stack);
+        window.removeEventListener(EVENT_TYPES.MIDI.MIDI_INPUT_UP, this.$stack);
 
-        window.removeEventListener(EVENT_TYPES.POINTER.POINTER_ANALOG, this.$stack.bind(this));
-        window.removeEventListener(EVENT_TYPES.POINTER.POINTER_DOWN, this.$stack.bind(this));
-        window.removeEventListener(EVENT_TYPES.POINTER.POINTER_UP, this.$stack.bind(this));
+        window.removeEventListener(EVENT_TYPES.POINTER.POINTER_ANALOG, this.$stack);
+        window.removeEventListener(EVENT_TYPES.POINTER.POINTER_DOWN, this.$stack);
+        window.removeEventListener(EVENT_TYPES.POINTER.POINTER_UP, this.$stack);
 
-        this.$container.removeEventListener(EVENT_TYPES.KEYBOARD.KEY_DOWN, this.$stack.bind(this));
-        this.$container.removeEventListener(EVENT_TYPES.KEYBOARD.KEY_UP, this.$stack.bind(this));
+        this.$container.removeEventListener(EVENT_TYPES.KEYBOARD.KEY_DOWN, this.$stack);
+        this.$container.removeEventListener(EVENT_TYPES.KEYBOARD.KEY_UP, this.$stack);
 
         return undefined;
     }

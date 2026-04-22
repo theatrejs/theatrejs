@@ -167,6 +167,9 @@ class SystemRender extends System {
 
         super();
 
+        this.$loseContext = this.$loseContext.bind(this);
+        this.$setFocus = this.$setFocus.bind(this);
+
         this.$color = $color.clone();
         this.$container = $container;
         this.$framing = $framing.clone();
@@ -404,7 +407,7 @@ class SystemRender extends System {
 
         this.$resize();
 
-        window.addEventListener(EVENT_TYPES.NATIVE.CLICK, this.$setFocus.bind(this));
+        window.addEventListener(EVENT_TYPES.NATIVE.CLICK, this.$setFocus);
     }
 
     /**
@@ -437,7 +440,7 @@ class SystemRender extends System {
 
         this.$textureDefault = this.$createTextureDefault(new Vector3(127, 127, 127), SystemRender.UNIT_TEXTURE_1);
 
-        window.addEventListener(EVENT_TYPES.NATIVE.BEFORE_UNLOAD, this.$loseContext.bind(this));
+        window.addEventListener(EVENT_TYPES.NATIVE.BEFORE_UNLOAD, this.$loseContext);
     }
 
     /**
@@ -668,7 +671,7 @@ class SystemRender extends System {
      */
     $terminateCanvas() {
 
-        window.removeEventListener(EVENT_TYPES.NATIVE.CLICK, this.$setFocus.bind(this));
+        window.removeEventListener(EVENT_TYPES.NATIVE.CLICK, this.$setFocus);
 
         this.$container.removeChild(this.$canvas);
     }
@@ -679,7 +682,7 @@ class SystemRender extends System {
      */
     $terminateContext() {
 
-        window.removeEventListener(EVENT_TYPES.NATIVE.BEFORE_UNLOAD, this.$loseContext.bind(this));
+        window.removeEventListener(EVENT_TYPES.NATIVE.BEFORE_UNLOAD, this.$loseContext);
 
         this.$context.deleteBuffer(this.$bufferPosition);
 

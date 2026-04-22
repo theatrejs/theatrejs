@@ -108,6 +108,8 @@ class ExtensionGamepad {
      */
     constructor($deadzone = ExtensionGamepad.DEADZONE_GAMEPAD_AXES) {
 
+        this.$update = this.$update.bind(this);
+
         this.$deadzone = $deadzone;
 
         this.$stateGamepad = {};
@@ -125,7 +127,7 @@ class ExtensionGamepad {
 
         window.addEventListener(EVENT_TYPES.GAMEPAD.GAMEPAD_VIBRATE, this.$onVibrate.bind(this));
 
-        window.requestAnimationFrame(this.$update.bind(this));
+        window.requestAnimationFrame(this.$update);
     }
 
     /**
@@ -391,7 +393,7 @@ class ExtensionGamepad {
             });
         }
 
-        window.requestAnimationFrame(this.$update.bind(this));
+        window.requestAnimationFrame(this.$update);
     }
 }
 
