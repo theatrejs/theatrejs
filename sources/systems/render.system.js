@@ -205,7 +205,7 @@ class SystemRender extends System {
      */
     $createBufferUvsOnce($sprite) {
 
-        if (typeof this.$mappingBuffersUv[$sprite.frameSourceSerialized] !== 'undefined') {
+        if (Object.hasOwn(this.$mappingBuffersUv, $sprite.frameSourceSerialized) === true) {
 
             return;
         }
@@ -323,7 +323,7 @@ class SystemRender extends System {
 
     /**
      * Creates a default texture (1 pixel texture).
-     * @param {Vector3} $color The target texture unit.
+     * @param {Vector3} $color The texture color.
      * @param {number} $unitTexture The target texture unit.
      * @returns {WebGLTexture}
      * @private
@@ -549,7 +549,7 @@ class SystemRender extends System {
      */
     $sendAttribute($shader, $name, $value) {
 
-        if (typeof $shader.attributes[$name] === 'undefined') {
+        if (Object.hasOwn($shader.attributes, $name) === false) {
 
             return;
         }
@@ -589,7 +589,7 @@ class SystemRender extends System {
      */
     $sendUniform($shader, $name, $value) {
 
-        if (typeof $shader.uniforms[$name] === 'undefined') {
+        if (Object.hasOwn($shader.uniforms, $name) === false) {
 
             return;
         }

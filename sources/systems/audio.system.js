@@ -289,7 +289,7 @@ class SystemAudio extends System {
 
                 this.$prepareAudio($sound.audio);
 
-                if (typeof this.$cacheAudios.get($sound.audio) === 'undefined') {
+                if (this.$cacheAudios.has($sound.audio) === false) {
 
                     return;
                 }
