@@ -1,4 +1,4 @@
-import {Actor, Engine, Preloadable, UTILS} from '../index.js';
+import {Actor, Engine, Mask, Preloadable, UTILS} from '../index.js';
 
 /**
  * The label of the 'origin' actor.
@@ -30,6 +30,13 @@ class Stage extends Preloadable {
      * @private
      */
     $engine;
+
+    /**
+     * Stores the masks.
+     * @type {Map<string, Mask>}
+     * @private
+     */
+    $masks;
 
     /**
      * Stores the 'origin' actor (not attached).
@@ -113,6 +120,7 @@ class Stage extends Preloadable {
         this.$engine = $engine;
 
         this.$actors = [];
+        this.$masks = new Map();
         this.$origin = this.$createActorOrigin();
         this.$pointOfView = this.$origin;
         this.$uuid = UTILS.uuid();
@@ -205,6 +213,17 @@ class Stage extends Preloadable {
     }
 
     /**
+     * Gets the mask with the given identifier.
+     * @param {string} $identifier The identifier of the mask to get.
+     * @returns {Mask}
+     * @public
+     */
+    getMask($identifier) {
+
+        return this.$masks.get($identifier);
+    }
+
+    /**
      * Checks if the stage has the given actor.
      * @param {Actor} $actor The actor to check.
      * @returns {boolean}
@@ -224,6 +243,17 @@ class Stage extends Preloadable {
     hasActorWithLabel($label) {
 
         return this.$actors.some(($actor) => ($actor.label === $label)) === true;
+    }
+
+    /**
+     * Checks if the stage has a mask with the given identifier.
+     * @param {string} $identifier The identifier of the mask to check.
+     * @returns {boolean}
+     * @public
+     */
+    hasMask($identifier) {
+
+        return this.$masks.has($identifier) === true;
     }
 
     /**
@@ -314,6 +344,33 @@ class Stage extends Preloadable {
 
             this.$removeActor($actor);
         });
+    }
+
+    /**
+     * Removes the mask with the given identifier.
+     * @param {string} $identifier The identifier of the mask to remove.
+     * @returns {this}
+     * @public
+     */
+    removeMask($identifier) {
+
+        this.$masks.delete($identifier);
+
+        return this;
+    }
+
+    /**
+     * Sets a mask.
+     * @param {string} $identifier The identifier of the mask to set.
+     * @param {Mask} $mask The mask to set.
+     * @returns {this}
+     * @public
+     */
+    setMask($identifier, $mask) {
+
+        this.$masks.set($identifier, $mask);
+
+        return this;
     }
 
     /**

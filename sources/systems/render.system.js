@@ -1,4 +1,4 @@
-import {AABB, Actor, CONTEXT_TYPE, EVENT_TYPES, SHADER_PARAMETER_TYPES, Shader, Sprite, Stage, System, Vector2, Vector3} from '../index.js';
+import {AABB, Actor, CONTENT_TYPES, CONTEXT_TYPE, EVENT_TYPES, Mask, SHADER_PARAMETER_TYPES, Shader, Sprite, Stage, System, Vector2, Vector3} from '../index.js';
 
 /**
  * Creates render systems.
@@ -29,7 +29,7 @@ class SystemRender extends System {
     static UNIT_TEXTURE_0 = 0;
 
     /**
-     * Stores the texture unit for the textures.
+     * Stores the texture unit for the sprite textures.
      * @type {1}
      * @public
      * @readonly
@@ -38,11 +38,20 @@ class SystemRender extends System {
     static UNIT_TEXTURE_1 = 1;
 
     /**
+     * Stores the texture unit for the mask textures.
+     * @type {2}
+     * @public
+     * @readonly
+     * @static
+     */
+    static UNIT_TEXTURE_2 = 2;
+
+    /**
      * Stores the common vertices positions of the sprites.
      * @type {WebGLBuffer}
      * @private
      */
-    $bufferPosition;
+    $bufferVertices;
 
     /**
      * Stores the cache of the texture assets.
@@ -112,7 +121,14 @@ class SystemRender extends System {
      * @type {Object<string, WebGLBuffer>}
      * @private
      */
-    $mappingBuffersUv;
+    $mappingBuffersUvs;
+
+    /**
+     * Stores the placeholder mask.
+     * @type {Mask}
+     * @private
+     */
+    $maskPlaceholder;
 
     /**
      * Stores the shader program.
@@ -150,11 +166,18 @@ class SystemRender extends System {
     $shaderVertex;
 
     /**
-     * Stores the texture of the default texture source.
+     * Stores the texture of the black texture source.
      * @type {WebGLTexture}
      * @private
      */
-    $textureDefault;
+    $textureBlack;
+
+    /**
+     * Stores the texture of the placeholder texture source.
+     * @type {WebGLTexture}
+     * @private
+     */
+    $texturePlaceholder;
 
     /**
      * Creates a new render system.
@@ -178,34 +201,13 @@ class SystemRender extends System {
     }
 
     /**
-     * Creates the common vertices positions of the sprites.
-     * @private
-     */
-    $createBufferPositions() {
-
-        const positions = [
-
-            -0.5, -0.5,
-            -0.5, 0.5,
-            0.5, 0.5,
-            0.5, -0.5
-        ];
-
-        const bufferPosition = this.$context.createBuffer();
-        this.$context.bindBuffer(this.$context.ARRAY_BUFFER, bufferPosition);
-        this.$context.bufferData(this.$context.ARRAY_BUFFER, new Float32Array(positions), this.$context.STATIC_DRAW);
-
-        this.$bufferPosition = bufferPosition;
-    }
-
-    /**
      * Creates the uvmapping from the given sprite.
      * @param {Sprite} $sprite The sprite.
      * @private
      */
     $createBufferUvsOnce($sprite) {
 
-        if (Object.hasOwn(this.$mappingBuffersUv, $sprite.frameSourceSerialized) === true) {
+        if (Object.hasOwn(this.$mappingBuffersUvs, $sprite.frameSourceSerialized) === true) {
 
             return;
         }
@@ -220,11 +222,32 @@ class SystemRender extends System {
             frame.maximum.x, frame.maximum.y
         ];
 
-        const bufferUv = this.$context.createBuffer();
-        this.$context.bindBuffer(this.$context.ARRAY_BUFFER, bufferUv);
+        const bufferUvs = this.$context.createBuffer();
+        this.$context.bindBuffer(this.$context.ARRAY_BUFFER, bufferUvs);
         this.$context.bufferData(this.$context.ARRAY_BUFFER, new Float32Array(uvs), this.$context.STATIC_DRAW);
 
-        this.$mappingBuffersUv[$sprite.frameSourceSerialized] = bufferUv;
+        this.$mappingBuffersUvs[$sprite.frameSourceSerialized] = bufferUvs;
+    }
+
+    /**
+     * Creates the common vertices positions of the sprites.
+     * @private
+     */
+    $createBufferVertices() {
+
+        const vertices = [
+
+            -0.5, -0.5,
+            -0.5, 0.5,
+            0.5, 0.5,
+            0.5, -0.5
+        ];
+
+        const bufferVertices = this.$context.createBuffer();
+        this.$context.bindBuffer(this.$context.ARRAY_BUFFER, bufferVertices);
+        this.$context.bufferData(this.$context.ARRAY_BUFFER, new Float32Array(vertices), this.$context.STATIC_DRAW);
+
+        this.$bufferVertices = bufferVertices;
     }
 
     /**
@@ -241,8 +264,8 @@ class SystemRender extends System {
             3
         ];
 
-        const bufferIndex = this.$context.createBuffer();
-        this.$context.bindBuffer(this.$context.ELEMENT_ARRAY_BUFFER, bufferIndex);
+        const bufferIndices = this.$context.createBuffer();
+        this.$context.bindBuffer(this.$context.ELEMENT_ARRAY_BUFFER, bufferIndices);
         this.$context.bufferData(this.$context.ELEMENT_ARRAY_BUFFER, new Uint32Array(indices), this.$context.STATIC_DRAW);
 
         this.$indices = indices.length;
@@ -295,6 +318,30 @@ class SystemRender extends System {
         this.$context.attachShader(this.$program, this.$shaderVertex);
         this.$context.attachShader(this.$program, this.$shaderFragment);
         this.$context.linkProgram(this.$program);
+    }
+
+    /**
+     * Creates a default sprite (1 pixel sprite).
+     * @param {Vector3} $color The sprite color.
+     * @returns {Sprite}
+     * @private
+     */
+    $createSpriteDefault($color) {
+
+        const canvas = document.createElement('canvas');
+        canvas.width = 1;
+        canvas.height = 1;
+
+        const context = canvas.getContext(CONTEXT_TYPE.CANVAS_2D);
+        context.fillStyle = 'rgba(' + $color.x + ', ' + $color.y + ', ' + $color.z + ', 1)';
+
+        const texture = canvas.toDataURL(CONTENT_TYPES.IMAGE_PNG);
+
+        return new Sprite({
+
+            $sizeTarget: new Vector2(1, 1),
+            $texture: texture
+        })
     }
 
     /**
@@ -435,10 +482,13 @@ class SystemRender extends System {
         this.$createLocationsUniform(this.$program, Shader);
         this.$createLocationsAttribute(this.$program, Shader);
 
-        this.$createBufferPositions();
+        this.$createBufferVertices();
         this.$createIndices();
 
-        this.$textureDefault = this.$createTextureDefault(new Vector3(127, 127, 127), SystemRender.UNIT_TEXTURE_1);
+        this.$maskPlaceholder = new Mask(this.$createSpriteDefault(new Vector3(0, 0, 0)));
+
+        this.$texturePlaceholder = this.$createTextureDefault(new Vector3(127, 127, 127), SystemRender.UNIT_TEXTURE_1);
+        this.$textureBlack = this.$createTextureDefault(new Vector3(0, 0, 0), SystemRender.UNIT_TEXTURE_2);
 
         window.addEventListener(EVENT_TYPES.NATIVE.BEFORE_UNLOAD, this.$loseContext);
     }
@@ -684,14 +734,15 @@ class SystemRender extends System {
 
         window.removeEventListener(EVENT_TYPES.NATIVE.BEFORE_UNLOAD, this.$loseContext);
 
-        this.$context.deleteBuffer(this.$bufferPosition);
+        this.$context.deleteBuffer(this.$bufferVertices);
 
-        Object.values(this.$mappingBuffersUv).forEach(($buffer) => {
+        Object.values(this.$mappingBuffersUvs).forEach(($buffer) => {
 
             this.$context.deleteBuffer($buffer);
         });
 
-        this.$context.deleteTexture(this.$textureDefault);
+        this.$context.deleteTexture(this.$textureBlack);
+        this.$context.deleteTexture(this.$texturePlaceholder);
 
         this.$cacheTextures.forEach(($texture) => {
 
@@ -820,7 +871,7 @@ class SystemRender extends System {
         this.$indices = 0;
         this.$locationsAttribute = {};
         this.$locationsUniform = {};
-        this.$mappingBuffersUv = {};
+        this.$mappingBuffersUvs = {};
 
         this.$initiateCanvas();
         this.$initiateContext();
@@ -861,7 +912,7 @@ class SystemRender extends System {
         this.$sendUniform(Shader, Shader.UNIFORM_ASPECT, [this.$canvas.width, this.$canvas.height]);
         this.$sendUniform(Shader, Shader.UNIFORM_TRANSLATION_POINT_OF_VIEW, [Math.floor($stage.pointOfView.translation.x), Math.floor($stage.pointOfView.translation.y)]);
 
-        this.$sendAttribute(Shader, Shader.ATTRIBUTE_POSITION, this.$bufferPosition);
+        this.$sendAttribute(Shader, Shader.ATTRIBUTE_VERTICES, this.$bufferVertices);
 
         const boundariesViewport = AABB
         .fromSize(new Vector2(this.$canvas.width, this.$canvas.height))
@@ -875,24 +926,45 @@ class SystemRender extends System {
 
         actors.forEach(($actor) => {
 
-            let texture = this.$textureDefault;
+            let mask = this.$maskPlaceholder;
+
+            if ($stage.hasMask($actor.mask) === true) {
+
+                mask = $stage.getMask($actor.mask);
+            }
 
             this.$prepareTexture($actor.sprite.texture, this.$context.TEXTURE0 + SystemRender.UNIT_TEXTURE_1);
+            this.$prepareTexture(mask.sprite.texture, this.$context.TEXTURE0 + SystemRender.UNIT_TEXTURE_2);
 
-            if (typeof this.$cacheTextures.get($actor.sprite.texture) !== 'undefined') {
+            let textureSprite = this.$texturePlaceholder;
+            let textureMask = this.$textureBlack;
 
-                texture = this.$cacheTextures.get($actor.sprite.texture);
+            if (this.$cacheTextures.has($actor.sprite.texture) === true) {
+
+                textureSprite = this.$cacheTextures.get($actor.sprite.texture);
+            }
+
+            if (this.$cacheTextures.has(mask.sprite.texture) === true) {
+
+                textureMask = this.$cacheTextures.get(mask.sprite.texture);
             }
 
             this.$context.activeTexture(this.$context.TEXTURE0 + SystemRender.UNIT_TEXTURE_1);
-            this.$context.bindTexture(this.$context.TEXTURE_2D, texture);
-            this.$sendUniform(Shader, Shader.UNIFORM_TEXTURE, SystemRender.UNIT_TEXTURE_1);
+            this.$context.bindTexture(this.$context.TEXTURE_2D, textureSprite);
+            this.$sendUniform(Shader, Shader.UNIFORM_TEXTURE_SPRITE, SystemRender.UNIT_TEXTURE_1);
 
-            this.$sendUniform(Shader, Shader.UNIFORM_SIZE, [$actor.sprite.sizeTarget.x, $actor.sprite.sizeTarget.y]);
-            this.$sendUniform(Shader, Shader.UNIFORM_TRANSLATION, [Math.floor($actor.translation.x), Math.floor($actor.translation.y)]);
+            this.$context.activeTexture(this.$context.TEXTURE0 + SystemRender.UNIT_TEXTURE_2);
+            this.$context.bindTexture(this.$context.TEXTURE_2D, textureMask);
+            this.$sendUniform(Shader, Shader.UNIFORM_TEXTURE_MASK, SystemRender.UNIT_TEXTURE_2);
+
+            this.$sendUniform(Shader, Shader.UNIFORM_SIZE_SPRITE, [$actor.sprite.sizeTarget.x, $actor.sprite.sizeTarget.y]);
+            this.$sendUniform(Shader, Shader.UNIFORM_SIZE_MASK, [mask.sprite.sizeTarget.x, mask.sprite.sizeTarget.y]);
+
+            this.$sendUniform(Shader, Shader.UNIFORM_TRANSLATION_SPRITE, [Math.floor($actor.translation.x), Math.floor($actor.translation.y)]);
+            this.$sendUniform(Shader, Shader.UNIFORM_TRANSLATION_MASK, [Math.floor(mask.translation.x), Math.floor(mask.translation.y)]);
 
             this.$createBufferUvsOnce($actor.sprite);
-            this.$sendAttribute(Shader, Shader.ATTRIBUTE_UVMAPPING, this.$mappingBuffersUv[$actor.sprite.frameSourceSerialized]);
+            this.$sendAttribute(Shader, Shader.ATTRIBUTE_UVMAPPING_SPRITE, this.$mappingBuffersUvs[$actor.sprite.frameSourceSerialized]);
 
             this.$context.drawElements(this.$context.TRIANGLE_FAN, this.$indices, this.$context.UNSIGNED_INT, 0);
         });

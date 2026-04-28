@@ -1,4 +1,4 @@
-import {Collider, Engine, EventBus, Midi, Preloadable, Sound, Sprite, Stage, UTILS, Vector2, Vibration} from '../index.js';
+import {Collider, Engine, EventBus, Mask, Midi, Preloadable, Sound, Sprite, Stage, UTILS, Vector2, Vibration} from '../index.js';
 
 /**
  * Abstract actors.
@@ -77,6 +77,13 @@ class Actor extends Preloadable {
      * @private
      */
     $label;
+
+    /**
+     * Stores the identifier of the mask attached to this actor.
+     * @type {string}
+     * @private
+     */
+    $mask;
 
     /**
      * Stores the MIDI messages.
@@ -211,6 +218,16 @@ class Actor extends Preloadable {
     get label() {
 
         return this.$label;
+    }
+
+    /**
+     * Gets the identifier of the mask attached to this actor.
+     * @type {string}
+     * @public
+     */
+    get mask() {
+
+        return this.$mask;
     }
 
     /**
@@ -482,6 +499,59 @@ class Actor extends Preloadable {
     }
 
     /**
+     * Attaches the mask with the given identifier to this actor.
+     * @param {string} $identifier The identifier of the mask to attach.
+     * @returns {this}
+     * @public
+     */
+    attachMask($identifier) {
+
+        this.$mask = $identifier;
+
+        Array.from(this.$mimics.keys()).forEach(($mimic) => {
+
+            if (this.stage.hasActor($mimic) === false) {
+
+                this.$mimics.delete($mimic);
+
+                return;
+            }
+
+            $mimic.attachMask($identifier);
+        });
+
+        this.onAttachMask($identifier);
+
+        return this;
+    }
+
+    /**
+     * Detaches the mask from this actor.
+     * @returns {this}
+     * @public
+     */
+    detachMask() {
+
+        delete this.$mask;
+
+        Array.from(this.$mimics.keys()).forEach(($mimic) => {
+
+            if (this.stage.hasActor($mimic) === false) {
+
+                this.$mimics.delete($mimic);
+
+                return;
+            }
+
+            $mimic.detachMask();
+        });
+
+        this.onDetachMask();
+
+        return this;
+    }
+
+    /**
      * Follows the position of the given actor.
      * @param {Actor} $actor The actor to follow the position.
      * @returns {this}
@@ -584,6 +654,16 @@ class Actor extends Preloadable {
     onAfterRemove() {}
 
     /**
+     * Called when the mask is being attached.
+     * @param {string} $identifier The identifier of the mask attached.
+     * @public
+     */
+    onAttachMask($identifier) {
+
+        void $identifier;
+    }
+
+    /**
      * Called just before removing the actor.
      * @public
      */
@@ -642,6 +722,12 @@ class Actor extends Preloadable {
      * @public
      */
     onCreate() {}
+
+    /**
+     * Called when the mask is being detached.
+     * @public
+     */
+    onDetachMask() {}
 
     /**
      * Called when the visible status is being set.

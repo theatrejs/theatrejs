@@ -29,6 +29,7 @@ export {FiniteStateMachine} from './core/finite-state-machine.js';
 export {Grid} from './core/grid.js';
 export {Heap} from './core/heap.js';
 export {Loop} from './core/loop.js';
+export {Mask} from './core/mask.js';
 export * as MATHEMATICS from './core/mathematics.js';
 export {Midi} from './core/midi.js';
 export {Pathfinder} from './core/pathfinder.js';

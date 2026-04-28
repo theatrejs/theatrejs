@@ -29,22 +29,22 @@ class Shader {
      */
 
     /**
-     * Stores the 'attributePosition' attribute name.
-     * @type {'attributePosition'}
+     * Stores the 'attributeUvmappingSprite' attribute name.
+     * @type {'attributeUvmappingSprite'}
      * @public
      * @readonly
      * @static
      */
-    static ATTRIBUTE_POSITION = 'attributePosition';
+    static ATTRIBUTE_UVMAPPING_SPRITE = 'attributeUvmappingSprite';
 
     /**
-     * Stores the 'attributeUvmapping' attribute name.
-     * @type {'attributeUvmapping'}
+     * Stores the 'attributeVertices' attribute name.
+     * @type {'attributeVertices'}
      * @public
      * @readonly
      * @static
      */
-    static ATTRIBUTE_UVMAPPING = 'attributeUvmapping';
+    static ATTRIBUTE_VERTICES = 'attributeVertices';
 
     /**
      * Stores the attributes needed by the shader program.
@@ -55,8 +55,8 @@ class Shader {
      */
     static attributes = {
 
-        [Shader.ATTRIBUTE_POSITION]: SHADER_PARAMETER_TYPES.VECTOR_2,
-        [Shader.ATTRIBUTE_UVMAPPING]: SHADER_PARAMETER_TYPES.VECTOR_2
+        [Shader.ATTRIBUTE_UVMAPPING_SPRITE]: SHADER_PARAMETER_TYPES.VECTOR_2,
+        [Shader.ATTRIBUTE_VERTICES]: SHADER_PARAMETER_TYPES.VECTOR_2
     };
 
     /**
@@ -70,13 +70,20 @@ class Shader {
 
         'precision highp float;' +
 
-        'uniform sampler2D uniformTexture;' +
+        'uniform sampler2D uniformTextureMask;' +
+        'uniform sampler2D uniformTextureSprite;' +
 
-        'varying vec2 varyingUvmapping;' +
+        'varying vec2 varyingUvmappingMask;' +
+        'varying vec2 varyingUvmappingSprite;' +
 
-        'void main(void) {' +
+        'void main() {' +
 
-            'gl_FragColor = texture2D(uniformTexture, varyingUvmapping);' +
+            'vec4 sprite = texture2D(uniformTextureSprite, varyingUvmappingSprite);' +
+
+            'float mask = 1.0 - texture2D(uniformTextureMask, varyingUvmappingMask).r;' +
+            'float masking = step(0.0, varyingUvmappingMask.x) * step(varyingUvmappingMask.x, 1.0) * step(0.0, varyingUvmappingMask.y) * step(varyingUvmappingMask.y, 1.0);' +
+
+            'gl_FragColor = vec4(sprite.rgb, sprite.a * mix(1.0, mask, masking));' +
         '}'
     );
 
@@ -89,22 +96,26 @@ class Shader {
      */
     static sourceVertex = (
 
-        'attribute vec2 attributePosition;' +
-        'attribute vec2 attributeUvmapping;' +
+        'attribute vec2 attributeUvmappingSprite;' +
+        'attribute vec2 attributeVertices;' +
 
         'uniform vec2 uniformAspect;' +
-        'uniform vec2 uniformSize;' +
-        'uniform vec2 uniformTranslation;' +
+        'uniform vec2 uniformSizeMask;' +
+        'uniform vec2 uniformSizeSprite;' +
+        'uniform vec2 uniformTranslationMask;' +
         'uniform vec2 uniformTranslationPointOfView;' +
+        'uniform vec2 uniformTranslationSprite;' +
 
-        'varying vec2 varyingUvmapping;' +
+        'varying vec2 varyingUvmappingMask;' +
+        'varying vec2 varyingUvmappingSprite;' +
 
-        'void main(void) {' +
+        'void main() {' +
 
-            'varyingUvmapping = attributeUvmapping;' +
-
-            'vec2 position = (attributePosition * uniformSize + uniformTranslation);' +
+            'vec2 position = attributeVertices * uniformSizeSprite + uniformTranslationSprite;' +
             'vec2 projection = 2.0 * (position - uniformTranslationPointOfView) / uniformAspect;' +
+
+            'varyingUvmappingMask = ((position - uniformTranslationMask) / uniformSizeMask) * vec2(1.0, -1.0) + vec2(0.5);' +
+            'varyingUvmappingSprite = attributeUvmappingSprite;' +
 
             'gl_Position = vec4(projection, 0.0, 1.0);' +
         '}'
@@ -120,31 +131,49 @@ class Shader {
     static UNIFORM_ASPECT = 'uniformAspect';
 
     /**
-     * Stores the 'uniformSize' uniform name.
-     * @type {'uniformSize'}
+     * Stores the 'uniformSizeMask' uniform name.
+     * @type {'uniformSizeMask'}
      * @public
      * @readonly
      * @static
      */
-    static UNIFORM_SIZE = 'uniformSize';
+    static UNIFORM_SIZE_MASK = 'uniformSizeMask';
 
     /**
-     * Stores the 'uniformTexture' uniform name.
-     * @type {'uniformTexture'}
+     * Stores the 'uniformSizeSprite' uniform name.
+     * @type {'uniformSizeSprite'}
      * @public
      * @readonly
      * @static
      */
-    static UNIFORM_TEXTURE = 'uniformTexture';
+    static UNIFORM_SIZE_SPRITE = 'uniformSizeSprite';
 
     /**
-     * Stores the 'uniformTranslation' uniform name.
-     * @type {'uniformTranslation'}
+     * Stores the 'uniformTextureMask' uniform name.
+     * @type {'uniformTextureMask'}
      * @public
      * @readonly
      * @static
      */
-    static UNIFORM_TRANSLATION = 'uniformTranslation';
+    static UNIFORM_TEXTURE_MASK = 'uniformTextureMask';
+
+    /**
+     * Stores the 'uniformTextureSprite' uniform name.
+     * @type {'uniformTextureSprite'}
+     * @public
+     * @readonly
+     * @static
+     */
+    static UNIFORM_TEXTURE_SPRITE = 'uniformTextureSprite';
+
+    /**
+     * Stores the 'uniformTranslationMask' uniform name.
+     * @type {'uniformTranslationMask'}
+     * @public
+     * @readonly
+     * @static
+     */
+    static UNIFORM_TRANSLATION_MASK = 'uniformTranslationMask';
 
     /**
      * Stores the 'uniformTranslationPointOfView' uniform name.
@@ -156,6 +185,15 @@ class Shader {
     static UNIFORM_TRANSLATION_POINT_OF_VIEW = 'uniformTranslationPointOfView';
 
     /**
+     * Stores the 'uniformTranslationSprite' uniform name.
+     * @type {'uniformTranslationSprite'}
+     * @public
+     * @readonly
+     * @static
+     */
+    static UNIFORM_TRANSLATION_SPRITE = 'uniformTranslationSprite';
+
+    /**
      * Stores the uniforms needed by the shader program.
      * @type {Object<string, TypeTypeUniform>}
      * @public
@@ -165,9 +203,12 @@ class Shader {
     static uniforms = {
 
         [Shader.UNIFORM_ASPECT]: SHADER_PARAMETER_TYPES.VECTOR_2,
-        [Shader.UNIFORM_SIZE]: SHADER_PARAMETER_TYPES.VECTOR_2,
-        [Shader.UNIFORM_TEXTURE]: SHADER_PARAMETER_TYPES.SAMPLER_2D,
-        [Shader.UNIFORM_TRANSLATION]: SHADER_PARAMETER_TYPES.VECTOR_2,
+        [Shader.UNIFORM_SIZE_MASK]: SHADER_PARAMETER_TYPES.VECTOR_2,
+        [Shader.UNIFORM_SIZE_SPRITE]: SHADER_PARAMETER_TYPES.VECTOR_2,
+        [Shader.UNIFORM_TEXTURE_MASK]: SHADER_PARAMETER_TYPES.SAMPLER_2D,
+        [Shader.UNIFORM_TEXTURE_SPRITE]: SHADER_PARAMETER_TYPES.SAMPLER_2D,
+        [Shader.UNIFORM_TRANSLATION_MASK]: SHADER_PARAMETER_TYPES.VECTOR_2,
+        [Shader.UNIFORM_TRANSLATION_SPRITE]: SHADER_PARAMETER_TYPES.VECTOR_2,
         [Shader.UNIFORM_TRANSLATION_POINT_OF_VIEW]: SHADER_PARAMETER_TYPES.VECTOR_2
     };
 }
