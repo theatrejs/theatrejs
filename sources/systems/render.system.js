@@ -510,6 +510,8 @@ class SystemRender extends System {
 
                 const texture = this.$createTexture($textureBitmap, $unitTexture);
 
+                $textureBitmap.close();
+
                 this.$cacheTextures.set($content.url, texture);
 
                 $resolve(texture);
@@ -888,6 +890,7 @@ class SystemRender extends System {
     onTerminate() {
 
         this.$resizeObserver.disconnect();
+        this.$resizeObserver = undefined;
         this.$resized = false;
 
         this.$terminateContext();
