@@ -39,7 +39,7 @@ class ExtensionGravity {
 
     /**
      * Stores the gravity state.
-     * @type {Object<string, boolean>}
+     * @type {Map<string, boolean>}
      * @private
      */
     $stateGravity;
@@ -50,11 +50,11 @@ class ExtensionGravity {
      */
     constructor() {
 
-        this.$stateGravity = {};
+        this.$stateGravity = new Map();
 
         [...$GRAVITY_DIRECTIONS.flat()].forEach(($code) => {
 
-            this.$stateGravity[$code] = false;
+            this.$stateGravity.set($code, false);
         });
 
         this.$gravity = new GravitySensor({
@@ -79,15 +79,15 @@ class ExtensionGravity {
 
             const [directionMinimum, directionMaximum] = $pair;
 
-            if (this.$stateGravity[directionMinimum] === true) {
+            if (this.$stateGravity.get(directionMinimum) === true) {
 
-                this.$stateGravity[directionMinimum] = false;
+                this.$stateGravity.set(directionMinimum, false);
                 window.dispatchEvent(new EventGravityDigital(EVENT_TYPES.GRAVITY.GRAVITY_UP, directionMinimum));
             }
 
-            if (this.$stateGravity[directionMaximum] === true) {
+            if (this.$stateGravity.get(directionMaximum) === true) {
 
-                this.$stateGravity[directionMaximum] = false;
+                this.$stateGravity.set(directionMaximum, false);
                 window.dispatchEvent(new EventGravityDigital(EVENT_TYPES.GRAVITY.GRAVITY_UP, directionMaximum));
             }
         });
@@ -132,41 +132,41 @@ class ExtensionGravity {
 
             if ($direction < 0) {
 
-                if (this.$stateGravity[directionMaximum] === true) {
+                if (this.$stateGravity.get(directionMaximum) === true) {
 
-                    this.$stateGravity[directionMaximum] = false;
+                    this.$stateGravity.set(directionMaximum, false);
                     window.dispatchEvent(new EventGravityDigital(EVENT_TYPES.GRAVITY.GRAVITY_UP, directionMaximum));
                 }
 
-                this.$stateGravity[directionMinimum] = true;
+                this.$stateGravity.set(directionMinimum, true);
                 window.dispatchEvent(new EventGravityDigital(EVENT_TYPES.GRAVITY.GRAVITY_DOWN, directionMinimum));
                 window.dispatchEvent(new EventGravityAnalog(EVENT_TYPES.GRAVITY.GRAVITY_ANALOG, directionMinimum, - gravityAnalog[$index]));
             }
 
             else if ($direction > 0) {
 
-                if (this.$stateGravity[directionMinimum] === true) {
+                if (this.$stateGravity.get(directionMinimum) === true) {
 
-                    this.$stateGravity[directionMinimum] = false;
+                    this.$stateGravity.set(directionMinimum, false);
                     window.dispatchEvent(new EventGravityDigital(EVENT_TYPES.GRAVITY.GRAVITY_UP, directionMinimum));
                 }
 
-                this.$stateGravity[directionMaximum] = true;
+                this.$stateGravity.set(directionMaximum, true);
                 window.dispatchEvent(new EventGravityDigital(EVENT_TYPES.GRAVITY.GRAVITY_DOWN, directionMaximum));
                 window.dispatchEvent(new EventGravityAnalog(EVENT_TYPES.GRAVITY.GRAVITY_ANALOG, directionMaximum, gravityAnalog[$index]));
             }
 
             else {
 
-                if (this.$stateGravity[directionMinimum] === true) {
+                if (this.$stateGravity.get(directionMinimum) === true) {
 
-                    this.$stateGravity[directionMinimum] = false;
+                    this.$stateGravity.set(directionMinimum, false);
                     window.dispatchEvent(new EventGravityDigital(EVENT_TYPES.GRAVITY.GRAVITY_UP, directionMinimum));
                 }
 
-                if (this.$stateGravity[directionMaximum] === true) {
+                if (this.$stateGravity.get(directionMaximum) === true) {
 
-                    this.$stateGravity[directionMaximum] = false;
+                    this.$stateGravity.set(directionMaximum, false);
                     window.dispatchEvent(new EventGravityDigital(EVENT_TYPES.GRAVITY.GRAVITY_UP, directionMaximum));
                     window.dispatchEvent(new EventGravityAnalog(EVENT_TYPES.GRAVITY.GRAVITY_ANALOG, directionMaximum, gravityAnalog[$index]));
                 }

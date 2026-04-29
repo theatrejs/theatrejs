@@ -48,16 +48,16 @@ class Shader {
 
     /**
      * Stores the attributes needed by the shader program.
-     * @type {Object<string, TypeTypeAttribute>}
+     * @type {Map<string, TypeTypeAttribute>}
      * @public
      * @readonly
      * @static
      */
-    static attributes = {
+    static attributes = new Map([
 
-        [Shader.ATTRIBUTE_UVMAPPING_SPRITE]: SHADER_PARAMETER_TYPES.VECTOR_2,
-        [Shader.ATTRIBUTE_VERTICES]: SHADER_PARAMETER_TYPES.VECTOR_2
-    };
+        [Shader.ATTRIBUTE_UVMAPPING_SPRITE, SHADER_PARAMETER_TYPES.VECTOR_2],
+        [Shader.ATTRIBUTE_VERTICES, SHADER_PARAMETER_TYPES.VECTOR_2]
+    ]);
 
     /**
      * Stores the fragment shader source.
@@ -195,22 +195,22 @@ class Shader {
 
     /**
      * Stores the uniforms needed by the shader program.
-     * @type {Object<string, TypeTypeUniform>}
+     * @type {Map<string, TypeTypeUniform>}
      * @public
      * @readonly
      * @static
      */
-    static uniforms = {
+    static uniforms = new Map([
 
-        [Shader.UNIFORM_ASPECT]: SHADER_PARAMETER_TYPES.VECTOR_2,
-        [Shader.UNIFORM_SIZE_MASK]: SHADER_PARAMETER_TYPES.VECTOR_2,
-        [Shader.UNIFORM_SIZE_SPRITE]: SHADER_PARAMETER_TYPES.VECTOR_2,
-        [Shader.UNIFORM_TEXTURE_MASK]: SHADER_PARAMETER_TYPES.SAMPLER_2D,
-        [Shader.UNIFORM_TEXTURE_SPRITE]: SHADER_PARAMETER_TYPES.SAMPLER_2D,
-        [Shader.UNIFORM_TRANSLATION_MASK]: SHADER_PARAMETER_TYPES.VECTOR_2,
-        [Shader.UNIFORM_TRANSLATION_SPRITE]: SHADER_PARAMETER_TYPES.VECTOR_2,
-        [Shader.UNIFORM_TRANSLATION_POINT_OF_VIEW]: SHADER_PARAMETER_TYPES.VECTOR_2
-    };
+        [Shader.UNIFORM_ASPECT, SHADER_PARAMETER_TYPES.VECTOR_2],
+        [Shader.UNIFORM_SIZE_MASK, SHADER_PARAMETER_TYPES.VECTOR_2],
+        [Shader.UNIFORM_SIZE_SPRITE, SHADER_PARAMETER_TYPES.VECTOR_2],
+        [Shader.UNIFORM_TEXTURE_MASK, SHADER_PARAMETER_TYPES.SAMPLER_2D],
+        [Shader.UNIFORM_TEXTURE_SPRITE, SHADER_PARAMETER_TYPES.SAMPLER_2D],
+        [Shader.UNIFORM_TRANSLATION_MASK, SHADER_PARAMETER_TYPES.VECTOR_2],
+        [Shader.UNIFORM_TRANSLATION_SPRITE, SHADER_PARAMETER_TYPES.VECTOR_2],
+        [Shader.UNIFORM_TRANSLATION_POINT_OF_VIEW, SHADER_PARAMETER_TYPES.VECTOR_2]
+    ]);
 }
 
 export {

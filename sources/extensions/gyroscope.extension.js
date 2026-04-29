@@ -47,7 +47,7 @@ class ExtensionGyroscope {
 
     /**
      * Stores the gyroscope state.
-     * @type {Object<string, boolean>}
+     * @type {Map<string, boolean>}
      * @private
      */
     $stateGyroscope;
@@ -58,11 +58,11 @@ class ExtensionGyroscope {
      */
     constructor() {
 
-        this.$stateGyroscope = {};
+        this.$stateGyroscope = new Map();
 
         [...$GYROSCOPE_ROTATIONS.flat()].forEach(($code) => {
 
-            this.$stateGyroscope[$code] = false;
+            this.$stateGyroscope.set($code, false);
         });
 
         this.$gyroscope = new Gyroscope({
@@ -87,15 +87,15 @@ class ExtensionGyroscope {
 
             const [rotationMinimum, rotationMaximum] = $pair;
 
-            if (this.$stateGyroscope[rotationMinimum] === true) {
+            if (this.$stateGyroscope.get(rotationMinimum) === true) {
 
-                this.$stateGyroscope[rotationMinimum] = false;
+                this.$stateGyroscope.set(rotationMinimum, false);
                 window.dispatchEvent(new EventGyroscopeDigital(EVENT_TYPES.GYROSCOPE.GYROSCOPE_UP, rotationMinimum));
             }
 
-            if (this.$stateGyroscope[rotationMaximum] === true) {
+            if (this.$stateGyroscope.get(rotationMaximum) === true) {
 
-                this.$stateGyroscope[rotationMaximum] = false;
+                this.$stateGyroscope.set(rotationMaximum, false);
                 window.dispatchEvent(new EventGyroscopeDigital(EVENT_TYPES.GYROSCOPE.GYROSCOPE_UP, rotationMaximum));
             }
         });
@@ -113,13 +113,13 @@ class ExtensionGyroscope {
 
             if ($rotation <= - $THRESHOLD_GYROSCOPE_VELOCITY_ANGULAR) {
 
-                if (this.$stateGyroscope[rotationMaximum] === true) {
+                if (this.$stateGyroscope.get(rotationMaximum) === true) {
 
-                    this.$stateGyroscope[rotationMaximum] = false;
+                    this.$stateGyroscope.set(rotationMaximum, false);
                     window.dispatchEvent(new EventGyroscopeDigital(EVENT_TYPES.GYROSCOPE.GYROSCOPE_UP, rotationMaximum));
                 }
 
-                this.$stateGyroscope[rotationMinimum] = true;
+                this.$stateGyroscope.set(rotationMinimum, true);
                 window.dispatchEvent(new EventGyroscopeDigital(EVENT_TYPES.GYROSCOPE.GYROSCOPE_DOWN, rotationMinimum));
 
                 if (Math.abs($rotation) >= $THRESHOLD_GYROSCOPE_VELOCITY_ANGULAR) {
@@ -130,13 +130,13 @@ class ExtensionGyroscope {
 
             else if ($rotation >= $THRESHOLD_GYROSCOPE_VELOCITY_ANGULAR) {
 
-                if (this.$stateGyroscope[rotationMinimum] === true) {
+                if (this.$stateGyroscope.get(rotationMinimum) === true) {
 
-                    this.$stateGyroscope[rotationMinimum] = false;
+                    this.$stateGyroscope.set(rotationMinimum, false);
                     window.dispatchEvent(new EventGyroscopeDigital(EVENT_TYPES.GYROSCOPE.GYROSCOPE_UP, rotationMinimum));
                 }
 
-                this.$stateGyroscope[rotationMaximum] = true;
+                this.$stateGyroscope.set(rotationMaximum, true);
                 window.dispatchEvent(new EventGyroscopeDigital(EVENT_TYPES.GYROSCOPE.GYROSCOPE_DOWN, rotationMaximum));
 
                 if (Math.abs($rotation) >= $THRESHOLD_GYROSCOPE_VELOCITY_ANGULAR) {
@@ -147,15 +147,15 @@ class ExtensionGyroscope {
 
             else {
 
-                if (this.$stateGyroscope[rotationMinimum] === true) {
+                if (this.$stateGyroscope.get(rotationMinimum) === true) {
 
-                    this.$stateGyroscope[rotationMinimum] = false;
+                    this.$stateGyroscope.set(rotationMinimum, false);
                     window.dispatchEvent(new EventGyroscopeDigital(EVENT_TYPES.GYROSCOPE.GYROSCOPE_UP, rotationMinimum));
                 }
 
-                if (this.$stateGyroscope[rotationMaximum] === true) {
+                if (this.$stateGyroscope.get(rotationMaximum) === true) {
 
-                    this.$stateGyroscope[rotationMaximum] = false;
+                    this.$stateGyroscope.set(rotationMaximum, false);
                     window.dispatchEvent(new EventGyroscopeDigital(EVENT_TYPES.GYROSCOPE.GYROSCOPE_UP, rotationMaximum));
                 }
             }

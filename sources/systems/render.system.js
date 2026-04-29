@@ -104,21 +104,21 @@ class SystemRender extends System {
 
     /**
      * Stores the shader program attribute locations.
-     * @type {Object<string, number>}
+     * @type {Map<string, number>}
      * @private
      */
     $locationsAttribute;
 
     /**
      * Stores the shader program uniform locations.
-     * @type {Object<string, WebGLUniformLocation>}
+     * @type {Map<string, WebGLUniformLocation>}
      * @private
      */
     $locationsUniform;
 
     /**
      * Stores the mapping between the texture sources and their uvmappings.
-     * @type {Object<string, WebGLBuffer>}
+     * @type {Map<string, WebGLBuffer>}
      * @private
      */
     $mappingBuffersUvs;
@@ -207,7 +207,7 @@ class SystemRender extends System {
      */
     $createBufferUvsOnce($sprite) {
 
-        if (Object.hasOwn(this.$mappingBuffersUvs, $sprite.frameSourceSerialized) === true) {
+        if (this.$mappingBuffersUvs.has($sprite.frameSourceSerialized) === true) {
 
             return;
         }
@@ -226,7 +226,7 @@ class SystemRender extends System {
         this.$context.bindBuffer(this.$context.ARRAY_BUFFER, bufferUvs);
         this.$context.bufferData(this.$context.ARRAY_BUFFER, new Float32Array(uvs), this.$context.STATIC_DRAW);
 
-        this.$mappingBuffersUvs[$sprite.frameSourceSerialized] = bufferUvs;
+        this.$mappingBuffersUvs.set($sprite.frameSourceSerialized, bufferUvs);
     }
 
     /**
@@ -279,9 +279,9 @@ class SystemRender extends System {
      */
     $createLocationsAttribute($program, $shader) {
 
-        Object.keys($shader.attributes).forEach(($name) => {
+        $shader.attributes.keys().forEach(($name) => {
 
-            this.$locationsAttribute[$name] = this.$context.getAttribLocation($program, $name);
+            this.$locationsAttribute.set($name, this.$context.getAttribLocation($program, $name));
         });
     }
 
@@ -293,9 +293,9 @@ class SystemRender extends System {
      */
     $createLocationsUniform($program, $shader) {
 
-        Object.keys($shader.uniforms).forEach(($name) => {
+        $shader.uniforms.keys().forEach(($name) => {
 
-            this.$locationsUniform[$name] = this.$context.getUniformLocation($program, $name);
+            this.$locationsUniform.set($name, this.$context.getUniformLocation($program, $name));
         });
     }
 
@@ -599,19 +599,19 @@ class SystemRender extends System {
      */
     $sendAttribute($shader, $name, $value) {
 
-        if (Object.hasOwn($shader.attributes, $name) === false) {
+        if ($shader.attributes.has($name) === false) {
 
             return;
         }
 
-        const type = $shader.attributes[$name];
+        const type = $shader.attributes.get($name);
 
         switch (type) {
 
             case SHADER_PARAMETER_TYPES.VECTOR_2: {
 
                 this.$context.bindBuffer(this.$context.ARRAY_BUFFER, $value);
-                const location = this.$locationsAttribute[$name];
+                const location = this.$locationsAttribute.get($name);
                 this.$context.vertexAttribPointer(location, 2, this.$context.FLOAT, false, 0, 0);
                 this.$context.enableVertexAttribArray(location);
 
@@ -621,7 +621,7 @@ class SystemRender extends System {
             case SHADER_PARAMETER_TYPES.VECTOR_3: {
 
                 this.$context.bindBuffer(this.$context.ARRAY_BUFFER, $value);
-                const location = this.$locationsAttribute[$name];
+                const location = this.$locationsAttribute.get($name);
                 this.$context.vertexAttribPointer(location, 3, this.$context.FLOAT, false, 0, 0);
                 this.$context.enableVertexAttribArray(location);
 
@@ -639,12 +639,12 @@ class SystemRender extends System {
      */
     $sendUniform($shader, $name, $value) {
 
-        if (Object.hasOwn($shader.uniforms, $name) === false) {
+        if ($shader.uniforms.has($name) === false) {
 
             return;
         }
 
-        const type = $shader.uniforms[$name];
+        const type = $shader.uniforms.get($name);
 
         switch (type) {
 
@@ -652,7 +652,7 @@ class SystemRender extends System {
             case SHADER_PARAMETER_TYPES.INTEGER:
             case SHADER_PARAMETER_TYPES.SAMPLER_2D: {
 
-                this.$context.uniform1i(this.$locationsUniform[$name], $value);
+                this.$context.uniform1i(this.$locationsUniform.get($name), $value);
 
                 break;
             }
@@ -660,21 +660,21 @@ class SystemRender extends System {
             case SHADER_PARAMETER_TYPES.ARRAY_BOOLEAN:
             case SHADER_PARAMETER_TYPES.ARRAY_INTEGER: {
 
-                this.$context.uniform1iv(this.$locationsUniform[$name], $value);
+                this.$context.uniform1iv(this.$locationsUniform.get($name), $value);
 
                 break;
             }
 
             case SHADER_PARAMETER_TYPES.FLOAT: {
 
-                this.$context.uniform1f(this.$locationsUniform[$name], $value);
+                this.$context.uniform1f(this.$locationsUniform.get($name), $value);
 
                 break;
             }
 
             case SHADER_PARAMETER_TYPES.ARRAY_FLOAT: {
 
-                this.$context.uniform1fv(this.$locationsUniform[$name], $value);
+                this.$context.uniform1fv(this.$locationsUniform.get($name), $value);
 
                 break;
             }
@@ -682,7 +682,7 @@ class SystemRender extends System {
             case SHADER_PARAMETER_TYPES.MATRIX_4:
             case SHADER_PARAMETER_TYPES.ARRAY_MATRIX_4: {
 
-                this.$context.uniformMatrix4fv(this.$locationsUniform[$name], false, $value);
+                this.$context.uniformMatrix4fv(this.$locationsUniform.get($name), false, $value);
 
                 break;
             }
@@ -690,7 +690,7 @@ class SystemRender extends System {
             case SHADER_PARAMETER_TYPES.VECTOR_2:
             case SHADER_PARAMETER_TYPES.ARRAY_VECTOR_2: {
 
-                this.$context.uniform2fv(this.$locationsUniform[$name], $value);
+                this.$context.uniform2fv(this.$locationsUniform.get($name), $value);
 
                 break;
             }
@@ -698,7 +698,7 @@ class SystemRender extends System {
             case SHADER_PARAMETER_TYPES.VECTOR_3:
             case SHADER_PARAMETER_TYPES.ARRAY_VECTOR_3: {
 
-                this.$context.uniform3fv(this.$locationsUniform[$name], $value);
+                this.$context.uniform3fv(this.$locationsUniform.get($name), $value);
 
                 break;
             }
@@ -736,7 +736,7 @@ class SystemRender extends System {
 
         this.$context.deleteBuffer(this.$bufferVertices);
 
-        Object.values(this.$mappingBuffersUvs).forEach(($buffer) => {
+        this.$mappingBuffersUvs.values().forEach(($buffer) => {
 
             this.$context.deleteBuffer($buffer);
         });
@@ -869,9 +869,9 @@ class SystemRender extends System {
 
         this.$cacheTextures = new Map();
         this.$indices = 0;
-        this.$locationsAttribute = {};
-        this.$locationsUniform = {};
-        this.$mappingBuffersUvs = {};
+        this.$locationsAttribute = new Map();
+        this.$locationsUniform = new Map();
+        this.$mappingBuffersUvs = new Map();
 
         this.$initiateCanvas();
         this.$initiateContext();
@@ -964,7 +964,7 @@ class SystemRender extends System {
             this.$sendUniform(Shader, Shader.UNIFORM_TRANSLATION_MASK, [Math.floor(mask.translation.x), Math.floor(mask.translation.y)]);
 
             this.$createBufferUvsOnce($actor.sprite);
-            this.$sendAttribute(Shader, Shader.ATTRIBUTE_UVMAPPING_SPRITE, this.$mappingBuffersUvs[$actor.sprite.frameSourceSerialized]);
+            this.$sendAttribute(Shader, Shader.ATTRIBUTE_UVMAPPING_SPRITE, this.$mappingBuffersUvs.get($actor.sprite.frameSourceSerialized));
 
             this.$context.drawElements(this.$context.TRIANGLE_FAN, this.$indices, this.$context.UNSIGNED_INT, 0);
         });

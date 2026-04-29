@@ -52,7 +52,7 @@ class Actor extends Preloadable {
 
     /**
      * Stores the components.
-     * @type {Object<string, any>}
+     * @type {Map<string, any>}
      * @private
      */
     $components;
@@ -349,7 +349,7 @@ class Actor extends Preloadable {
         this.$stage = $stage;
 
         this.$actions = new EventBus();
-        this.$components = {};
+        this.$components = new Map();
         this.$followers = new Map();
         this.$midis = [];
         this.$mimics = new Map();
@@ -572,7 +572,7 @@ class Actor extends Preloadable {
      */
     getComponent($name) {
 
-        return this.$components[$name];
+        return this.$components.get($name);
     }
 
     /**
@@ -593,7 +593,7 @@ class Actor extends Preloadable {
      */
     hasComponent($name) {
 
-        return Object.hasOwn(this.$components, $name) === true;
+        return this.$components.has($name) === true;
     }
 
     /**
@@ -799,7 +799,7 @@ class Actor extends Preloadable {
      */
     removeComponent($name) {
 
-        this.$components[$name] = undefined;
+        this.$components.delete($name);
 
         return this;
     }
@@ -913,7 +913,7 @@ class Actor extends Preloadable {
      */
     setComponent($name, $component) {
 
-        this.$components[$name] = $component;
+        this.$components.set($name, $component);
 
         return this;
     }
