@@ -1,5 +1,5 @@
 /**
- * @module CONTEXT_TYPE
+ * @module CONTEXT_TYPES
  */
 
 /**
@@ -7,7 +7,7 @@
  * @type {'2d'}
  * @constant
  *
- * @memberof module:CONTEXT_TYPE
+ * @memberof module:CONTEXT_TYPES
  */
 const CANVAS_2D = '2d';
 
@@ -16,7 +16,7 @@ const CANVAS_2D = '2d';
  * @type {'webgl'}
  * @constant
  *
- * @memberof module:CONTEXT_TYPE
+ * @memberof module:CONTEXT_TYPES
  */
 const WEBGL1 = 'webgl';
 
@@ -25,7 +25,7 @@ const WEBGL1 = 'webgl';
  * @type {'webgl2'}
  * @constant
  *
- * @memberof module:CONTEXT_TYPE
+ * @memberof module:CONTEXT_TYPES
  */
 const WEBGL2 = 'webgl2';
 
@@ -34,7 +34,7 @@ const WEBGL2 = 'webgl2';
  * @type {'webgpu'}
  * @constant
  *
- * @memberof module:CONTEXT_TYPE
+ * @memberof module:CONTEXT_TYPES
  */
 const WEBGPU = 'webgpu';
 

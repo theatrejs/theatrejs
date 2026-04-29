@@ -1,4 +1,12 @@
-import {AABB, Actor, CONTENT_TYPES, CONTEXT_TYPE, EVENT_TYPES, Mask, SHADER_PARAMETER_TYPES, Shader, Sprite, Stage, System, Vector2, Vector3} from '../index.js';
+import {AABB, Actor, CONTEXT_TYPES, EVENT_TYPES, Mask, SHADER_PARAMETER_TYPES, Shader, Sprite, Stage, System, Vector2, Vector3} from '../index.js';
+
+/**
+ * The data URL of a PNG image of a black pixel.
+ * @type {string}
+ * @constant
+ * @private
+ */
+const $DATA_URL_IMAGE_PNG_BASE64_PIXEL_BLACK = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQIW2NgYGD4DwABBAEAwS2OUAAAAABJRU5ErkJggg==';
 
 /**
  * Creates render systems.
@@ -300,6 +308,22 @@ class SystemRender extends System {
     }
 
     /**
+     * Creates a default mask.
+     * @returns {Mask}
+     * @private
+     */
+    $createMaskDefault() {
+
+        const sprite = new Sprite({
+
+            $sizeTarget: new Vector2(1, 1),
+            $texture: $DATA_URL_IMAGE_PNG_BASE64_PIXEL_BLACK
+        });
+
+        return new Mask(sprite);
+    }
+
+    /**
      * Creates the shader program.
      * @param {typeof Shader} $shader The representation of the shader.
      * @private
@@ -318,30 +342,6 @@ class SystemRender extends System {
         this.$context.attachShader(this.$program, this.$shaderVertex);
         this.$context.attachShader(this.$program, this.$shaderFragment);
         this.$context.linkProgram(this.$program);
-    }
-
-    /**
-     * Creates a default sprite (1 pixel sprite).
-     * @param {Vector3} $color The sprite color.
-     * @returns {Sprite}
-     * @private
-     */
-    $createSpriteDefault($color) {
-
-        const canvas = document.createElement('canvas');
-        canvas.width = 1;
-        canvas.height = 1;
-
-        const context = canvas.getContext(CONTEXT_TYPE.CANVAS_2D);
-        context.fillStyle = 'rgba(' + $color.x + ', ' + $color.y + ', ' + $color.z + ', 1)';
-
-        const texture = canvas.toDataURL(CONTENT_TYPES.IMAGE_PNG);
-
-        return new Sprite({
-
-            $sizeTarget: new Vector2(1, 1),
-            $texture: texture
-        })
     }
 
     /**
@@ -463,7 +463,7 @@ class SystemRender extends System {
      */
     $initiateContext() {
 
-        this.$context = this.$canvas.getContext(CONTEXT_TYPE.WEBGL2, {
+        this.$context = this.$canvas.getContext(CONTEXT_TYPES.WEBGL2, {
 
             'antialias': false
         });
@@ -485,7 +485,7 @@ class SystemRender extends System {
         this.$createBufferVertices();
         this.$createIndices();
 
-        this.$maskPlaceholder = new Mask(this.$createSpriteDefault(new Vector3(0, 0, 0)));
+        this.$maskPlaceholder = this.$createMaskDefault();
 
         this.$texturePlaceholder = this.$createTextureDefault(new Vector3(127, 127, 127), SystemRender.UNIT_TEXTURE_1);
         this.$textureBlack = this.$createTextureDefault(new Vector3(0, 0, 0), SystemRender.UNIT_TEXTURE_2);
