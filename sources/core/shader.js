@@ -79,11 +79,14 @@ class Shader {
         'void main() {' +
 
             'vec4 sprite = texture2D(uniformTextureSprite, varyingUvmappingSprite);' +
+            'vec3 mask = texture2D(uniformTextureMask, varyingUvmappingMask).rgb;' +
 
-            'float mask = 1.0 - texture2D(uniformTextureMask, varyingUvmappingMask).r;' +
+            'float strength = (mask.r + mask.g + mask.b) / 3.0;' +
+            'float opacity = 1.0 - strength;' +
+
             'float masking = step(0.0, varyingUvmappingMask.x) * step(varyingUvmappingMask.x, 1.0) * step(0.0, varyingUvmappingMask.y) * step(varyingUvmappingMask.y, 1.0);' +
 
-            'gl_FragColor = vec4(sprite.rgb, sprite.a * mix(1.0, mask, masking));' +
+            'gl_FragColor = vec4(sprite.rgb, sprite.a * mix(1.0, opacity, masking));' +
         '}'
     );
 
