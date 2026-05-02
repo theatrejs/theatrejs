@@ -185,7 +185,7 @@ class ExtensionGamepad {
             return;
         }
 
-        this.$stateGamepad.entries().forEach(([$code, $activated]) => {
+        Array.from(this.$stateGamepad.entries()).forEach(([$code, $activated]) => {
 
             if ($activated === true) {
 
@@ -212,7 +212,7 @@ class ExtensionGamepad {
             return;
         }
 
-        this.$stateGamepad.entries().forEach(([$code, $activated]) => {
+        Array.from(this.$stateGamepad.entries()).forEach(([$code, $activated]) => {
 
             if ($activated === true) {
 

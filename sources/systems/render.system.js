@@ -287,7 +287,7 @@ class SystemRender extends System {
      */
     $createLocationsAttribute($program, $shader) {
 
-        $shader.attributes.keys().forEach(($name) => {
+        Array.from($shader.attributes.keys()).forEach(($name) => {
 
             this.$locationsAttribute.set($name, this.$context.getAttribLocation($program, $name));
         });
@@ -301,7 +301,7 @@ class SystemRender extends System {
      */
     $createLocationsUniform($program, $shader) {
 
-        $shader.uniforms.keys().forEach(($name) => {
+        Array.from($shader.uniforms.keys()).forEach(($name) => {
 
             this.$locationsUniform.set($name, this.$context.getUniformLocation($program, $name));
         });
@@ -738,7 +738,7 @@ class SystemRender extends System {
 
         this.$context.deleteBuffer(this.$bufferVertices);
 
-        this.$mappingBuffersUvs.values().forEach(($buffer) => {
+        Array.from(this.$mappingBuffersUvs.values()).forEach(($buffer) => {
 
             this.$context.deleteBuffer($buffer);
         });

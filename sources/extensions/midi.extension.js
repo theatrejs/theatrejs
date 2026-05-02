@@ -79,7 +79,7 @@ class ExtensionMidi {
 
             this.$stateMidi = $midi;
 
-            this.$stateMidi.inputs.values().forEach(($device) => {
+            Array.from(this.$stateMidi.inputs.values()).forEach(($device) => {
 
                 $device.addEventListener(EVENT_TYPES.MIDI.MIDI_MESSAGE, this.$onMidiMessage.bind(this));
             });
@@ -271,7 +271,7 @@ class ExtensionMidi {
                 }
             }
 
-            this.$stateMidi.outputs.values().forEach(($device) => {
+            Array.from(this.$stateMidi.outputs.values()).forEach(($device) => {
 
                 $device.send([...data]);
             });
