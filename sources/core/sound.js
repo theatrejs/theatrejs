@@ -17,6 +17,7 @@
  *     $audio: audio,
  *     $durationFadeOut: 125,
  *     $loop: false,
+ *     $radius: 64,
  *     $volume: 1
  * });
  */
@@ -42,6 +43,13 @@ class Sound {
      * @private
      */
     $loop;
+
+    /**
+     * Stores the radius within which the sound is audible.
+     * @type {number}
+     * @private
+     */
+    $radius;
 
     /**
      * Stores the volume.
@@ -81,6 +89,16 @@ class Sound {
     }
 
     /**
+     * Gets the radius within which the sound is audible.
+     * @type {number}
+     * @public
+     */
+    get radius() {
+
+        return this.$radius;
+    }
+
+    /**
      * Gets the volume.
      * @type {number}
      * @public
@@ -96,13 +114,15 @@ class Sound {
      * @param {string} $parameters.$audio The audio source.
      * @param {number} [$parameters.$durationFadeOut] The fade out duration (in ms) (must be positive).
      * @param {boolean} [$parameters.$loop] The loop status.
+     * @param {number} [$parameters.$radius] The radius within which the sound is audible.
      * @param {number} [$parameters.$volume] The volume.
      */
-    constructor({$audio, $durationFadeOut = 1000 / 60, $loop = false, $volume = 1}) {
+    constructor({$audio, $durationFadeOut = 1000 / 60, $loop = false, $radius = Number.POSITIVE_INFINITY, $volume = 1}) {
 
         this.$audio = $audio;
         this.$durationFadeOut = $durationFadeOut;
         this.$loop = $loop;
+        this.$radius = $radius;
         this.$volume = $volume;
     }
 }

@@ -1,4 +1,20 @@
-import {CURVES, Curve, Sound, Stage, System, UTILS} from '../index.js';
+import {CURVES, Curve, MATHEMATICS, Sound, Stage, System, UTILS, Vector2} from '../index.js';
+
+/**
+ * The threshold of the attenuation value change before taking it into account.
+ * @type {number}
+ * @constant
+ * @private
+ */
+const $THRESHOLD_ATTENUATION = 1 / 100;
+
+/**
+ * The threshold of the panning value change before taking it into account.
+ * @type {number}
+ * @constant
+ * @private
+ */
+const $THRESHOLD_PANNING = 1 / 100;
 
 /**
  * Creates audio systems.
@@ -11,9 +27,11 @@ class SystemAudio extends System {
 
     /**
      * @typedef {object} TypeDataAudio An audio data.
+     * @property {GainNode} $attenuation The attenuation gain node.
      * @property {AudioBufferSourceNode} $audio The audio buffer source node.
-     * @property {GainNode} $gain The gain.
+     * @property {StereoPannerNode} $panning The stereo panning node.
      * @property {number} $startTime The start time of the audio in the audio context timeline.
+     * @property {GainNode} $volume The volume gain node.
      * @private
      */
 
@@ -83,12 +101,54 @@ class SystemAudio extends System {
 
             const values = new Curve(CURVES.invert(CURVES.easeOut(2)))
             .getValues(SystemAudio.SAMPLES_CURVES)
-            .map(($value) => (- 1 + $volume * $value));
+            .map(($value) => ($volume * $value));
 
             this.$cacheValuesCurveFadeOut.set($volume, new Float32Array(values));
         }
 
         return this.$cacheValuesCurveFadeOut.get($volume);
+    }
+
+    /**
+     * Creates the values for the transition curve.
+     * @param {number} $source The source value.
+     * @param {number} $target The target value.
+     * @returns {Float32Array}
+     * @private
+     */
+    $createValuesCurveTransition($source, $target) {
+
+        const values = new Curve(CURVES.easeInOut(2))
+        .getValues(SystemAudio.SAMPLES_CURVES)
+        .map(($value) => ($source + ($target - $source) * $value));
+
+        return new Float32Array(values);
+    }
+
+    /**
+     * Gets the attenuation value of the sound from its distance from the given point of view.
+     * @param {Vector2} $audio The position of the audio source.
+     * @param {Vector2} $pointOfView The position of the point of view.
+     * @param {number} $radius The radius within which the sound is audible.
+     * @returns {number}
+     * @private
+     */
+    $getAttenuation($audio, $pointOfView, $radius) {
+
+        return MATHEMATICS.clamp(1 - Vector2.distanceEuclidean($pointOfView, $audio) / $radius);
+    }
+
+    /**
+     * Gets the panning value of the sound from its position from the given point of view.
+     * @param {Vector2} $audio The position of the audio source.
+     * @param {Vector2} $pointOfView The position of the point of view.
+     * @param {number} $framing The framing width (rendering resolution width).
+     * @returns {number}
+     * @private
+     */
+    $getPanning($audio, $pointOfView, $framing) {
+
+        return MATHEMATICS.clamp(($audio.x - $pointOfView.x) / $framing, -1, 1);
     }
 
     /**
@@ -139,7 +199,7 @@ class SystemAudio extends System {
      */
     $terminateSound($sound) {
 
-        const {$audio, $gain, $startTime} = this.$mappingSoundsPlaying.get($sound);
+        const {$attenuation, $audio, $panning, $startTime, $volume} = this.$mappingSoundsPlaying.get($sound);
 
         if ($sound.loop === false
         && this.$context.currentTime > $startTime + Math.max(0, $audio.buffer.duration - ($sound.durationFadeOut / 1000))) {
@@ -147,20 +207,24 @@ class SystemAudio extends System {
             return;
         }
 
-        $gain.gain.cancelScheduledValues(this.$context.currentTime);
-        $gain.gain.setValueCurveAtTime(
+        $volume.gain.cancelScheduledValues(this.$context.currentTime);
+        $volume.gain.setValueCurveAtTime(
 
             this.$createValuesCurveFadeOut($sound.volume),
             this.$context.currentTime,
             Math.min($audio.buffer.duration, $sound.durationFadeOut / 1000)
         );
 
+        $audio.stop(this.$context.currentTime + Math.min($audio.buffer.duration, $sound.durationFadeOut / 1000));
+
         this.$mappingSoundsPlaying.delete($sound);
 
         $audio.onended = () => {
 
+            $volume.disconnect();
+            $attenuation.disconnect();
+            $panning.disconnect();
             $audio.disconnect();
-            $gain.disconnect();
         };
     }
 
@@ -269,8 +333,6 @@ class SystemAudio extends System {
      */
     onTick({$stage, $timetick}) {
 
-        void $timetick;
-
         /**
          * @type {Array<Sound>}
          */
@@ -284,6 +346,41 @@ class SystemAudio extends System {
 
                     UTILS.extract($sound, previous);
 
+                    const {$attenuation, $panning} = this.$mappingSoundsPlaying.get($sound);
+
+                    const positionAudio = $actor.translation;
+                    const positionPointOfView = $stage.pointOfView.translation;
+
+                    const panningSource = $panning.pan.value;
+                    const panningTarget = this.$getPanning(positionAudio, positionPointOfView, $stage.engine.getBoundariesFromFraming().halfSize.x);
+                    const deltaPanning = panningTarget - panningSource;
+
+                    if (Math.abs(deltaPanning) >= $THRESHOLD_PANNING) {
+
+                        $panning.pan.cancelScheduledValues(this.$context.currentTime);
+                        $panning.pan.setValueCurveAtTime(
+
+                            this.$createValuesCurveTransition(panningSource, panningTarget),
+                            this.$context.currentTime,
+                            $timetick / 1000
+                        );
+                    }
+
+                    const attenuationSource = $attenuation.gain.value;
+                    const attenuationTarget = this.$getAttenuation(positionAudio, positionPointOfView, $sound.radius);
+                    const deltaAttenuation = attenuationTarget - attenuationSource;
+
+                    if (Math.abs(deltaAttenuation) >= $THRESHOLD_ATTENUATION) {
+
+                        $attenuation.gain.cancelScheduledValues(this.$context.currentTime);
+                        $attenuation.gain.setValueCurveAtTime(
+
+                            this.$createValuesCurveTransition(attenuationSource, attenuationTarget),
+                            this.$context.currentTime,
+                            $timetick / 1000
+                        );
+                    }
+
                     return;
                 }
 
@@ -294,11 +391,29 @@ class SystemAudio extends System {
                     return;
                 }
 
+                if (this.$cacheAudios.get($sound.audio) === undefined) {
+
+                    return;
+                }
+
                 const bufferAudio = this.$cacheAudios.get($sound.audio);
 
                 const audio = this.$context.createBufferSource();
                 audio.buffer = bufferAudio;
-                audio.connect(this.$context.destination);
+
+                const panning = this.$context.createStereoPanner();
+                panning.pan.value = this.$getPanning($actor.translation, $stage.pointOfView.translation, $stage.engine.getBoundariesFromFraming().halfSize.x);
+
+                const attenuation = this.$context.createGain();
+                attenuation.gain.value = this.$getAttenuation($actor.translation, $stage.pointOfView.translation, $sound.radius);
+
+                const volume = this.$context.createGain();
+                volume.gain.value = $sound.volume;
+
+                audio.connect(panning);
+                panning.connect(attenuation);
+                attenuation.connect(volume);
+                volume.connect(this.$context.destination);
 
                 const timestamp = performance.now();
 
@@ -308,17 +423,13 @@ class SystemAudio extends System {
                     audio.start(0, offset / 1000);
                 });
 
-                const gain = this.$context.createGain();
-                gain.gain.value = $sound.volume - 1;
-                gain.connect(this.$context.destination);
-
-                audio.connect(gain);
-
                 this.$mappingSoundsPlaying.set($sound, {
 
                     $audio: audio,
-                    $gain: gain,
-                    $startTime: this.$context.currentTime
+                    $attenuation: attenuation,
+                    $panning: panning,
+                    $startTime: this.$context.currentTime,
+                    $volume: volume
                 });
 
                 if ($sound.loop === true) {
@@ -328,7 +439,7 @@ class SystemAudio extends System {
                     return;
                 }
 
-                gain.gain.setValueCurveAtTime(
+                volume.gain.setValueCurveAtTime(
 
                     this.$createValuesCurveFadeOut($sound.volume),
                     this.$context.currentTime + Math.max(0, audio.buffer.duration - ($sound.durationFadeOut / 1000)),
@@ -337,8 +448,10 @@ class SystemAudio extends System {
 
                 audio.onended = () => {
 
+                    volume.disconnect();
+                    attenuation.disconnect();
+                    panning.disconnect();
                     audio.disconnect();
-                    gain.disconnect();
 
                     this.$mappingSoundsPlaying.delete($sound);
 
