@@ -15,9 +15,10 @@
  * const sound = new Sound({
  *
  *     $audio: audio,
- *     $durationFadeOut: 125,
+ *     $durationFadeOut: 1000 / 60,
  *     $loop: false,
- *     $radius: 64,
+ *     $radius: Number.POSITIVE_INFINITY,
+ *     $stereo: true,
  *     $volume: 1
  * });
  */
@@ -50,6 +51,13 @@ class Sound {
      * @private
      */
     $radius;
+
+    /**
+     * Stores the stereo status.
+     * @type {boolean}
+     * @private
+     */
+    $stereo;
 
     /**
      * Stores the volume.
@@ -99,6 +107,16 @@ class Sound {
     }
 
     /**
+     * Gets the stereo status.
+     * @type {boolean}
+     * @public
+     */
+    get stereo() {
+
+        return this.$stereo;
+    }
+
+    /**
      * Gets the volume.
      * @type {number}
      * @public
@@ -115,14 +133,16 @@ class Sound {
      * @param {number} [$parameters.$durationFadeOut] The fade out duration (in ms) (must be positive).
      * @param {boolean} [$parameters.$loop] The loop status.
      * @param {number} [$parameters.$radius] The radius within which the sound is audible.
+     * @param {boolean} [$parameters.$stereo] The stereo status.
      * @param {number} [$parameters.$volume] The volume.
      */
-    constructor({$audio, $durationFadeOut = 1000 / 60, $loop = false, $radius = Number.POSITIVE_INFINITY, $volume = 1}) {
+    constructor({$audio, $durationFadeOut = 1000 / 60, $loop = false, $radius = Number.POSITIVE_INFINITY, $stereo = true, $volume = 1}) {
 
         this.$audio = $audio;
         this.$durationFadeOut = $durationFadeOut;
         this.$loop = $loop;
         this.$radius = $radius;
+        this.$stereo = $stereo;
         this.$volume = $volume;
     }
 }

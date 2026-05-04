@@ -351,34 +351,40 @@ class SystemAudio extends System {
                     const positionAudio = $actor.translation;
                     const positionPointOfView = $stage.pointOfView.translation;
 
-                    const panningSource = $panning.pan.value;
-                    const panningTarget = this.$getPanning(positionAudio, positionPointOfView, $stage.engine.getBoundariesFromFraming().halfSize.x);
-                    const deltaPanning = panningTarget - panningSource;
+                    if ($sound.stereo === true) {
 
-                    if (Math.abs(deltaPanning) >= $THRESHOLD_PANNING) {
+                        const panningSource = $panning.pan.value;
+                        const panningTarget = this.$getPanning(positionAudio, positionPointOfView, $stage.engine.getBoundariesFromFraming().halfSize.x);
+                        const deltaPanning = panningTarget - panningSource;
 
-                        $panning.pan.cancelScheduledValues(this.$context.currentTime);
-                        $panning.pan.setValueCurveAtTime(
+                        if (Math.abs(deltaPanning) >= $THRESHOLD_PANNING) {
 
-                            this.$createValuesCurveTransition(panningSource, panningTarget),
-                            this.$context.currentTime,
-                            $timetick / 1000
-                        );
+                            $panning.pan.cancelScheduledValues(this.$context.currentTime);
+                            $panning.pan.setValueCurveAtTime(
+
+                                this.$createValuesCurveTransition(panningSource, panningTarget),
+                                this.$context.currentTime,
+                                $timetick / 1000
+                            );
+                        }
                     }
 
-                    const attenuationSource = $attenuation.gain.value;
-                    const attenuationTarget = this.$getAttenuation(positionAudio, positionPointOfView, $sound.radius);
-                    const deltaAttenuation = attenuationTarget - attenuationSource;
+                    if ($sound.radius < Number.POSITIVE_INFINITY) {
 
-                    if (Math.abs(deltaAttenuation) >= $THRESHOLD_ATTENUATION) {
+                        const attenuationSource = $attenuation.gain.value;
+                        const attenuationTarget = this.$getAttenuation(positionAudio, positionPointOfView, $sound.radius);
+                        const deltaAttenuation = attenuationTarget - attenuationSource;
 
-                        $attenuation.gain.cancelScheduledValues(this.$context.currentTime);
-                        $attenuation.gain.setValueCurveAtTime(
+                        if (Math.abs(deltaAttenuation) >= $THRESHOLD_ATTENUATION) {
 
-                            this.$createValuesCurveTransition(attenuationSource, attenuationTarget),
-                            this.$context.currentTime,
-                            $timetick / 1000
-                        );
+                            $attenuation.gain.cancelScheduledValues(this.$context.currentTime);
+                            $attenuation.gain.setValueCurveAtTime(
+
+                                this.$createValuesCurveTransition(attenuationSource, attenuationTarget),
+                                this.$context.currentTime,
+                                $timetick / 1000
+                            );
+                        }
                     }
 
                     return;
@@ -402,10 +408,20 @@ class SystemAudio extends System {
                 audio.buffer = bufferAudio;
 
                 const panning = this.$context.createStereoPanner();
-                panning.pan.value = this.$getPanning($actor.translation, $stage.pointOfView.translation, $stage.engine.getBoundariesFromFraming().halfSize.x);
+                panning.pan.value = 0;
+
+                if ($sound.stereo === true) {
+
+                    panning.pan.value = this.$getPanning($actor.translation, $stage.pointOfView.translation, $stage.engine.getBoundariesFromFraming().halfSize.x);
+                }
 
                 const attenuation = this.$context.createGain();
-                attenuation.gain.value = this.$getAttenuation($actor.translation, $stage.pointOfView.translation, $sound.radius);
+                attenuation.gain.value = 1;
+
+                if ($sound.radius < Number.POSITIVE_INFINITY) {
+
+                    attenuation.gain.value = this.$getAttenuation($actor.translation, $stage.pointOfView.translation, $sound.radius);
+                }
 
                 const volume = this.$context.createGain();
                 volume.gain.value = $sound.volume;
