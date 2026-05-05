@@ -128,6 +128,20 @@ class Actor extends Preloadable {
     $states;
 
     /**
+     * Stores the tiling values.
+     * @type {Vector2}
+     * @private
+     */
+    $tiling;
+
+    /**
+     * Stores the serialized value of the tiling values.
+     * @type {string}
+     * @private
+     */
+    $tilingSerialized;
+
+    /**
      * Stores the position.
      * @type {Vector2}
      * @private
@@ -289,6 +303,26 @@ class Actor extends Preloadable {
     }
 
     /**
+     * Gets the tiling values.
+     * @type {Vector2}
+     * @public
+     */
+    get tiling() {
+
+        return this.$tiling;
+    }
+
+    /**
+     * Gets the serialized value of the tiling values.
+     * @type {string}
+     * @public
+     */
+    get tilingSerialized() {
+
+        return this.$tilingSerialized;
+    }
+
+    /**
      * Gets the position.
      * @type {Vector2}
      * @public
@@ -355,6 +389,8 @@ class Actor extends Preloadable {
         this.$mimics = new Map();
         this.$sounds = [];
         this.$states = new EventBus();
+        this.$tiling = new Vector2(1, 1);
+        this.$tilingSerialized = Vector2.serialize(this.$tiling);
         this.$translation = new Vector2(0, 0);
         this.$uuid = UTILS.uuid();
         this.$vibrations = [];
@@ -953,6 +989,20 @@ class Actor extends Preloadable {
     setSprite($sprite) {
 
         this.$sprite = $sprite;
+
+        return this;
+    }
+
+    /**
+     * Sets the tiling values.
+     * @param {Vector2} $tiling The tiling values to set.
+     * @returns {this}
+     * @public
+     */
+    setTiling($tiling) {
+
+        this.$tiling = $tiling;
+        this.$tilingSerialized = Vector2.serialize(this.$tiling);
 
         return this;
     }

@@ -25,6 +25,7 @@ const configuration = {
                     'deadzone',
                     'debouncer',
                     'eventbus',
+                    'fract',
                     'gamepadanalog',
                     'gamepadconnect',
                     'gamepadconnected',

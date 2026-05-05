@@ -107,8 +107,8 @@ class Sprite {
 
         this.$frameSourceSerialized = JSON.stringify([
 
-            [$frameSource.minimum.x, $frameSource.minimum.y],
-            [$frameSource.maximum.x, $frameSource.maximum.y]
+            [this.$frameSource.minimum.x, this.$frameSource.minimum.y],
+            [this.$frameSource.maximum.x, this.$frameSource.maximum.y]
         ]);
     }
 }

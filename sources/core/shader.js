@@ -70,6 +70,8 @@ class Shader {
 
         'precision highp float;' +
 
+        'uniform vec2 uniformFrameMaximum;' +
+        'uniform vec2 uniformFrameMinimum;' +
         'uniform sampler2D uniformTextureMask;' +
         'uniform sampler2D uniformTextureSprite;' +
 
@@ -78,7 +80,9 @@ class Shader {
 
         'void main() {' +
 
-            'vec4 sprite = texture2D(uniformTextureSprite, varyingUvmappingSprite);' +
+            'vec2 uvmappingSprite = uniformFrameMinimum + fract(varyingUvmappingSprite) * (uniformFrameMaximum - uniformFrameMinimum);' +
+
+            'vec4 sprite = texture2D(uniformTextureSprite, uvmappingSprite);' +
             'vec3 mask = texture2D(uniformTextureMask, varyingUvmappingMask).rgb;' +
 
             'float strength = (mask.r + mask.g + mask.b) / 3.0;' +
@@ -132,6 +136,24 @@ class Shader {
      * @static
      */
     static UNIFORM_ASPECT = 'uniformAspect';
+
+    /**
+     * Stores the 'uniformFrameMaximum' uniform name.
+     * @type {'uniformFrameMaximum'}
+     * @public
+     * @readonly
+     * @static
+     */
+    static UNIFORM_FRAME_MAXIMUM = 'uniformFrameMaximum';
+
+    /**
+     * Stores the 'uniformFrameMinimum' uniform name.
+     * @type {'uniformFrameMinimum'}
+     * @public
+     * @readonly
+     * @static
+     */
+    static UNIFORM_FRAME_MINIMUM = 'uniformFrameMinimum';
 
     /**
      * Stores the 'uniformSizeMask' uniform name.
@@ -206,6 +228,8 @@ class Shader {
     static uniforms = new Map([
 
         [Shader.UNIFORM_ASPECT, SHADER_PARAMETER_TYPES.VECTOR_2],
+        [Shader.UNIFORM_FRAME_MAXIMUM, SHADER_PARAMETER_TYPES.VECTOR_2],
+        [Shader.UNIFORM_FRAME_MINIMUM, SHADER_PARAMETER_TYPES.VECTOR_2],
         [Shader.UNIFORM_SIZE_MASK, SHADER_PARAMETER_TYPES.VECTOR_2],
         [Shader.UNIFORM_SIZE_SPRITE, SHADER_PARAMETER_TYPES.VECTOR_2],
         [Shader.UNIFORM_TEXTURE_MASK, SHADER_PARAMETER_TYPES.SAMPLER_2D],

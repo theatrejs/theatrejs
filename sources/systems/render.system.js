@@ -209,32 +209,46 @@ class SystemRender extends System {
     }
 
     /**
-     * Creates the uvmapping from the given sprite.
-     * @param {Sprite} $sprite The sprite.
+     * Gets the key of the uvmapping from the given actor.
+     * @param {Actor} $actor The actor.
+     * @returns {string}
      * @private
      */
-    $createBufferUvsOnce($sprite) {
+    $getKeyMappingBuffersUvs($actor) {
 
-        if (this.$mappingBuffersUvs.has($sprite.frameSourceSerialized) === true) {
+        return $actor.sprite.frameSourceSerialized + '@' + $actor.tilingSerialized;
+    }
+
+    /**
+     * Creates the uvmapping from the given sprite.
+     * @param {Actor} $actor The actor.
+     * @private
+     */
+    $createBufferUvsOnce($actor) {
+
+        if (this.$mappingBuffersUvs.has(this.$getKeyMappingBuffersUvs($actor)) === true) {
 
             return;
         }
 
-        const frame = $sprite.frameSource;
+        const uMinimum = 0.5 - $actor.tiling.x / 2;
+        const uMaximum = 0.5 + $actor.tiling.x / 2;
+        const vMinimum = 0.5 - $actor.tiling.y / 2;
+        const vMaximum = 0.5 + $actor.tiling.y / 2;
 
         const uvs = [
 
-            frame.minimum.x, frame.maximum.y,
-            frame.minimum.x, frame.minimum.y,
-            frame.maximum.x, frame.minimum.y,
-            frame.maximum.x, frame.maximum.y
+            uMinimum, vMaximum,
+            uMinimum, vMinimum,
+            uMaximum, vMinimum,
+            uMaximum, vMaximum
         ];
 
         const bufferUvs = this.$context.createBuffer();
         this.$context.bindBuffer(this.$context.ARRAY_BUFFER, bufferUvs);
         this.$context.bufferData(this.$context.ARRAY_BUFFER, new Float32Array(uvs), this.$context.STATIC_DRAW);
 
-        this.$mappingBuffersUvs.set($sprite.frameSourceSerialized, bufferUvs);
+        this.$mappingBuffersUvs.set(this.$getKeyMappingBuffersUvs($actor), bufferUvs);
     }
 
     /**
@@ -408,8 +422,11 @@ class SystemRender extends System {
                 return false;
             }
 
+            const sizeSprite = $actor.sprite.sizeTarget.clone()
+            .multiply($actor.tiling);
+
             const boundariesSprite = AABB
-            .fromSize($actor.sprite.sizeTarget)
+            .fromSize(sizeSprite)
             .translate($actor.translation);
 
             const overlapX = AABB.overlapX($boundaries, boundariesSprite);
@@ -960,14 +977,17 @@ class SystemRender extends System {
             this.$context.bindTexture(this.$context.TEXTURE_2D, textureMask);
             this.$sendUniform(Shader, Shader.UNIFORM_TEXTURE_MASK, SystemRender.UNIT_TEXTURE_2);
 
-            this.$sendUniform(Shader, Shader.UNIFORM_SIZE_SPRITE, [$actor.sprite.sizeTarget.x, $actor.sprite.sizeTarget.y]);
+            this.$sendUniform(Shader, Shader.UNIFORM_FRAME_MINIMUM, [$actor.sprite.frameSource.minimum.x, $actor.sprite.frameSource.minimum.y]);
+            this.$sendUniform(Shader, Shader.UNIFORM_FRAME_MAXIMUM, [$actor.sprite.frameSource.maximum.x, $actor.sprite.frameSource.maximum.y]);
+
+            this.$sendUniform(Shader, Shader.UNIFORM_SIZE_SPRITE, [$actor.sprite.sizeTarget.x * $actor.tiling.x, $actor.sprite.sizeTarget.y * $actor.tiling.y]);
             this.$sendUniform(Shader, Shader.UNIFORM_SIZE_MASK, [mask.sprite.sizeTarget.x, mask.sprite.sizeTarget.y]);
 
             this.$sendUniform(Shader, Shader.UNIFORM_TRANSLATION_SPRITE, [Math.floor($actor.translation.x), Math.floor($actor.translation.y)]);
             this.$sendUniform(Shader, Shader.UNIFORM_TRANSLATION_MASK, [Math.floor(mask.translation.x), Math.floor(mask.translation.y)]);
 
-            this.$createBufferUvsOnce($actor.sprite);
-            this.$sendAttribute(Shader, Shader.ATTRIBUTE_UVMAPPING_SPRITE, this.$mappingBuffersUvs.get($actor.sprite.frameSourceSerialized));
+            this.$createBufferUvsOnce($actor);
+            this.$sendAttribute(Shader, Shader.ATTRIBUTE_UVMAPPING_SPRITE, this.$mappingBuffersUvs.get(this.$getKeyMappingBuffersUvs($actor)));
 
             this.$context.drawElements(this.$context.TRIANGLE_FAN, this.$indices, this.$context.UNSIGNED_INT, 0);
         });
