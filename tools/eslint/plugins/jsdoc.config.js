@@ -1,16 +1,16 @@
 import plugin from 'eslint-plugin-jsdoc';
 
-const rules = plugin.configs['flat/recommended-error'];
+const rules = plugin.configs['flat/recommended-error'].rules;
 
 const configuration = {
 
-    ...rules,
     'plugins': {
 
         'jsdoc': plugin
     },
     'rules': {
 
+        ...rules,
         'jsdoc/check-types': 'off',
         'jsdoc/reject-any-type': 'off',
         'jsdoc/require-returns-description': 'off',

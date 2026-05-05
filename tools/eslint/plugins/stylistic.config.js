@@ -1,16 +1,16 @@
 import plugin from '@stylistic/eslint-plugin';
 
-const rules = plugin.configs['all'];
+const rules = plugin.configs['all'].rules;
 
 const configuration = {
 
-    ...rules,
     'plugins': {
 
         '@stylistic': plugin
     },
     'rules': {
 
+        ...rules,
         '@stylistic/array-element-newline': 'off',
         '@stylistic/brace-style': ['error', 'stroustrup'],
         '@stylistic/dot-location': ['error', 'property'],

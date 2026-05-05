@@ -1,10 +1,9 @@
 import plugin from 'eslint-plugin-playwright';
 
-const rules = plugin.configs['flat/recommended'];
+const rules = plugin.configs['flat/recommended'].rules;
 
 const configuration = {
 
-    ...rules,
     'files': ['tests/**'],
     'plugins': {
 
@@ -12,6 +11,7 @@ const configuration = {
     },
     'rules': {
 
+        ...rules,
         'playwright/no-useless-await': 'error'
     }
 };

@@ -1,4 +1,4 @@
-import {Collider, Engine, EventBus, Mask, Midi, Preloadable, Sound, Sprite, Stage, UTILS, Vector2, Vibration} from '../index.js';
+import {Collider, Engine, EventBus, Midi, Preloadable, Sound, Sprite, Stage, UTILS, Vector2, Vibration} from '../index.js';
 
 /**
  * Abstract actors.

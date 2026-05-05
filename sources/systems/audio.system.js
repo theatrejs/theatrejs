@@ -441,8 +441,8 @@ class SystemAudio extends System {
 
                 this.$mappingSoundsPlaying.set($sound, {
 
-                    $audio: audio,
                     $attenuation: attenuation,
+                    $audio: audio,
                     $panning: panning,
                     $startTime: this.$context.currentTime,
                     $volume: volume

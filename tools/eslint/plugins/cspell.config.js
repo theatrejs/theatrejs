@@ -1,15 +1,16 @@
 import plugin from '@cspell/eslint-plugin';
-import rules from '@cspell/eslint-plugin/recommended';
+
+import {rules} from '@cspell/eslint-plugin/recommended';
 
 const configuration = {
 
-    ...rules,
     'plugins': {
 
         '@cspell': plugin
     },
     'rules': {
 
+        ...rules,
         '@cspell/spellchecker': ['error', {
 
             'checkComments': true,

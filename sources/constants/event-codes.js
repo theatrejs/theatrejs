@@ -8,5 +8,5 @@ export {
     GAMEPAD_PLAYSTATION,
     GAMEPAD_STANDARD,
     GAMEPAD_XBOX,
-    MIDI,
+    MIDI
 };

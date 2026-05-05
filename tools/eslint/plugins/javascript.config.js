@@ -1,16 +1,16 @@
 import plugin from '@eslint/js';
 
-const rules = plugin.configs['all'];
+const rules = plugin.configs['all'].rules;
 
 const configuration = {
 
-    ...rules,
     'plugins': {
 
         'javascript': plugin
     },
     'rules': {
 
+        ...rules,
         'arrow-body-style': 'off',
         'class-methods-use-this': 'off',
         'complexity': 'off',

@@ -131,10 +131,6 @@ class ExtensionMidi {
 
     /**
      * Called when receiving MIDI 'Continue' messages from MIDI devices.
-     * @param {object} $parameters The given parameters.
-     * @param {number} $parameters.$parameter The parameter code.
-     * @param {number} $parameters.$status The status code.
-     * @param {number} $parameters.$value The value.
      * @private
      */
     $onMidiMessageContinue() {
@@ -202,7 +198,6 @@ class ExtensionMidi {
      * @param {object} $parameters The given parameters.
      * @param {number} $parameters.$parameter The parameter code.
      * @param {number} $parameters.$status The status code.
-     * @param {number} $parameters.$value The value.
      * @private
      */
     $onMidiMessageProgramChange({$status, $parameter}) {
@@ -216,10 +211,6 @@ class ExtensionMidi {
 
     /**
      * Called when receiving MIDI 'Start' messages from MIDI devices.
-     * @param {object} $parameters The given parameters.
-     * @param {number} $parameters.$parameter The parameter code.
-     * @param {number} $parameters.$status The status code.
-     * @param {number} $parameters.$value The value.
      * @private
      */
     $onMidiMessageStart() {
@@ -230,10 +221,6 @@ class ExtensionMidi {
 
     /**
      * Called when receiving MIDI 'Stop' messages from MIDI devices.
-     * @param {object} $parameters The given parameters.
-     * @param {number} $parameters.$parameter The parameter code.
-     * @param {number} $parameters.$status The status code.
-     * @param {number} $parameters.$value The value.
      * @private
      */
     $onMidiMessageStop() {

@@ -1,4 +1,4 @@
-import {EVENT_CODES, EVENT_TYPES, EventGamepad, EventGamepadDigital, Stage, System, UTILS, Vibration} from '../index.js';
+import {EVENT_CODES, EVENT_TYPES, EventGamepad, Stage, System, UTILS, Vibration} from '../index.js';
 
 /**
  * Creates vibration systems.

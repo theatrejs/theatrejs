@@ -6,7 +6,7 @@ import {EVENT_TYPES, EventGamepadAnalog, EventGamepadDigital, EventGravityAnalog
  * @constant
  * @private
  */
-const $REGEX_INPUT_CODES_MIDI_CONTROL = /^Control(\d{1,2})X(\d{1,3})$/;
+const $REGEX_INPUT_CODES_MIDI_CONTROL = /^Control(?<channel>\d{1,2})X(?<value>\d{1,3})$/u;
 
 /**
  * The MIDI 'Program Change' input codes format.
@@ -14,7 +14,7 @@ const $REGEX_INPUT_CODES_MIDI_CONTROL = /^Control(\d{1,2})X(\d{1,3})$/;
  * @constant
  * @private
  */
-const $REGEX_INPUT_CODES_MIDI_PROGRAM = /^Program(\d{1,2})X(\d{1,3})$/;
+const $REGEX_INPUT_CODES_MIDI_PROGRAM = /^Program(?<channel>\d{1,2})X(?<value>\d{1,3})$/u;
 
 /**
  * Creates input systems.
