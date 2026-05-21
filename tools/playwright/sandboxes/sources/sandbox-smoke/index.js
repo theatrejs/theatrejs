@@ -29,7 +29,7 @@ const starter = async () => {
     const engine = new Engine();
     engine.initiate(25);
 
-    await engine.preloadStage(StageSandbox);
+    await engine.preload(StageSandbox);
     engine.createStage(StageSandbox);
 
     window.dispatchEvent(new CustomEvent('stage-rendered'));

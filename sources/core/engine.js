@@ -1,4 +1,4 @@
-import {AABB, Actor, Loop, MEDIA_TYPES, Stage, SystemActor, SystemAudio, SystemCollision, SystemInput, SystemMidi, SystemRender, SystemVibration, UTILS, Vector2, Vector3} from '../index.js';
+import {AABB, Actor, Loop, MEDIA_TYPES, Preloadable, Stage, SystemActor, SystemAudio, SystemCollision, SystemInput, SystemMidi, SystemRender, SystemVibration, UTILS, Vector2, Vector3} from '../index.js';
 
 /**
  * Creates game engines.
@@ -9,7 +9,7 @@ import {AABB, Actor, Loop, MEDIA_TYPES, Stage, SystemActor, SystemAudio, SystemC
  * const engine = new Engine();
  * engine.initiate(60);
  *
- * await engine.preloadStage(SceneExample);
+ * await engine.preload(SceneExample);
  *
  * engine.createStage(SceneExample);
  *
@@ -19,7 +19,7 @@ import {AABB, Actor, Loop, MEDIA_TYPES, Stage, SystemActor, SystemAudio, SystemC
  * const engine = new Engine({$color, $container, $framing});
  * engine.initiate(60);
  *
- * await engine.preloadStage(SceneExample);
+ * await engine.preload(SceneExample);
  *
  * engine.createStage(SceneExample);
  */
@@ -343,19 +343,19 @@ class Engine {
     }
 
     /**
-     * Preloads the assets of the given stage.
-     * @param {typeof Stage} $stage The stage to preload the assets from.
+     * Preloads the assets of the given preloadable.
+     * @param {(typeof Preloadable | typeof Actor<string, string> | typeof Stage)} $preloadable The preloadable to preload the assets from.
      * @returns {Promise<Array<(undefined | AudioBuffer | WebGLTexture)>>}
      * @public
      */
-    preloadStage($stage) {
+    preload($preloadable) {
 
         /**
          * @type {Array<Promise<(undefined | AudioBuffer | WebGLTexture)>>}
          */
         const promises = [];
 
-        UTILS.deduplicate($stage.preloadables).forEach(($asset) => {
+        UTILS.deduplicate($preloadable.preloadables).forEach(($asset) => {
 
             if (this.hasAssetLoaded($asset) === true) {
 
